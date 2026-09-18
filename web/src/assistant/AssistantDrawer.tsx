@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { useStore } from "../data/store";
 import { apiBase } from "../data/loaders";
 
@@ -30,7 +31,7 @@ interface Message {
   text: string;
   toolCalls?: ToolCall[];
   guardWarn?: boolean;
-  links?: Array<{ tab: string; site_id?: string; drug?: string; label: string }>;
+  links?: Array<{ target_tab: string; site_id?: string; drug?: string; label: string }>;
 }
 
 export function AssistantDrawer() {
@@ -224,7 +225,8 @@ export function AssistantDrawer() {
                     <button
                       key={j}
                       onClick={() => {
-                        setActiveTab(lnk.tab as Parameters<typeof setActiveTab>[0]);
+                        const tab = lnk.target_tab.toLowerCase() as Parameters<typeof setActiveTab>[0];
+                        setActiveTab(tab);
                         if (lnk.site_id) setSelectedSiteId(lnk.site_id);
                         if (lnk.drug) setSelectedDrug(lnk.drug);
                         close();
@@ -293,6 +295,7 @@ export function AssistantDrawer() {
 function MarkdownText({ text }: { text: string }) {
   return (
     <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
       components={{
         p: ({ children }) => <p className="mb-2 last:mb-0 leading-relaxed">{children}</p>,
         strong: ({ children }) => <strong className="font-semibold" style={{ color: "#f5f4f2" }}>{children}</strong>,
