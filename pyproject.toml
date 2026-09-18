@@ -10,3 +10,9 @@ select = ["E", "F", "I", "UP", "B"]
 
 [tool.pytest.ini_options]
 testpaths = ["engine/tests"]
+
+[dependency-groups]
+dev = [
+    "requests>=2.34.2",
+    "shapely>=2.1.2",
+]

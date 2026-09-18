@@ -16,6 +16,12 @@ members = [
     "pharmashed-api",
 ]
 
+[manifest.dependency-groups]
+dev = [
+    { name = "requests", specifier = ">=2.34.2" },
+    { name = "shapely", specifier = ">=2.1.2" },
+]
+
 [[package]]
 name = "affine"
 version = "3.0.1"

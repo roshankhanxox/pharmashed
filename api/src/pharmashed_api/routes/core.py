@@ -79,6 +79,24 @@ def fhir_index():
     return _data.fhir_index()
 
 
+@router.get("/streams")
+def streams():
+    import json  # noqa: PLC0415
+    import os  # noqa: PLC0415
+    from pathlib import Path  # noqa: PLC0415
+
+    # Look for streams.geojson relative to PHARMASHED_DATA or the repo data/sites dir
+    data_dir = Path(os.environ.get("PHARMASHED_DATA", "data/build"))
+    candidates = [
+        data_dir / "streams.geojson",
+        Path(__file__).resolve().parents[5] / "data" / "sites" / "streams.geojson",
+    ]
+    for p in candidates:
+        if p.exists():
+            return json.loads(p.read_text())
+    raise HTTPException(404, "streams.geojson not found")
+
+
 @router.get("/draws.bin", response_class=FileResponse)
 def draws_bin():
     import os  # noqa: PLC0415

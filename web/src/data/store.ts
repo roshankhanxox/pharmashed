@@ -89,7 +89,7 @@ export const useStore = create<AppStore>((set) => ({
   activeTab: "explore",
   selectedCity: null,
   selectedSiteId: null,
-  selectedDrug: "irbesartan",
+  selectedDrug: "citalopram",
   expandedDrug: null,
 
   scenarioMultipliers: { ...DEFAULT_MULTIPLIERS },

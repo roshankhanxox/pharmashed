@@ -33,8 +33,8 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
 CANDIDATE_SPACING_M = 150
-MIN_SEPARATION_M = 800
-SITES_PER_STRATUM = 3  # 3 strata × 3 = 9 per city
+MIN_SEPARATION_M = 500   # tighter to fit more sites across the city
+SITES_PER_STRATUM = 7    # 3 strata × 7 = 21 per city (~105 total)
 WATERWAY_TYPES = ["stream", "ditch", "canal"]
 
 CITIES: dict[str, dict] = {
@@ -54,7 +54,46 @@ def _haversine_m(lon1: float, lat1: float, lon2: float, lat2: float) -> float:
     return 2 * R * math.asin(math.sqrt(a))
 
 
+_STREAMS_CACHE: list[dict] | None = None
+
+def _load_streams_cache() -> list[dict]:
+    """Load features from local streams.geojson and convert to Overpass-style elements."""
+    global _STREAMS_CACHE
+    if _STREAMS_CACHE is not None:
+        return _STREAMS_CACHE
+    streams_path = Path(__file__).resolve().parents[1] / "data" / "sites" / "streams.geojson"
+    if not streams_path.exists():
+        log.warning("streams.geojson not found; no local cache available")
+        return []
+    import json as _json  # noqa: PLC0415
+    fc = _json.loads(streams_path.read_text())
+    elements = []
+    for feat in fc.get("features", []):
+        coords = feat["geometry"]["coordinates"]
+        props = feat.get("properties", {})
+        elements.append({
+            "geometry": [{"lon": c[0], "lat": c[1]} for c in coords],
+            "tags": {
+                "waterway": props.get("waterway", "stream"),
+                "width": props.get("width", ""),
+                "name": props.get("name", ""),
+            },
+            "city": props.get("city", ""),
+        })
+    _STREAMS_CACHE = elements
+    return elements
+
+
 def _fetch_ways(city_id: str, bbox: tuple) -> list[dict]:
+    """Return waterway elements for city_id from local streams.geojson cache.
+
+    Falls back to Overpass only if the cache file is missing.
+    """
+    elements = _load_streams_cache()
+    if elements:
+        return [e for e in elements if e.get("city") == city_id]
+
+    # Overpass fallback (requires network)
     s, w, n, e = bbox
     type_filter = "|".join(WATERWAY_TYPES)
     query = f"""
@@ -67,7 +106,10 @@ out geom;
     return resp.json().get("elements", [])
 
 
-def _candidate_points(elements: list[dict]) -> list[tuple[float, float, str, str]]:
+def _candidate_points(
+    elements: list[dict],
+    bbox: tuple[float, float, float, float] | None = None,
+) -> list[tuple[float, float, str, str]]:
     """Generate a point every CANDIDATE_SPACING_M along each way."""
     candidates: list[tuple[float, float, str, str]] = []
     spacing_deg = CANDIDATE_SPACING_M / 111_000
@@ -92,6 +134,10 @@ def _candidate_points(elements: list[dict]) -> list[tuple[float, float, str, str
         n_pts = max(1, int(length_deg / spacing_deg))
         for i in range(n_pts):
             pt = line.interpolate(i / n_pts, normalized=True)
+            if bbox is not None:
+                s, w, n_b, e = bbox  # south, west, north, east
+                if not (w <= pt.x <= e and s <= pt.y <= n_b):
+                    continue
             candidates.append((pt.x, pt.y, size_class, waterway_type))
 
     return candidates
@@ -151,7 +197,7 @@ def place_sites(
 ) -> list[dict]:
     log.info("Placing sites for %s…", city_id)
     elements = _fetch_ways(city_id, meta["bbox"])
-    candidates = _candidate_points(elements)
+    candidates = _candidate_points(elements, bbox=meta["bbox"])
     log.info("  %d candidate points on %d ways", len(candidates), len(elements))
 
     stratified = _assign_strata(candidates)

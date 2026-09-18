@@ -1,456 +1,2314 @@
 {
   "type": "FeatureCollection",
-  "name": "PharmaShed synthetic monitoring sites",
-  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
   "features": [
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [1.498, 43.563] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4772791501989513,
+          43.64276662103627
+        ]
+      },
       "properties": {
-        "id": "TLS-01", "city": "TLS",
-        "name": "Hers-Mort at Ramonville-Saint-Agne",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-01",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 01 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [1.488, 43.580] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.3458803,
+          43.5441621
+        ]
+      },
       "properties": {
-        "id": "TLS-02", "city": "TLS",
-        "name": "Hers-Mort at Rangueil",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-02",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 02 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [1.476, 43.601] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4259068018041277,
+          43.54545736029362
+        ]
+      },
       "properties": {
-        "id": "TLS-03", "city": "TLS",
-        "name": "Hers-Mort at Pont des Demoiselles",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-03",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 03 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [1.373, 43.567] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.506963757081798,
+          43.64595110167483
+        ]
+      },
       "properties": {
-        "id": "TLS-04", "city": "TLS",
-        "name": "Touch at Fonsorbes upstream",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-04",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 04 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [1.386, 43.583] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4382697753651865,
+          43.56200606700664
+        ]
+      },
       "properties": {
-        "id": "TLS-05", "city": "TLS",
-        "name": "Touch at Colomiers",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-05",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 05 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [1.397, 43.599] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.538808844355775,
+          43.6460241
+        ]
+      },
       "properties": {
-        "id": "TLS-06", "city": "TLS",
-        "name": "Touch at Blagnac",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-06",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 06 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [1.432, 43.608] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.3299772296519166,
+          43.57340794598527
+        ]
+      },
       "properties": {
-        "id": "TLS-07", "city": "TLS",
-        "name": "Garonne at La Daurade",
-        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-07",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 07 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [1.451, 43.625] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.3862275178860435,
+          43.652414686889955
+        ]
+      },
       "properties": {
-        "id": "TLS-08", "city": "TLS",
-        "name": "Garonne at Île du Ramier",
-        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-08",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 08 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [1.344, 43.621] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.3714255526369499,
+          43.595666160148454
+        ]
+      },
       "properties": {
-        "id": "TLS-09", "city": "TLS",
-        "name": "Aussonnelle at Pibrac",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-09",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 09 (stratum 1)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [3.699, 51.039] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.3337002782448013,
+          43.562634019266824
+        ]
+      },
       "properties": {
-        "id": "GNT-01", "city": "GNT",
-        "name": "Schelde at Destelbergen",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-10",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 10 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [3.712, 51.048] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4074807105809894,
+          43.612243164314904
+        ]
+      },
       "properties": {
-        "id": "GNT-02", "city": "GNT",
-        "name": "Schelde at Sint-Annaplein",
-        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-11",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 11 (stratum 1)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [3.720, 51.055] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.5025578,
+          43.611729
+        ]
+      },
       "properties": {
-        "id": "GNT-03", "city": "GNT",
-        "name": "Leie–Schelde confluence",
-        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-12",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 12 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [3.706, 51.063] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.3272924234209587,
+          43.65325648565545
+        ]
+      },
       "properties": {
-        "id": "GNT-04", "city": "GNT",
-        "name": "Leie at Wondelgem",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-13",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 13 (stratum 1)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [3.693, 51.071] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.3666422,
+          43.6582268
+        ]
+      },
       "properties": {
-        "id": "GNT-05", "city": "GNT",
-        "name": "Leie at Evergem",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-14",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 14 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [3.732, 51.071] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4112303,
+          43.6663333
+        ]
+      },
       "properties": {
-        "id": "GNT-06", "city": "GNT",
-        "name": "Lieve canal at Mariakerke",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-15",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 15 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [3.743, 51.059] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4748962534816754,
+          43.5607888669319
+        ]
+      },
       "properties": {
-        "id": "GNT-07", "city": "GNT",
-        "name": "Molenvaart at Gent-Noord",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-16",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 16 (stratum 2)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [3.749, 51.044] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4813520441303218,
+          43.668658259847156
+        ]
+      },
       "properties": {
-        "id": "GNT-08", "city": "GNT",
-        "name": "Schelde at Merelbeke",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-17",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 17 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [3.728, 51.040] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.5131917752773099,
+          43.63540553770366
+        ]
+      },
       "properties": {
-        "id": "GNT-09", "city": "GNT",
-        "name": "Ringvaart at Melle",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-18",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 18 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [14.761, 41.119] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.5443580993012882,
+          43.617760187561515
+        ]
+      },
       "properties": {
-        "id": "BNV-01", "city": "BNV",
-        "name": "Calore at San Leucio",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-19",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 19 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [14.771, 41.123] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4629565,
+          43.5818865
+        ]
+      },
       "properties": {
-        "id": "BNV-02", "city": "BNV",
-        "name": "Calore upstream urban",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-20",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 20 (stratum 2)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [14.782, 41.128] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.3957935,
+          43.6757229
+        ]
+      },
       "properties": {
-        "id": "BNV-03", "city": "BNV",
-        "name": "Calore at Ponte Valentino",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "TLS-21",
+        "city": "TLS",
+        "name": "Auto-placed TLS site 21 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [14.796, 41.131] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7461244001484304,
+          51.0037412764858
+        ]
+      },
       "properties": {
-        "id": "BNV-04", "city": "BNV",
-        "name": "Calore at Contrada Roseto",
-        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-01",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 01 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [14.804, 41.124] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7280761,
+          51.0504134
+        ]
+      },
       "properties": {
-        "id": "BNV-05", "city": "BNV",
-        "name": "Calore downstream east",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-02",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 02 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [14.779, 41.117] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6689120445695007,
+          51.059494219883476
+        ]
+      },
       "properties": {
-        "id": "BNV-06", "city": "BNV",
-        "name": "Sabato at confluence approach",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-03",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 03 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [14.775, 41.109] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6737391155355428,
+          51.05604604813221
+        ]
+      },
       "properties": {
-        "id": "BNV-07", "city": "BNV",
-        "name": "Sabato at Contrada Acquafredda",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-04",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 04 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [14.768, 41.107] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7235014,
+          51.0178923
+        ]
+      },
       "properties": {
-        "id": "BNV-08", "city": "BNV",
-        "name": "Sabato upstream",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-05",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 05 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [14.791, 41.140] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.713504924121878,
+          51.066318530372214
+        ]
+      },
       "properties": {
-        "id": "BNV-09", "city": "BNV",
-        "name": "Calore at Contrada Capodimonte",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-06",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 06 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-8.445, 40.195] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6625372,
+          51.0880671
+        ]
+      },
       "properties": {
-        "id": "CBR-01", "city": "CBR",
-        "name": "Mondego at Formoselha",
-        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-07",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 07 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-8.432, 40.198] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7974703,
+          51.1177686
+        ]
+      },
       "properties": {
-        "id": "CBR-02", "city": "CBR",
-        "name": "Mondego upstream of city",
-        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-08",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 08 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-8.419, 40.202] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7458489,
+          51.1104341
+        ]
+      },
       "properties": {
-        "id": "CBR-03", "city": "CBR",
-        "name": "Mondego at Parque Verde",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-09",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 09 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-8.402, 40.206] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.745811559162445,
+          51.02521110954294
+        ]
+      },
       "properties": {
-        "id": "CBR-04", "city": "CBR",
-        "name": "Mondego at Quinta das Lágrimas",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-10",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 10 (stratum 1)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-8.386, 40.209] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.724935927472848,
+          51.05835794986145
+        ]
+      },
       "properties": {
-        "id": "CBR-05", "city": "CBR",
-        "name": "Mondego downstream Coimbra",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-11",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 11 (stratum 1)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-8.456, 40.211] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7166966692188983,
+          51.042321520916914
+        ]
+      },
       "properties": {
-        "id": "CBR-06", "city": "CBR",
-        "name": "Ceira near confluence",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-12",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 12 (stratum 1)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-8.462, 40.219] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7742952188785055,
+          51.058855352002766
+        ]
+      },
       "properties": {
-        "id": "CBR-07", "city": "CBR",
-        "name": "Ceira upstream",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-13",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 13 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-8.437, 40.218] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.66088,
+          51.0638875
+        ]
+      },
       "properties": {
-        "id": "CBR-08", "city": "CBR",
-        "name": "Mondego north channel",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-14",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 14 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-8.425, 40.188] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6441847,
+          51.0501268
+        ]
+      },
       "properties": {
-        "id": "CBR-09", "city": "CBR",
-        "name": "Mondego south bank",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-15",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 15 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [10.772, 59.930] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.673555518139047,
+          51.03290601860913
+        ]
+      },
       "properties": {
-        "id": "OSL-01", "city": "OSL",
-        "name": "Akerselva at Nydalen",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-16",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 16 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [10.767, 59.922] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6772066,
+          51.0582976
+        ]
+      },
       "properties": {
-        "id": "OSL-02", "city": "OSL",
-        "name": "Akerselva at Grünerløkka",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-17",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 17 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [10.759, 59.913] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6728118,
+          51.0056423
+        ]
+      },
       "properties": {
-        "id": "OSL-03", "city": "OSL",
-        "name": "Akerselva mouth",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-18",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 18 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [10.826, 59.912] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6699592,
+          51.038925
+        ]
+      },
       "properties": {
-        "id": "OSL-04", "city": "OSL",
-        "name": "Alna at Bryn",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-19",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 19 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [10.815, 59.919] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.659056086025073,
+          51.04604404203731
+        ]
+      },
       "properties": {
-        "id": "OSL-05", "city": "OSL",
-        "name": "Alna at Alnabru",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-20",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 20 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [10.803, 59.927] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7209656,
+          51.0734687
+        ]
+      },
       "properties": {
-        "id": "OSL-06", "city": "OSL",
-        "name": "Alna upstream",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "GNT-21",
+        "city": "GNT",
+        "name": "Auto-placed GNT site 21 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [10.641, 59.902] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.745720951328355,
+          41.11131380063219
+        ]
+      },
       "properties": {
-        "id": "OSL-07", "city": "OSL",
-        "name": "Lysaker at Stabekk",
-        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "BNV-01",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 01 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [10.655, 59.909] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.783087364785217,
+          41.11139145239233
+        ]
+      },
       "properties": {
-        "id": "OSL-08", "city": "OSL",
-        "name": "Lysaker mid-reach",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "BNV-02",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 02 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [10.778, 59.934] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7784925,
+          41.1778859
+        ]
+      },
       "properties": {
-        "id": "OSL-09", "city": "OSL",
-        "name": "Ljanselva at Østensjø",
-        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
-        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+        "id": "BNV-03",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 03 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.75263490227526,
+          41.15665290304973
+        ]
+      },
+      "properties": {
+        "id": "BNV-04",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 04 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7642346,
+          41.1324979
+        ]
+      },
+      "properties": {
+        "id": "BNV-05",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 05 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.759005563121693,
+          41.165713014773864
+        ]
+      },
+      "properties": {
+        "id": "BNV-06",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 06 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.771831401141736,
+          41.12569129753812
+        ]
+      },
+      "properties": {
+        "id": "BNV-07",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 07 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7874732,
+          41.173387
+        ]
+      },
+      "properties": {
+        "id": "BNV-08",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 08 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774283984293447,
+          41.16444064201035
+        ]
+      },
+      "properties": {
+        "id": "BNV-09",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 09 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.760802190704874,
+          41.100085370389024
+        ]
+      },
+      "properties": {
+        "id": "BNV-10",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 10 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7632851,
+          41.1457891
+        ]
+      },
+      "properties": {
+        "id": "BNV-11",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 11 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.81517951695512,
+          41.145271248815774
+        ]
+      },
+      "properties": {
+        "id": "BNV-12",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 12 (stratum 1)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.847929758829828,
+          41.141902274796614
+        ]
+      },
+      "properties": {
+        "id": "BNV-13",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 13 (stratum 1)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.750845437436617,
+          41.1189611663608
+        ]
+      },
+      "properties": {
+        "id": "BNV-14",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 14 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.828653635604528,
+          41.09183302417736
+        ]
+      },
+      "properties": {
+        "id": "BNV-15",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 15 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.751337904738545,
+          41.12569350641744
+        ]
+      },
+      "properties": {
+        "id": "BNV-16",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 16 (stratum 2)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.75845208549329,
+          41.1346581973329
+        ]
+      },
+      "properties": {
+        "id": "BNV-17",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 17 (stratum 2)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.736316823614873,
+          41.13367189456389
+        ]
+      },
+      "properties": {
+        "id": "BNV-18",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 18 (stratum 2)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7635638902561,
+          41.14030906963059
+        ]
+      },
+      "properties": {
+        "id": "BNV-19",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 19 (stratum 2)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774528215168688,
+          41.134441639732145
+        ]
+      },
+      "properties": {
+        "id": "BNV-20",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 20 (stratum 2)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.806562780780613,
+          41.118387259992886
+        ]
+      },
+      "properties": {
+        "id": "BNV-21",
+        "city": "BNV",
+        "name": "Auto-placed BNV site 21 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.476165966666667,
+          40.229563033333335
+        ]
+      },
+      "properties": {
+        "id": "CBR-01",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 01 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.467870938037764,
+          40.23905475465317
+        ]
+      },
+      "properties": {
+        "id": "CBR-02",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 02 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.473366892909272,
+          40.24955621934183
+        ]
+      },
+      "properties": {
+        "id": "CBR-03",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 03 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4074203,
+          40.1911168
+        ]
+      },
+      "properties": {
+        "id": "CBR-04",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 04 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.451505197601655,
+          40.22375564523614
+        ]
+      },
+      "properties": {
+        "id": "CBR-05",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 05 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.485474,
+          40.21531066666667
+        ]
+      },
+      "properties": {
+        "id": "CBR-06",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 06 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4431172,
+          40.2498526
+        ]
+      },
+      "properties": {
+        "id": "CBR-07",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 07 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.489118470753255,
+          40.179995154147576
+        ]
+      },
+      "properties": {
+        "id": "CBR-08",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 08 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.385335877108965,
+          40.19021910832191
+        ]
+      },
+      "properties": {
+        "id": "CBR-09",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 09 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.376092631429776,
+          40.2377350676844
+        ]
+      },
+      "properties": {
+        "id": "CBR-10",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 10 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.431983751984724,
+          40.22112774691915
+        ]
+      },
+      "properties": {
+        "id": "CBR-11",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 11 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.366876545474504,
+          40.24229445059206
+        ]
+      },
+      "properties": {
+        "id": "CBR-12",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 12 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4436361,
+          40.2262852
+        ]
+      },
+      "properties": {
+        "id": "CBR-13",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 13 (stratum 1)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.360439563566475,
+          40.2156086878964
+        ]
+      },
+      "properties": {
+        "id": "CBR-14",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 14 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.350917011000803,
+          40.202554253842635
+        ]
+      },
+      "properties": {
+        "id": "CBR-15",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 15 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4700212,
+          40.2179481
+        ]
+      },
+      "properties": {
+        "id": "CBR-16",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 16 (stratum 2)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.444426,
+          40.2184667
+        ]
+      },
+      "properties": {
+        "id": "CBR-17",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 17 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4606469,
+          40.2337459
+        ]
+      },
+      "properties": {
+        "id": "CBR-18",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 18 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4765219,
+          40.2315684
+        ]
+      },
+      "properties": {
+        "id": "CBR-19",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 19 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4571865,
+          40.1972212
+        ]
+      },
+      "properties": {
+        "id": "CBR-20",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 20 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.344768820622438,
+          40.18458136233372
+        ]
+      },
+      "properties": {
+        "id": "CBR-21",
+        "city": "CBR",
+        "name": "Auto-placed CBR site 21 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.8617267,
+          59.9345207
+        ]
+      },
+      "properties": {
+        "id": "OSL-01",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 01 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.685921611766029,
+          59.954129000736025
+        ]
+      },
+      "properties": {
+        "id": "OSL-02",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 02 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.810061342770592,
+          59.9829086492287
+        ]
+      },
+      "properties": {
+        "id": "OSL-03",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 03 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.595054822398362,
+          59.95992389846756
+        ]
+      },
+      "properties": {
+        "id": "OSL-04",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 04 (stratum 0)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.678566862470955,
+          59.9238792661839
+        ]
+      },
+      "properties": {
+        "id": "OSL-05",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 05 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.8803461,
+          59.9639946
+        ]
+      },
+      "properties": {
+        "id": "OSL-06",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 06 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.63106991659009,
+          59.95646655370394
+        ]
+      },
+      "properties": {
+        "id": "OSL-07",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 07 (stratum 0)",
+        "synthetic": true,
+        "size_class": "M",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.6690718,
+          59.9547277
+        ]
+      },
+      "properties": {
+        "id": "OSL-08",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 08 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.801879005692413,
+          59.951676185178414
+        ]
+      },
+      "properties": {
+        "id": "OSL-09",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 09 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.8079103,
+          59.9876542
+        ]
+      },
+      "properties": {
+        "id": "OSL-10",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 10 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.8330251,
+          59.9764479
+        ]
+      },
+      "properties": {
+        "id": "OSL-11",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 11 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.6739399,
+          59.9400801
+        ]
+      },
+      "properties": {
+        "id": "OSL-12",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 12 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.8301619,
+          59.8900695
+        ]
+      },
+      "properties": {
+        "id": "OSL-13",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 13 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.6604673,
+          59.9667065
+        ]
+      },
+      "properties": {
+        "id": "OSL-14",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 14 (stratum 1)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.7532725,
+          59.9748578
+        ]
+      },
+      "properties": {
+        "id": "OSL-15",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 15 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.7698768,
+          59.9598156
+        ]
+      },
+      "properties": {
+        "id": "OSL-16",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 16 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.7634411,
+          59.9714801
+        ]
+      },
+      "properties": {
+        "id": "OSL-17",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 17 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.6892788,
+          59.962628
+        ]
+      },
+      "properties": {
+        "id": "OSL-18",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 18 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.6842621,
+          59.9804395
+        ]
+      },
+      "properties": {
+        "id": "OSL-19",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 19 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.7868382,
+          59.9678449
+        ]
+      },
+      "properties": {
+        "id": "OSL-20",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 20 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.8224475,
+          59.9536035
+        ]
+      },
+      "properties": {
+        "id": "OSL-21",
+        "city": "OSL",
+        "name": "Auto-placed OSL site 21 (stratum 2)",
+        "synthetic": true,
+        "size_class": "S",
+        "w": 0,
+        "valid": true,
+        "population_buffer": 0,
+        "population_source_key": "pop:pending-m05",
+        "placement": "auto"
       }
     }
   ]
