@@ -1,6 +1,18 @@
 import { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 import { useStore } from "../data/store";
 import { apiBase } from "../data/loaders";
+
+const C = {
+  canvas:  "#0c0a09",
+  surface: "#1a1917",
+  raised:  "#242220",
+  border:  "#292524",
+  text:    "#f5f4f2",
+  muted:   "#a6a09b",
+  faint:   "#6b6460",
+  indigo:  "#7c75ff",
+} as const;
 
 const SUGGESTED: string[] = [
   "Which Toulouse sites should I sample first for irbesartan?",
@@ -37,7 +49,11 @@ export function AssistantDrawer() {
   // Check API availability on first open
   useEffect(() => {
     if (!open || apiAvailable !== null) return;
-    fetch(`${apiBase()}/assistant`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question: "ping" }) })
+    fetch(`${apiBase()}/assistant`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: "ping" }),
+    })
       .then((r) => setApiAvailable(r.status !== 503))
       .catch(() => setApiAvailable(false));
   }, [open]);
@@ -88,33 +104,73 @@ export function AssistantDrawer() {
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
-      <div className="fixed inset-0 bg-black/20" onClick={close} />
-      <aside className="relative z-10 w-[480px] max-w-full bg-white dark:bg-neutral-950 border-l border-neutral-200 dark:border-neutral-800 flex flex-col shadow-xl">
+      <div className="fixed inset-0" style={{ background: "rgba(0,0,0,0.5)" }} onClick={close} />
+      <aside
+        className="relative z-10 w-[480px] max-w-full flex flex-col"
+        style={{
+          background: C.canvas,
+          borderLeft: `1px solid ${C.border}`,
+          boxShadow: "-8px 0 40px rgba(0,0,0,0.6)",
+        }}
+      >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-3 border-b border-neutral-200 dark:border-neutral-800">
-          <h2 className="font-semibold text-sm">PharmaShed Assistant</h2>
-          <button onClick={close} className="text-neutral-400 hover:text-neutral-700 text-xl leading-none">×</button>
+        <div
+          className="flex items-center justify-between px-5 py-3 shrink-0"
+          style={{ borderBottom: `1px solid ${C.border}` }}
+        >
+          <div className="flex items-center gap-2">
+            <div
+              className="w-2 h-2 rounded-full"
+              style={{ background: apiAvailable === false ? C.faint : C.indigo }}
+            />
+            <h2 className="font-semibold text-sm" style={{ color: C.text }}>PharmaShed Assistant</h2>
+            <span
+              className="text-[10px] px-1.5 py-0.5 rounded"
+              style={{ background: C.raised, color: C.faint, fontFamily: "ui-monospace, monospace", border: `1px solid ${C.border}` }}
+            >
+              Groq
+            </span>
+          </div>
+          <button
+            onClick={close}
+            className="text-xl leading-none transition-colors"
+            style={{ color: C.faint }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = C.text; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = C.faint; }}
+          >
+            ×
+          </button>
         </div>
 
         {/* Unavailable banner */}
         {apiAvailable === false && (
-          <div className="bg-amber-50 text-amber-800 text-xs px-5 py-3 border-b border-amber-200">
-            Assistant unavailable in static demo mode — ANTHROPIC_API_KEY not configured.
+          <div
+            className="text-xs px-5 py-3 shrink-0"
+            style={{ background: "#1c1400", borderBottom: `1px solid #78350f`, color: "#fbbf24" }}
+          >
+            Assistant unavailable — LLM API key not configured on the backend. Start the API server with <code style={{ fontFamily: "ui-monospace, monospace" }}>GROQ_API_KEY</code> set.
           </div>
         )}
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-5 py-4 flex flex-col gap-4">
+        <div className="flex-1 overflow-y-auto px-5 py-4 flex flex-col gap-4 scrollbar-none">
           {messages.length === 0 && (
             <div>
-              <p className="text-xs text-neutral-400 mb-3">Suggested questions:</p>
+              <p className="text-xs mb-3" style={{ color: C.faint }}>Suggested questions:</p>
               <div className="flex flex-col gap-1.5">
                 {SUGGESTED.map((q) => (
                   <button
                     key={q}
                     onClick={() => send(q)}
                     disabled={apiAvailable === false}
-                    className="text-left text-xs px-3 py-2 rounded-lg border border-neutral-200 hover:border-blue-400 hover:bg-blue-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="text-left text-xs px-3 py-2 rounded-lg transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                    style={{ border: `1px solid ${C.border}`, color: C.muted, background: "transparent" }}
+                    onMouseEnter={(e) => {
+                      if (apiAvailable !== false) (e.currentTarget as HTMLButtonElement).style.borderColor = C.indigo;
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLButtonElement).style.borderColor = C.border;
+                    }}
                   >
                     {q}
                   </button>
@@ -129,24 +185,34 @@ export function AssistantDrawer() {
               {m.toolCalls && m.toolCalls.length > 0 && (
                 <div className="flex gap-1 flex-wrap">
                   {m.toolCalls.map((tc, j) => (
-                    <span key={j} className="text-[10px] px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-500 font-mono">
+                    <span
+                      key={j}
+                      className="text-[10px] px-2 py-0.5 rounded-full"
+                      style={{ background: C.raised, color: C.faint, fontFamily: "ui-monospace, monospace", border: `1px solid ${C.border}` }}
+                    >
                       {tc.name}
                     </span>
                   ))}
                 </div>
               )}
 
-              <div className={`max-w-[90%] rounded-xl px-4 py-3 text-sm ${
-                m.role === "user"
-                  ? "bg-blue-600 text-white"
-                  : "bg-neutral-100 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200"
-              }`}>
+              <div
+                className="max-w-[90%] rounded-xl px-4 py-3 text-sm"
+                style={
+                  m.role === "user"
+                    ? { background: C.indigo, color: "#fff" }
+                    : { background: C.surface, color: C.text, border: `1px solid ${C.border}` }
+                }
+              >
                 <MarkdownText text={m.text} />
               </div>
 
               {/* Guard warning */}
               {m.guardWarn && (
-                <div className="text-[10px] text-amber-700 bg-amber-50 border border-amber-200 rounded px-2 py-0.5">
+                <div
+                  className="text-[10px] rounded px-2 py-0.5"
+                  style={{ background: "#1c1400", color: "#fbbf24", border: "1px solid #78350f" }}
+                >
                   ⚠ Some numbers could not be verified against tool results
                 </div>
               )}
@@ -163,7 +229,8 @@ export function AssistantDrawer() {
                         if (lnk.drug) setSelectedDrug(lnk.drug);
                         close();
                       }}
-                      className="text-[10px] text-blue-600 underline"
+                      className="text-[10px] underline"
+                      style={{ color: C.indigo }}
                     >
                       {lnk.label}
                     </button>
@@ -174,18 +241,21 @@ export function AssistantDrawer() {
           ))}
 
           {loading && (
-            <div className="text-sm text-neutral-400 animate-pulse">Thinking…</div>
+            <div className="text-sm animate-pulse" style={{ color: C.faint }}>Thinking…</div>
           )}
           <div ref={bottomRef} />
         </div>
 
         {/* Standing footer */}
-        <div className="px-5 py-2 border-t border-neutral-100 dark:border-neutral-800 text-[10px] text-neutral-400">
-          Scores reflect assumed priors; this assistant never computes values itself.
+        <div
+          className="px-5 py-2 text-[10px] shrink-0"
+          style={{ borderTop: `1px solid ${C.border}`, color: C.faint }}
+        >
+          Scores reflect assumed priors · assistant never computes values itself
         </div>
 
         {/* Input */}
-        <div className="px-4 pb-4">
+        <div className="px-4 pb-4 shrink-0">
           <form
             onSubmit={(e) => { e.preventDefault(); send(input); }}
             className="flex gap-2"
@@ -196,12 +266,20 @@ export function AssistantDrawer() {
               onChange={(e) => setInput(e.target.value)}
               disabled={apiAvailable === false || loading}
               placeholder="Ask about sites, scores, drivers…"
-              className="flex-1 px-3 py-2 text-sm border border-neutral-200 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 focus:outline-none focus:border-blue-400 disabled:opacity-40"
+              className="flex-1 px-3 py-2 text-sm rounded-lg focus:outline-none disabled:opacity-40"
+              style={{
+                background: C.surface,
+                border: `1px solid ${C.border}`,
+                color: C.text,
+              }}
+              onFocus={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = C.indigo; }}
+              onBlur={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = C.border; }}
             />
             <button
               type="submit"
               disabled={!input.trim() || loading || apiAvailable === false}
-              className="px-3 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-3 py-2 text-sm rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{ background: C.indigo, color: "#fff" }}
             >
               Send
             </button>
@@ -213,24 +291,50 @@ export function AssistantDrawer() {
 }
 
 function MarkdownText({ text }: { text: string }) {
-  // Minimal: bold **x**, code `x`, line breaks
-  const lines = text.split("\n");
   return (
-    <>
-      {lines.map((line, i) => (
-        <span key={i}>
-          {line.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((part, j) => {
-            if (part.startsWith("**") && part.endsWith("**")) {
-              return <strong key={j}>{part.slice(2, -2)}</strong>;
-            }
-            if (part.startsWith("`") && part.endsWith("`")) {
-              return <code key={j} className="bg-neutral-200 dark:bg-neutral-800 px-1 rounded text-xs font-mono">{part.slice(1, -1)}</code>;
-            }
-            return part;
-          })}
-          {i < lines.length - 1 && <br />}
-        </span>
-      ))}
-    </>
+    <ReactMarkdown
+      components={{
+        p: ({ children }) => <p className="mb-2 last:mb-0 leading-relaxed">{children}</p>,
+        strong: ({ children }) => <strong className="font-semibold" style={{ color: "#f5f4f2" }}>{children}</strong>,
+        em: ({ children }) => <em className="italic">{children}</em>,
+        code: ({ children, className }) => {
+          const isBlock = !!className;
+          return isBlock ? (
+            <pre className="my-2 p-3 rounded-lg text-xs overflow-x-auto" style={{ background: "#0c0a09", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>
+              <code>{children}</code>
+            </pre>
+          ) : (
+            <code className="px-1.5 py-0.5 rounded text-[11px]" style={{ background: "#0c0a09", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>{children}</code>
+          );
+        },
+        ul: ({ children }) => <ul className="list-disc list-outside ml-4 mb-2 space-y-0.5">{children}</ul>,
+        ol: ({ children }) => <ol className="list-decimal list-outside ml-4 mb-2 space-y-0.5">{children}</ol>,
+        li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+        table: ({ children }) => (
+          <div className="my-2 overflow-x-auto">
+            <table className="text-xs border-collapse w-full">{children}</table>
+          </div>
+        ),
+        thead: ({ children }) => <thead>{children}</thead>,
+        th: ({ children }) => (
+          <th className="px-3 py-1.5 text-left font-semibold border-b" style={{ borderColor: "#292524", color: "#a6a09b" }}>{children}</th>
+        ),
+        td: ({ children }) => (
+          <td className="px-3 py-1.5 border-b" style={{ borderColor: "#1a1917", color: "#f5f4f2" }}>{children}</td>
+        ),
+        tr: ({ children }) => <tr className="hover:bg-white/5 transition-colors">{children}</tr>,
+        blockquote: ({ children }) => (
+          <blockquote className="border-l-2 pl-3 my-2 italic" style={{ borderColor: "#7c75ff", color: "#a6a09b" }}>{children}</blockquote>
+        ),
+        h1: ({ children }) => <h1 className="text-base font-bold mb-2 mt-1">{children}</h1>,
+        h2: ({ children }) => <h2 className="text-sm font-semibold mb-1.5 mt-1">{children}</h2>,
+        h3: ({ children }) => <h3 className="text-sm font-medium mb-1 mt-1">{children}</h3>,
+        a: ({ href, children }) => (
+          <a href={href} target="_blank" rel="noreferrer" className="underline" style={{ color: "#7c75ff" }}>{children}</a>
+        ),
+      }}
+    >
+      {text}
+    </ReactMarkdown>
   );
 }
