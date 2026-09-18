@@ -5,9 +5,9 @@ Project: **PharmaShed** — see CONTEXT.md for the brief.
 ## Every session
 1. Read `CONTEXT.md` and `CHECKPOINT.md`. Do not read other docs up front.
 2. Work on exactly one module (the one the user names, or the first in CHECKPOINT "Next up").
-3. Load only that module's section: `sed -n '/^## Mxx/,/^## Myy/p' IMPLEMENTATION.md` (plus Part A4 equations if the module touches the model).
+3. Load only that module's section: `sed -n '/^## Mxx/,/^## Myy/p' IMPLEMENTATION.md` (plus Part A4 equations if the module touches the model), and its section of `JUDGEMENT.md` if one exists — small implementation calls that aren't in CONTEXT §4 but explain a non-obvious choice already made in that module.
 4. Open only the files that module touches.
-5. Finish when the module's acceptance list passes, then update `CHECKPOINT.md` per its protocol and commit with `Mxx: <summary> [checkpoint]`.
+5. Finish when the module's acceptance list passes, then update `CHECKPOINT.md` per its protocol; if this session made a non-obvious in-module call worth preserving, append a short entry to `JUDGEMENT.md` (never delete, only supersede). Commit with `Mxx: <summary> [checkpoint]`.
 
 ## Hard rules (from CONTEXT §5, repeated because they matter most)
 - Never invent a scientific number (drug parameters, consumption, PNEC, LOD, excretion, removal). Only a sourcing session following `SOURCING.md` may fill them, with a fetched source and a verbatim evidence quote. In coding sessions, leave them `todo`.
