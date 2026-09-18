@@ -12,8 +12,10 @@ from pharmashed.consumption import (
     load_rows as load_consumption_rows,
 )
 from pharmashed.params import DRUGS, NUMERIC_PARAMS, UnsourcedParameterError, load_rows
+from pharmashed.sites import cities, load_sites
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_SITES_PATH = REPO_ROOT / "data" / "sites" / "sites.geojson"
 DEFAULT_PARAMS_PATH = REPO_ROOT / "data" / "params" / "drug_parameters.csv"
 DEFAULT_CONSUMPTION_PATH = REPO_ROOT / "data" / "consumption" / "consumption.csv"
 
@@ -79,6 +81,20 @@ def _consumption_check(args: argparse.Namespace) -> int:
     return 0
 
 
+def _sites_check(args: argparse.Namespace) -> int:
+    path = Path(args.path)
+    sites = load_sites(path)
+    from collections import Counter
+    counts = Counter(s.city for s in sites)
+    print(f"{'city':<6} {'count':>5}  {'size classes'}")
+    for city in sorted(counts):
+        city_sites = [s for s in sites if s.city == city]
+        sc = "".join(sorted(s.size_class for s in city_sites))
+        print(f"{city:<6} {counts[city]:>5}  {sc}")
+    print(f"\nTotal: {len(sites)} sites across {len(counts)} cities")
+    return 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="pharmashed")
     subparsers = parser.add_subparsers(dest="command")
@@ -100,6 +116,12 @@ def main() -> None:
     consumption_check_parser.add_argument("--strict", action="store_true")
     consumption_check_parser.add_argument("--path", default=str(DEFAULT_CONSUMPTION_PATH))
     consumption_check_parser.set_defaults(func=_consumption_check)
+
+    sites_parser = subparsers.add_parser("sites", help="site registry (M04)")
+    sites_subparsers = sites_parser.add_subparsers(dest="sites_command")
+    sites_check_parser = sites_subparsers.add_parser("check", help="print site counts by city")
+    sites_check_parser.add_argument("--path", default=str(DEFAULT_SITES_PATH))
+    sites_check_parser.set_defaults(func=_sites_check)
 
     args = parser.parse_args()
     if not hasattr(args, "func"):

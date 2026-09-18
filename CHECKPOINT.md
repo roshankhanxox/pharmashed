@@ -46,7 +46,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 | M01 | Contracts + fixtures + types | ☑ | 7 schemas, fixtures (2 cities x 3 sites x 6 drugs), pydantic + TS types generated |
 | M02 | Parameter registry | ☑ | Loader + CLI done; values = agent tasks A1–A6 (blocked on those) |
 | M03 | Consumption data | ☑ | Loader + CLI done; values = agent tasks A7–A11 |
-| M04 | Sites + streams | ☐ | Placement = agent task A14 |
+| M04 | Sites + streams | ☑ | 45 synthetic sites (9/city); loader + CLI; fetch_streams.py + auto_place_sites.py written |
 | M05 | Population (GHS-POP) | ☐ | |
 | M06 | Priors + sampling | ☐ | |
 | M07 | Model core | ☐ | |
@@ -104,13 +104,27 @@ Needs M02/M03 loaders (with the new columns) to exist first, so the files have t
 
 ## Next up
 
-1. Run sourcing sessions **A1–A11** (M02/M03 loaders are ready for them), then **A12**
-2. **M04** Sites and streams
+1. **M05** Population (GHS-POP) — needed before `auto_place_sites.py` can do stratified placement
+2. Run sourcing sessions **A1–A11** (M02/M03 loaders are ready for them), then **A12**
 3. **H1** today (registration)
 
 ## Last session
 
-Built M03 (consumption data): `data/consumption/consumption.csv` ships as
+Built M04 (sites and streams): `data/sites/sites.geojson` ships 45 synthetic
+sites (9 per city: TLS/GNT/BNV/CBR/OSL) hand-placed on real urban waterways
+(Hers-Mort, Touch, Garonne, Schelde, Leie, Calore, Sabato, Mondego, Ceira,
+Akerselva, Alna, Lysaker). `engine/src/pharmashed/sites.py`: `cities()` returns
+the five static City objects (D02); `load_sites(path)` parses GeoJSON
+FeatureCollection, validates id uniqueness, prefix-city match, known city,
+point-in-bbox, and size_class. CLI: `pharmashed sites check`. 21 new tests in
+`engine/tests/test_sites.py`; 83 total pass. `scripts/fetch_streams.py`:
+Overpass query for stream/ditch/canal/river within city bboxes → `streams.geojson`
+(simplified 0.0001°, ODbL attribution); run separately (needs network).
+`scripts/auto_place_sites.py`: rule-based placement per SOURCING.md S5 with
+M05 population hook stubbed (falls back to index-thirds strata until M05 lands).
+`population_buffer` is 0 / `pop:pending-m05` throughout — M05 fills real values.
+
+(Previous session built M03 (consumption data): `data/consumption/consumption.csv` ships as
 30 `todo` rows (5 countries x 6 drugs) with the M03 columns (granularity,
 group_value, molecule_share, share_source_url) plus the sourcing columns
 from `SOURCING.md`. `engine/src/pharmashed/consumption.py`: `ConsumptionRow`
