@@ -50,18 +50,17 @@ def _row(**overrides) -> dict:
 # --- shipped file -------------------------------------------------------
 
 
-def test_shipped_csv_has_42_rows_all_todo():
+def test_shipped_csv_has_42_rows():
     rows = load_rows(PARAMS_CSV)
     assert len(rows) == 42
-    assert all(r.status == "todo" for r in rows)
     assert {r.drug for r in rows} == set(DRUGS)
 
 
 def test_shipped_csv_fails_strict_mode():
     with pytest.raises(UnsourcedParameterError) as exc_info:
         load_drug_params(PARAMS_CSV, mode="strict")
-    # 42 rows - 6 R rows (optional, CONTEXT D27) = 36
-    assert len(exc_info.value.missing) == 36
+    # 42 rows - 6 R rows (optional, CONTEXT D27) - sourced rows (A1: carbamazepine atc/ddd_g/fe) = 33
+    assert len(exc_info.value.missing) == 33
     assert all(":R" not in m for m in exc_info.value.missing)
 
 

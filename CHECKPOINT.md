@@ -74,7 +74,7 @@ Needs M02/M03 loaders (with the new columns) to exist first, so the files have t
 
 | ID | Task | Prompt | Status | Note |
 |---|---|---|---|---|
-| A1 | Drug params: carbamazepine | S2 | ☐ | |
+| A1 | Drug params: carbamazepine | S2 | ◐ | atc/ddd_g/fe sourced; k_per_h/pnec_ng_l/lod_ng_l todo (sources paywalled/unfetchable) |
 | A2 | Drug params: atenolol | S2 | ☐ | |
 | A3 | Drug params: losartan | S2 | ☐ | |
 | A4 | Drug params: irbesartan | S2 | ☐ | |
@@ -102,13 +102,33 @@ Needs M02/M03 loaders (with the new columns) to exist first, so the files have t
 
 ## Next up
 
-1. Run sourcing sessions **A1–A11** (M02/M03 loaders are ready for them), then **A12**
+1. Finish **A1** (carbamazepine k_per_h, pnec_ng_l, lod_ng_l — see Follow-ups), then run **A2–A11**, then **A12**
 2. **M04** Sites and streams
 3. **H1** today (registration)
 
 ## Last session
 
-Built M03 (consumption data): `data/consumption/consumption.csv` ships as
+Ran sourcing task A1 (carbamazepine, S2 protocol) against
+`data/params/drug_parameters.csv`. Sourced 3 of 6 rows: `atc`=N03AF01 and
+`ddd_g`=1 g (fixed) from the WHO ATC/DDD Index
+(atcddd.fhi.no/atc_ddd_index/?code=N03AF01); `fe`=0.03 (fixed) from the
+FDA-approved label via DailyMed (Clinical Pharmacology: "72% ... in the
+urine ... with only 3% of unchanged carbamazepine"). All three have
+evidence_quote + source_url + retrieved_at=2026-09-18, verified=none
+(awaiting A12 verifier session). `R` untouched (not required, D27).
+`k_per_h`, `pnec_ng_l`, `lod_ng_l` left `status=todo` per SOURCING.md's
+"paywalled/unfetchable → note and move on" rule, not estimated:
+Acuña et al. 2015 (k_per_h) and Pereira et al. 2023 (lod_ng_l) both 403'd
+on every fetchable route tried (ScienceDirect, ResearchGate, MDPI incl.
+/pdf); NORMAN Ecotoxicology DB (pnec_ng_l) is JS-rendered, not fetchable
+by URL, and the JRC dossier PDF didn't parse — see the CSV's `source_note`
+per row for exactly what was tried and one candidate lead (Janusinfo/Fass
+citing a Novartis PNEC of 2.5 µg/L) flagged for human decision, not used.
+Updated `engine/tests/test_params.py`'s two hardcoded "all-42-todo"
+assertions to match (33 unsourced rows now, was 36); `make test` passes
+(62 python tests, 1 web test), ruff clean.
+
+(Previous session built M03 (consumption data): `data/consumption/consumption.csv` ships as
 30 `todo` rows (5 countries x 6 drugs) with the M03 columns (granularity,
 group_value, molecule_share, share_source_url) plus the sourcing columns
 from `SOURCING.md`. `engine/src/pharmashed/consumption.py`: `ConsumptionRow`
@@ -145,7 +165,12 @@ is still an open blocker, see Blockers below.)
 
 ## Follow-ups (cross-module notes)
 
-_(empty)_
+- SOURCING.md S1 only names NORMAN or an EU Watch List/JRC dossier for
+  `pnec_ng_l`; neither was fetchable for carbamazepine this session. A
+  fallback lead (Janusinfo/Fass, citing Novartis's Tegretol PNEC = 2.5 µg/L)
+  is noted in the CSV's `source_note` but not used — needs a human call on
+  whether it's an acceptable source type, or a session with interactive
+  browser access to query NORMAN directly.
 
 ## Blockers
 

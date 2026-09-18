@@ -1,11 +1,11 @@
 drug,param,distribution,value,min,max,unit,source_title,source_url,source_note,evidence_quote,retrieved_at,verified,verify_note,status
-carbamazepine,atc,,,,,,,,,,,none,,todo
-carbamazepine,ddd_g,,,,,g,,,,,,none,,todo
-carbamazepine,fe,,,,,fraction,,,,,,none,,todo
+carbamazepine,atc,,N03AF01,,,,WHO ATC/DDD Index,https://atcddd.fhi.no/atc_ddd_index/?code=N03AF01,WHO Collaborating Centre ATC/DDD Index entry for N03AF01,"N03AF01 | carbamazepine | 1 | g | O",2026-09-18,none,,sourced
+carbamazepine,ddd_g,fixed,1,,,g,WHO ATC/DDD Index,https://atcddd.fhi.no/atc_ddd_index/?code=N03AF01,"DDD listed as 1 g, oral (O); already in grams, no conversion needed","N03AF01 | carbamazepine | 1 | g | O",2026-09-18,none,,sourced
+carbamazepine,fe,fixed,0.03,,,fraction,FDA-approved labeling via DailyMed (carbamazepine tablet),https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6903e7ef-8b5c-4b64-a87d-62f1f102bc75,"Regulatory label, Clinical Pharmacology/pharmacokinetics section; fraction excreted unchanged in urine, feces fraction not reported as unchanged so fe = urine-unchanged share only","After oral administration of 14C-carbamazepine, 72% of the administered radioactivity was found in the urine and 28% in the feces. This urinary radioactivity was composed largely of hydroxylated and conjugated metabolites, with only 3% of unchanged carbamazepine.",2026-09-18,none,,sourced
 carbamazepine,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
-carbamazepine,k_per_h,,,,,1/h,,,,,,none,,todo
-carbamazepine,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
-carbamazepine,lod_ng_l,,,,,ng/L,,,,,,none,,todo
+carbamazepine,k_per_h,,,,,1/h,,,"not found: tried Acuna et al. 2015 STOTEN 503-504:133-141 (in-stream attenuation, Iberian rivers), the S1-mandated source; full text paywalled, ScienceDirect and ResearchGate both returned HTTP 403 on fetch, no free copy located",,,none,,todo
+carbamazepine,pnec_ng_l,,,,,ng/L,,,"not found via NORMAN Ecotoxicology Database (search UI is JS-rendered, not fetchable by URL; guessed substance IDs did not resolve to carbamazepine) or a JRC dossier (JRC95018 PDF unreadable via fetch). Candidate lead for human follow-up: Janusinfo (Swedish Fass environmental info, citing Novartis Tegretol environmental risk assessment) states PNEC = lowest NOEC 25 ug/L / AF10 = 2.5 ug/L (2500 ng/L) -- not a NORMAN/JRC source per S1, needs human decision",,,none,,todo
+carbamazepine,lod_ng_l,,,,,ng/L,,,"not found: Pereira et al. 2023 Appl. Sci. 13(11):6414 is the S1-mandated source (R1's analytical method paper) but MDPI blocks automated fetch (403 on the article page and /pdf); no accessible copy found to extract the LOD table",,,none,,todo
 atenolol,atc,,,,,,,,,,,none,,todo
 atenolol,ddd_g,,,,,g,,,,,,none,,todo
 atenolol,fe,,,,,fraction,,,,,,none,,todo
