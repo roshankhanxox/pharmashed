@@ -5,7 +5,7 @@ from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from pharmashed_api.routes import core, fhir, scenario
+from pharmashed_api.routes import assistant, core, fhir, scenario
 
 app = FastAPI(
     title="PharmaShed API",
@@ -23,3 +23,4 @@ app.add_middleware(
 app.include_router(core.router, prefix="/api")
 app.include_router(scenario.router, prefix="/api")
 app.include_router(fhir.router, prefix="/api")
+app.include_router(assistant.router, prefix="/api")
