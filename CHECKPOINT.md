@@ -55,10 +55,10 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 | M10 | Scoring + ranking | ☐ | |
 | M11 | Exporters + freeze | ☑ | export_build writes all 7 artifacts; freeze.py locks + tags; 12 tests |
 | M12 | Consistency checks | ☑ | C1–C5 checks; separation test; observed.py; 19 tests |
-| M13 | FHIR terminology | ☐ | |
-| M14 | FHIR builder | ☐ | |
-| M15 | Validator + HAPI | ☐ | |
-| M16 | API | ☐ | |
+| M13 | FHIR terminology | ☑ | 4 terminology JSON files (3 CodeSystems + 1 ValueSet) |
+| M14 | FHIR builder | ☑ | builder.py: Location/Group/Consumption/Prediction bundles; 18 tests |
+| M15 | Validator + HAPI | ☑ | validate.sh, docker-compose.yml, load_hapi.py (not run locally — Java+Docker) |
+| M16 | API | ☑ | FastAPI app; core/scenario/fhir routes; 15 tests |
 | M17 | Assistant | ☐ | Needs API key |
 | M18 | Web shell + data layer | ☐ | |
 | M19 | Explore tab | ☐ | |
@@ -104,13 +104,27 @@ Needs M02/M03 loaders (with the new columns) to exist first, so the files have t
 
 ## Next up
 
-1. **M13** FHIR terminology
-2. **M14** FHIR builder
-3. **M16** API (FastAPI, lightweight — no engine deps)
+1. **M17** Assistant (tool-calling Claude; needs ANTHROPIC_API_KEY)
+2. **M18** Web shell + data layer (Vite + React + Zustand)
+3. **M19** Explore tab (map + site list)
 
 ## Last session
 
-Built M11 (exporters + freeze) and M12 (consistency checks):
+Built M13–M16 (FHIR + API):
+M13: 4 terminology files in fhir/terminology/ (CodeSystem-observation-category,
+CodeSystem-components, CodeSystem-consumption, ValueSet-observation-category).
+M14: fhir/builder.py — Location (with OAH Location profile), Group, Consumption
+Observation, Prediction Observation (with OAH profile, 6 components, derivedFrom
+consumption). Reference Observations moved to checks/fhir_obs.py (separation rule).
+build_all() accepts ref_obs list and writes all 8+ bundles + fhir_index.json. 18 tests.
+M15: fhir/validator/validate.sh (downloads validator_cli.jar if absent), infra/docker-compose.yml
+(HAPI R4 + api service), scripts/load_hapi.py (collection→transaction, POST to HAPI).
+M16: FastAPI app in api/. data.py (JSON loader with lru_cache, draws.bin reader).
+Routes: core (health/meta/sites/results/checks/methodology/glossary/provenance/draws.bin),
+scenario (D13 RQ' = RQ·mλ·mC/mQ), fhir (index + bundle). 15 API tests.
+172 engine tests + 15 API tests all pass. Branch: fhir-api.
+
+(Previous: Built M11+M12 — exporters, freeze, consistency checks):
 `export_build()` in `export.py` runs all 3 ablation variants, writes results.json
 (Pydantic-validated), draws.bin (float32 LE), draws_index.json, sites.json,
 provenance.json, methodology.json, glossary.json. `freeze.py` checks dirty tree,

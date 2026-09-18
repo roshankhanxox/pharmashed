@@ -1,0 +1,20 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "pharmashed-observation-category",
+  "url": "https://pharmashed.example/fhir/CodeSystem/observation-category",
+  "version": "0.1.0",
+  "name": "PharmaShedObservationCategory",
+  "title": "PharmaShed Observation Category",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-01-01",
+  "description": "Category codes for PharmaShed observations.",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "model-prediction",
+      "display": "Model prediction",
+      "definition": "Computed output of the PharmaShed screening model, not a measurement."
+    }
+  ]
+}
