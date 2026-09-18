@@ -12,10 +12,12 @@ from pharmashed.consumption import (
     load_rows as load_consumption_rows,
 )
 from pharmashed.params import DRUGS, NUMERIC_PARAMS, UnsourcedParameterError, load_rows
+from pharmashed.population import population_in_buffer
 from pharmashed.sites import cities, load_sites
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_SITES_PATH = REPO_ROOT / "data" / "sites" / "sites.geojson"
+DEFAULT_RAW_DIR = REPO_ROOT / "data" / "raw"
 DEFAULT_PARAMS_PATH = REPO_ROOT / "data" / "params" / "drug_parameters.csv"
 DEFAULT_CONSUMPTION_PATH = REPO_ROOT / "data" / "consumption" / "consumption.csv"
 
@@ -95,6 +97,33 @@ def _sites_check(args: argparse.Namespace) -> int:
     return 0
 
 
+def _population_compute(args: argparse.Namespace) -> int:
+    import json  # noqa: PLC0415
+    raster_paths = sorted(Path(args.raster_dir).glob("GHS_POP_*.tif"))
+    if not raster_paths:
+        print(f"No GHS_POP_*.tif files found in {args.raster_dir}")
+        print("Run scripts/fetch_ghspop.py first.")
+        return 1
+
+    sites_path = Path(args.sites)
+    sites = load_sites(sites_path)
+    geojson = json.loads(sites_path.read_text())
+
+    flagged = 0
+    for feat in geojson["features"]:
+        site = next(s for s in sites if s.id == feat["properties"]["id"])
+        pop = population_in_buffer(site, raster_paths, radius_m=args.radius)
+        feat["properties"]["population_buffer"] = pop
+        feat["properties"]["population_source_key"] = f"pop:ghs-pop-r2023a-{args.radius}m"
+        if pop == 0:
+            flagged += 1
+            print(f"  WARNING: {site.id} has population=0 — review placement")
+
+    sites_path.write_text(json.dumps(geojson, indent=2))
+    print(f"Updated {len(sites)} sites in {sites_path}; {flagged} zero-population site(s)")
+    return 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="pharmashed")
     subparsers = parser.add_subparsers(dest="command")
@@ -116,6 +145,14 @@ def main() -> None:
     consumption_check_parser.add_argument("--strict", action="store_true")
     consumption_check_parser.add_argument("--path", default=str(DEFAULT_CONSUMPTION_PATH))
     consumption_check_parser.set_defaults(func=_consumption_check)
+
+    pop_parser = subparsers.add_parser("population", help="GHS-POP computation (M05)")
+    pop_subparsers = pop_parser.add_subparsers(dest="pop_command")
+    pop_compute = pop_subparsers.add_parser("compute", help="write population_buffer into sites.geojson")
+    pop_compute.add_argument("--raster-dir", default=str(DEFAULT_RAW_DIR))
+    pop_compute.add_argument("--sites", default=str(DEFAULT_SITES_PATH))
+    pop_compute.add_argument("--radius", type=float, default=500.0)
+    pop_compute.set_defaults(func=_population_compute)
 
     sites_parser = subparsers.add_parser("sites", help="site registry (M04)")
     sites_subparsers = sites_parser.add_subparsers(dest="sites_command")
