@@ -279,9 +279,17 @@ Each module lists: **Path · Depends on · Purpose · Inputs · Outputs · Build
 | `source_title` | short citation |
 | `source_url` | required unless `status=todo` |
 | `source_note` | where in the source (table/page), and any conversion done |
+| `evidence_quote` | verbatim text from the source containing the number (≤ 40 words) |
+| `retrieved_at` | ISO date |
+| `verified` | `none` · `agent` · `human` · `failed` |
+| `verify_note` | verifier's reason when `failed` |
 | `status` | `sourced` or `todo` |
 
-The initial file ships with **all rows `status=todo` and empty values**, pre-populated with the 6 drugs × 7 params = 42 rows. Values are filled by a human (see CHECKPOINT "human tasks"), never by the coding agent from memory.
+The initial file ships with **all rows `status=todo` and empty values**, pre-populated with the 6 drugs × 7 params = 42 rows. Values are filled by researcher agents following `SOURCING.md` (S1 rules, S2 prompt), checked by a verifier session (S4), then reviewed by a human via `docs/sourcing_report.md`. Never filled from memory. `R` rows stay `todo` with note "not required: w=0 for all MVP sites"; the loader treats `R` as optional when every site has w=0.
+
+**Freeze gate:** strict mode additionally requires every `sourced` row to have `verified ∈ {agent, human}`, and every `pnec_ng_l` row to have `verified=human`.
+
+**`make sourcing-report`** (script `scripts/sourcing_report.py`) writes `docs/sourcing_report.md` as specified in SOURCING.md S6.
 
 **`priors.yaml`** (site-level and structural priors):
 ```yaml
@@ -350,7 +358,9 @@ def provenance_entries() -> dict[str, ProvenanceEntry]   # keys like "param:irbe
 
 **Columns:** `country` (ISO2: PT, IT, FR, BE, NO), `drug`, `atc`, `year`, `ddd_per_1000_per_day`, `granularity` (`molecule` | `group_downscaled`), `group_value` (if downscaled), `molecule_share` (if downscaled), `share_source_url` (if downscaled), `source_title`, `source_url`, `source_note`, `status`.
 
-Ships as 30 `todo` rows (5 countries × 6 drugs). Filled by a human from national sources (see docs/PharmaShed.md §6), with the OECD group level as fallback.
+Also carries `evidence_quote`, `retrieved_at`, `verified`, `verify_note` (same meaning as M02).
+
+Ships as 30 `todo` rows (5 countries × 6 drugs). Filled by researcher agents per `SOURCING.md` S3 (one country per session), verified per S4, with the OECD group level as fallback.
 
 **API**
 ```python
@@ -369,11 +379,14 @@ def consumption_value(row) -> float     # molecule value, or group_value × mole
 
 **Purpose:** 8–10 hand-placed synthetic sites per city on real urban streams, plus stream geometry for the map.
 
-**Human-guided placement (document in `scripts/place_sites.md`):**
-1. For each city, open OpenStreetMap (or geojson.io) and pick 8–10 points on small urban streams (`waterway=stream` or `waterway=ditch`/`canal` if urban), spanning city centre → outskirts.
-2. For each, record `lonlat`, stream name, and `size_class` S/M/L by visible channel width on satellite imagery (S < 2 m, M 2–5 m, L 5–8 m).
-3. All `synthetic: true`, `w: 0`, `valid: true`.
-4. Save `sites.geojson` (Point features with properties matching `sites.schema.json`).
+**Automated rule-based placement: `scripts/auto_place_sites.py`** (full rules in `SOURCING.md` S5):
+1. Overpass query for small waterways per city; candidate points every 150 m.
+2. Stratify by GHS-POP density tertiles (needs M05's raster reader) and pick 3 per stratum, ≥ 800 m apart, seeded → 9 per city.
+3. `size_class` from OSM `width` tag, else by waterway type.
+4. All `synthetic: true`, `w: 0`, `valid: true`; write `sites.geojson` + `sites_preview.html`.
+5. `--exclude TLS-04,GNT-07` re-runs after human preview rejects points.
+
+Because placement uses population, run M05's raster reader before this script (M04 code can be written first; placement runs after M05).
 
 **`fetch_streams.py`:** Overpass API query for `waterway~"stream|ditch|canal|river"` within each city bbox → `streams.geojson`, simplified (shapely `simplify(0.0001)`), with ODbL attribution in its properties.
 

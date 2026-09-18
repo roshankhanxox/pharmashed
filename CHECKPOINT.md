@@ -44,9 +44,9 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 |---|---|---|---|
 | M00 | Repo scaffold | ☑ | uv workspace + Vite web app + Makefile; `make setup && make test` passes |
 | M01 | Contracts + fixtures + types | ☑ | 7 schemas, fixtures (2 cities x 3 sites x 6 drugs), pydantic + TS types generated |
-| M02 | Parameter registry | ☐ | Code only; values = human task H2 |
-| M03 | Consumption data | ☐ | Code only; values = human task H3 |
-| M04 | Sites + streams | ☐ | Placement = human task H4 |
+| M02 | Parameter registry | ☐ | Code only; values = agent tasks A1–A6 |
+| M03 | Consumption data | ☐ | Code only; values = agent tasks A7–A11 |
+| M04 | Sites + streams | ☐ | Placement = agent task A14 |
 | M05 | Population (GHS-POP) | ☐ | |
 | M06 | Priors + sampling | ☐ | |
 | M07 | Model core | ☐ | |
@@ -68,23 +68,42 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 | M23 | CI | ☐ | Grows incrementally |
 | M24 | Docs + demo script | ☐ | Last |
 
-## Human tasks (not for the coding agent)
+## Agent sourcing tasks (SOURCING.md — fresh session each)
+
+Needs M02/M03 loaders (with the new columns) to exist first, so the files have the right shape.
+
+| ID | Task | Prompt | Status | Note |
+|---|---|---|---|---|
+| A1 | Drug params: carbamazepine | S2 | ☐ | |
+| A2 | Drug params: atenolol | S2 | ☐ | |
+| A3 | Drug params: losartan | S2 | ☐ | |
+| A4 | Drug params: irbesartan | S2 | ☐ | |
+| A5 | Drug params: paracetamol | S2 | ☐ | |
+| A6 | Drug params: citalopram | S2 | ☐ | |
+| A7 | Consumption: PT | S3 | ☐ | |
+| A8 | Consumption: IT | S3 | ☐ | |
+| A9 | Consumption: FR | S3 | ☐ | |
+| A10 | Consumption: BE | S3 | ☐ | |
+| A11 | Consumption: NO | S3 | ☐ | |
+| A12 | Verifier pass over all rows | S4 | ☐ | Must be a different session from A1–A11 |
+| A13 | Resolve CONTEXT §8 open verifications | — | ☐ | Research session; results go to CONTEXT §4 |
+| A14 | Auto-place sites | S5 | ☐ | After M05 raster reader |
+| A15 | Draft email to R1 corresponding author for Tables S1/S2 | — | ☐ | Save to docs/email_draft.md |
+
+## Human gates (only you)
 
 | ID | Task | Status | Note |
 |---|---|---|---|
 | H1 | Confirm Devpost registration + team | ☐ | Team required by rules |
-| H2 | Source 42 rows of `drug_parameters.csv` (DDD, fe, R, k, PNEC, LOD, ATC) with URLs + notes | ☐ | **Critical path to freeze** |
-| H3 | Source 30 rows of `consumption.csv` (5 countries × 6 drugs) | ☐ | **Critical path to freeze** |
-| H4 | Hand-place 8–10 sites per city with size class | ☐ | See `scripts/place_sites.md` |
-| H5 | Email R1 corresponding author for Tables S1/S2 | ☐ | Address on the paper's first page |
-| H6 | Resolve CONTEXT §8 open verifications | ☐ | |
-| H7 | Record demo video | ☐ | After M24 |
+| H2 | Review `docs/sourcing_report.md`: all PNEC rows + 5 random others → mark `verified=human`, approve | ☐ | ~20 min |
+| H3 | Open `sites_preview.html`, reject bad points, re-run with `--exclude` | ☐ | ~10 min |
+| H4 | Send the drafted email (A15) from your address | ☐ | |
+| H5 | Record demo video | ☐ | After M24 |
 
 ## Next up
 
-1. **M02** Parameter registry (drug parameters + priors) — code only, values are human task H2
-2. **M03** Consumption data — code only, values are human task H3
-3. Continue **H2/H3/H4** in parallel (human)
+1. **M02 + M03** (loaders with the sourcing columns), then run sourcing sessions **A1–A11**, then **A12**
+2. **H1** today (registration)
 
 ## Last session
 
