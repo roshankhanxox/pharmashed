@@ -1,0 +1,457 @@
+{
+  "type": "FeatureCollection",
+  "name": "PharmaShed synthetic monitoring sites",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [1.498, 43.563] },
+      "properties": {
+        "id": "TLS-01", "city": "TLS",
+        "name": "Hers-Mort at Ramonville-Saint-Agne",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [1.488, 43.580] },
+      "properties": {
+        "id": "TLS-02", "city": "TLS",
+        "name": "Hers-Mort at Rangueil",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [1.476, 43.601] },
+      "properties": {
+        "id": "TLS-03", "city": "TLS",
+        "name": "Hers-Mort at Pont des Demoiselles",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [1.373, 43.567] },
+      "properties": {
+        "id": "TLS-04", "city": "TLS",
+        "name": "Touch at Fonsorbes upstream",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [1.386, 43.583] },
+      "properties": {
+        "id": "TLS-05", "city": "TLS",
+        "name": "Touch at Colomiers",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [1.397, 43.599] },
+      "properties": {
+        "id": "TLS-06", "city": "TLS",
+        "name": "Touch at Blagnac",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [1.432, 43.608] },
+      "properties": {
+        "id": "TLS-07", "city": "TLS",
+        "name": "Garonne at La Daurade",
+        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [1.451, 43.625] },
+      "properties": {
+        "id": "TLS-08", "city": "TLS",
+        "name": "Garonne at Île du Ramier",
+        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [1.344, 43.621] },
+      "properties": {
+        "id": "TLS-09", "city": "TLS",
+        "name": "Aussonnelle at Pibrac",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [3.699, 51.039] },
+      "properties": {
+        "id": "GNT-01", "city": "GNT",
+        "name": "Schelde at Destelbergen",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [3.712, 51.048] },
+      "properties": {
+        "id": "GNT-02", "city": "GNT",
+        "name": "Schelde at Sint-Annaplein",
+        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [3.720, 51.055] },
+      "properties": {
+        "id": "GNT-03", "city": "GNT",
+        "name": "Leie–Schelde confluence",
+        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [3.706, 51.063] },
+      "properties": {
+        "id": "GNT-04", "city": "GNT",
+        "name": "Leie at Wondelgem",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [3.693, 51.071] },
+      "properties": {
+        "id": "GNT-05", "city": "GNT",
+        "name": "Leie at Evergem",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [3.732, 51.071] },
+      "properties": {
+        "id": "GNT-06", "city": "GNT",
+        "name": "Lieve canal at Mariakerke",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [3.743, 51.059] },
+      "properties": {
+        "id": "GNT-07", "city": "GNT",
+        "name": "Molenvaart at Gent-Noord",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [3.749, 51.044] },
+      "properties": {
+        "id": "GNT-08", "city": "GNT",
+        "name": "Schelde at Merelbeke",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [3.728, 51.040] },
+      "properties": {
+        "id": "GNT-09", "city": "GNT",
+        "name": "Ringvaart at Melle",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [14.761, 41.119] },
+      "properties": {
+        "id": "BNV-01", "city": "BNV",
+        "name": "Calore at San Leucio",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [14.771, 41.123] },
+      "properties": {
+        "id": "BNV-02", "city": "BNV",
+        "name": "Calore upstream urban",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [14.782, 41.128] },
+      "properties": {
+        "id": "BNV-03", "city": "BNV",
+        "name": "Calore at Ponte Valentino",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [14.796, 41.131] },
+      "properties": {
+        "id": "BNV-04", "city": "BNV",
+        "name": "Calore at Contrada Roseto",
+        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [14.804, 41.124] },
+      "properties": {
+        "id": "BNV-05", "city": "BNV",
+        "name": "Calore downstream east",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [14.779, 41.117] },
+      "properties": {
+        "id": "BNV-06", "city": "BNV",
+        "name": "Sabato at confluence approach",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [14.775, 41.109] },
+      "properties": {
+        "id": "BNV-07", "city": "BNV",
+        "name": "Sabato at Contrada Acquafredda",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [14.768, 41.107] },
+      "properties": {
+        "id": "BNV-08", "city": "BNV",
+        "name": "Sabato upstream",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [14.791, 41.140] },
+      "properties": {
+        "id": "BNV-09", "city": "BNV",
+        "name": "Calore at Contrada Capodimonte",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-8.445, 40.195] },
+      "properties": {
+        "id": "CBR-01", "city": "CBR",
+        "name": "Mondego at Formoselha",
+        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-8.432, 40.198] },
+      "properties": {
+        "id": "CBR-02", "city": "CBR",
+        "name": "Mondego upstream of city",
+        "synthetic": true, "size_class": "L", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-8.419, 40.202] },
+      "properties": {
+        "id": "CBR-03", "city": "CBR",
+        "name": "Mondego at Parque Verde",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-8.402, 40.206] },
+      "properties": {
+        "id": "CBR-04", "city": "CBR",
+        "name": "Mondego at Quinta das Lágrimas",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-8.386, 40.209] },
+      "properties": {
+        "id": "CBR-05", "city": "CBR",
+        "name": "Mondego downstream Coimbra",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-8.456, 40.211] },
+      "properties": {
+        "id": "CBR-06", "city": "CBR",
+        "name": "Ceira near confluence",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-8.462, 40.219] },
+      "properties": {
+        "id": "CBR-07", "city": "CBR",
+        "name": "Ceira upstream",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-8.437, 40.218] },
+      "properties": {
+        "id": "CBR-08", "city": "CBR",
+        "name": "Mondego north channel",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-8.425, 40.188] },
+      "properties": {
+        "id": "CBR-09", "city": "CBR",
+        "name": "Mondego south bank",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [10.772, 59.930] },
+      "properties": {
+        "id": "OSL-01", "city": "OSL",
+        "name": "Akerselva at Nydalen",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [10.767, 59.922] },
+      "properties": {
+        "id": "OSL-02", "city": "OSL",
+        "name": "Akerselva at Grünerløkka",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [10.759, 59.913] },
+      "properties": {
+        "id": "OSL-03", "city": "OSL",
+        "name": "Akerselva mouth",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [10.826, 59.912] },
+      "properties": {
+        "id": "OSL-04", "city": "OSL",
+        "name": "Alna at Bryn",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [10.815, 59.919] },
+      "properties": {
+        "id": "OSL-05", "city": "OSL",
+        "name": "Alna at Alnabru",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [10.803, 59.927] },
+      "properties": {
+        "id": "OSL-06", "city": "OSL",
+        "name": "Alna upstream",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [10.641, 59.902] },
+      "properties": {
+        "id": "OSL-07", "city": "OSL",
+        "name": "Lysaker at Stabekk",
+        "synthetic": true, "size_class": "M", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [10.655, 59.909] },
+      "properties": {
+        "id": "OSL-08", "city": "OSL",
+        "name": "Lysaker mid-reach",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [10.778, 59.934] },
+      "properties": {
+        "id": "OSL-09", "city": "OSL",
+        "name": "Ljanselva at Østensjø",
+        "synthetic": true, "size_class": "S", "w": 0, "valid": true,
+        "population_buffer": 0, "population_source_key": "pop:pending-m05"
+      }
+    }
+  ]
+}
