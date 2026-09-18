@@ -283,7 +283,7 @@ Each module lists: **Path · Depends on · Purpose · Inputs · Outputs · Build
 | `retrieved_at` | ISO date |
 | `verified` | `none` · `agent` · `human` · `failed` |
 | `verify_note` | verifier's reason when `failed` |
-| `status` | `sourced` or `todo` |
+| `status` | `sourced`, `illustrative` (D33) or `todo` |
 
 The initial file ships with **all rows `status=todo` and empty values**, pre-populated with the 6 drugs × 7 params = 42 rows. Values are filled by researcher agents following `SOURCING.md` (S1 rules, S2 prompt), checked by a verifier session (S4), then reviewed by a human via `docs/sourcing_report.md`. Never filled from memory. `R` rows stay `todo` with note "not required: w=0 for all MVP sites"; the loader treats `R` as optional when every site has w=0.
 
@@ -348,6 +348,12 @@ def provenance_entries() -> dict[str, ProvenanceEntry]   # keys like "param:irbe
 
 **Acceptance:** tests cover every validation rule; `make data-check` prints the status table; strict mode fails on the shipped file (expected until the human fills it).
 
+**Illustrative rows (D33):**
+- `scripts/fill_illustrative.py` fills every remaining `todo` row (except optional `R` and `k_per_h`) with an illustrative value from `data/params/illustrative_values.yaml`, sets `status=illustrative`, `source_note="illustrative — not sourced (D33)"`, and leaves `source_url` empty. It never overwrites a `sourced` row.
+- `illustrative_values.yaml` holds deliberately round values per drug and param (e.g. `fe: 0.1 / 0.3 / 0.5`, PNEC and LOD as round ng/L values), each within a plausible order of magnitude, chosen by the coding session and **not** attributed to any source.
+- Loader rules: `illustrative` rows need a value and the D33 note, and must have an empty `source_url`. `provenance_entries()` returns `status="illustrative"` so the UI can badge them.
+- `results.meta` gains `param_counts: {sourced, illustrative, todo}`.
+
 ---
 
 ## M03 — Consumption data
@@ -370,6 +376,8 @@ def consumption_value(row) -> float     # molecule value, or group_value × mole
 **Rules:** downscaled rows require `molecule_share` ∈ (0,1] and `share_source_url`; never one share across countries (a test checks shares differ or are individually sourced).
 
 **Acceptance:** loader tests; `make data-check` shows a country × drug matrix coloured by granularity.
+
+**Illustrative rows (D33):** same rules as M02, filled by the same script from `data/consumption/illustrative_consumption.yaml` (round DDD/1000/day values per country × drug, `granularity=illustrative`).
 
 ---
 
@@ -581,6 +589,8 @@ Observed values are read from `observed_rodrigues2025.csv` by `(compound, metric
 
 **Acceptance:** separation test passes; checks run against fixture-frozen data in tests; each check reports `pass | fail | unavailable` with a reason.
 
+**Illustrative inputs (D35):** if any prediction used an illustrative row, `checks.json` sets `inputs_illustrative: true`, and every check result carries `label: "illustrative inputs — not evidence"`. The checks still run exactly as defined, to demonstrate the mechanism.
+
 ---
 
 ## M13 — FHIR terminology
@@ -647,6 +657,8 @@ def build_all(build_dir, out_dir) -> FhirIndex
 - Query demo: run `Observation?category=laboratory` and `Observation?category=https://…|model-prediction`, then write the counts into `fhir_index.json.query_demo`. In the hosted demo these counts come from the file; locally they can be refreshed live.
 
 **Acceptance:** `make fhir-validate` → 0 errors; `make hapi-up` loads all bundles; the two queries return non-overlapping, non-zero counts.
+
+**IG example data (D38):** `scripts/load_ig_examples.py` downloads the IG's example resources (from the IG package `package.tgz` at build.fhir.org/ig/hl7-eu/oah/, `example/` folder) into `data/raw/oah_ig_examples/`, loads them into HAPI unchanged, and adds `query_demo.oah_examples` (count of IG example Observations, by type) to `fhir_index.json`. The FHIR tab (M22) then shows three panels: laboratory (R1 reference measurements), model-prediction (PharmaShed), OneAquaHealth example data (consortium). Credit the IG in the panel; do not modify the example resources.
 
 ---
 

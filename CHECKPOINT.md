@@ -68,7 +68,9 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 | M23 | CI | ☐ | Grows incrementally |
 | M24 | Docs + demo script | ☐ | Last |
 
-## Agent sourcing tasks (SOURCING.md — fresh session each)
+## Agent sourcing tasks (SOURCING.md — fresh session each) — PAUSED (D33)
+
+Prototype now uses illustrative data. These tasks are optional upgrades: any row sourced later replaces its illustrative value automatically. Do not run sourcing sessions in parallel (IP rate-limits).
 
 Needs M02/M03 loaders (with the new columns) to exist first, so the files have the right shape.
 
@@ -145,7 +147,10 @@ is still an open blocker, see Blockers below.)
 
 ## Follow-ups (cross-module notes)
 
-_(empty)_
+- D33: write `scripts/fill_illustrative.py` + `illustrative_values.yaml` + `illustrative_consumption.yaml` (part of M02/M03); keep A1's sourced carbamazepine rows (atc, ddd_g, fe).
+- D34/D35: UI badges + amber banner + footer counts (M18, M19, M21, M22); FHIR `meta.tag` `illustrative-parameter` (M14).
+- D37/D38: M14 applies the IG Location profile; M15 adds `scripts/load_ig_examples.py`; M22 adds the third FHIR query panel.
+- D39: during M14, check whether the 12 Benevento IG example Locations sit near streams; record the decision in CONTEXT §4.
 
 ## Blockers
 

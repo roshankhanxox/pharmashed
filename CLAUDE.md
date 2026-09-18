@@ -10,7 +10,7 @@ Project: **PharmaShed** — see CONTEXT.md for the brief.
 5. Finish when the module's acceptance list passes, then update `CHECKPOINT.md` per its protocol; if this session made a non-obvious in-module call worth preserving, append a short entry to `JUDGEMENT.md` (never delete, only supersede). Commit with `Mxx: <summary> [checkpoint]`.
 
 ## Hard rules (from CONTEXT §5, repeated because they matter most)
-- Never invent a scientific number (drug parameters, consumption, PNEC, LOD, excretion, removal). Only a sourcing session following `SOURCING.md` may fill them, with a fetched source and a verbatim evidence quote. In coding sessions, leave them `todo`.
+- Never present an unsourced number as sourced. Values are `sourced` (SOURCING.md, verbatim evidence quote) or `illustrative` (round numbers, no citation, badged in UI). Never attach a citation to an illustrative value.
 - A verifier session must never be the same session that researched the values.
 - Never read `data/observed/` outside `engine/src/pharmashed/checks/`.
 - Never call the score a probability or say a stream is safe/unsafe.

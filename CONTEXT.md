@@ -68,10 +68,17 @@ Add new decisions at the bottom with the next number. Never delete; mark superse
 | D26 | Data sourcing is agent-driven per `SOURCING.md`: researcher → separate verifier → human review of `docs/sourcing_report.md`. Freeze requires all sourced rows verified; all PNEC rows human-verified |
 | D27 | `R` (WWTP removal) is not required for the MVP because every site has w=0; the loader treats it as optional in that case |
 | D28 | Sites are auto-placed by rules (SOURCING.md S5), with a human preview/reject pass. Replaces manual placement in D03 (the other D03 terms still hold) |
+| D33 | **Prototype uses illustrative data.** New row status `illustrative` in `drug_parameters.csv` and `consumption.csv`. Illustrative values are deliberately round numbers within a plausible order of magnitude, with `source_note="illustrative — not sourced (D33)"` and no `source_url`. Real values stay real: observed data (R1 CSV), ATC codes, DDDs and any row already sourced keep `status=sourced` |
+| D34 | UI: every illustrative value shows an "Illustrative" badge in the band chart, provenance drawer, Methodology priors table and FHIR output (`meta.tag` `illustrative-parameter`). The footer strip shows "`X` sourced · `Y` illustrative parameters". The red dev banner is replaced by an amber "Prototype: some parameters illustrative" banner when Y > 0 |
+| D35 | Consistency tab reframed: header "How validation runs once parameters are sourced". Checks still execute on frozen predictions; every result is labelled "illustrative inputs — not evidence" while any illustrative row feeds the prediction. The pre-registration/freeze mechanism is demonstrated as working |
+| D36 | Strict mode accepts `illustrative` rows (they are declared, not missing); only `todo` rows fail strict. Freeze tag becomes `predictions-frozen-illustrative-v1` when any illustrative row is used. Pitch line: "A working pipeline with illustrative parameters — drop verified values into one CSV and every screen, check and FHIR resource updates" |
+| D37 | Sites use the IG's **"Location: OAH Indicators"** profile (resolves the §8 open question; take the canonical URL from the IG artifacts page) |
+| D38 | **Co-hosting demo:** load the OneAquaHealth IG's own example resources (Benevento air-quality, Almyros/Giofyros water chemistry) into the local HAPI server next to PharmaShed bundles. The FHIR tab shows a third query panel "OneAquaHealth example data" with counts, demonstrating that PharmaShed outputs coexist with consortium data in one server and stay distinguishable by category/tag. IG examples are loaded unmodified and credited to the IG |
+| D39 | Benevento IG example `Location`s are **real monitoring sites with real coordinates**. Use them as the Benevento site set (replacing auto-placed synthetic points for that city) if they sit on or near streams; otherwise keep them as a separate map layer labelled "OneAquaHealth monitoring sites (air quality)". Decide during M14 and record the outcome here |
 
 ## 5. Hard rules (never break)
 
-1. **Never invent a scientific number.** Drug parameters and consumption values are sourced only via the `SOURCING.md` protocol: a fetched source, a verbatim `evidence_quote` containing the number, then an independent verifier session. Never from memory. In a normal coding session (not a sourcing session), leave such values `todo`.
+1. **Never present an unsourced number as sourced.** Values are either `sourced` (via the `SOURCING.md` protocol, with a verbatim evidence quote) or `illustrative` (D33: deliberately round, no citation, badged everywhere). Never attach a citation to an illustrative value, and never label a value as sourced without evidence.
 2. **Never read `data/observed/` outside `engine/src/pharmashed/checks/`.**
 3. **Never** call the score a probability, or state that a stream is safe or unsafe.
 4. Contracts first: if a data shape changes, update the schema in `contracts/`, regenerate fixtures and types, and log it in §4.
@@ -100,7 +107,8 @@ Rodrigues et al. 2025, J. Hazard. Mater. 499:139946: 102 sites, 5 cities, one gr
 
 ## 8. Open verifications (resolve, then move to §4)
 
-- [ ] Does the OneAquaHealth IG define a Location profile? What is the working validator command for the CI-build IG?
+- [x] OneAquaHealth IG defines a Location profile ("Location: OAH Indicators") and an Observation profile ("Observation: OAH Indicators") → D37
+- [ ] Working validator command for the CI-build IG (package.tgz vs local copy)
 - [ ] GHS-POP current release name, tile scheme and download URL
 - [ ] Which national sources give molecule-level DDD for PT, IT, FR, BE, NO (licence + format)
 - [ ] LOD per drug from R1's method reference (Pereira et al. 2023, Appl. Sci. 13(11):6414)
