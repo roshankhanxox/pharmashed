@@ -44,7 +44,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 |---|---|---|---|
 | M00 | Repo scaffold | ☑ | uv workspace + Vite web app + Makefile; `make setup && make test` passes |
 | M01 | Contracts + fixtures + types | ☑ | 7 schemas, fixtures (2 cities x 3 sites x 6 drugs), pydantic + TS types generated |
-| M02 | Parameter registry | ☐ | Code only; values = agent tasks A1–A6 |
+| M02 | Parameter registry | ☑ | Loader + CLI done; values = agent tasks A1–A6 (blocked on those) |
 | M03 | Consumption data | ☐ | Code only; values = agent tasks A7–A11 |
 | M04 | Sites + streams | ☐ | Placement = agent task A14 |
 | M05 | Population (GHS-POP) | ☐ | |
@@ -102,36 +102,31 @@ Needs M02/M03 loaders (with the new columns) to exist first, so the files have t
 
 ## Next up
 
-1. **M02 + M03** (loaders with the sourcing columns), then run sourcing sessions **A1–A11**, then **A12**
-2. **H1** today (registration)
+1. **M03** Consumption data (loader with the sourcing columns)
+2. Then run sourcing sessions **A1–A11** (M02/M03 loaders are ready for them), then **A12**
+3. **H1** today (registration)
 
 ## Last session
 
-Built M01 (contracts): 7 JSON Schemas in `contracts/schemas/` (sites,
-results, draws, checks, methodology, provenance, fhir_index) per the A1
-file list and the module's worked examples; `checks.data`/`provenance`
-per-check and per-parameter shapes were designed from the M12/M21/M13-15
-sections since M01 only fully specified `sites.json`/`results.json`.
-`scripts/make_fixtures.py` (seed 20260918) generates a 2-city x 3-site x
-6-drug fixture set including `draws.bin` (float32 LE) into
-`contracts/fixtures/`, all with `dev_placeholders=true` and obviously fake
-values (never copy these into `data/params/`). `engine/src/pharmashed/contracts.py`
-has hand-written pydantic v2 models for all 7 shapes. `web/scripts/gen-types.mjs`
-(`pnpm run gen:types`) generates `web/src/types/contracts.ts` from the same
-schemas. `make fixtures` runs both. `engine/tests/test_contracts.py` (16
-tests): fixtures validate against schemas, fixtures parse with the pydantic
-models, and `draws.bin` offsets match both `draws_index.json` and
-`results.json`. `make test` passes (17 python tests total, 1 web test);
-`pnpm lint`/`pnpm build`/`ruff check` all clean.
+Built M02 (parameter registry): `data/params/drug_parameters.csv` ships as
+42 `todo` rows (6 drugs x 7 params) with the sourcing columns from
+`SOURCING.md` (evidence_quote, retrieved_at, verified, verify_note); `R`
+rows carry the "not required: w=0" note per D27. `data/params/priors.yaml`
+transcribed verbatim from IMPLEMENTATION.md M02 (locked decisions D04-D06,
+not sourced data). `engine/src/pharmashed/params.py`: `ParamRow` (validates
+sourced rows: source_url+note required, fe/R in [0,1], ddd_g/pnec/lod > 0,
+min<max), `Dist.sample()` for all 4 distribution kinds, `load_drug_params`
+(dev mode falls back to `contracts/fixtures/dev_placeholders.yaml` and
+flags `dev_placeholders_used`; strict mode raises `UnsourcedParameterError`
+listing every non-`R` `todo` row), `load_priors`, `provenance_entries`.
+CLI: `pharmashed params check [--strict]`, wired into `make data-check`.
+`engine/tests/test_params.py` (24 tests) covers every validation rule plus
+strict/dev mode. `make test` passes (41 python tests, 1 web test); ruff
+clean. Strict mode fails on the shipped file as expected (36 rows still
+need sourcing via A1-A6) — that's correct, not a bug.
 
-Previous session (M00): repo scaffold — uv workspace (`engine`, `api`),
-Vite+React+TS `web/`, Makefile, `.gitignore`, `.env.example`. Copied
-`data/observed/observed_rodrigues2025.csv` from `~/Downloads/`.
-`docs/PharmaShed.md` (concept doc v0.2) was **not found anywhere** on disk —
-not copied, not fabricated; still open, see Blockers. Repo pushed to
-`github.com/roshankhanxox/pharmashed` (`main`); workflow is now feature
-branch → PR → merge into `main` (no direct commits to `main`, no AI
-attribution in commits/PRs — see CLAUDE.md "Git workflow").
+(Full history of M00/M01 sessions is in git log; `docs/PharmaShed.md` v0.2
+is still an open blocker, see Blockers below.)
 
 ## Follow-ups (cross-module notes)
 

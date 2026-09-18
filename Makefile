@@ -11,7 +11,8 @@ fixtures:
 	cd web && pnpm run gen:types
 
 data-check:
-	@echo "TODO M02-M04: validate params, priors, consumption, sites"
+	uv run pharmashed params check
+	@echo "TODO M03-M04: validate consumption, sites"
 
 run:
 	@echo "TODO M08-M11: engine run (dev mode) -> data/build/"
