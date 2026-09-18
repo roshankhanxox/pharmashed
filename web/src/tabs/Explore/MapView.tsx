@@ -39,10 +39,14 @@ export function MapView() {
     map.addControl(new maplibregl.NavigationControl(), "top-right");
     mapInstance.current = map;
 
-    // markers added via effect below
+    // Force resize after mount so MapLibre measures the container correctly
+    map.on("load", () => { map.resize(); });
 
+    // Also resize whenever the container size changes (flex layout settling)
+    const ro = new ResizeObserver(() => { map.resize(); });
+    if (mapRef.current) ro.observe(mapRef.current);
 
-    return () => map.remove();
+    return () => { ro.disconnect(); map.remove(); };
   }, []);
 
   // Fly to selected city
@@ -150,8 +154,8 @@ export function MapView() {
         </div>
       </div>
 
-      {/* Map */}
-      <div ref={mapRef} className="flex-1 min-h-0" />
+      {/* Map — needs explicit height for MapLibre to render tiles */}
+      <div ref={mapRef} style={{ flex: 1, minHeight: 0, height: "100%" }} />
     </div>
   );
 }

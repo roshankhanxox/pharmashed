@@ -86,11 +86,11 @@ function App() {
   const isDev = results?.meta.dev_placeholders ?? false;
 
   return (
-    <div className="min-h-svh flex flex-col bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
+    <div className="h-svh flex flex-col bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 overflow-hidden">
       {isDev && <DevBanner />}
       <TopTabs />
 
-      <main className="flex-1 min-h-0 overflow-hidden" style={{ height: "calc(100vh - 96px)" }}>
+      <main className="flex-1 min-h-0 overflow-hidden">
         {activeTab === "explore" && <ExploreTab />}
         {activeTab === "scenarios" && <ScenariosTab />}
         {activeTab === "consistency" && <ConsistencyTab />}

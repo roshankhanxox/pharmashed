@@ -5,7 +5,7 @@ export function ExploreTab() {
   return (
     <div className="flex h-full min-h-0">
       {/* Map rail ~45% */}
-      <div className="w-[45%] min-w-0 border-r border-neutral-200 dark:border-neutral-800 flex flex-col">
+      <div className="w-[45%] min-w-0 border-r border-neutral-200 dark:border-neutral-800 flex flex-col h-full">
         <MapView />
       </div>
       {/* Inspector ~55% */}
