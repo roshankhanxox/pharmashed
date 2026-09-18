@@ -682,6 +682,7 @@ dependencies = [
     { name = "openai" },
     { name = "pharmashed" },
     { name = "pydantic" },
+    { name = "python-dotenv" },
     { name = "uvicorn", extra = ["standard"] },
 ]
 
@@ -698,6 +699,7 @@ requires-dist = [
     { name = "openai", specifier = ">=1.0" },
     { name = "pharmashed", editable = "engine" },
     { name = "pydantic", specifier = ">=2.7" },
+    { name = "python-dotenv", specifier = ">=1.2.3" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.30" },
 ]
 

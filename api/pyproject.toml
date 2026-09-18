@@ -9,6 +9,7 @@ dependencies = [
     "pydantic>=2.7",
     "pharmashed",
     "openai>=1.0",
+    "python-dotenv>=1.2.3",
 ]
 
 [build-system]
