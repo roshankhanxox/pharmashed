@@ -49,12 +49,34 @@ def glossary():
     return _data.glossary()
 
 
+@router.get("/provenance")
+def provenance_all():
+    return _data.provenance()
+
+
 @router.get("/provenance/{key:path}")
 def provenance(key: str):
     prov = _data.provenance()
     if key not in prov:
         raise HTTPException(404, f"provenance key {key!r} not found")
     return prov[key]
+
+
+@router.get("/draws_index")
+def draws_index():
+    import json  # noqa: PLC0415
+    import os  # noqa: PLC0415
+    from pathlib import Path  # noqa: PLC0415
+
+    p = Path(os.environ.get("PHARMASHED_DATA", "data/build")) / "draws_index.json"
+    if not p.exists():
+        raise HTTPException(404, "draws_index.json not found")
+    return json.loads(p.read_text())
+
+
+@router.get("/fhir_index")
+def fhir_index():
+    return _data.fhir_index()
 
 
 @router.get("/draws.bin", response_class=FileResponse)
