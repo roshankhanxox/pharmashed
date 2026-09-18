@@ -15,7 +15,7 @@ from pydantic import BaseModel, ConfigDict, Field
 Tier = Literal["high", "medium", "low"]
 Variant = Literal["full", "pop_only", "wwtp_only"]
 SizeClass = Literal["S", "M", "L"]
-ParamStatus = Literal["sourced", "assumption", "todo"]
+ParamStatus = Literal["sourced", "assumption", "illustrative", "todo"]
 
 
 class Strict(BaseModel):
