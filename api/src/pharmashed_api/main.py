@@ -16,9 +16,19 @@ app = FastAPI(
     version="0.1.0",
 )
 
+import os
+
+_origins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://pharmashed.roshankhan.me",
+]
+if extra := os.getenv("CORS_ORIGINS"):
+    _origins.extend(o.strip() for o in extra.split(",") if o.strip())
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=_origins,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
