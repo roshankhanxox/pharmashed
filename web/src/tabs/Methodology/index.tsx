@@ -25,7 +25,7 @@ export function MethodologyTab() {
   const ablationPerCity = ablations?.per_city?.filter((a) => a.variant === variant) ?? [];
 
   return (
-    <div className="overflow-y-auto p-6 flex flex-col gap-8 max-w-4xl mx-auto" style={{ background: "#0c0a09", color: "#f5f4f2" }}>
+    <div className="h-full overflow-y-auto p-6 flex flex-col gap-8 max-w-4xl mx-auto" style={{ background: "#0c0a09", color: "#f5f4f2" }}>
 
       {/* Intro */}
       <div>

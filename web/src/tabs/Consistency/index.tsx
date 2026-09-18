@@ -11,7 +11,7 @@ export function ConsistencyTab() {
   const items = rawItems as unknown as CheckItem[];
 
   return (
-    <div className="overflow-y-auto p-6 flex flex-col gap-6 max-w-3xl mx-auto" style={{ background: "#0c0a09", color: "#f5f4f2" }}>
+    <div className="h-full overflow-y-auto p-6 flex flex-col gap-6 max-w-3xl mx-auto" style={{ background: "#0c0a09", color: "#f5f4f2" }}>
 
       {/* D35 reframing header */}
       <div>
