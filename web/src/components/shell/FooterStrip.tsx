@@ -11,7 +11,16 @@ export function FooterStrip() {
     : `${meta.param_count} parameters (some uncited)`;
 
   return (
-    <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 px-4 py-1.5 text-xs text-neutral-400 flex gap-4 flex-wrap">
+    <footer
+      className="px-4 py-1.5 text-xs flex gap-4 flex-wrap shrink-0"
+      style={{
+        borderTop: "1px solid #292524",
+        background: "#0c0a09",
+        color: "#6b6460",
+        fontFamily: "ui-monospace, monospace",
+        letterSpacing: "0.02em",
+      }}
+    >
       <span>N = {meta.n_draws.toLocaleString()} draws</span>
       <span>engine {meta.engine_version}</span>
       <span>predictions frozen: {frozen}</span>

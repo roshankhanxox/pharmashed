@@ -27,40 +27,51 @@ export function FhirTab() {
   }
 
   return (
-    <div className="flex h-full min-h-0">
+    <div className="flex h-full min-h-0" style={{ background: "#0c0a09", color: "#f5f4f2" }}>
       {/* Left: resource list */}
-      <aside className="w-56 shrink-0 border-r border-neutral-200 dark:border-neutral-800 p-4 overflow-y-auto flex flex-col gap-4">
+      <aside
+        className="w-64 shrink-0 p-4 overflow-y-auto flex flex-col gap-5"
+        style={{ borderRight: "1px solid #292524", background: "#0c0a09" }}
+      >
         <div>
-          <h2 className="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-2">
+          <div
+            className="text-[10px] font-semibold uppercase mb-2"
+            style={{ color: "#6b6460", letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
+          >
             Resource counts
-          </h2>
+          </div>
           <dl className="text-xs space-y-1">
             {Object.entries(resource_counts).map(([type, count]) => (
               <div key={type} className="flex justify-between">
-                <dt className="text-neutral-600 dark:text-neutral-400">{type}</dt>
-                <dd className="font-mono text-neutral-800 dark:text-neutral-200">{count}</dd>
+                <dt style={{ color: "#a6a09b" }}>{type}</dt>
+                <dd style={{ color: "#f5f4f2", fontFamily: "ui-monospace, monospace" }}>{count}</dd>
               </div>
             ))}
           </dl>
         </div>
 
         <div>
-          <h2 className="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-2">
+          <div
+            className="text-[10px] font-semibold uppercase mb-2"
+            style={{ color: "#6b6460", letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
+          >
             Bundles
-          </h2>
+          </div>
           <div className="flex flex-col gap-1">
             {bundles.map((b) => (
               <button
                 key={b.name}
                 onClick={() => selectBundle(b.name, b.path)}
-                className={`text-left px-2 py-1.5 text-xs rounded-md transition-colors ${
-                  selected === b.name
-                    ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200"
-                    : "hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600"
-                }`}
+                className="text-left px-2 py-2 text-xs rounded-lg transition-colors"
+                style={{
+                  background: selected === b.name ? "#1a1917" : "transparent",
+                  border: `1px solid ${selected === b.name ? "#292524" : "transparent"}`,
+                  color: selected === b.name ? "#7c75ff" : "#a6a09b",
+                  fontFamily: "ui-monospace, monospace",
+                }}
               >
                 {b.name}
-                <span className="ml-1 text-neutral-400">({b.count})</span>
+                <span className="ml-1.5 text-xs" style={{ color: "#6b6460" }}>({b.count})</span>
               </button>
             ))}
           </div>
@@ -69,11 +80,44 @@ export function FhirTab() {
         <ValidationBadge fhirIndex={{ validation: fhirIndex.validation }} />
       </aside>
 
-      {/* Right: JSON viewer + lab/model panel */}
-      <div className="flex-1 min-w-0 overflow-y-auto p-4 flex flex-col gap-4">
+      {/* Right: explainer + JSON viewer */}
+      <div className="flex-1 min-w-0 overflow-y-auto p-6 flex flex-col gap-6" style={{ background: "#0c0a09" }}>
+
+        {/* FHIR explainer — what does this solve? */}
+        <div className="rounded-xl p-5" style={{ background: "#1a1917", border: "1px solid #292524" }}>
+          <div
+            className="text-[10px] font-semibold uppercase mb-3"
+            style={{ color: "#6b6460", letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
+          >
+            What FHIR solves here
+          </div>
+          <h2 className="text-base font-semibold mb-3" style={{ color: "#f5f4f2" }}>
+            Environmental predictions, interoperable with health records
+          </h2>
+          <p className="text-sm leading-relaxed mb-4" style={{ color: "#a6a09b" }}>
+            FHIR (Fast Healthcare Interoperability Resources) is the HL7 standard for exchanging health data. The <strong style={{ color: "#f5f4f2" }}>OneAquaHealth Implementation Guide</strong> extends it to cover environmental health observations — air quality, water chemistry, pharmaceutical concentrations — in the same format as patient lab results.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-3 mb-4">
+            {[
+              { icon: "⇄", title: "Interoperability", body: "A water authority and a hospital can query the same FHIR server. Environmental predictions and patient prescriptions share one standard." },
+              { icon: "≠", title: "Model vs lab — distinguished", body: "category: model-prediction separates PharmaShed outputs from real lab results. Both can live in the same server, filterable by a single query parameter." },
+              { icon: "⊕", title: "Co-hosted with OAH data", body: "PharmaShed bundles sit alongside the OneAquaHealth IG's own Benevento example resources — demonstrating the consortium vision of one FHIR server for the whole One Health ecosystem." },
+            ].map((item) => (
+              <div key={item.title} className="rounded-lg p-4" style={{ background: "#242220", border: "1px solid #292524" }}>
+                <div className="text-lg mb-2" style={{ color: "#7c75ff", fontFamily: "ui-monospace, monospace" }}>{item.icon}</div>
+                <div className="text-xs font-semibold mb-1" style={{ color: "#f5f4f2" }}>{item.title}</div>
+                <div className="text-xs leading-relaxed" style={{ color: "#79716b" }}>{item.body}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs leading-relaxed" style={{ color: "#6b6460" }}>
+            Each PharmaShed prediction becomes an <code className="px-1 rounded" style={{ background: "#242220", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>Observation</code> resource with the <code className="px-1 rounded" style={{ background: "#242220", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>observation-with-component-oah</code> profile, components for PEC p05/p50/p95, RQ p50, priority score, and LOD share — and a <code className="px-1 rounded" style={{ background: "#242220", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>meta.tag: illustrative-parameter</code> that drops the moment real values replace illustrative ones.
+          </p>
+        </div>
+
         {/* Lab vs model panel */}
-        <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-700 p-4">
-          <h2 className="text-sm font-medium mb-3">Lab vs model queries</h2>
+        <div className="rounded-xl p-5" style={{ background: "#1a1917", border: "1px solid #292524" }}>
+          <h2 className="text-sm font-medium mb-3" style={{ color: "#f5f4f2" }}>Lab vs model queries</h2>
           <div className="flex gap-4 flex-wrap">
             <QueryBox
               label="Lab results"
@@ -86,24 +130,29 @@ export function FhirTab() {
               count={resource_counts["Observation"] ?? "?"}
             />
           </div>
-          <p className="text-xs text-neutral-500 mt-3">
-            A server query can distinguish model output from lab results via category{" "}
-            <code className="bg-neutral-100 dark:bg-neutral-800 px-1 rounded">model-prediction</code>.
+          <p className="text-xs mt-3" style={{ color: "#6b6460" }}>
+            A server query distinguishes model output from lab results via category{" "}
+            <code className="px-1 rounded" style={{ background: "#242220", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>model-prediction</code>.
           </p>
         </div>
 
         {/* JSON tree */}
         {loading && <LoadingView label="Loading bundle…" />}
         {!loading && bundle && (
-          <div>
-            <h2 className="text-sm font-medium mb-2">
-              {selected} bundle
+          <div
+            className="rounded-xl p-4"
+            style={{ background: "#1a1917", border: "1px solid #292524" }}
+          >
+            <h2 className="text-sm font-medium mb-3" style={{ color: "#f5f4f2" }}>
+              {selected}
             </h2>
-            <JsonTree value={bundle} depth={0} />
+            <div className="text-xs" style={{ fontFamily: "ui-monospace, monospace" }}>
+              <JsonTree value={bundle} depth={0} />
+            </div>
           </div>
         )}
         {!loading && !bundle && (
-          <p className="text-sm text-neutral-400">Select a bundle from the list.</p>
+          <p className="text-xs" style={{ color: "#6b6460" }}>Select a bundle from the list to inspect its raw FHIR JSON.</p>
         )}
       </div>
     </div>
@@ -113,7 +162,15 @@ export function FhirTab() {
 function ValidationBadge({ fhirIndex }: { fhirIndex: { validation?: { errors?: number; status?: string; ci_log_url?: string | null } } }) {
   const errors = fhirIndex.validation?.errors ?? 0;
   return (
-    <div className={`rounded-md px-3 py-2 text-xs ${errors === 0 ? "bg-green-50 text-green-700 border border-green-200" : "bg-amber-50 text-amber-700 border border-amber-200"}`}>
+    <div
+      className="rounded-lg px-3 py-2 text-xs"
+      style={{
+        background: errors === 0 ? "#0d1f0d" : "#1f1800",
+        border: `1px solid ${errors === 0 ? "#166534" : "#78350f"}`,
+        color: errors === 0 ? "#4ade80" : "#fbbf24",
+        fontFamily: "ui-monospace, monospace",
+      }}
+    >
       {errors === 0 ? (
         <span>✓ Validates against OneAquaHealth IG</span>
       ) : (

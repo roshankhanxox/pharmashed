@@ -6,12 +6,12 @@
   },
   "type": "collection",
   "timestamp": "2026-09-18T00:00:00Z",
-  "total": 6,
+  "total": 105,
   "entry": [
     {
       "resource": {
         "resourceType": "Location",
-        "id": "loc-TLS-01",
+        "id": "TLS-01",
         "name": "TLS monitoring site 01",
         "status": "active",
         "physicalType": {
@@ -23,16 +23,16 @@
           ]
         },
         "address": {
-          "city": "Toulouse",
-          "country": "FR"
-        }
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
       },
-      "fullUrl": "urn:pharmashed:location/loc-TLS-01"
+      "fullUrl": "urn:pharmashed:location/TLS-01"
     },
     {
       "resource": {
         "resourceType": "Location",
-        "id": "loc-TLS-02",
+        "id": "TLS-02",
         "name": "TLS monitoring site 02",
         "status": "active",
         "physicalType": {
@@ -44,16 +44,16 @@
           ]
         },
         "address": {
-          "city": "Toulouse",
-          "country": "FR"
-        }
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
       },
-      "fullUrl": "urn:pharmashed:location/loc-TLS-02"
+      "fullUrl": "urn:pharmashed:location/TLS-02"
     },
     {
       "resource": {
         "resourceType": "Location",
-        "id": "loc-TLS-03",
+        "id": "TLS-03",
         "name": "TLS monitoring site 03",
         "status": "active",
         "physicalType": {
@@ -65,16 +65,16 @@
           ]
         },
         "address": {
-          "city": "Toulouse",
-          "country": "FR"
-        }
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
       },
-      "fullUrl": "urn:pharmashed:location/loc-TLS-03"
+      "fullUrl": "urn:pharmashed:location/TLS-03"
     },
     {
       "resource": {
         "resourceType": "Location",
-        "id": "loc-TLS-04",
+        "id": "TLS-04",
         "name": "TLS monitoring site 04",
         "status": "active",
         "physicalType": {
@@ -86,16 +86,16 @@
           ]
         },
         "address": {
-          "city": "Toulouse",
-          "country": "FR"
-        }
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
       },
-      "fullUrl": "urn:pharmashed:location/loc-TLS-04"
+      "fullUrl": "urn:pharmashed:location/TLS-04"
     },
     {
       "resource": {
         "resourceType": "Location",
-        "id": "loc-TLS-05",
+        "id": "TLS-05",
         "name": "TLS monitoring site 05",
         "status": "active",
         "physicalType": {
@@ -107,16 +107,16 @@
           ]
         },
         "address": {
-          "city": "Toulouse",
-          "country": "FR"
-        }
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
       },
-      "fullUrl": "urn:pharmashed:location/loc-TLS-05"
+      "fullUrl": "urn:pharmashed:location/TLS-05"
     },
     {
       "resource": {
         "resourceType": "Location",
-        "id": "loc-TLS-06",
+        "id": "TLS-06",
         "name": "TLS monitoring site 06",
         "status": "active",
         "physicalType": {
@@ -128,11 +128,2090 @@
           ]
         },
         "address": {
-          "city": "Toulouse",
-          "country": "FR"
-        }
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
       },
-      "fullUrl": "urn:pharmashed:location/loc-TLS-06"
+      "fullUrl": "urn:pharmashed:location/TLS-06"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-07",
+        "name": "TLS monitoring site 07",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-07"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-08",
+        "name": "TLS monitoring site 08",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-08"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-09",
+        "name": "TLS monitoring site 09",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-09"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-10",
+        "name": "TLS monitoring site 10",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-10"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-11",
+        "name": "TLS monitoring site 11",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-11"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-12",
+        "name": "TLS monitoring site 12",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-12"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-13",
+        "name": "TLS monitoring site 13",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-13"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-14",
+        "name": "TLS monitoring site 14",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-14"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-15",
+        "name": "TLS monitoring site 15",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-15"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-16",
+        "name": "TLS monitoring site 16",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-16"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-17",
+        "name": "TLS monitoring site 17",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-17"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-18",
+        "name": "TLS monitoring site 18",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-18"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-19",
+        "name": "TLS monitoring site 19",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-19"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-20",
+        "name": "TLS monitoring site 20",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-20"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "TLS-21",
+        "name": "TLS monitoring site 21",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "TLS"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/TLS-21"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-01",
+        "name": "GNT monitoring site 01",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-01"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-02",
+        "name": "GNT monitoring site 02",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-02"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-03",
+        "name": "GNT monitoring site 03",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-03"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-04",
+        "name": "GNT monitoring site 04",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-04"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-05",
+        "name": "GNT monitoring site 05",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-05"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-06",
+        "name": "GNT monitoring site 06",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-06"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-07",
+        "name": "GNT monitoring site 07",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-07"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-08",
+        "name": "GNT monitoring site 08",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-08"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-09",
+        "name": "GNT monitoring site 09",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-09"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-10",
+        "name": "GNT monitoring site 10",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-10"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-11",
+        "name": "GNT monitoring site 11",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-11"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-12",
+        "name": "GNT monitoring site 12",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-12"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-13",
+        "name": "GNT monitoring site 13",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-13"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-14",
+        "name": "GNT monitoring site 14",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-14"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-15",
+        "name": "GNT monitoring site 15",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-15"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-16",
+        "name": "GNT monitoring site 16",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-16"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-17",
+        "name": "GNT monitoring site 17",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-17"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-18",
+        "name": "GNT monitoring site 18",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-18"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-19",
+        "name": "GNT monitoring site 19",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-19"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-20",
+        "name": "GNT monitoring site 20",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-20"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "GNT-21",
+        "name": "GNT monitoring site 21",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "GNT"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/GNT-21"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-01",
+        "name": "BNV monitoring site 01",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-01"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-02",
+        "name": "BNV monitoring site 02",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-02"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-03",
+        "name": "BNV monitoring site 03",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-03"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-04",
+        "name": "BNV monitoring site 04",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-04"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-05",
+        "name": "BNV monitoring site 05",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-05"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-06",
+        "name": "BNV monitoring site 06",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-06"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-07",
+        "name": "BNV monitoring site 07",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-07"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-08",
+        "name": "BNV monitoring site 08",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-08"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-09",
+        "name": "BNV monitoring site 09",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-09"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-10",
+        "name": "BNV monitoring site 10",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-10"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-11",
+        "name": "BNV monitoring site 11",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-11"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-12",
+        "name": "BNV monitoring site 12",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-12"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-13",
+        "name": "BNV monitoring site 13",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-13"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-14",
+        "name": "BNV monitoring site 14",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-14"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-15",
+        "name": "BNV monitoring site 15",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-15"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-16",
+        "name": "BNV monitoring site 16",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-16"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-17",
+        "name": "BNV monitoring site 17",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-17"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-18",
+        "name": "BNV monitoring site 18",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-18"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-19",
+        "name": "BNV monitoring site 19",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-19"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-20",
+        "name": "BNV monitoring site 20",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-20"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "BNV-21",
+        "name": "BNV monitoring site 21",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "BNV"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/BNV-21"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-01",
+        "name": "CBR monitoring site 01",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-01"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-02",
+        "name": "CBR monitoring site 02",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-02"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-03",
+        "name": "CBR monitoring site 03",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-03"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-04",
+        "name": "CBR monitoring site 04",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-04"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-05",
+        "name": "CBR monitoring site 05",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-05"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-06",
+        "name": "CBR monitoring site 06",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-06"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-07",
+        "name": "CBR monitoring site 07",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-07"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-08",
+        "name": "CBR monitoring site 08",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-08"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-09",
+        "name": "CBR monitoring site 09",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-09"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-10",
+        "name": "CBR monitoring site 10",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-10"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-11",
+        "name": "CBR monitoring site 11",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-11"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-12",
+        "name": "CBR monitoring site 12",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-12"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-13",
+        "name": "CBR monitoring site 13",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-13"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-14",
+        "name": "CBR monitoring site 14",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-14"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-15",
+        "name": "CBR monitoring site 15",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-15"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-16",
+        "name": "CBR monitoring site 16",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-16"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-17",
+        "name": "CBR monitoring site 17",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-17"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-18",
+        "name": "CBR monitoring site 18",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-18"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-19",
+        "name": "CBR monitoring site 19",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-19"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-20",
+        "name": "CBR monitoring site 20",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-20"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "CBR-21",
+        "name": "CBR monitoring site 21",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "CBR"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/CBR-21"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-01",
+        "name": "OSL monitoring site 01",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-01"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-02",
+        "name": "OSL monitoring site 02",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-02"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-03",
+        "name": "OSL monitoring site 03",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-03"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-04",
+        "name": "OSL monitoring site 04",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-04"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-05",
+        "name": "OSL monitoring site 05",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-05"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-06",
+        "name": "OSL monitoring site 06",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-06"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-07",
+        "name": "OSL monitoring site 07",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-07"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-08",
+        "name": "OSL monitoring site 08",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-08"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-09",
+        "name": "OSL monitoring site 09",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-09"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-10",
+        "name": "OSL monitoring site 10",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-10"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-11",
+        "name": "OSL monitoring site 11",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-11"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-12",
+        "name": "OSL monitoring site 12",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-12"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-13",
+        "name": "OSL monitoring site 13",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-13"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-14",
+        "name": "OSL monitoring site 14",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-14"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-15",
+        "name": "OSL monitoring site 15",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-15"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-16",
+        "name": "OSL monitoring site 16",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-16"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-17",
+        "name": "OSL monitoring site 17",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-17"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-18",
+        "name": "OSL monitoring site 18",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-18"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-19",
+        "name": "OSL monitoring site 19",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-19"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-20",
+        "name": "OSL monitoring site 20",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-20"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "OSL-21",
+        "name": "OSL monitoring site 21",
+        "status": "active",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa"
+            }
+          ]
+        },
+        "address": {
+          "city": "OSL"
+        },
+        "description": "Illustrative synthetic site"
+      },
+      "fullUrl": "urn:pharmashed:location/OSL-21"
     }
   ]
 }

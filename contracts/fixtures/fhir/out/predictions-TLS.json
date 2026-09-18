@@ -6,7 +6,7 @@
   },
   "type": "collection",
   "timestamp": "2026-09-18T00:00:00Z",
-  "total": 18,
+  "total": 126,
   "entry": [
     {
       "resource": {
@@ -22,10 +22,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-01"
+          "reference": "Location/TLS-01"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -51,10 +51,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-01"
+          "reference": "Location/TLS-01"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -80,10 +80,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-01"
+          "reference": "Location/TLS-01"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -109,10 +109,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-01"
+          "reference": "Location/TLS-01"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -138,10 +138,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-01"
+          "reference": "Location/TLS-01"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -167,10 +167,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-01"
+          "reference": "Location/TLS-01"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -196,10 +196,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-02"
+          "reference": "Location/TLS-02"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -225,10 +225,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-02"
+          "reference": "Location/TLS-02"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -254,10 +254,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-02"
+          "reference": "Location/TLS-02"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -283,10 +283,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-02"
+          "reference": "Location/TLS-02"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -312,10 +312,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-02"
+          "reference": "Location/TLS-02"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -341,10 +341,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-02"
+          "reference": "Location/TLS-02"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -370,10 +370,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-03"
+          "reference": "Location/TLS-03"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -399,10 +399,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-03"
+          "reference": "Location/TLS-03"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -428,10 +428,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-03"
+          "reference": "Location/TLS-03"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -457,10 +457,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-03"
+          "reference": "Location/TLS-03"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -486,10 +486,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-03"
+          "reference": "Location/TLS-03"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -515,10 +515,10 @@
           ]
         },
         "subject": {
-          "reference": "Location/loc-TLS-03"
+          "reference": "Location/TLS-03"
         },
         "valueQuantity": {
-          "value": 0.75,
+          "value": 0.0,
           "unit": "1",
           "system": "http://unitsofmeasure.org"
         },
@@ -529,6 +529,3138 @@
         ]
       },
       "fullUrl": "urn:pharmashed:observation/obs-TLS-03-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-04-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-04"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-04-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-04-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-04"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-04-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-04-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-04"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-04-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-04-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-04"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-04-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-04-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-04"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-04-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-04-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-04"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-04-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-05-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-05"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-05-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-05-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-05"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-05-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-05-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-05"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-05-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-05-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-05"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-05-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-05-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-05"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-05-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-05-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-05"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-05-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-06-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-06"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-06-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-06-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-06"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-06-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-06-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-06"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-06-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-06-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-06"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-06-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-06-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-06"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-06-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-06-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-06"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-06-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-07-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-07"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-07-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-07-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-07"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-07-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-07-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-07"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-07-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-07-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-07"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-07-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-07-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-07"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-07-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-07-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-07"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-07-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-08-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-08"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-08-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-08-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-08"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-08-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-08-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-08"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-08-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-08-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-08"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-08-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-08-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-08"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-08-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-08-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-08"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-08-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-09-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-09"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-09-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-09-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-09"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-09-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-09-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-09"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-09-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-09-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-09"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-09-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-09-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-09"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-09-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-09-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-09"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-09-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-10-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-10"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-10-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-10-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-10"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-10-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-10-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-10"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-10-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-10-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-10"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-10-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-10-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-10"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-10-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-10-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-10"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-10-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-11-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-11"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-11-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-11-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-11"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-11-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-11-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-11"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-11-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-11-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-11"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-11-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-11-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-11"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-11-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-11-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-11"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-11-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-12-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-12"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-12-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-12-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-12"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-12-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-12-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-12"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-12-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-12-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-12"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-12-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-12-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-12"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-12-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-12-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-12"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-12-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-13-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-13"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-13-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-13-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-13"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-13-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-13-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-13"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-13-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-13-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-13"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-13-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-13-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-13"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-13-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-13-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-13"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-13-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-14-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-14"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-14-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-14-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-14"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-14-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-14-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-14"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-14-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-14-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-14"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-14-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-14-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-14"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-14-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-14-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-14"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-14-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-15-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-15"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-15-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-15-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-15"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-15-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-15-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-15"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-15-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-15-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-15"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-15-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-15-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-15"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-15-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-15-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-15"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-15-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-16-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-16"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-16-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-16-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-16"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-16-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-16-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-16"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-16-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-16-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-16"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-16-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-16-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-16"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-16-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-16-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-16"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-16-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-17-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-17"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-17-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-17-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-17"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-17-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-17-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-17"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-17-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-17-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-17"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-17-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-17-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-17"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-17-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-17-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-17"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-17-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-18-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-18"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-18-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-18-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-18"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-18-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-18-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-18"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-18-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-18-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-18"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-18-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-18-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-18"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-18-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-18-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-18"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-18-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-19-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-19"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-19-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-19-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-19"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-19-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-19-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-19"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-19-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-19-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-19"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-19-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-19-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-19"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-19-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-19-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-19"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-19-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-20-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-20"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-20-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-20-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-20"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-20-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-20-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-20"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-20-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-20-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-20"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-20-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-20-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-20"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-20-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-20-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-20"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-20-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-21-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-21"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-21-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-21-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-21"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-21-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-21-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-21"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-21-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-21-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-21"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-21-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-21-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-21"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-21-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TLS-21-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:pharmashed:cs:priority-tier",
+              "code": "pharmashed-score"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Location/TLS-21"
+        },
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "1",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative Monte Carlo score (share of draws with RQ > 1). Not a probability."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/obs-TLS-21-citalopram"
     }
   ]
 }

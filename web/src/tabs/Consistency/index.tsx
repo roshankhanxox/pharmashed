@@ -11,30 +11,30 @@ export function ConsistencyTab() {
   const items = rawItems as unknown as CheckItem[];
 
   return (
-    <div className="overflow-y-auto p-6 flex flex-col gap-6 max-w-3xl mx-auto">
+    <div className="overflow-y-auto p-6 flex flex-col gap-6 max-w-3xl mx-auto" style={{ background: "#0c0a09", color: "#f5f4f2" }}>
 
       {/* D35 reframing header */}
       <div>
         <h1 className="text-base font-semibold mb-1">How validation runs once parameters are sourced</h1>
-        <p className="text-sm text-neutral-500 leading-relaxed">
+        <p className="text-sm leading-relaxed" style={{ color: "#a6a09b" }}>
           These five checks compare PharmaShed's predicted outputs against <strong>Rodrigues et al. 2025</strong> independently collected field data. Predictions were frozen before comparison to prevent post-hoc tuning. While parameters remain illustrative (D33), results carry an "illustrative inputs" label — they are not evidence of model accuracy, but demonstrate that the validation pipeline works correctly and is ready to run the moment real parameters are in place.
         </p>
       </div>
 
       {/* Freeze provenance */}
-      <div className="flex items-center gap-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 px-4 py-3 text-xs text-neutral-500">
+      <div className="flex items-center gap-3 rounded-lg px-4 py-3 text-xs" style={{ background: "#1a1917", border: "1px solid #292524", color: "#a6a09b" }}>
         <span className="text-lg">🔒</span>
         <span>
           Predictions frozen at tag{" "}
-          <code className="bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded font-mono">{meta.frozen_tag}</code>
+          <code className="px-1.5 py-0.5 rounded" style={{ background: "#242220", color: "#7c75ff", fontFamily: "ui-monospace, monospace" }}>{meta.frozen_tag}</code>
           {" · "}sha256{" "}
-          <code className="bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded font-mono">{meta.frozen_sha256.slice(0, 12)}…</code>
+          <code className="px-1.5 py-0.5 rounded" style={{ background: "#242220", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>{meta.frozen_sha256.slice(0, 12)}…</code>
         </span>
       </div>
 
       {/* Circularity callout */}
-      <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-4 text-sm text-blue-900 dark:text-blue-100">
-        <strong className="block mb-1">On circularity</strong>
+      <div className="rounded-lg p-4 text-sm" style={{ background: "#0d1624", border: "1px solid #1e3a5f", color: "#93c5fd" }}>
+        <strong className="block mb-1" style={{ color: "#bfdbfe" }}>On circularity</strong>
         {circularity_statement}
       </div>
 
@@ -44,7 +44,7 @@ export function ConsistencyTab() {
       ))}
 
       {/* Illustrative caveat */}
-      <div className="rounded-lg bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 px-4 py-3 text-xs text-amber-800 dark:text-amber-200">
+      <div className="rounded-lg px-4 py-3 text-xs" style={{ background: "#1c1400", border: "1px solid #78350f", color: "#fbbf24" }}>
         ⚗ All checks run on predictions derived from <strong>illustrative parameters</strong> (D33). Pass/fail results are demonstrations of the pipeline, not evidence of model accuracy against real data.
       </div>
     </div>
@@ -72,12 +72,12 @@ interface CheckItem {
 }
 
 function CheckCard({ check }: { check: CheckItem }) {
-  const statusColor =
+  const statusStyle =
     check.status === "pass"
-      ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100"
+      ? { background: "#052e16", color: "#4ade80", border: "1px solid #166534" }
       : check.status === "fail"
-      ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100"
-      : "bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400";
+      ? { background: "#450a0a", color: "#f87171", border: "1px solid #7f1d1d" }
+      : { background: "#1a1917", color: "#a6a09b", border: "1px solid #292524" };
 
   const TITLES: Record<string, string> = {
     C1: "C1 — LOD share vs detection frequency",
@@ -96,22 +96,25 @@ function CheckCard({ check }: { check: CheckItem }) {
   };
 
   return (
-    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 flex flex-col gap-3">
+    <div className="rounded-xl p-4 flex flex-col gap-3" style={{ background: "#1a1917", border: "1px solid #292524" }}>
       <div className="flex items-center justify-between gap-2">
-        <h3 className="text-sm font-medium">{TITLES[check.id] ?? check.id}</h3>
-        <span className={`text-xs font-medium px-2 py-0.5 rounded ${statusColor}`}>
+        <h3 className="text-sm font-medium" style={{ color: "#f5f4f2" }}>{TITLES[check.id] ?? check.id}</h3>
+        <span
+          className="text-xs font-medium px-2 py-0.5 rounded"
+          style={{ ...statusStyle, fontFamily: "ui-monospace, monospace", fontSize: "10px", letterSpacing: "0.04em" }}
+        >
           {check.status}
         </span>
       </div>
 
       {EXPLANATIONS[check.id] && (
-        <p className="text-xs text-neutral-500 leading-relaxed border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
+        <p className="text-xs leading-relaxed pl-3" style={{ color: "#79716b", borderLeft: "2px solid #292524" }}>
           {EXPLANATIONS[check.id]}
         </p>
       )}
 
       {check.reason && (
-        <p className={`text-xs font-medium ${check.status === "fail" ? "text-red-600" : "text-neutral-500"}`}>
+        <p className="text-xs font-medium" style={{ color: check.status === "fail" ? "#f87171" : "#a6a09b" }}>
           Result: {check.reason}
         </p>
       )}

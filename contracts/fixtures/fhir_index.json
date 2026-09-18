@@ -1,43 +1,60 @@
 {
   "meta": {
-    "generated_at": "2026-01-01T00:00:00Z"
+    "generated_at": "2026-09-18T00:00:00Z"
   },
   "resource_counts": {
-    "Location": 6,
-    "Group": 2,
-    "Observation": 48,
-    "Provenance": 36
+    "Location": 105,
+    "Observation": 660,
+    "Provenance": 37
   },
   "bundles": [
     {
       "name": "terminology",
       "path": "fhir/out/terminology.json",
       "resource_type": "Bundle",
-      "count": 4
+      "count": 3
     },
     {
       "name": "locations",
       "path": "fhir/out/locations.json",
       "resource_type": "Bundle",
-      "count": 6
+      "count": 105
     },
     {
       "name": "consumption",
       "path": "fhir/out/consumption.json",
       "resource_type": "Bundle",
-      "count": 12
+      "count": 30
     },
     {
       "name": "predictions-TLS",
       "path": "fhir/out/predictions-TLS.json",
       "resource_type": "Bundle",
-      "count": 18
+      "count": 126
     },
     {
       "name": "predictions-GNT",
       "path": "fhir/out/predictions-GNT.json",
       "resource_type": "Bundle",
-      "count": 18
+      "count": 126
+    },
+    {
+      "name": "predictions-BNV",
+      "path": "fhir/out/predictions-BNV.json",
+      "resource_type": "Bundle",
+      "count": 126
+    },
+    {
+      "name": "predictions-CBR",
+      "path": "fhir/out/predictions-CBR.json",
+      "resource_type": "Bundle",
+      "count": 126
+    },
+    {
+      "name": "predictions-OSL",
+      "path": "fhir/out/predictions-OSL.json",
+      "resource_type": "Bundle",
+      "count": 126
     },
     {
       "name": "reference-measurements",
@@ -59,9 +76,9 @@
       "query": "Observation?category=laboratory",
       "count": 6
     },
-    "model_prediction": {
-      "query": "Observation?category=https://pharmashed.example/fhir/CodeSystem/observation-category|model-prediction",
-      "count": 36
+    "by_city": {
+      "query": "Location?address-city=Toulouse",
+      "count": 21
     }
   }
 }

@@ -6,7 +6,7 @@
   },
   "type": "collection",
   "timestamp": "2026-09-18T00:00:00Z",
-  "total": 12,
+  "total": 30,
   "entry": [
     {
       "resource": {
@@ -37,32 +37,6 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "cons-TLS-carbamazepine",
-        "status": "final",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "55423-8",
-              "display": "Drug consumption"
-            }
-          ]
-        },
-        "valueQuantity": {
-          "value": 1.0,
-          "unit": "DDD/1000/day"
-        },
-        "note": [
-          {
-            "text": "Illustrative placeholder value"
-          }
-        ]
-      },
-      "fullUrl": "urn:pharmashed:observation/cons-TLS-carbamazepine"
-    },
-    {
-      "resource": {
-        "resourceType": "Observation",
         "id": "cons-TLS-atenolol",
         "status": "final",
         "code": {
@@ -85,58 +59,6 @@
         ]
       },
       "fullUrl": "urn:pharmashed:observation/cons-TLS-atenolol"
-    },
-    {
-      "resource": {
-        "resourceType": "Observation",
-        "id": "cons-TLS-atenolol",
-        "status": "final",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "55423-8",
-              "display": "Drug consumption"
-            }
-          ]
-        },
-        "valueQuantity": {
-          "value": 1.0,
-          "unit": "DDD/1000/day"
-        },
-        "note": [
-          {
-            "text": "Illustrative placeholder value"
-          }
-        ]
-      },
-      "fullUrl": "urn:pharmashed:observation/cons-TLS-atenolol"
-    },
-    {
-      "resource": {
-        "resourceType": "Observation",
-        "id": "cons-TLS-losartan",
-        "status": "final",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "55423-8",
-              "display": "Drug consumption"
-            }
-          ]
-        },
-        "valueQuantity": {
-          "value": 1.0,
-          "unit": "DDD/1000/day"
-        },
-        "note": [
-          {
-            "text": "Illustrative placeholder value"
-          }
-        ]
-      },
-      "fullUrl": "urn:pharmashed:observation/cons-TLS-losartan"
     },
     {
       "resource": {
@@ -193,58 +115,6 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "cons-TLS-irbesartan",
-        "status": "final",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "55423-8",
-              "display": "Drug consumption"
-            }
-          ]
-        },
-        "valueQuantity": {
-          "value": 1.0,
-          "unit": "DDD/1000/day"
-        },
-        "note": [
-          {
-            "text": "Illustrative placeholder value"
-          }
-        ]
-      },
-      "fullUrl": "urn:pharmashed:observation/cons-TLS-irbesartan"
-    },
-    {
-      "resource": {
-        "resourceType": "Observation",
-        "id": "cons-TLS-paracetamol",
-        "status": "final",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "55423-8",
-              "display": "Drug consumption"
-            }
-          ]
-        },
-        "valueQuantity": {
-          "value": 1.0,
-          "unit": "DDD/1000/day"
-        },
-        "note": [
-          {
-            "text": "Illustrative placeholder value"
-          }
-        ]
-      },
-      "fullUrl": "urn:pharmashed:observation/cons-TLS-paracetamol"
-    },
-    {
-      "resource": {
-        "resourceType": "Observation",
         "id": "cons-TLS-paracetamol",
         "status": "final",
         "code": {
@@ -297,7 +167,7 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "cons-TLS-citalopram",
+        "id": "cons-GNT-carbamazepine",
         "status": "final",
         "code": {
           "coding": [
@@ -318,7 +188,605 @@
           }
         ]
       },
-      "fullUrl": "urn:pharmashed:observation/cons-TLS-citalopram"
+      "fullUrl": "urn:pharmashed:observation/cons-GNT-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-GNT-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-GNT-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-GNT-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-GNT-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-GNT-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-GNT-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-GNT-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-GNT-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-GNT-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-GNT-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-BNV-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-BNV-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-BNV-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-BNV-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-BNV-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-BNV-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-BNV-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-BNV-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-BNV-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-BNV-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-BNV-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-BNV-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-CBR-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-CBR-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-CBR-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-CBR-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-CBR-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-CBR-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-CBR-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-CBR-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-CBR-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-CBR-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-CBR-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-CBR-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-OSL-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-OSL-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-OSL-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-OSL-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-OSL-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-OSL-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-OSL-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-OSL-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-OSL-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-OSL-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-OSL-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-OSL-citalopram"
     }
   ]
 }

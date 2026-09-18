@@ -193,13 +193,29 @@ export function MapView() {
     }
   }, [results, sites, selectedDrug, selectedSiteId]);
 
+  const C = {
+    canvas:  "#0c0a09",
+    surface: "#1a1917",
+    border:  "#292524",
+    text:    "#f5f4f2",
+    muted:   "#a6a09b",
+    faint:   "#6b6460",
+    indigo:  "#7c75ff",
+  } as const;
+
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full" style={{ background: C.canvas }}>
       {/* Controls bar */}
-      <div className="px-3 py-2 border-b border-neutral-200 dark:border-neutral-800 flex flex-col gap-1.5 bg-white dark:bg-neutral-950 shrink-0">
+      <div
+        className="px-3 py-2 flex flex-col gap-1.5 shrink-0"
+        style={{ borderBottom: `1px solid ${C.border}`, background: C.surface }}
+      >
         {/* Cities */}
         <div className="flex gap-1.5 items-center min-w-0">
-          <span className="text-[10px] font-medium text-neutral-400 uppercase tracking-wide w-8 shrink-0">
+          <span
+            className="text-[10px] font-semibold uppercase w-8 shrink-0"
+            style={{ color: C.faint, letterSpacing: "0.06em", fontFamily: "ui-monospace, monospace" }}
+          >
             City
           </span>
           <div className="flex gap-1.5 overflow-x-auto pb-0.5 flex-nowrap scrollbar-none">
@@ -210,23 +226,24 @@ export function MapView() {
               <button
                 key={city}
                 onClick={() => setSelectedCity(isActive ? null : city)}
-                className={`px-2 py-0.5 text-xs rounded border transition-colors shrink-0 ${
-                  isActive
-                    ? "border-blue-500 bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300"
-                    : "border-neutral-200 dark:border-neutral-700 hover:border-blue-300 text-neutral-600 dark:text-neutral-400"
-                }`}
+                className="px-2 py-0.5 text-xs rounded transition-all shrink-0"
+                style={{
+                  border: `1px solid ${isActive ? C.indigo : C.border}`,
+                  background: isActive ? "rgba(124,117,255,0.12)" : "transparent",
+                  color: isActive ? C.indigo : C.muted,
+                }}
               >
                 {city}
                 {summary && (
                   <span className="ml-1.5 space-x-0.5">
                     {summary.high > 0 && (
-                      <span className="text-red-500 font-medium">{summary.high}H</span>
+                      <span style={{ color: "#f87171", fontWeight: 600 }}>{summary.high}H</span>
                     )}
                     {summary.medium > 0 && (
-                      <span className="text-yellow-500 font-medium">{summary.medium}M</span>
+                      <span style={{ color: "#fbbf24", fontWeight: 600 }}>{summary.medium}M</span>
                     )}
                     {summary.low > 0 && (
-                      <span className="text-green-600 font-medium">{summary.low}L</span>
+                      <span style={{ color: "#4ade80", fontWeight: 600 }}>{summary.low}L</span>
                     )}
                   </span>
                 )}
@@ -238,7 +255,10 @@ export function MapView() {
 
         {/* Drugs */}
         <div className="flex gap-1 items-center min-w-0">
-          <span className="text-[10px] font-medium text-neutral-400 uppercase tracking-wide w-8 shrink-0">
+          <span
+            className="text-[10px] font-semibold uppercase w-8 shrink-0"
+            style={{ color: C.faint, letterSpacing: "0.06em", fontFamily: "ui-monospace, monospace" }}
+          >
             Drug
           </span>
           <div className="flex gap-1 overflow-x-auto pb-0.5 flex-nowrap scrollbar-none">
@@ -246,11 +266,12 @@ export function MapView() {
             <button
               key={d}
               onClick={() => setSelectedDrug(d)}
-              className={`px-2 py-0.5 text-xs rounded border transition-colors shrink-0 ${
-                selectedDrug === d
-                  ? "border-blue-500 bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300"
-                  : "border-neutral-200 dark:border-neutral-700 hover:border-blue-300 text-neutral-600 dark:text-neutral-400"
-              }`}
+              className="px-2 py-0.5 text-xs rounded transition-all shrink-0"
+              style={{
+                border: `1px solid ${selectedDrug === d ? C.indigo : C.border}`,
+                background: selectedDrug === d ? "rgba(124,117,255,0.12)" : "transparent",
+                color: selectedDrug === d ? C.indigo : C.muted,
+              }}
             >
               {d === "all" ? "All" : d}
             </button>
@@ -268,7 +289,7 @@ export function MapView() {
               { label: "Low", color: "#22c55e", r: 4 },
             ] as const
           ).map(({ label, color, r }) => (
-            <span key={label} className="flex items-center gap-1.5 text-[10px] text-neutral-500">
+            <span key={label} className="flex items-center gap-1.5 text-[10px]" style={{ color: C.faint }}>
               <span
                 style={{
                   display: "inline-block",
@@ -276,22 +297,22 @@ export function MapView() {
                   height: r * 2,
                   borderRadius: "50%",
                   background: color,
-                  border: "1.5px solid white",
-                  boxShadow: "0 1px 2px rgba(0,0,0,0.2)",
+                  border: `1.5px solid ${C.border}`,
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.4)",
                   flexShrink: 0,
                 }}
               />
               {label}
             </span>
           ))}
-          <span className="ml-auto text-[10px] text-neutral-400">
+          <span className="ml-auto text-[10px]" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>
             score = share of draws with RQ &gt; 1
           </span>
         </div>
       </div>
 
       {/* Map canvas */}
-      <div ref={mapRef} className="flex-1 min-h-0 bg-neutral-100 dark:bg-neutral-800" />
+      <div ref={mapRef} className="flex-1 min-h-0" style={{ background: "#1a1917" }} />
     </div>
   );
 }
