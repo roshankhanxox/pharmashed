@@ -1,0 +1,25 @@
+# data
+data/raw/
+data/build/
+fhir/out/
+fhir/validator/*.jar
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# node
+node_modules/
+web/dist/
+
+# env
+.env
+
+# editors / os
+.DS_Store
+.vscode/
+.idea/

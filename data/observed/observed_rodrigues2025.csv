@@ -1,0 +1,64 @@
+compound,therapeutic_group,metric,value,unit,scope,site,source_ref,note
+ALL,ALL,pharmaceuticals_analysed,20,count,all_sites,,Sec 1 / Sec 2.2,
+ALL,ALL,pharmaceuticals_detected,16,count,all_sites,,Sec 3.1,
+ALL,ALL,sites_sampled,102,count,all_sites,,Fig 1,single 1 L grab sample per site; Nov 2022 - Sep 2023
+ALL,ALL,sites_sampled,20,count,Coimbra,,Fig 1,
+ALL,ALL,sites_sampled,19,count,Benevento,,Fig 1,
+ALL,ALL,sites_sampled,21,count,Toulouse,,Fig 1,
+ALL,ALL,sites_sampled,22,count,Ghent,,Fig 1,
+ALL,ALL,sites_sampled,20,count,Oslo,,Fig 1,
+ALL,ALL,pct_sites_with_any_pharmaceutical,91,percent,all_sites,,Abstract / Sec 3.1,
+ALL,ALL,pct_sites_with_mixtures,79,percent,all_sites,,Abstract / Sec 3.1,
+ALL,ALL,city_rank_total_concentration,Toulouse > Ghent > Benevento > Coimbra > Oslo,rank,city,,Sec 3.2,Coimbra vs Oslo not statistically different (PERMANOVA p=0.4166)
+ALL,ALL,max_cumulative_concentration,37128,ng/L,Toulouse,T13,Sec 3.2,
+ALL,ALL,max_cumulative_concentration,24194,ng/L,Toulouse,T14,Sec 3.2,
+ALL,ALL,max_cumulative_concentration,18262,ng/L,Ghent,G6,Sec 3.2,
+ALL,ALL,max_cumulative_concentration,8181,ng/L,Ghent,G10,Sec 3.2,
+ALL,ALL,max_cumulative_concentration,9118,ng/L,Benevento,BN2,Sec 3.2,
+ALL,antibiotic,detected_over_analysed,4/7,ratio,all_sites,,Table 3,detected: ofloxacin; ciprofloxacin; azithromycin; trimethoprim
+ALL,antibiotic,group_detection_frequency,24,percent,all_sites,,Table 3,
+ALL,antibiotic,group_median_concentration,41,ng/L,all_sites,,Table 3,
+ALL,anticonvulsant,detected_over_analysed,1/1,ratio,all_sites,,Table 3,
+ALL,antihypertensive,detected_over_analysed,6/6,ratio,all_sites,,Table 3,irbesartan; bisoprolol; losartan; atenolol; propranolol; indapamide
+ALL,antihypertensive,group_detection_frequency,84,percent,all_sites,,Table 3,
+ALL,antihypertensive,group_median_concentration,158,ng/L,all_sites,,Table 3,
+ALL,analgesic_antipyretic,detected_over_analysed,1/1,ratio,all_sites,,Table 3,
+ALL,lipid_regulator,detected_over_analysed,1/1,ratio,all_sites,,Table 3,
+ALL,psychopharmaceutical,detected_over_analysed,3/4,ratio,all_sites,,Table 3,detected: citalopram; venlafaxine; fluoxetine
+ALL,psychopharmaceutical,group_detection_frequency,38,percent,all_sites,,Table 3,
+ALL,psychopharmaceutical,group_median_concentration,114,ng/L,all_sites,,Table 3,
+irbesartan,antihypertensive,detection_frequency,73,percent,all_sites,,Sec 3.1,highest detection frequency of any compound
+irbesartan,antihypertensive,detection_frequency,100,percent,Benevento,,Sec 3.2,
+irbesartan,antihypertensive,detection_frequency,86,percent,Toulouse,,Sec 3.2,
+irbesartan,antihypertensive,max_concentration,31659,ng/L,Toulouse,T13,Sec 3.1,highest single value in study
+irbesartan,antihypertensive,max_concentration,7420,ng/L,Benevento,BN2,Sec 3.2,
+irbesartan,antihypertensive,max_concentration,1690,ng/L,Coimbra,C12,Sec 3.2,
+bisoprolol,antihypertensive,detection_frequency,>50,percent,all_sites,,Sec 3.1,exact value in Supplementary Table S2 (not public)
+bisoprolol,antihypertensive,detection_frequency,100,percent,Ghent,,Sec 3.2,
+bisoprolol,antihypertensive,min_concentration,0.06,ng/L,Coimbra,C11,Sec 3.1,lowest single value in study
+carbamazepine,anticonvulsant,detection_frequency,58,percent,all_sites,,Table 3 / Sec 4.4,
+carbamazepine,anticonvulsant,detection_frequency,70,percent,Coimbra,,Sec 3.2,
+carbamazepine,anticonvulsant,max_concentration,1218,ng/L,all_sites,,Table 3,
+carbamazepine,anticonvulsant,median_concentration,98,ng/L,all_sites,,Table 3,
+acetaminophen,analgesic_antipyretic,detection_frequency,31,percent,all_sites,,Table 3,
+acetaminophen,analgesic_antipyretic,detection_frequency,81,percent,Toulouse,,Sec 4.3,
+acetaminophen,analgesic_antipyretic,detection_frequency,11,percent,Benevento,,Sec 4.3,
+acetaminophen,analgesic_antipyretic,detection_frequency,15,percent,Coimbra,,Sec 4.3,
+acetaminophen,analgesic_antipyretic,max_concentration,16789,ng/L,Ghent,G6,Sec 3.1,
+acetaminophen,analgesic_antipyretic,max_concentration,788,ng/L,Oslo,O9,Sec 3.2,
+acetaminophen,analgesic_antipyretic,median_concentration,825,ng/L,all_sites,,Table 3,highest median of any compound
+losartan,antihypertensive,max_concentration,1676,ng/L,Ghent,G1,Sec 3.1,almost absent from Toulouse (Sec 4.4)
+ofloxacin,antibiotic,max_concentration,1625,ng/L,Ghent,G21,Sec 3.1,authors treat as outlier; EU Watch List 2025
+ofloxacin,antibiotic,detected_in,Coimbra; Ghent,cities,,,Sec 3.1,detection frequency <15%
+propranolol,antihypertensive,detected_in,Benevento; Toulouse; Ghent,cities,,,Sec 3.1,EU Watch List 2025; detection >35% in Toulouse and Ghent
+fluoxetine,psychopharmaceutical,detected_in,Coimbra; Toulouse,cities,,,Sec 3.1,EU Watch List 2025; detection frequency <15%
+citalopram,psychopharmaceutical,max_concentration,1599,ng/L,all_sites,,Table 3,
+venlafaxine,psychopharmaceutical,exceeded_1ugL,yes,flag,all_sites,,Sec 3.1,detected in all five cities
+bezafibrate,lipid_regulator,detection_frequency,6,percent,all_sites,,Table 3,
+bezafibrate,lipid_regulator,max_concentration,534,ng/L,all_sites,,Table 3,
+bezafibrate,lipid_regulator,median_concentration,108,ng/L,all_sites,,Table 3,
+ciprofloxacin,antibiotic,max_concentration,<10,ng/L,Coimbra,,Sec 4.4,detected only in Coimbra
+trimethoprim,antibiotic,detected_in,all five cities,cities,,,Sec 4.4,
+azithromycin,antibiotic,detected_in,frequent in Ghent; high concentration in Toulouse,cities,,,Sec 4.4,
+atenolol,antihypertensive,simper_contributor,all five cities,flag,,,Sec 3.2,
+indapamide,antihypertensive,detected,yes,flag,all_sites,,Sec 3.4,first report in urban streams or rivers per authors
