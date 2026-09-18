@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-01-01T00:00:00Z",
+    "generated_at": "2026-09-18T00:00:00Z",
     "synthetic": true
   },
   "cities": [
@@ -12,7 +12,7 @@
         1.4442,
         43.6047
       ],
-      "zoom": 12
+      "zoom": 11
     },
     {
       "id": "GNT",
@@ -22,99 +22,714 @@
         3.7174,
         51.0543
       ],
+      "zoom": 11
+    },
+    {
+      "id": "BNV",
+      "name": "Benevento",
+      "country": "IT",
+      "center": [
+        14.782,
+        41.13
+      ],
       "zoom": 12
+    },
+    {
+      "id": "CBR",
+      "name": "Coimbra",
+      "country": "PT",
+      "center": [
+        -8.4294,
+        40.2033
+      ],
+      "zoom": 12
+    },
+    {
+      "id": "OSL",
+      "name": "Oslo",
+      "country": "NO",
+      "center": [
+        10.7522,
+        59.9139
+      ],
+      "zoom": 11
     }
   ],
   "sites": [
     {
       "id": "TLS-01",
       "city": "TLS",
-      "name": "Synthetic fixture site TLS-01",
+      "name": "Hers-Mort at Ramonville-Saint-Agne",
       "lonlat": [
-        1.4542,
-        43.6147
+        1.498,
+        43.563
       ],
       "synthetic": true,
       "size_class": "S",
       "w": 0,
       "valid": true,
-      "population_buffer": 1000,
-      "population_source_key": "pop:ghs-pop-2020"
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
     },
     {
       "id": "TLS-02",
       "city": "TLS",
-      "name": "Synthetic fixture site TLS-02",
+      "name": "Hers-Mort at Rangueil",
       "lonlat": [
-        1.4642,
-        43.624700000000004
-      ],
-      "synthetic": true,
-      "size_class": "M",
-      "w": 0,
-      "valid": true,
-      "population_buffer": 2000,
-      "population_source_key": "pop:ghs-pop-2020"
-    },
-    {
-      "id": "TLS-03",
-      "city": "TLS",
-      "name": "Synthetic fixture site TLS-03",
-      "lonlat": [
-        1.4742,
-        43.6347
-      ],
-      "synthetic": true,
-      "size_class": "L",
-      "w": 0,
-      "valid": true,
-      "population_buffer": 3000,
-      "population_source_key": "pop:ghs-pop-2020"
-    },
-    {
-      "id": "GNT-01",
-      "city": "GNT",
-      "name": "Synthetic fixture site GNT-01",
-      "lonlat": [
-        3.7274,
-        51.064299999999996
+        1.488,
+        43.58
       ],
       "synthetic": true,
       "size_class": "S",
       "w": 0,
       "valid": true,
-      "population_buffer": 1000,
-      "population_source_key": "pop:ghs-pop-2020"
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
     },
     {
-      "id": "GNT-02",
-      "city": "GNT",
-      "name": "Synthetic fixture site GNT-02",
+      "id": "TLS-03",
+      "city": "TLS",
+      "name": "Hers-Mort at Pont des Demoiselles",
       "lonlat": [
-        3.7374,
-        51.0743
+        1.476,
+        43.601
       ],
       "synthetic": true,
       "size_class": "M",
       "w": 0,
       "valid": true,
-      "population_buffer": 2000,
-      "population_source_key": "pop:ghs-pop-2020"
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
     },
     {
-      "id": "GNT-03",
-      "city": "GNT",
-      "name": "Synthetic fixture site GNT-03",
+      "id": "TLS-04",
+      "city": "TLS",
+      "name": "Touch at Fonsorbes upstream",
       "lonlat": [
-        3.7474,
-        51.0843
+        1.373,
+        43.567
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "TLS-05",
+      "city": "TLS",
+      "name": "Touch at Colomiers",
+      "lonlat": [
+        1.386,
+        43.583
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "TLS-06",
+      "city": "TLS",
+      "name": "Touch at Blagnac",
+      "lonlat": [
+        1.397,
+        43.599
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "TLS-07",
+      "city": "TLS",
+      "name": "Garonne at La Daurade",
+      "lonlat": [
+        1.432,
+        43.608
       ],
       "synthetic": true,
       "size_class": "L",
       "w": 0,
       "valid": true,
-      "population_buffer": 3000,
-      "population_source_key": "pop:ghs-pop-2020"
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "TLS-08",
+      "city": "TLS",
+      "name": "Garonne at \u00cele du Ramier",
+      "lonlat": [
+        1.451,
+        43.625
+      ],
+      "synthetic": true,
+      "size_class": "L",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "TLS-09",
+      "city": "TLS",
+      "name": "Aussonnelle at Pibrac",
+      "lonlat": [
+        1.344,
+        43.621
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "GNT-01",
+      "city": "GNT",
+      "name": "Schelde at Destelbergen",
+      "lonlat": [
+        3.699,
+        51.039
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "GNT-02",
+      "city": "GNT",
+      "name": "Schelde at Sint-Annaplein",
+      "lonlat": [
+        3.712,
+        51.048
+      ],
+      "synthetic": true,
+      "size_class": "L",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "GNT-03",
+      "city": "GNT",
+      "name": "Leie\u2013Schelde confluence",
+      "lonlat": [
+        3.72,
+        51.055
+      ],
+      "synthetic": true,
+      "size_class": "L",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "GNT-04",
+      "city": "GNT",
+      "name": "Leie at Wondelgem",
+      "lonlat": [
+        3.706,
+        51.063
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "GNT-05",
+      "city": "GNT",
+      "name": "Leie at Evergem",
+      "lonlat": [
+        3.693,
+        51.071
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "GNT-06",
+      "city": "GNT",
+      "name": "Lieve canal at Mariakerke",
+      "lonlat": [
+        3.732,
+        51.071
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "GNT-07",
+      "city": "GNT",
+      "name": "Molenvaart at Gent-Noord",
+      "lonlat": [
+        3.743,
+        51.059
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "GNT-08",
+      "city": "GNT",
+      "name": "Schelde at Merelbeke",
+      "lonlat": [
+        3.749,
+        51.044
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "GNT-09",
+      "city": "GNT",
+      "name": "Ringvaart at Melle",
+      "lonlat": [
+        3.728,
+        51.04
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "BNV-01",
+      "city": "BNV",
+      "name": "Calore at San Leucio",
+      "lonlat": [
+        14.761,
+        41.119
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "BNV-02",
+      "city": "BNV",
+      "name": "Calore upstream urban",
+      "lonlat": [
+        14.771,
+        41.123
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "BNV-03",
+      "city": "BNV",
+      "name": "Calore at Ponte Valentino",
+      "lonlat": [
+        14.782,
+        41.128
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "BNV-04",
+      "city": "BNV",
+      "name": "Calore at Contrada Roseto",
+      "lonlat": [
+        14.796,
+        41.131
+      ],
+      "synthetic": true,
+      "size_class": "L",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "BNV-05",
+      "city": "BNV",
+      "name": "Calore downstream east",
+      "lonlat": [
+        14.804,
+        41.124
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "BNV-06",
+      "city": "BNV",
+      "name": "Sabato at confluence approach",
+      "lonlat": [
+        14.779,
+        41.117
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "BNV-07",
+      "city": "BNV",
+      "name": "Sabato at Contrada Acquafredda",
+      "lonlat": [
+        14.775,
+        41.109
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "BNV-08",
+      "city": "BNV",
+      "name": "Sabato upstream",
+      "lonlat": [
+        14.768,
+        41.107
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "BNV-09",
+      "city": "BNV",
+      "name": "Calore at Contrada Capodimonte",
+      "lonlat": [
+        14.791,
+        41.14
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "CBR-01",
+      "city": "CBR",
+      "name": "Mondego at Formoselha",
+      "lonlat": [
+        -8.445,
+        40.195
+      ],
+      "synthetic": true,
+      "size_class": "L",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "CBR-02",
+      "city": "CBR",
+      "name": "Mondego upstream of city",
+      "lonlat": [
+        -8.432,
+        40.198
+      ],
+      "synthetic": true,
+      "size_class": "L",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "CBR-03",
+      "city": "CBR",
+      "name": "Mondego at Parque Verde",
+      "lonlat": [
+        -8.419,
+        40.202
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "CBR-04",
+      "city": "CBR",
+      "name": "Mondego at Quinta das L\u00e1grimas",
+      "lonlat": [
+        -8.402,
+        40.206
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "CBR-05",
+      "city": "CBR",
+      "name": "Mondego downstream Coimbra",
+      "lonlat": [
+        -8.386,
+        40.209
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "CBR-06",
+      "city": "CBR",
+      "name": "Ceira near confluence",
+      "lonlat": [
+        -8.456,
+        40.211
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "CBR-07",
+      "city": "CBR",
+      "name": "Ceira upstream",
+      "lonlat": [
+        -8.462,
+        40.219
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "CBR-08",
+      "city": "CBR",
+      "name": "Mondego north channel",
+      "lonlat": [
+        -8.437,
+        40.218
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "CBR-09",
+      "city": "CBR",
+      "name": "Mondego south bank",
+      "lonlat": [
+        -8.425,
+        40.188
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "OSL-01",
+      "city": "OSL",
+      "name": "Akerselva at Nydalen",
+      "lonlat": [
+        10.772,
+        59.93
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "OSL-02",
+      "city": "OSL",
+      "name": "Akerselva at Gr\u00fcnerl\u00f8kka",
+      "lonlat": [
+        10.767,
+        59.922
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "OSL-03",
+      "city": "OSL",
+      "name": "Akerselva mouth",
+      "lonlat": [
+        10.759,
+        59.913
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "OSL-04",
+      "city": "OSL",
+      "name": "Alna at Bryn",
+      "lonlat": [
+        10.826,
+        59.912
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "OSL-05",
+      "city": "OSL",
+      "name": "Alna at Alnabru",
+      "lonlat": [
+        10.815,
+        59.919
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "OSL-06",
+      "city": "OSL",
+      "name": "Alna upstream",
+      "lonlat": [
+        10.803,
+        59.927
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "OSL-07",
+      "city": "OSL",
+      "name": "Lysaker at Stabekk",
+      "lonlat": [
+        10.641,
+        59.902
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "OSL-08",
+      "city": "OSL",
+      "name": "Lysaker mid-reach",
+      "lonlat": [
+        10.655,
+        59.909
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
+    },
+    {
+      "id": "OSL-09",
+      "city": "OSL",
+      "name": "Ljanselva at \u00d8stensj\u00f8",
+      "lonlat": [
+        10.778,
+        59.934
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 0,
+      "population_source_key": "pop:pending-m05"
     }
   ]
 }

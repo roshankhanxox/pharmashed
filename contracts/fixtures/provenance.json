@@ -1,252 +1,372 @@
 {
-  "cons:GNT:atenolol": {
-    "label": "cons:GNT:atenolol",
-    "value": 1.0,
-    "unit": "fixture-unit",
+  "pnec:carbamazepine": {
+    "label": "PNEC carbamazepine",
+    "value": 500,
+    "unit": "ng/L",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced PNEC.",
     "status": "todo"
   },
-  "cons:GNT:carbamazepine": {
-    "label": "cons:GNT:carbamazepine",
-    "value": 1.0,
-    "unit": "fixture-unit",
+  "pnec:atenolol": {
+    "label": "PNEC atenolol",
+    "value": 10000,
+    "unit": "ng/L",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced PNEC.",
     "status": "todo"
   },
-  "cons:GNT:citalopram": {
-    "label": "cons:GNT:citalopram",
-    "value": 1.0,
-    "unit": "fixture-unit",
+  "pnec:losartan": {
+    "label": "PNEC losartan",
+    "value": 2000,
+    "unit": "ng/L",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced PNEC.",
     "status": "todo"
   },
-  "cons:GNT:irbesartan": {
-    "label": "cons:GNT:irbesartan",
-    "value": 1.0,
-    "unit": "fixture-unit",
+  "pnec:irbesartan": {
+    "label": "PNEC irbesartan",
+    "value": 500,
+    "unit": "ng/L",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced PNEC.",
     "status": "todo"
   },
-  "cons:GNT:losartan": {
-    "label": "cons:GNT:losartan",
-    "value": 1.0,
-    "unit": "fixture-unit",
+  "pnec:paracetamol": {
+    "label": "PNEC paracetamol",
+    "value": 10000,
+    "unit": "ng/L",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced PNEC.",
     "status": "todo"
   },
-  "cons:GNT:paracetamol": {
-    "label": "cons:GNT:paracetamol",
-    "value": 1.0,
-    "unit": "fixture-unit",
+  "pnec:citalopram": {
+    "label": "PNEC citalopram",
+    "value": 200,
+    "unit": "ng/L",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
-    "status": "todo"
-  },
-  "cons:TLS:atenolol": {
-    "label": "cons:TLS:atenolol",
-    "value": 1.0,
-    "unit": "fixture-unit",
-    "distribution": null,
-    "source_title": null,
-    "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced PNEC.",
     "status": "todo"
   },
   "cons:TLS:carbamazepine": {
     "label": "cons:TLS:carbamazepine",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "cons:TLS:citalopram": {
-    "label": "cons:TLS:citalopram",
+  "cons:TLS:atenolol": {
+    "label": "cons:TLS:atenolol",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
-    "status": "todo"
-  },
-  "cons:TLS:irbesartan": {
-    "label": "cons:TLS:irbesartan",
-    "value": 1.0,
-    "unit": "fixture-unit",
-    "distribution": null,
-    "source_title": null,
-    "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
   "cons:TLS:losartan": {
     "label": "cons:TLS:losartan",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:TLS:irbesartan": {
+    "label": "cons:TLS:irbesartan",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
   "cons:TLS:paracetamol": {
     "label": "cons:TLS:paracetamol",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:atenolol:ddd_g": {
-    "label": "param:atenolol:ddd_g",
+  "cons:TLS:citalopram": {
+    "label": "cons:TLS:citalopram",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:atenolol:fe": {
-    "label": "param:atenolol:fe",
+  "cons:GNT:carbamazepine": {
+    "label": "cons:GNT:carbamazepine",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:carbamazepine:ddd_g": {
-    "label": "param:carbamazepine:ddd_g",
+  "cons:GNT:atenolol": {
+    "label": "cons:GNT:atenolol",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:carbamazepine:fe": {
-    "label": "param:carbamazepine:fe",
+  "cons:GNT:losartan": {
+    "label": "cons:GNT:losartan",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:citalopram:ddd_g": {
-    "label": "param:citalopram:ddd_g",
+  "cons:GNT:irbesartan": {
+    "label": "cons:GNT:irbesartan",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:citalopram:fe": {
-    "label": "param:citalopram:fe",
+  "cons:GNT:paracetamol": {
+    "label": "cons:GNT:paracetamol",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:irbesartan:ddd_g": {
-    "label": "param:irbesartan:ddd_g",
+  "cons:GNT:citalopram": {
+    "label": "cons:GNT:citalopram",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:irbesartan:fe": {
-    "label": "param:irbesartan:fe",
+  "cons:BNV:carbamazepine": {
+    "label": "cons:BNV:carbamazepine",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:losartan:ddd_g": {
-    "label": "param:losartan:ddd_g",
+  "cons:BNV:atenolol": {
+    "label": "cons:BNV:atenolol",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:losartan:fe": {
-    "label": "param:losartan:fe",
+  "cons:BNV:losartan": {
+    "label": "cons:BNV:losartan",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:paracetamol:ddd_g": {
-    "label": "param:paracetamol:ddd_g",
+  "cons:BNV:irbesartan": {
+    "label": "cons:BNV:irbesartan",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
-  "param:paracetamol:fe": {
-    "label": "param:paracetamol:fe",
+  "cons:BNV:paracetamol": {
+    "label": "cons:BNV:paracetamol",
     "value": 1.0,
-    "unit": "fixture-unit",
+    "unit": "DDD/1000/day",
     "distribution": null,
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:BNV:citalopram": {
+    "label": "cons:BNV:citalopram",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:CBR:carbamazepine": {
+    "label": "cons:CBR:carbamazepine",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:CBR:atenolol": {
+    "label": "cons:CBR:atenolol",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:CBR:losartan": {
+    "label": "cons:CBR:losartan",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:CBR:irbesartan": {
+    "label": "cons:CBR:irbesartan",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:CBR:paracetamol": {
+    "label": "cons:CBR:paracetamol",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:CBR:citalopram": {
+    "label": "cons:CBR:citalopram",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:OSL:carbamazepine": {
+    "label": "cons:OSL:carbamazepine",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:OSL:atenolol": {
+    "label": "cons:OSL:atenolol",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:OSL:losartan": {
+    "label": "cons:OSL:losartan",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:OSL:irbesartan": {
+    "label": "cons:OSL:irbesartan",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:OSL:paracetamol": {
+    "label": "cons:OSL:paracetamol",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:OSL:citalopram": {
+    "label": "cons:OSL:citalopram",
+    "value": 1.0,
+    "unit": "DDD/1000/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Illustrative placeholder value; not a sourced parameter.",
     "status": "todo"
   },
   "prior:lambda": {
-    "label": "prior:lambda",
-    "value": 1.0,
-    "unit": "fixture-unit",
-    "distribution": null,
+    "label": "Leakage fraction \u03bb",
+    "value": null,
+    "unit": "fraction",
+    "distribution": "LogUniform(0.002, 0.15)",
     "source_title": null,
     "source_url": null,
-    "source_note": "Fixture placeholder value; not a sourced parameter.",
-    "status": "todo"
+    "source_note": "Prior assumption; not empirically constrained.",
+    "status": "assumption"
   }
 }
