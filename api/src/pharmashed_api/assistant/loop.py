@@ -1,8 +1,7 @@
-"""Assistant tool-use loop (M17).
+"""Assistant tool-use loop — Groq backend (llama-3.3-70b-versatile).
 
-Implements the standard Anthropic tool-use loop with max 6 rounds.
-System prompt enforces: numbers from tools only, no safe/unsafe claims,
-always mention stated priors.
+Uses the OpenAI-compatible client pointed at api.groq.com.
+Implements the same max-6-round tool-use loop and numeric guard as before.
 """
 
 from __future__ import annotations
@@ -11,12 +10,12 @@ import json
 import os
 from typing import Any
 
-import anthropic
+from openai import OpenAI
 
 from pharmashed_api.assistant.guard import check as guard_check
-from pharmashed_api.assistant.tools import TOOL_FN_MAP, TOOL_SCHEMAS
+from pharmashed_api.assistant.tools import TOOL_FN_MAP, TOOL_SCHEMAS_OPENAI
 
-_DEFAULT_MODEL = "claude-sonnet-5"
+_DEFAULT_MODEL = "llama-3.3-70b-versatile"
 _TEMPERATURE = 0.2
 _MAX_TOKENS = 800
 _MAX_TOOL_ROUNDS = 6
@@ -39,6 +38,13 @@ _CORRECTION_PROMPT = (
 )
 
 
+def _groq_client() -> OpenAI:
+    api_key = os.environ.get("GROQ_API_KEY")
+    if not api_key:
+        raise RuntimeError("GROQ_API_KEY not set")
+    return OpenAI(api_key=api_key, base_url="https://api.groq.com/openai/v1")
+
+
 def _call_tool(name: str, args: dict) -> Any:
     fn = TOOL_FN_MAP.get(name)
     if fn is None:
@@ -50,7 +56,6 @@ def _call_tool(name: str, args: dict) -> Any:
 
 
 def _extract_links(text: str, tool_calls: list[dict]) -> list[dict]:
-    """Produce navigation links from tool calls (for the UI to act on)."""
     links = []
     seen: set[tuple] = set()
     for tc in tool_calls:
@@ -58,7 +63,6 @@ def _extract_links(text: str, tool_calls: list[dict]) -> list[dict]:
         site_id = args.get("site_id")
         drug = args.get("drug")
         name = tc.get("name", "")
-
         if site_id and (site_id, drug) not in seen:
             seen.add((site_id, drug))
             label = f"{site_id} — {drug}" if drug else site_id
@@ -69,85 +73,71 @@ def _extract_links(text: str, tool_calls: list[dict]) -> list[dict]:
 
 
 def run(question: str) -> dict:
-    """Run the assistant tool-use loop for one question.
-
-    Args:
-        question: the user's question string.
-
-    Returns:
-        Dict with answer_markdown, tool_calls, links, guard.
-    """
+    """Run the Groq tool-use loop for one question."""
     model = os.environ.get("ASSISTANT_MODEL", _DEFAULT_MODEL)
-    client = anthropic.Anthropic()
+    client = _groq_client()
 
-    messages: list[dict] = [{"role": "user", "content": question}]
+    messages: list[dict] = [
+        {"role": "system", "content": _SYSTEM},
+        {"role": "user", "content": question},
+    ]
     all_tool_calls: list[dict] = []
     all_tool_results: list[Any] = []
+    answer = ""
 
     for _ in range(_MAX_TOOL_ROUNDS):
-        response = client.messages.create(
+        response = client.chat.completions.create(
             model=model,
             max_tokens=_MAX_TOKENS,
             temperature=_TEMPERATURE,
-            system=_SYSTEM,
-            tools=TOOL_SCHEMAS,
+            tools=TOOL_SCHEMAS_OPENAI,
+            tool_choice="auto",
             messages=messages,
         )
 
-        # Collect assistant message
-        messages.append({"role": "assistant", "content": response.content})
+        msg = response.choices[0].message
+        finish = response.choices[0].finish_reason
 
-        if response.stop_reason != "tool_use":
-            # Final text answer
-            answer = next(
-                (b.text for b in response.content if hasattr(b, "text")),
-                "",
-            )
+        # Always append the assistant turn
+        messages.append(msg.model_dump(exclude_unset=False))
+
+        if finish != "tool_calls" or not msg.tool_calls:
+            answer = msg.content or ""
             break
 
-        # Execute tool calls
-        tool_results_block = []
-        for block in response.content:
-            if block.type != "tool_use":
-                continue
-            result = _call_tool(block.name, block.input)
-            all_tool_calls.append({"name": block.name, "args": block.input})
+        # Execute each tool call
+        tool_results: list[dict] = []
+        for tc in msg.tool_calls:
+            args = json.loads(tc.function.arguments)
+            result = _call_tool(tc.function.name, args)
+            all_tool_calls.append({"name": tc.function.name, "args": args})
             all_tool_results.append(result)
-            tool_results_block.append({
-                "type": "tool_result",
-                "tool_use_id": block.id,
+            tool_results.append({
+                "role": "tool",
+                "tool_call_id": tc.id,
                 "content": json.dumps(result),
             })
 
-        messages.append({"role": "user", "content": tool_results_block})
+        messages.extend(tool_results)
     else:
         answer = "I was unable to complete the answer within the allowed tool rounds."
 
-    # Guard check
+    # Numeric guard
     guard = guard_check(answer, all_tool_results, question)
 
-    # One retry if guard warns
     if guard["status"] == "warn":
         correction = _CORRECTION_PROMPT.format(unmatched=guard["unmatched"])
         messages.append({"role": "user", "content": correction})
-        retry = client.messages.create(
+        retry = client.chat.completions.create(
             model=model,
             max_tokens=_MAX_TOKENS,
             temperature=_TEMPERATURE,
-            system=_SYSTEM,
             messages=messages,
         )
-        revised = next(
-            (b.text for b in retry.content if hasattr(b, "text")),
-            answer,
-        )
+        revised = retry.choices[0].message.content or answer
         guard2 = guard_check(revised, all_tool_results, question)
-        if guard2["status"] == "ok":
-            answer = revised
-            guard = guard2
-        else:
-            answer = revised
-            guard = {"status": "warn", "unmatched": guard2["unmatched"]}
+        answer = revised
+        guard = guard2 if guard2["status"] == "ok" else {"status": "warn", "unmatched": guard2["unmatched"]}
 
     return {
         "answer_markdown": answer,

@@ -1,4 +1,4 @@
-"""Assistant route (M17)."""
+"""Assistant route — Groq backend (M17)."""
 
 from __future__ import annotations
 
@@ -16,10 +16,10 @@ class AssistantRequest(BaseModel):
 
 @router.post("/assistant")
 def assistant(req: AssistantRequest) -> dict:
-    if not os.environ.get("ANTHROPIC_API_KEY"):
+    if not os.environ.get("GROQ_API_KEY"):
         raise HTTPException(
             503,
-            "ANTHROPIC_API_KEY not configured — assistant unavailable in static demo mode.",
+            "GROQ_API_KEY not configured — set it to enable the assistant.",
         )
     from pharmashed_api.assistant.loop import run  # noqa: PLC0415
 

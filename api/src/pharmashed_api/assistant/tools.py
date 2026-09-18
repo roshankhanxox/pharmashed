@@ -292,6 +292,20 @@ TOOL_SCHEMAS = [
 ]
 
 
+def _anthropic_to_openai(schema: dict) -> dict:
+    """Convert one Anthropic tool schema to OpenAI function-calling format."""
+    return {
+        "type": "function",
+        "function": {
+            "name": schema["name"],
+            "description": schema["description"],
+            "parameters": schema["input_schema"],
+        },
+    }
+
+
+TOOL_SCHEMAS_OPENAI = [_anthropic_to_openai(s) for s in TOOL_SCHEMAS]
+
 TOOL_FN_MAP = {
     "list_priority_sites": list_priority_sites,
     "get_site_profile": get_site_profile,

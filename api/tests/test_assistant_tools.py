@@ -111,7 +111,7 @@ def test_get_provenance_missing():
 
 def test_assistant_endpoint_503_without_key(build_dir, monkeypatch):
     monkeypatch.setenv("PHARMASHED_DATA", str(build_dir))
-    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.delenv("GROQ_API_KEY", raising=False)
     import pharmashed_api.data as _data
     _data._load_json.cache_clear()
     from pharmashed_api.main import app
