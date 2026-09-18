@@ -64,8 +64,9 @@ def fhir_index() -> dict:
 
 def fhir_bundle(name: str) -> dict | None:
     candidates = [
-        _data_dir() / f"{name}.json",
-        _data_dir().parent.parent / "fhir" / "out" / f"{name}.json",
+        _data_dir() / f"{name}.json",                              # flat next to fixtures
+        _data_dir() / "fhir" / "out" / f"{name}.json",            # fixtures/fhir/out/<name>.json
+        _data_dir().parent.parent / "fhir" / "out" / f"{name}.json",  # data/fhir/out/<name>.json
     ]
     for p in candidates:
         if p.exists():

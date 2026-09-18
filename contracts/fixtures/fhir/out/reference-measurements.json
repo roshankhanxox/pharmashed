@@ -1,0 +1,174 @@
+{
+  "resourceType": "Bundle",
+  "id": "pharmashed-reference-measurements",
+  "meta": {
+    "lastUpdated": "2026-09-18T00:00:00Z"
+  },
+  "type": "collection",
+  "timestamp": "2026-09-18T00:00:00Z",
+  "total": 6,
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ref-meas-1",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59557-9",
+              "display": "Environmental chemical measurement"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 120.5,
+          "unit": "ng/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative reference measurement; not from observed data."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/ref-meas-1"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ref-meas-2",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59557-9",
+              "display": "Environmental chemical measurement"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 340.2,
+          "unit": "ng/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative reference measurement; not from observed data."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/ref-meas-2"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ref-meas-3",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59557-9",
+              "display": "Environmental chemical measurement"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 87.1,
+          "unit": "ng/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative reference measurement; not from observed data."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/ref-meas-3"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ref-meas-4",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59557-9",
+              "display": "Environmental chemical measurement"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 512.8,
+          "unit": "ng/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative reference measurement; not from observed data."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/ref-meas-4"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ref-meas-5",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59557-9",
+              "display": "Environmental chemical measurement"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 210.4,
+          "unit": "ng/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative reference measurement; not from observed data."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/ref-meas-5"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ref-meas-6",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59557-9",
+              "display": "Environmental chemical measurement"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 95.6,
+          "unit": "ng/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "note": [
+          {
+            "text": "Illustrative reference measurement; not from observed data."
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/ref-meas-6"
+    }
+  ]
+}

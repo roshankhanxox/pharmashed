@@ -1,0 +1,102 @@
+{
+  "resourceType": "Bundle",
+  "id": "pharmashed-terminology",
+  "meta": {
+    "lastUpdated": "2026-09-18T00:00:00Z"
+  },
+  "type": "collection",
+  "timestamp": "2026-09-18T00:00:00Z",
+  "total": 3,
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "CodeSystem",
+        "id": "pharmashed-waterway-type",
+        "url": "urn:pharmashed:cs:waterway-type",
+        "status": "draft",
+        "content": "complete",
+        "concept": [
+          {
+            "code": "S",
+            "display": "Small stream"
+          },
+          {
+            "code": "M",
+            "display": "Medium canal"
+          },
+          {
+            "code": "L",
+            "display": "Large river"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:codesystem/pharmashed-waterway-type"
+    },
+    {
+      "resource": {
+        "resourceType": "CodeSystem",
+        "id": "pharmashed-tier",
+        "url": "urn:pharmashed:cs:priority-tier",
+        "status": "draft",
+        "content": "complete",
+        "concept": [
+          {
+            "code": "high",
+            "display": "High priority (score \u2265 0.5)"
+          },
+          {
+            "code": "medium",
+            "display": "Medium priority (score \u2265 0.1)"
+          },
+          {
+            "code": "low",
+            "display": "Low priority (score < 0.1)"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:codesystem/pharmashed-tier"
+    },
+    {
+      "resource": {
+        "resourceType": "ValueSet",
+        "id": "pharmashed-drugs",
+        "url": "urn:pharmashed:vs:drugs",
+        "status": "draft",
+        "compose": {
+          "include": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "concept": [
+                {
+                  "code": "2002",
+                  "display": "carbamazepine"
+                },
+                {
+                  "code": "33738",
+                  "display": "atenolol"
+                },
+                {
+                  "code": "203160",
+                  "display": "losartan"
+                },
+                {
+                  "code": "321064",
+                  "display": "irbesartan"
+                },
+                {
+                  "code": "161",
+                  "display": "paracetamol"
+                },
+                {
+                  "code": "2556",
+                  "display": "citalopram"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "fullUrl": "urn:pharmashed:valueset/pharmashed-drugs"
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+{
+  "resourceType": "Bundle",
+  "id": "pharmashed-consumption",
+  "meta": {
+    "lastUpdated": "2026-09-18T00:00:00Z"
+  },
+  "type": "collection",
+  "timestamp": "2026-09-18T00:00:00Z",
+  "total": 12,
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-carbamazepine",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-carbamazepine"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-atenolol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-atenolol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-losartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-losartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-irbesartan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-irbesartan"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-paracetamol",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-paracetamol"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-citalopram"
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cons-TLS-citalopram",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55423-8",
+              "display": "Drug consumption"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "DDD/1000/day"
+        },
+        "note": [
+          {
+            "text": "Illustrative placeholder value"
+          }
+        ]
+      },
+      "fullUrl": "urn:pharmashed:observation/cons-TLS-citalopram"
+    }
+  ]
+}

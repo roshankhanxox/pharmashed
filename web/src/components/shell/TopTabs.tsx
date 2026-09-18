@@ -1,6 +1,7 @@
 import { useStore, type Tab } from "../../data/store";
 
 const TABS: { id: Tab; label: string }[] = [
+  { id: "home", label: "Home" },
   { id: "explore", label: "Explore" },
   { id: "scenarios", label: "Scenarios" },
   { id: "consistency", label: "Consistency" },
@@ -15,9 +16,12 @@ export function TopTabs() {
 
   return (
     <header className="border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 flex items-center px-4 gap-1">
-      <span className="font-semibold text-sm text-neutral-800 dark:text-neutral-100 mr-4 shrink-0">
+      <button
+        onClick={() => setActiveTab("home")}
+        className="font-bold text-sm text-neutral-800 dark:text-neutral-100 mr-4 shrink-0 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+      >
         PharmaShed
-      </span>
+      </button>
       <nav className="flex gap-0.5 flex-1">
         {TABS.map((t) => (
           <button

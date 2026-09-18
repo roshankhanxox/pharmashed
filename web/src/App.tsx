@@ -19,6 +19,7 @@ import { ProvenanceDrawer } from "./components/provenance/ProvenanceDrawer";
 import { AssistantDrawer } from "./assistant/AssistantDrawer";
 import { LoadingView, InvalidView } from "./components/shell/StateViews";
 
+import { HomeTab } from "./tabs/Home";
 import { ExploreTab } from "./tabs/Explore";
 import { ScenariosTab } from "./tabs/Scenarios";
 import { ConsistencyTab } from "./tabs/Consistency";
@@ -90,7 +91,8 @@ function App() {
       {isDev && <DevBanner />}
       <TopTabs />
 
-      <main className="flex-1 min-h-0 overflow-hidden">
+      <main className="flex-1 min-h-0 overflow-hidden animate-fade-in" key={activeTab}>
+        {activeTab === "home" && <HomeTab />}
         {activeTab === "explore" && <ExploreTab />}
         {activeTab === "scenarios" && <ScenariosTab />}
         {activeTab === "consistency" && <ConsistencyTab />}

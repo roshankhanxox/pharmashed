@@ -10,7 +10,7 @@ import type {
 } from "../types/contracts";
 import type { DrawsView } from "./draws";
 
-export type Tab = "explore" | "scenarios" | "consistency" | "methodology" | "fhir";
+export type Tab = "home" | "explore" | "scenarios" | "consistency" | "methodology" | "fhir";
 
 export interface ScenarioMultipliers {
   lambda: number;
@@ -86,10 +86,10 @@ export const useStore = create<AppStore>((set) => ({
   dataError: null,
   dataLoading: true,
 
-  activeTab: "explore",
+  activeTab: "home",
   selectedCity: null,
   selectedSiteId: null,
-  selectedDrug: "irbesartan",
+  selectedDrug: "citalopram",
   expandedDrug: null,
 
   scenarioMultipliers: { ...DEFAULT_MULTIPLIERS },

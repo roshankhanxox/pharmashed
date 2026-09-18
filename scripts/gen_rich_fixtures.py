@@ -240,7 +240,7 @@ def main():
                 "tier": tier(sc),
                 "lod_share": round(sum(1 for r in rqs if r * pnec < lod) / len(rqs), 4),
                 "rank_in_city": 0,   # filled below
-                "n_in_city": 9,
+                "n_in_city": sum(1 for s2 in sites if s2["city"] == site["city"]),
                 "drivers": drv,
                 "driver_sentence": driver_sentence(drv),
                 "flip": flip_info(sc, site["id"], drug),
