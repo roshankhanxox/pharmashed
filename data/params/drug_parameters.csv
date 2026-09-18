@@ -1,0 +1,43 @@
+drug,param,distribution,value,min,max,unit,source_title,source_url,source_note,evidence_quote,retrieved_at,verified,verify_note,status
+carbamazepine,atc,,,,,,,,,,,none,,todo
+carbamazepine,ddd_g,,,,,g,,,,,,none,,todo
+carbamazepine,fe,,,,,fraction,,,,,,none,,todo
+carbamazepine,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
+carbamazepine,k_per_h,,,,,1/h,,,,,,none,,todo
+carbamazepine,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
+carbamazepine,lod_ng_l,,,,,ng/L,,,,,,none,,todo
+atenolol,atc,,,,,,,,,,,none,,todo
+atenolol,ddd_g,,,,,g,,,,,,none,,todo
+atenolol,fe,,,,,fraction,,,,,,none,,todo
+atenolol,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
+atenolol,k_per_h,,,,,1/h,,,,,,none,,todo
+atenolol,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
+atenolol,lod_ng_l,,,,,ng/L,,,,,,none,,todo
+losartan,atc,,,,,,,,,,,none,,todo
+losartan,ddd_g,,,,,g,,,,,,none,,todo
+losartan,fe,,,,,fraction,,,,,,none,,todo
+losartan,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
+losartan,k_per_h,,,,,1/h,,,,,,none,,todo
+losartan,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
+losartan,lod_ng_l,,,,,ng/L,,,,,,none,,todo
+irbesartan,atc,,,,,,,,,,,none,,todo
+irbesartan,ddd_g,,,,,g,,,,,,none,,todo
+irbesartan,fe,,,,,fraction,,,,,,none,,todo
+irbesartan,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
+irbesartan,k_per_h,,,,,1/h,,,,,,none,,todo
+irbesartan,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
+irbesartan,lod_ng_l,,,,,ng/L,,,,,,none,,todo
+paracetamol,atc,,,,,,,,,,,none,,todo
+paracetamol,ddd_g,,,,,g,,,,,,none,,todo
+paracetamol,fe,,,,,fraction,,,,,,none,,todo
+paracetamol,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
+paracetamol,k_per_h,,,,,1/h,,,,,,none,,todo
+paracetamol,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
+paracetamol,lod_ng_l,,,,,ng/L,,,,,,none,,todo
+citalopram,atc,,,,,,,,,,,none,,todo
+citalopram,ddd_g,,,,,g,,,,,,none,,todo
+citalopram,fe,,,,,fraction,,,,,,none,,todo
+citalopram,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
+citalopram,k_per_h,,,,,1/h,,,,,,none,,todo
+citalopram,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
+citalopram,lod_ng_l,,,,,ng/L,,,,,,none,,todo

@@ -1,0 +1,14 @@
+# Obviously-fake development placeholders (CONTEXT A5, IMPLEMENTATION M02).
+#
+# Used by `load_drug_params(path, mode="dev")` to fill any `status=todo` row
+# in data/params/drug_parameters.csv so the pipeline runs end to end before
+# real sourced values land. Never treat these as real parameters; any result
+# built from them carries meta.dev_placeholders=true.
+drug_parameters:
+  atc: "XX00XX00"
+  ddd_g: { distribution: fixed, value: 1.0 }
+  fe: { distribution: fixed, value: 0.5 }
+  R: { distribution: fixed, value: 0.0 }
+  k_per_h: { distribution: fixed, value: 0.01 }
+  pnec_ng_l: { distribution: fixed, value: 1000.0 }
+  lod_ng_l: { distribution: fixed, value: 1.0 }
