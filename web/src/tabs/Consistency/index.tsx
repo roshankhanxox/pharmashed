@@ -12,6 +12,26 @@ export function ConsistencyTab() {
 
   return (
     <div className="overflow-y-auto p-6 flex flex-col gap-6 max-w-3xl mx-auto">
+
+      {/* D35 reframing header */}
+      <div>
+        <h1 className="text-base font-semibold mb-1">How validation runs once parameters are sourced</h1>
+        <p className="text-sm text-neutral-500 leading-relaxed">
+          These five checks compare PharmaShed's predicted outputs against <strong>Rodrigues et al. 2025</strong> independently collected field data. Predictions were frozen before comparison to prevent post-hoc tuning. While parameters remain illustrative (D33), results carry an "illustrative inputs" label — they are not evidence of model accuracy, but demonstrate that the validation pipeline works correctly and is ready to run the moment real parameters are in place.
+        </p>
+      </div>
+
+      {/* Freeze provenance */}
+      <div className="flex items-center gap-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 px-4 py-3 text-xs text-neutral-500">
+        <span className="text-lg">🔒</span>
+        <span>
+          Predictions frozen at tag{" "}
+          <code className="bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded font-mono">{meta.frozen_tag}</code>
+          {" · "}sha256{" "}
+          <code className="bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded font-mono">{meta.frozen_sha256.slice(0, 12)}…</code>
+        </span>
+      </div>
+
       {/* Circularity callout */}
       <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-4 text-sm text-blue-900 dark:text-blue-100">
         <strong className="block mb-1">On circularity</strong>
@@ -23,11 +43,9 @@ export function ConsistencyTab() {
         <CheckCard key={check.id} check={check} />
       ))}
 
-      {/* Footer */}
-      <div className="text-xs text-neutral-400">
-        Predictions committed before comparison — tag{" "}
-        <code className="bg-neutral-100 dark:bg-neutral-800 px-1 rounded">{meta.frozen_tag}</code>,
-        sha256 <code className="bg-neutral-100 dark:bg-neutral-800 px-1 rounded">{meta.frozen_sha256.slice(0, 12)}…</code>
+      {/* Illustrative caveat */}
+      <div className="rounded-lg bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 px-4 py-3 text-xs text-amber-800 dark:text-amber-200">
+        ⚗ All checks run on predictions derived from <strong>illustrative parameters</strong> (D33). Pass/fail results are demonstrations of the pipeline, not evidence of model accuracy against real data.
       </div>
     </div>
   );
@@ -62,11 +80,19 @@ function CheckCard({ check }: { check: CheckItem }) {
       : "bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400";
 
   const TITLES: Record<string, string> = {
-    C1: "C1 — Predicted LOD share vs observed detection frequency",
-    C2: "C2 — Observed city ranking correlation",
-    C3: "C3 — Predicted city ranking correlation",
+    C1: "C1 — LOD share vs detection frequency",
+    C2: "C2 — Observed city ranking",
+    C3: "C3 — Predicted city ranking",
     C4: "C4 — Observed max within predicted range",
     C5: "C5 — Rank stability across ablation steps",
+  };
+
+  const EXPLANATIONS: Record<string, string> = {
+    C1: "For each drug, the model predicts what share of draws produce a concentration below the detection limit (LOD). This check asks: does that predicted share match how often the drug was actually detected in the Rodrigues 2025 field data? A high Spearman ρ means the model correctly identifies which drugs are hardest to detect.",
+    C2: "The five cities were ranked by observed total pharmaceutical load in Rodrigues 2025 (TLS > GNT > BNV > CBR ≈ OSL). This check verifies that the observed ranking used for comparison is consistent with the published data.",
+    C3: "The model produces a predicted city ranking by summing scores. This check asks: does the model's predicted city order agree with the observed ranking? A high Kendall τ means the model correctly identifies the highest-load cities without having been told the answers.",
+    C4: "For each drug, the model predicts a range of concentrations (p5–p95). This check asks: does the maximum observed concentration in the field data fall within the range the model predicted — and not more than 10× above it? A pass means the model's uncertainty bands are appropriately calibrated.",
+    C5: "The model has three ablation variants: population-only, full (with untreated pathway), and a WWTP-only baseline that mimics ePiE/GREAT-ER. This check verifies that site priority rankings stay stable when switching between the full and population-only variants, isolating how much the untreated pathway adds.",
   };
 
   return (
@@ -78,9 +104,15 @@ function CheckCard({ check }: { check: CheckItem }) {
         </span>
       </div>
 
+      {EXPLANATIONS[check.id] && (
+        <p className="text-xs text-neutral-500 leading-relaxed border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
+          {EXPLANATIONS[check.id]}
+        </p>
+      )}
+
       {check.reason && (
-        <p className={`text-xs ${check.status === "fail" ? "text-red-600" : "text-neutral-500"}`}>
-          {check.reason}
+        <p className={`text-xs font-medium ${check.status === "fail" ? "text-red-600" : "text-neutral-500"}`}>
+          Result: {check.reason}
         </p>
       )}
 

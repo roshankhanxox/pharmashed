@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse
 
 from pharmashed_api import data as _data
 
@@ -21,5 +22,8 @@ def fhir_index():
 def fhir_bundle(name: str):
     bundle = _data.fhir_bundle(name)
     if bundle is None:
-        raise HTTPException(404, f"bundle {name!r} not found")
-    return bundle
+        raise HTTPException(
+            404,
+            f"FHIR bundle {name!r} not found — run `make fhir-build` to generate bundles",
+        )
+    return JSONResponse(content=bundle, media_type="application/fhir+json")

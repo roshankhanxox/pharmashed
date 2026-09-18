@@ -20,6 +20,15 @@ export function MethodologyTab() {
 
   return (
     <div className="overflow-y-auto p-6 flex flex-col gap-8 max-w-4xl mx-auto">
+
+      {/* Intro */}
+      <div>
+        <h1 className="text-base font-semibold mb-1">Model methodology</h1>
+        <p className="text-sm text-neutral-500 leading-relaxed max-w-2xl">
+          PharmaShed estimates pharmaceutical concentrations at urban stream sites using a Monte Carlo mass-balance model. The core innovation is the <strong>untreated discharge pathway</strong> (λ): drug loads reaching streams directly via sewer leakage, misconnections, and overflow events — absent from ePiE and GREAT-ER, which only model treatment-plant outfalls.
+        </p>
+      </div>
+
       {/* Model diagram */}
       <section>
         <h2 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-3">
