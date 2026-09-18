@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharmashed.example/schemas/checks.schema.json",
+  "title": "Consistency checks",
+  "description": "checks.json — output of the pre-registered consistency checks C1-C5 against frozen predictions (M12).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meta", "circularity_statement", "checks"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frozen_tag", "frozen_sha256", "generated_at"],
+      "properties": {
+        "frozen_tag": { "type": "string" },
+        "frozen_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "generated_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "circularity_statement": { "type": "string", "minLength": 1 },
+    "checks": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "status", "reason", "data"],
+        "properties": {
+          "id": { "type": "string", "enum": ["C1", "C2", "C3", "C4", "C5"] },
+          "status": { "type": "string", "enum": ["pass", "fail", "unavailable"] },
+          "reason": { "type": ["string", "null"] },
+          "data": {
+            "description": "Check-specific payload (scatter points for C1, orders + tau for C2/C3, rows for C4, rank-change table for C5). Shape documented in IMPLEMENTATION.md M12/M21, not constrained further here.",
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

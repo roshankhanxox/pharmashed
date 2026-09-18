@@ -1,0 +1,223 @@
+{
+  "dtype": "float32",
+  "endianness": "little",
+  "n_stored": 64,
+  "entries": [
+    {
+      "site_id": "TLS-01",
+      "drug": "carbamazepine",
+      "offset": 0,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-01",
+      "drug": "atenolol",
+      "offset": 64,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-01",
+      "drug": "losartan",
+      "offset": 128,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-01",
+      "drug": "irbesartan",
+      "offset": 192,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-01",
+      "drug": "paracetamol",
+      "offset": 256,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-01",
+      "drug": "citalopram",
+      "offset": 320,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "carbamazepine",
+      "offset": 384,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "atenolol",
+      "offset": 448,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "losartan",
+      "offset": 512,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "irbesartan",
+      "offset": 576,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "paracetamol",
+      "offset": 640,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "citalopram",
+      "offset": 704,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "carbamazepine",
+      "offset": 768,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "atenolol",
+      "offset": 832,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "losartan",
+      "offset": 896,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "irbesartan",
+      "offset": 960,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "paracetamol",
+      "offset": 1024,
+      "count": 64
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "citalopram",
+      "offset": 1088,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "carbamazepine",
+      "offset": 1152,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "atenolol",
+      "offset": 1216,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "losartan",
+      "offset": 1280,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "irbesartan",
+      "offset": 1344,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "paracetamol",
+      "offset": 1408,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "citalopram",
+      "offset": 1472,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "carbamazepine",
+      "offset": 1536,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "atenolol",
+      "offset": 1600,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "losartan",
+      "offset": 1664,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "irbesartan",
+      "offset": 1728,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "paracetamol",
+      "offset": 1792,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "citalopram",
+      "offset": 1856,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "carbamazepine",
+      "offset": 1920,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "atenolol",
+      "offset": 1984,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "losartan",
+      "offset": 2048,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "irbesartan",
+      "offset": 2112,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "paracetamol",
+      "offset": 2176,
+      "count": 64
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "citalopram",
+      "offset": 2240,
+      "count": 64
+    }
+  ]
+}

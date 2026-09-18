@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharmashed.example/schemas/results.schema.json",
+  "title": "Results",
+  "description": "results.json — Monte Carlo model output per site x drug (M08-M11).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meta", "drugs", "results", "site_overall", "city_summary"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "engine_version", "generated_at", "seed", "n_draws", "n_stored",
+        "variant", "dev_placeholders", "frozen_tag", "param_count", "all_params_cited"
+      ],
+      "properties": {
+        "engine_version": { "type": "string" },
+        "generated_at": { "type": "string", "format": "date-time" },
+        "seed": { "type": "integer" },
+        "n_draws": { "type": "integer", "minimum": 1 },
+        "n_stored": { "type": "integer", "minimum": 1 },
+        "variant": { "type": "string", "enum": ["full", "pop_only", "wwtp_only"] },
+        "dev_placeholders": { "type": "boolean" },
+        "frozen_tag": { "type": ["string", "null"] },
+        "param_count": { "type": "integer", "minimum": 0 },
+        "all_params_cited": { "type": "boolean" }
+      }
+    },
+    "drugs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "results": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/resultEntry" }
+    },
+    "site_overall": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["site_id", "score", "top_drug", "rank_in_city"],
+        "properties": {
+          "site_id": { "type": "string" },
+          "score": { "type": "number", "minimum": 0, "maximum": 1 },
+          "top_drug": { "type": "string" },
+          "rank_in_city": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "city_summary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["city", "high", "medium", "low"],
+        "properties": {
+          "city": { "type": "string" },
+          "high": { "type": "integer", "minimum": 0 },
+          "medium": { "type": "integer", "minimum": 0 },
+          "low": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "percentileTriplet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["p5", "p50", "p95"],
+      "properties": {
+        "p5": { "type": "number" },
+        "p50": { "type": "number" },
+        "p95": { "type": "number" }
+      }
+    },
+    "flipStep": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["param", "multiplier", "to_tier"],
+      "properties": {
+        "param": { "type": "string" },
+        "multiplier": { "type": "number", "exclusiveMinimum": 0 },
+        "to_tier": { "type": "string", "enum": ["high", "medium", "low"] }
+      }
+    },
+    "resultEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "site_id", "drug", "pec_ng_l", "rq", "pnec_ng_l", "lod_ng_l",
+        "score", "tier", "lod_share", "rank_in_city", "n_in_city",
+        "drivers", "driver_sentence", "flip", "histogram", "draws",
+        "provenance_keys", "fhir_ids"
+      ],
+      "properties": {
+        "site_id": { "type": "string" },
+        "drug": { "type": "string" },
+        "pec_ng_l": { "$ref": "#/$defs/percentileTriplet" },
+        "rq": { "$ref": "#/$defs/percentileTriplet" },
+        "pnec_ng_l": { "type": "number", "exclusiveMinimum": 0 },
+        "lod_ng_l": { "type": "number", "exclusiveMinimum": 0 },
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "tier": { "type": "string", "enum": ["high", "medium", "low"] },
+        "lod_share": { "type": "number", "minimum": 0, "maximum": 1 },
+        "rank_in_city": { "type": "integer", "minimum": 1 },
+        "n_in_city": { "type": "integer", "minimum": 1 },
+        "drivers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["param", "rho"],
+            "properties": {
+              "param": { "type": "string" },
+              "rho": { "type": "number", "minimum": -1, "maximum": 1 }
+            }
+          }
+        },
+        "driver_sentence": { "type": "string" },
+        "flip": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["up", "down"],
+          "properties": {
+            "up": { "$ref": "#/$defs/flipStep" },
+            "down": { "$ref": "#/$defs/flipStep" }
+          }
+        },
+        "histogram": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["log10_edges", "counts"],
+          "properties": {
+            "log10_edges": { "type": "array", "items": { "type": "number" } },
+            "counts": { "type": "array", "items": { "type": "integer", "minimum": 0 } }
+          }
+        },
+        "draws": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["offset", "count"],
+          "properties": {
+            "offset": { "type": "integer", "minimum": 0 },
+            "count": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "provenance_keys": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "fhir_ids": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["prediction"],
+          "properties": {
+            "prediction": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -43,7 +43,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 | ID | Module | Status | Note |
 |---|---|---|---|
 | M00 | Repo scaffold | ☑ | uv workspace + Vite web app + Makefile; `make setup && make test` passes |
-| M01 | Contracts + fixtures + types | ☐ | Unblocks all web work |
+| M01 | Contracts + fixtures + types | ☑ | 7 schemas, fixtures (2 cities x 3 sites x 6 drugs), pydantic + TS types generated |
 | M02 | Parameter registry | ☐ | Code only; values = human task H2 |
 | M03 | Consumption data | ☐ | Code only; values = human task H3 |
 | M04 | Sites + streams | ☐ | Placement = human task H4 |
@@ -82,21 +82,37 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 
 ## Next up
 
-1. **M01** Contracts + fixtures (then web M18 and engine M02 can proceed in parallel)
-2. Start **H2/H3/H4** in parallel (human)
+1. **M02** Parameter registry (drug parameters + priors) — code only, values are human task H2
+2. **M03** Consumption data — code only, values are human task H3
+3. Continue **H2/H3/H4** in parallel (human)
 
 ## Last session
 
-Built M00 (repo scaffold): uv workspace (`engine`, `api`) with placeholder
-modules per A1; Vite+React+TS `web/` with Tailwind, MapLibre, Zustand,
-vitest, eslint+prettier; Makefile with every A3 target (unimplemented ones
-print `TODO Mxx`); `.gitignore`, `.env.example`. `make setup && make test`
-passes (1 python test, 1 web test); `pnpm build` and `pnpm dev` (served,
-HTTP 200) both verified. Copied `data/observed/observed_rodrigues2025.csv`
-from `~/Downloads/` (found there, matches the schema referenced in CONTEXT
-§6). `docs/PharmaShed.md` (concept doc v0.2) was **not found anywhere** on
-disk — not copied, not fabricated; see Blockers. Repo pushed to
-`github.com/roshankhanxox/pharmashed` (`main`).
+Built M01 (contracts): 7 JSON Schemas in `contracts/schemas/` (sites,
+results, draws, checks, methodology, provenance, fhir_index) per the A1
+file list and the module's worked examples; `checks.data`/`provenance`
+per-check and per-parameter shapes were designed from the M12/M21/M13-15
+sections since M01 only fully specified `sites.json`/`results.json`.
+`scripts/make_fixtures.py` (seed 20260918) generates a 2-city x 3-site x
+6-drug fixture set including `draws.bin` (float32 LE) into
+`contracts/fixtures/`, all with `dev_placeholders=true` and obviously fake
+values (never copy these into `data/params/`). `engine/src/pharmashed/contracts.py`
+has hand-written pydantic v2 models for all 7 shapes. `web/scripts/gen-types.mjs`
+(`pnpm run gen:types`) generates `web/src/types/contracts.ts` from the same
+schemas. `make fixtures` runs both. `engine/tests/test_contracts.py` (16
+tests): fixtures validate against schemas, fixtures parse with the pydantic
+models, and `draws.bin` offsets match both `draws_index.json` and
+`results.json`. `make test` passes (17 python tests total, 1 web test);
+`pnpm lint`/`pnpm build`/`ruff check` all clean.
+
+Previous session (M00): repo scaffold — uv workspace (`engine`, `api`),
+Vite+React+TS `web/`, Makefile, `.gitignore`, `.env.example`. Copied
+`data/observed/observed_rodrigues2025.csv` from `~/Downloads/`.
+`docs/PharmaShed.md` (concept doc v0.2) was **not found anywhere** on disk —
+not copied, not fabricated; still open, see Blockers. Repo pushed to
+`github.com/roshankhanxox/pharmashed` (`main`); workflow is now feature
+branch → PR → merge into `main` (no direct commits to `main`, no AI
+attribution in commits/PRs — see CLAUDE.md "Git workflow").
 
 ## Follow-ups (cross-module notes)
 

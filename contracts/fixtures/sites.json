@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "generated_at": "2026-01-01T00:00:00Z",
+    "synthetic": true
+  },
+  "cities": [
+    {
+      "id": "TLS",
+      "name": "Toulouse",
+      "country": "FR",
+      "center": [
+        1.4442,
+        43.6047
+      ],
+      "zoom": 12
+    },
+    {
+      "id": "GNT",
+      "name": "Ghent",
+      "country": "BE",
+      "center": [
+        3.7174,
+        51.0543
+      ],
+      "zoom": 12
+    }
+  ],
+  "sites": [
+    {
+      "id": "TLS-01",
+      "city": "TLS",
+      "name": "Synthetic fixture site TLS-01",
+      "lonlat": [
+        1.4542,
+        43.6147
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 1000,
+      "population_source_key": "pop:ghs-pop-2020"
+    },
+    {
+      "id": "TLS-02",
+      "city": "TLS",
+      "name": "Synthetic fixture site TLS-02",
+      "lonlat": [
+        1.4642,
+        43.624700000000004
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 2000,
+      "population_source_key": "pop:ghs-pop-2020"
+    },
+    {
+      "id": "TLS-03",
+      "city": "TLS",
+      "name": "Synthetic fixture site TLS-03",
+      "lonlat": [
+        1.4742,
+        43.6347
+      ],
+      "synthetic": true,
+      "size_class": "L",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 3000,
+      "population_source_key": "pop:ghs-pop-2020"
+    },
+    {
+      "id": "GNT-01",
+      "city": "GNT",
+      "name": "Synthetic fixture site GNT-01",
+      "lonlat": [
+        3.7274,
+        51.064299999999996
+      ],
+      "synthetic": true,
+      "size_class": "S",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 1000,
+      "population_source_key": "pop:ghs-pop-2020"
+    },
+    {
+      "id": "GNT-02",
+      "city": "GNT",
+      "name": "Synthetic fixture site GNT-02",
+      "lonlat": [
+        3.7374,
+        51.0743
+      ],
+      "synthetic": true,
+      "size_class": "M",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 2000,
+      "population_source_key": "pop:ghs-pop-2020"
+    },
+    {
+      "id": "GNT-03",
+      "city": "GNT",
+      "name": "Synthetic fixture site GNT-03",
+      "lonlat": [
+        3.7474,
+        51.0843
+      ],
+      "synthetic": true,
+      "size_class": "L",
+      "w": 0,
+      "valid": true,
+      "population_buffer": 3000,
+      "population_source_key": "pop:ghs-pop-2020"
+    }
+  ]
+}

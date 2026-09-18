@@ -1,0 +1,252 @@
+{
+  "cons:GNT:atenolol": {
+    "label": "cons:GNT:atenolol",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:GNT:carbamazepine": {
+    "label": "cons:GNT:carbamazepine",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:GNT:citalopram": {
+    "label": "cons:GNT:citalopram",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:GNT:irbesartan": {
+    "label": "cons:GNT:irbesartan",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:GNT:losartan": {
+    "label": "cons:GNT:losartan",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:GNT:paracetamol": {
+    "label": "cons:GNT:paracetamol",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:TLS:atenolol": {
+    "label": "cons:TLS:atenolol",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:TLS:carbamazepine": {
+    "label": "cons:TLS:carbamazepine",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:TLS:citalopram": {
+    "label": "cons:TLS:citalopram",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:TLS:irbesartan": {
+    "label": "cons:TLS:irbesartan",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:TLS:losartan": {
+    "label": "cons:TLS:losartan",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "cons:TLS:paracetamol": {
+    "label": "cons:TLS:paracetamol",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:atenolol:ddd_g": {
+    "label": "param:atenolol:ddd_g",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:atenolol:fe": {
+    "label": "param:atenolol:fe",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:carbamazepine:ddd_g": {
+    "label": "param:carbamazepine:ddd_g",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:carbamazepine:fe": {
+    "label": "param:carbamazepine:fe",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:citalopram:ddd_g": {
+    "label": "param:citalopram:ddd_g",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:citalopram:fe": {
+    "label": "param:citalopram:fe",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:irbesartan:ddd_g": {
+    "label": "param:irbesartan:ddd_g",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:irbesartan:fe": {
+    "label": "param:irbesartan:fe",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:losartan:ddd_g": {
+    "label": "param:losartan:ddd_g",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:losartan:fe": {
+    "label": "param:losartan:fe",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:paracetamol:ddd_g": {
+    "label": "param:paracetamol:ddd_g",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "param:paracetamol:fe": {
+    "label": "param:paracetamol:fe",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  },
+  "prior:lambda": {
+    "label": "prior:lambda",
+    "value": 1.0,
+    "unit": "fixture-unit",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Fixture placeholder value; not a sourced parameter.",
+    "status": "todo"
+  }
+}

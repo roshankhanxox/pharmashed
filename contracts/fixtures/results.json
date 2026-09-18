@@ -1,0 +1,2776 @@
+{
+  "meta": {
+    "engine_version": "0.0.0",
+    "generated_at": "2026-01-01T00:00:00Z",
+    "seed": 20260918,
+    "n_draws": 10000,
+    "n_stored": 64,
+    "variant": "full",
+    "dev_placeholders": true,
+    "frozen_tag": null,
+    "param_count": 42,
+    "all_params_cited": false
+  },
+  "drugs": [
+    "carbamazepine",
+    "atenolol",
+    "losartan",
+    "irbesartan",
+    "paracetamol",
+    "citalopram"
+  ],
+  "results": [
+    {
+      "site_id": "TLS-01",
+      "drug": "carbamazepine",
+      "pec_ng_l": {
+        "p5": 51.32845155894756,
+        "p50": 260.94213128089905,
+        "p95": 1322.2771883010864
+      },
+      "rq": {
+        "p5": 0.10265690311789513,
+        "p50": 0.5218842625617981,
+        "p95": 2.644554376602173
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.328125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 4,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 0,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:carbamazepine:ddd_g",
+        "param:carbamazepine:fe",
+        "prior:lambda",
+        "cons:TLS:carbamazepine"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-01-carbamazepine"
+      }
+    },
+    {
+      "site_id": "TLS-01",
+      "drug": "atenolol",
+      "pec_ng_l": {
+        "p5": 147.67428003251553,
+        "p50": 942.9637938737869,
+        "p95": 4885.1142168045
+      },
+      "rq": {
+        "p5": 0.09844952002167702,
+        "p50": 0.6286425292491913,
+        "p95": 3.256742811203
+      },
+      "pnec_ng_l": 1500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.34375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 3,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 64,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:atenolol:ddd_g",
+        "param:atenolol:fe",
+        "prior:lambda",
+        "cons:TLS:atenolol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-01-atenolol"
+      }
+    },
+    {
+      "site_id": "TLS-01",
+      "drug": "losartan",
+      "pec_ng_l": {
+        "p5": 74.60001558065416,
+        "p50": 505.1649808883667,
+        "p95": 5063.063406944263
+      },
+      "rq": {
+        "p5": 0.07460001558065416,
+        "p50": 0.5051649808883667,
+        "p95": 5.063063406944263
+      },
+      "pnec_ng_l": 1000.0,
+      "lod_ng_l": 1.0,
+      "score": 0.25,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 6,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 128,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:losartan:ddd_g",
+        "param:losartan:fe",
+        "prior:lambda",
+        "cons:TLS:losartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-01-losartan"
+      }
+    },
+    {
+      "site_id": "TLS-01",
+      "drug": "irbesartan",
+      "pec_ng_l": {
+        "p5": 33.96428637206555,
+        "p50": 392.1397030353546,
+        "p95": 2369.6715474128714
+      },
+      "rq": {
+        "p5": 0.0679285727441311,
+        "p50": 0.7842794060707092,
+        "p95": 4.739343094825743
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 2,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 192,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:irbesartan:ddd_g",
+        "param:irbesartan:fe",
+        "prior:lambda",
+        "cons:TLS:irbesartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-01-irbesartan"
+      }
+    },
+    {
+      "site_id": "TLS-01",
+      "drug": "paracetamol",
+      "pec_ng_l": {
+        "p5": 300.180991999805,
+        "p50": 2017.0829504728317,
+        "p95": 21879.729645252177
+      },
+      "rq": {
+        "p5": 0.09096393696963788,
+        "p50": 0.6112372577190399,
+        "p95": 6.630221104621872
+      },
+      "pnec_ng_l": 3300.0,
+      "lod_ng_l": 1.0,
+      "score": 0.390625,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 1,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 256,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:paracetamol:ddd_g",
+        "param:paracetamol:fe",
+        "prior:lambda",
+        "cons:TLS:paracetamol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-01-paracetamol"
+      }
+    },
+    {
+      "site_id": "TLS-01",
+      "drug": "citalopram",
+      "pec_ng_l": {
+        "p5": 26.216676980257038,
+        "p50": 124.82898831367493,
+        "p95": 993.8330411911008
+      },
+      "rq": {
+        "p5": 0.13108338490128518,
+        "p50": 0.6241449415683746,
+        "p95": 4.9691652059555045
+      },
+      "pnec_ng_l": 200.0,
+      "lod_ng_l": 1.0,
+      "score": 0.328125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 5,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 320,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:citalopram:ddd_g",
+        "param:citalopram:fe",
+        "prior:lambda",
+        "cons:TLS:citalopram"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-01-citalopram"
+      }
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "carbamazepine",
+      "pec_ng_l": {
+        "p5": 40.00440947711468,
+        "p50": 381.55806064605713,
+        "p95": 1999.364918470382
+      },
+      "rq": {
+        "p5": 0.08000881895422936,
+        "p50": 0.7631161212921143,
+        "p95": 3.9987298369407642
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.421875,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 1,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 384,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:carbamazepine:ddd_g",
+        "param:carbamazepine:fe",
+        "prior:lambda",
+        "cons:TLS:carbamazepine"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-02-carbamazepine"
+      }
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "atenolol",
+      "pec_ng_l": {
+        "p5": 148.4978511929512,
+        "p50": 1065.9390985965729,
+        "p95": 6814.062952995295
+      },
+      "rq": {
+        "p5": 0.09899856746196747,
+        "p50": 0.7106260657310486,
+        "p95": 4.542708635330197
+      },
+      "pnec_ng_l": 1500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 3,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 448,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:atenolol:ddd_g",
+        "param:atenolol:fe",
+        "prior:lambda",
+        "cons:TLS:atenolol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-02-atenolol"
+      }
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "losartan",
+      "pec_ng_l": {
+        "p5": 146.01544067263603,
+        "p50": 583.158552646637,
+        "p95": 3612.3329162597615
+      },
+      "rq": {
+        "p5": 0.14601544067263603,
+        "p50": 0.583158552646637,
+        "p95": 3.6123329162597617
+      },
+      "pnec_ng_l": 1000.0,
+      "lod_ng_l": 1.0,
+      "score": 0.390625,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 2,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 512,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:losartan:ddd_g",
+        "param:losartan:fe",
+        "prior:lambda",
+        "cons:TLS:losartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-02-losartan"
+      }
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "irbesartan",
+      "pec_ng_l": {
+        "p5": 54.20328844338656,
+        "p50": 286.6484075784683,
+        "p95": 2330.652421712871
+      },
+      "rq": {
+        "p5": 0.10840657688677312,
+        "p50": 0.5732968151569366,
+        "p95": 4.661304843425742
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.328125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 4,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 576,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:irbesartan:ddd_g",
+        "param:irbesartan:fe",
+        "prior:lambda",
+        "cons:TLS:irbesartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-02-irbesartan"
+      }
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "paracetamol",
+      "pec_ng_l": {
+        "p5": 188.48261184990406,
+        "p50": 1533.3902567625046,
+        "p95": 11065.73539495468
+      },
+      "rq": {
+        "p5": 0.057115942984819416,
+        "p50": 0.46466371417045593,
+        "p95": 3.3532531499862666
+      },
+      "pnec_ng_l": 3300.0,
+      "lod_ng_l": 1.0,
+      "score": 0.28125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 5,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 640,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:paracetamol:ddd_g",
+        "param:paracetamol:fe",
+        "prior:lambda",
+        "cons:TLS:paracetamol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-02-paracetamol"
+      }
+    },
+    {
+      "site_id": "TLS-02",
+      "drug": "citalopram",
+      "pec_ng_l": {
+        "p5": 20.132715553045273,
+        "p50": 118.90096068382263,
+        "p95": 537.8835606575012
+      },
+      "rq": {
+        "p5": 0.10066357776522637,
+        "p50": 0.5945048034191132,
+        "p95": 2.689417803287506
+      },
+      "pnec_ng_l": 200.0,
+      "lod_ng_l": 1.0,
+      "score": 0.25,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 6,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 704,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:citalopram:ddd_g",
+        "param:citalopram:fe",
+        "prior:lambda",
+        "cons:TLS:citalopram"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-02-citalopram"
+      }
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "carbamazepine",
+      "pec_ng_l": {
+        "p5": 47.95017074793578,
+        "p50": 314.7116005420685,
+        "p95": 1995.701169967647
+      },
+      "rq": {
+        "p5": 0.09590034149587155,
+        "p50": 0.629423201084137,
+        "p95": 3.991402339935294
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.28125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 6,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 768,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:carbamazepine:ddd_g",
+        "param:carbamazepine:fe",
+        "prior:lambda",
+        "cons:TLS:carbamazepine"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-03-carbamazepine"
+      }
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "atenolol",
+      "pec_ng_l": {
+        "p5": 114.25420381128788,
+        "p50": 894.3135738372803,
+        "p95": 6900.860989093775
+      },
+      "rq": {
+        "p5": 0.07616946920752525,
+        "p50": 0.5962090492248535,
+        "p95": 4.600573992729183
+      },
+      "pnec_ng_l": 1500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 3,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 832,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:atenolol:ddd_g",
+        "param:atenolol:fe",
+        "prior:lambda",
+        "cons:TLS:atenolol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-03-atenolol"
+      }
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "losartan",
+      "pec_ng_l": {
+        "p5": 96.81970439851284,
+        "p50": 840.5395746231079,
+        "p95": 6770.532751083369
+      },
+      "rq": {
+        "p5": 0.09681970439851284,
+        "p50": 0.8405395746231079,
+        "p95": 6.770532751083368
+      },
+      "pnec_ng_l": 1000.0,
+      "lod_ng_l": 1.0,
+      "score": 0.453125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 1,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 896,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:losartan:ddd_g",
+        "param:losartan:fe",
+        "prior:lambda",
+        "cons:TLS:losartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-03-losartan"
+      }
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "irbesartan",
+      "pec_ng_l": {
+        "p5": 24.79122178629041,
+        "p50": 293.8683331012726,
+        "p95": 1557.4835419654842
+      },
+      "rq": {
+        "p5": 0.04958244357258082,
+        "p50": 0.5877366662025452,
+        "p95": 3.1149670839309684
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.3125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 5,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 960,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:irbesartan:ddd_g",
+        "param:irbesartan:fe",
+        "prior:lambda",
+        "cons:TLS:irbesartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-03-irbesartan"
+      }
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "paracetamol",
+      "pec_ng_l": {
+        "p5": 217.00862282887107,
+        "p50": 2273.957508802414,
+        "p95": 10382.2208225727
+      },
+      "rq": {
+        "p5": 0.06576018873602153,
+        "p50": 0.6890780329704285,
+        "p95": 3.1461275219917275
+      },
+      "pnec_ng_l": 3300.0,
+      "lod_ng_l": 1.0,
+      "score": 0.40625,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 2,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1024,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:paracetamol:ddd_g",
+        "param:paracetamol:fe",
+        "prior:lambda",
+        "cons:TLS:paracetamol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-03-paracetamol"
+      }
+    },
+    {
+      "site_id": "TLS-03",
+      "drug": "citalopram",
+      "pec_ng_l": {
+        "p5": 24.902484714984894,
+        "p50": 105.84887862205505,
+        "p95": 874.9513816833494
+      },
+      "rq": {
+        "p5": 0.12451242357492447,
+        "p50": 0.5292443931102753,
+        "p95": 4.374756908416747
+      },
+      "pnec_ng_l": 200.0,
+      "lod_ng_l": 1.0,
+      "score": 0.359375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 4,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1088,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:citalopram:ddd_g",
+        "param:citalopram:fe",
+        "prior:lambda",
+        "cons:TLS:citalopram"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-TLS-03-citalopram"
+      }
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "carbamazepine",
+      "pec_ng_l": {
+        "p5": 27.71344929933548,
+        "p50": 272.4031060934067,
+        "p95": 2577.056491374967
+      },
+      "rq": {
+        "p5": 0.05542689859867096,
+        "p50": 0.5448062121868134,
+        "p95": 5.154112982749934
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.359375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 2,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1152,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:carbamazepine:ddd_g",
+        "param:carbamazepine:fe",
+        "prior:lambda",
+        "cons:GNT:carbamazepine"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-01-carbamazepine"
+      }
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "atenolol",
+      "pec_ng_l": {
+        "p5": 121.02693803608418,
+        "p50": 711.3615944981575,
+        "p95": 6332.381057739258
+      },
+      "rq": {
+        "p5": 0.08068462535738945,
+        "p50": 0.47424106299877167,
+        "p95": 4.221587371826172
+      },
+      "pnec_ng_l": 1500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.3125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 5,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1216,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:atenolol:ddd_g",
+        "param:atenolol:fe",
+        "prior:lambda",
+        "cons:GNT:atenolol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-01-atenolol"
+      }
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "losartan",
+      "pec_ng_l": {
+        "p5": 134.20066311955452,
+        "p50": 636.8847489356995,
+        "p95": 3095.582091808317
+      },
+      "rq": {
+        "p5": 0.13420066311955453,
+        "p50": 0.6368847489356995,
+        "p95": 3.095582091808317
+      },
+      "pnec_ng_l": 1000.0,
+      "lod_ng_l": 1.0,
+      "score": 0.328125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 4,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1280,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:losartan:ddd_g",
+        "param:losartan:fe",
+        "prior:lambda",
+        "cons:GNT:losartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-01-losartan"
+      }
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "irbesartan",
+      "pec_ng_l": {
+        "p5": 43.00652164965868,
+        "p50": 255.83180785179138,
+        "p95": 2125.2368390560137
+      },
+      "rq": {
+        "p5": 0.08601304329931736,
+        "p50": 0.5116636157035828,
+        "p95": 4.250473678112027
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.3125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 6,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1344,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:irbesartan:ddd_g",
+        "param:irbesartan:fe",
+        "prior:lambda",
+        "cons:GNT:irbesartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-01-irbesartan"
+      }
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "paracetamol",
+      "pec_ng_l": {
+        "p5": 388.1481337174773,
+        "p50": 3081.127569079399,
+        "p95": 8323.40378522873
+      },
+      "rq": {
+        "p5": 0.11762064658105374,
+        "p50": 0.9336750209331512,
+        "p95": 2.522243571281433
+      },
+      "pnec_ng_l": 3300.0,
+      "lod_ng_l": 1.0,
+      "score": 0.484375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 1,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1408,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:paracetamol:ddd_g",
+        "param:paracetamol:fe",
+        "prior:lambda",
+        "cons:GNT:paracetamol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-01-paracetamol"
+      }
+    },
+    {
+      "site_id": "GNT-01",
+      "drug": "citalopram",
+      "pec_ng_l": {
+        "p5": 13.517948612570766,
+        "p50": 131.70961737632751,
+        "p95": 722.9027652740479
+      },
+      "rq": {
+        "p5": 0.06758974306285383,
+        "p50": 0.6585480868816376,
+        "p95": 3.614513826370239
+      },
+      "pnec_ng_l": 200.0,
+      "lod_ng_l": 1.0,
+      "score": 0.359375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 3,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1472,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:citalopram:ddd_g",
+        "param:citalopram:fe",
+        "prior:lambda",
+        "cons:GNT:citalopram"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-01-citalopram"
+      }
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "carbamazepine",
+      "pec_ng_l": {
+        "p5": 56.8546274676919,
+        "p50": 346.25886380672455,
+        "p95": 1937.3426139354667
+      },
+      "rq": {
+        "p5": 0.1137092549353838,
+        "p50": 0.6925177276134491,
+        "p95": 3.8746852278709336
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.359375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 1,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1536,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:carbamazepine:ddd_g",
+        "param:carbamazepine:fe",
+        "prior:lambda",
+        "cons:GNT:carbamazepine"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-02-carbamazepine"
+      }
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "atenolol",
+      "pec_ng_l": {
+        "p5": 145.9343522787094,
+        "p50": 913.1066054105759,
+        "p95": 5258.5702657699485
+      },
+      "rq": {
+        "p5": 0.09728956818580628,
+        "p50": 0.6087377369403839,
+        "p95": 3.505713510513299
+      },
+      "pnec_ng_l": 1500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.28125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 6,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1600,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:atenolol:ddd_g",
+        "param:atenolol:fe",
+        "prior:lambda",
+        "cons:GNT:atenolol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-02-atenolol"
+      }
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "losartan",
+      "pec_ng_l": {
+        "p5": 72.0507025718689,
+        "p50": 641.3340270519257,
+        "p95": 3656.3959479331957
+      },
+      "rq": {
+        "p5": 0.0720507025718689,
+        "p50": 0.6413340270519257,
+        "p95": 3.656395947933196
+      },
+      "pnec_ng_l": 1000.0,
+      "lod_ng_l": 1.0,
+      "score": 0.34375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 3,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1664,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:losartan:ddd_g",
+        "param:losartan:fe",
+        "prior:lambda",
+        "cons:GNT:losartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-02-losartan"
+      }
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "irbesartan",
+      "pec_ng_l": {
+        "p5": 41.805022954940796,
+        "p50": 258.4337890148163,
+        "p95": 2930.745899677272
+      },
+      "rq": {
+        "p5": 0.0836100459098816,
+        "p50": 0.5168675780296326,
+        "p95": 5.861491799354544
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.328125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 4,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1728,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:irbesartan:ddd_g",
+        "param:irbesartan:fe",
+        "prior:lambda",
+        "cons:GNT:irbesartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-02-irbesartan"
+      }
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "paracetamol",
+      "pec_ng_l": {
+        "p5": 280.9360494464636,
+        "p50": 2451.50848031044,
+        "p95": 19405.19368886947
+      },
+      "rq": {
+        "p5": 0.08513213619589806,
+        "p50": 0.7428813576698303,
+        "p95": 5.880361723899839
+      },
+      "pnec_ng_l": 3300.0,
+      "lod_ng_l": 1.0,
+      "score": 0.359375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 2,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1792,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:paracetamol:ddd_g",
+        "param:paracetamol:fe",
+        "prior:lambda",
+        "cons:GNT:paracetamol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-02-paracetamol"
+      }
+    },
+    {
+      "site_id": "GNT-02",
+      "drug": "citalopram",
+      "pec_ng_l": {
+        "p5": 18.94968718290329,
+        "p50": 119.88769769668579,
+        "p95": 700.5935144424435
+      },
+      "rq": {
+        "p5": 0.09474843591451645,
+        "p50": 0.599438488483429,
+        "p95": 3.5029675722122176
+      },
+      "pnec_ng_l": 200.0,
+      "lod_ng_l": 1.0,
+      "score": 0.296875,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 5,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1856,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:citalopram:ddd_g",
+        "param:citalopram:fe",
+        "prior:lambda",
+        "cons:GNT:citalopram"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-02-citalopram"
+      }
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "carbamazepine",
+      "pec_ng_l": {
+        "p5": 60.87501905858517,
+        "p50": 279.0579944849014,
+        "p95": 1089.9217784404752
+      },
+      "rq": {
+        "p5": 0.12175003811717033,
+        "p50": 0.5581159889698029,
+        "p95": 2.1798435568809507
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.28125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 5,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1920,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:carbamazepine:ddd_g",
+        "param:carbamazepine:fe",
+        "prior:lambda",
+        "cons:GNT:carbamazepine"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-03-carbamazepine"
+      }
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "atenolol",
+      "pec_ng_l": {
+        "p5": 205.2412949502468,
+        "p50": 1031.7382514476776,
+        "p95": 8788.447380065918
+      },
+      "rq": {
+        "p5": 0.1368275299668312,
+        "p50": 0.6878255009651184,
+        "p95": 5.858964920043945
+      },
+      "pnec_ng_l": 1500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 1,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 1984,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:atenolol:ddd_g",
+        "param:atenolol:fe",
+        "prior:lambda",
+        "cons:GNT:atenolol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-03-atenolol"
+      }
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "losartan",
+      "pec_ng_l": {
+        "p5": 102.30648629367352,
+        "p50": 673.7686395645142,
+        "p95": 3221.3439106941196
+      },
+      "rq": {
+        "p5": 0.10230648629367352,
+        "p50": 0.6737686395645142,
+        "p95": 3.2213439106941197
+      },
+      "pnec_ng_l": 1000.0,
+      "lod_ng_l": 1.0,
+      "score": 0.375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 2,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 2048,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:losartan:ddd_g",
+        "param:losartan:fe",
+        "prior:lambda",
+        "cons:GNT:losartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-03-losartan"
+      }
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "irbesartan",
+      "pec_ng_l": {
+        "p5": 38.18210083991289,
+        "p50": 402.2732675075531,
+        "p95": 4201.41198635101
+      },
+      "rq": {
+        "p5": 0.07636420167982579,
+        "p50": 0.8045465350151062,
+        "p95": 8.402823972702018
+      },
+      "pnec_ng_l": 500.0,
+      "lod_ng_l": 1.0,
+      "score": 0.375,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 3,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 2112,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:irbesartan:ddd_g",
+        "param:irbesartan:fe",
+        "prior:lambda",
+        "cons:GNT:irbesartan"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-03-irbesartan"
+      }
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "paracetamol",
+      "pec_ng_l": {
+        "p5": 255.8332077786327,
+        "p50": 1594.064323604107,
+        "p95": 7224.547358751296
+      },
+      "rq": {
+        "p5": 0.07752521447837354,
+        "p50": 0.48304979503154755,
+        "p95": 2.1892567753791807
+      },
+      "pnec_ng_l": 3300.0,
+      "lod_ng_l": 1.0,
+      "score": 0.25,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 6,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 2176,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:paracetamol:ddd_g",
+        "param:paracetamol:fe",
+        "prior:lambda",
+        "cons:GNT:paracetamol"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-03-paracetamol"
+      }
+    },
+    {
+      "site_id": "GNT-03",
+      "drug": "citalopram",
+      "pec_ng_l": {
+        "p5": 9.701946340501308,
+        "p50": 100.94488263130188,
+        "p95": 688.5803079605091
+      },
+      "rq": {
+        "p5": 0.048509731702506546,
+        "p50": 0.5047244131565094,
+        "p95": 3.4429015398025458
+      },
+      "pnec_ng_l": 200.0,
+      "lod_ng_l": 1.0,
+      "score": 0.328125,
+      "tier": "medium",
+      "lod_share": 1.0,
+      "rank_in_city": 4,
+      "n_in_city": 6,
+      "drivers": [
+        {
+          "param": "lambda",
+          "rho": 0.7
+        },
+        {
+          "param": "Q",
+          "rho": -0.55
+        }
+      ],
+      "driver_sentence": "Mostly driven by assumed leakage (\u03bb); flow (Q) second.",
+      "flip": {
+        "up": {
+          "param": "lambda",
+          "multiplier": 1.4,
+          "to_tier": "high"
+        },
+        "down": {
+          "param": "lambda",
+          "multiplier": 0.35,
+          "to_tier": "low"
+        }
+      },
+      "histogram": {
+        "log10_edges": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0
+        ],
+        "counts": [
+          3,
+          7,
+          20,
+          18,
+          12,
+          4
+        ]
+      },
+      "draws": {
+        "offset": 2240,
+        "count": 64
+      },
+      "provenance_keys": [
+        "param:citalopram:ddd_g",
+        "param:citalopram:fe",
+        "prior:lambda",
+        "cons:GNT:citalopram"
+      ],
+      "fhir_ids": {
+        "prediction": "Observation/pred-GNT-03-citalopram"
+      }
+    }
+  ],
+  "site_overall": [
+    {
+      "site_id": "TLS-01",
+      "score": 0.390625,
+      "top_drug": "paracetamol",
+      "rank_in_city": 4
+    },
+    {
+      "site_id": "TLS-02",
+      "score": 0.421875,
+      "top_drug": "carbamazepine",
+      "rank_in_city": 3
+    },
+    {
+      "site_id": "TLS-03",
+      "score": 0.453125,
+      "top_drug": "losartan",
+      "rank_in_city": 2
+    },
+    {
+      "site_id": "GNT-01",
+      "score": 0.484375,
+      "top_drug": "paracetamol",
+      "rank_in_city": 1
+    },
+    {
+      "site_id": "GNT-02",
+      "score": 0.359375,
+      "top_drug": "carbamazepine",
+      "rank_in_city": 6
+    },
+    {
+      "site_id": "GNT-03",
+      "score": 0.375,
+      "top_drug": "atenolol",
+      "rank_in_city": 5
+    }
+  ],
+  "city_summary": [
+    {
+      "city": "TLS",
+      "high": 0,
+      "medium": 3,
+      "low": 0
+    },
+    {
+      "city": "GNT",
+      "high": 0,
+      "medium": 3,
+      "low": 0
+    }
+  ]
+}

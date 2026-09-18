@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharmashed.example/schemas/provenance.schema.json",
+  "title": "Provenance",
+  "description": "provenance.json — keyed lookup for every ⓘ in the UI, indexed by provenance_keys from results.json (e.g. 'param:irbesartan:ddd_g', 'prior:lambda', 'cons:FR:irbesartan').",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["label", "value", "unit", "distribution", "source_title", "source_url", "source_note", "status"],
+    "properties": {
+      "label": { "type": "string" },
+      "value": { "type": ["number", "string", "null"] },
+      "unit": { "type": ["string", "null"] },
+      "distribution": { "type": ["string", "null"] },
+      "source_title": { "type": ["string", "null"] },
+      "source_url": { "type": ["string", "null"], "format": "uri" },
+      "source_note": { "type": ["string", "null"] },
+      "status": { "type": "string", "enum": ["sourced", "assumption", "todo"] }
+    }
+  }
+}

@@ -7,7 +7,8 @@ setup:
 	@echo "TODO M15: download HL7 FHIR validator jar into fhir/validator/"
 
 fixtures:
-	@echo "TODO M01: regenerate contracts/fixtures from schemas"
+	uv run python scripts/make_fixtures.py
+	cd web && pnpm run gen:types
 
 data-check:
 	@echo "TODO M02-M04: validate params, priors, consumption, sites"
