@@ -1,0 +1,50 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "pharmashed-components",
+  "url": "https://pharmashed.example/fhir/CodeSystem/components",
+  "version": "0.1.0",
+  "name": "PharmaShedComponents",
+  "title": "PharmaShed Observation Components",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-01-01",
+  "description": "Component codes used in PharmaShed prediction Observations.",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "pec-p05",
+      "display": "PEC 5th percentile",
+      "definition": "5th percentile of the predicted environmental concentration distribution, in ng/L."
+    },
+    {
+      "code": "pec-p50",
+      "display": "PEC median",
+      "definition": "Median (50th percentile) of the predicted environmental concentration distribution, in ng/L."
+    },
+    {
+      "code": "pec-p95",
+      "display": "PEC 95th percentile",
+      "definition": "95th percentile of the predicted environmental concentration distribution, in ng/L."
+    },
+    {
+      "code": "rq-p50",
+      "display": "Risk ratio median",
+      "definition": "Median (50th percentile) of PEC ÷ PNEC across Monte Carlo draws."
+    },
+    {
+      "code": "priority-score",
+      "display": "Sampling priority score",
+      "definition": "Fraction of Monte Carlo draws where RQ > 1. Not a probability of exceedance. Guides where to sample first."
+    },
+    {
+      "code": "lod-share",
+      "display": "LOD exceedance share",
+      "definition": "Fraction of Monte Carlo draws where PEC exceeds the analytical limit of detection."
+    },
+    {
+      "code": "validity",
+      "display": "Site validity flag",
+      "definition": "Whether the site passed all placement validity checks."
+    }
+  ]
+}

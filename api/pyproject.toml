@@ -22,4 +22,4 @@ packages = ["src/pharmashed_api"]
 pharmashed = { workspace = true }
 
 [dependency-groups]
-dev = ["pytest>=8.2", "ruff>=0.5"]
+dev = ["pytest>=8.2", "ruff>=0.5", "httpx>=0.27"]

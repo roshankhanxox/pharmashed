@@ -1,0 +1,30 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "pharmashed-consumption",
+  "url": "https://pharmashed.example/fhir/CodeSystem/consumption",
+  "version": "0.1.0",
+  "name": "PharmaShedConsumption",
+  "title": "PharmaShed Consumption Codes",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-01-01",
+  "description": "Codes for drug consumption Observations in PharmaShed.",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "ddd-per-1000-per-day",
+      "display": "DDD/1000 inhabitants/day",
+      "definition": "Defined daily dose per 1000 inhabitants per day — the WHO standard unit for drug utilisation statistics."
+    },
+    {
+      "code": "granularity-molecule",
+      "display": "Molecule-level data",
+      "definition": "Consumption value sourced directly at the individual molecule level."
+    },
+    {
+      "code": "granularity-group-downscaled",
+      "display": "Group-downscaled",
+      "definition": "Consumption value derived from a therapeutic-group total using a country-specific molecule share."
+    }
+  ]
+}
