@@ -66,6 +66,7 @@ export function ScenariosTab() {
 
   if (!results) return <LoadingView />;
   if (!selectedSiteId) return <EmptyView reason="Select a site in the Explore tab first." />;
+  if (selectedDrug === "all") return <EmptyView reason="Select a specific drug in the Explore tab, then return here." />;
   if (!draws || draws.length === 0) return <EmptyView reason="No stored draws for this site/drug combination." />;
 
   const baseRow: BandRow | null = siteEntry

@@ -50,8 +50,8 @@ export function DrawHistogram({ histogram, score }: DrawHistogramProps) {
         {/* RQ=1 vertical line */}
         {rq1X >= 0 && rq1X <= IW && (
           <>
-            <line x1={rq1X} y1={0} x2={rq1X} y2={IH} stroke="#111" strokeWidth={1.5} />
-            <text x={rq1X + 3} y={10} fontSize={9} fill="#111">RQ = 1</text>
+            <line x1={rq1X} y1={0} x2={rq1X} y2={IH} stroke="currentColor" strokeWidth={1.5} className="text-neutral-800 dark:text-neutral-200" />
+            <text x={rq1X + 3} y={10} fontSize={9} fill="currentColor" className="text-neutral-700 dark:text-neutral-300">RQ = 1</text>
           </>
         )}
 
@@ -61,17 +61,17 @@ export function DrawHistogram({ histogram, score }: DrawHistogramProps) {
         </text>
 
         {/* axes */}
-        <line x1={0} y1={IH} x2={IW} y2={IH} stroke="#ccc" />
-        <line x1={0} y1={0} x2={0} y2={IH} stroke="#ccc" />
+        <line x1={0} y1={IH} x2={IW} y2={IH} stroke="currentColor" className="text-neutral-200 dark:text-neutral-700" />
+        <line x1={0} y1={0} x2={0} y2={IH} stroke="currentColor" className="text-neutral-200 dark:text-neutral-700" />
 
         {/* x labels */}
         {log10_edges.map((e, i) => (
-          <text key={i} x={i * binW} y={IH + 12} fontSize={8} fill="#888" textAnchor="middle">
+          <text key={i} x={i * binW} y={IH + 12} fontSize={8} fill="currentColor" className="text-neutral-400 dark:text-neutral-500" textAnchor="middle">
             {e === 0 ? "1" : `10^${e}`}
           </text>
         ))}
 
-        <text x={IW / 2} y={IH + 25} fontSize={9} fill="#888" textAnchor="middle">
+        <text x={IW / 2} y={IH + 25} fontSize={9} fill="currentColor" className="text-neutral-400 dark:text-neutral-500" textAnchor="middle">
           log₁₀ RQ
         </text>
       </g>
