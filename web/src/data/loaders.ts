@@ -16,7 +16,7 @@ import type {
 } from "../types/contracts";
 
 const BASE = (import.meta.env.VITE_DATA_BASE as string | undefined) ?? "/api";
-const STATIC = BASE !== "/api";
+const STATIC = !BASE.endsWith("/api");
 
 function path(name: string): string {
   return STATIC ? `${BASE}/${name}.json` : `${BASE}/${name}`;
