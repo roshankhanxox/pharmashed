@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharmashed.example/schemas/sites.schema.json",
+  "title": "Sites",
+  "description": "sites.json — hand-placed synthetic sites and their cities (M04).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meta", "cities", "sites"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generated_at", "synthetic"],
+      "properties": {
+        "generated_at": { "type": "string", "format": "date-time" },
+        "synthetic": { "const": true }
+      }
+    },
+    "cities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "country", "center", "zoom"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Z]{3}$" },
+          "name": { "type": "string", "minLength": 1 },
+          "country": { "type": "string", "pattern": "^[A-Z]{2}$" },
+          "center": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "zoom": { "type": "number", "minimum": 0, "maximum": 22 }
+        }
+      }
+    },
+    "sites": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id", "city", "name", "lonlat", "synthetic", "size_class",
+          "w", "valid", "population_buffer", "population_source_key"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Z]{3}-\\d{2}$" },
+          "city": { "type": "string", "pattern": "^[A-Z]{3}$" },
+          "name": { "type": "string", "minLength": 1 },
+          "lonlat": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "synthetic": { "const": true },
+          "size_class": { "type": "string", "enum": ["S", "M", "L"] },
+          "w": { "type": "integer", "enum": [0, 1] },
+          "valid": { "type": "boolean" },
+          "population_buffer": { "type": "number", "minimum": 0 },
+          "population_source_key": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

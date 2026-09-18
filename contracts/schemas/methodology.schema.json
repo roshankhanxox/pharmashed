@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharmashed.example/schemas/methodology.schema.json",
+  "title": "Methodology",
+  "description": "methodology.json — model stages, priors table, identifiability text, ablation rankings (M10/M11).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meta", "stages", "priors_table", "identifiability_text", "ablations"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generated_at"],
+      "properties": {
+        "generated_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "symbol", "prior_summary", "provenance_key"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "symbol": { "type": "string" },
+          "prior_summary": { "type": "string" },
+          "provenance_key": { "type": "string" }
+        }
+      }
+    },
+    "priors_table": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["param", "distribution", "range", "unit", "status", "source_url", "shape"],
+        "properties": {
+          "param": { "type": "string" },
+          "distribution": { "type": "string" },
+          "range": { "type": "string" },
+          "unit": { "type": "string" },
+          "status": { "type": "string", "enum": ["sourced", "assumption"] },
+          "source_url": { "type": ["string", "null"], "format": "uri" },
+          "shape": { "type": "string" }
+        }
+      }
+    },
+    "identifiability_text": { "type": "string", "minLength": 1 },
+    "ablations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["variants", "per_city"],
+      "properties": {
+        "variants": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["full", "pop_only", "wwtp_only"] }
+        },
+        "per_city": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["city", "variant", "ranking"],
+            "properties": {
+              "city": { "type": "string" },
+              "variant": { "type": "string", "enum": ["full", "pop_only", "wwtp_only"] },
+              "ranking": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

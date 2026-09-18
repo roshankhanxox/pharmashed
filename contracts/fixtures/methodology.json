@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "generated_at": "2026-01-01T00:00:00Z"
+  },
+  "stages": [
+    {
+      "id": "consumption",
+      "name": "Consumption",
+      "symbol": "C",
+      "prior_summary": "national DDD/1000/day (fixture placeholder)",
+      "provenance_key": "cons:FR:irbesartan"
+    },
+    {
+      "id": "excretion",
+      "name": "Excretion",
+      "symbol": "fe",
+      "prior_summary": "fraction excreted unchanged (fixture placeholder)",
+      "provenance_key": "param:irbesartan:fe"
+    },
+    {
+      "id": "pathways",
+      "name": "Pathways",
+      "symbol": "\u03bb, w, R",
+      "prior_summary": "untreated leakage \u03bb log-uniform 0.002-0.15",
+      "provenance_key": "prior:lambda"
+    },
+    {
+      "id": "dilution",
+      "name": "Dilution",
+      "symbol": "Q",
+      "prior_summary": "stream flow by size class (fixture placeholder)",
+      "provenance_key": "prior:Q"
+    },
+    {
+      "id": "instream_loss",
+      "name": "In-stream loss",
+      "symbol": "k, \u03c4",
+      "prior_summary": "first-order decay (fixture placeholder)",
+      "provenance_key": "param:irbesartan:k"
+    },
+    {
+      "id": "risk",
+      "name": "RQ",
+      "symbol": "RQ",
+      "prior_summary": "PEC / PNEC (fixture placeholder)",
+      "provenance_key": "param:irbesartan:pnec"
+    }
+  ],
+  "priors_table": [
+    {
+      "param": "lambda",
+      "distribution": "log-uniform",
+      "range": "0.002-0.15",
+      "unit": "fraction",
+      "status": "assumption",
+      "source_url": null,
+      "shape": "log-uniform-band"
+    }
+  ],
+  "identifiability_text": "Fixture placeholder text for the identifiability discussion (docs \u00a75.5).",
+  "ablations": {
+    "variants": [
+      "full",
+      "pop_only",
+      "wwtp_only"
+    ],
+    "per_city": [
+      {
+        "city": "TLS",
+        "variant": "full",
+        "ranking": [
+          "TLS-01",
+          "TLS-02",
+          "TLS-03"
+        ]
+      },
+      {
+        "city": "TLS",
+        "variant": "wwtp_only",
+        "ranking": [
+          "TLS-01",
+          "TLS-02",
+          "TLS-03"
+        ]
+      },
+      {
+        "city": "GNT",
+        "variant": "full",
+        "ranking": [
+          "GNT-01",
+          "GNT-02",
+          "GNT-03"
+        ]
+      }
+    ]
+  }
+}

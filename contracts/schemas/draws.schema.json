@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharmashed.example/schemas/draws.schema.json",
+  "title": "Draws index",
+  "description": "draws_index.json — describes the binary layout of draws.bin: little-endian float32 RQ draws, one block per result entry, addressed by offset.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["dtype", "endianness", "n_stored", "entries"],
+  "properties": {
+    "dtype": { "const": "float32" },
+    "endianness": { "const": "little" },
+    "n_stored": { "type": "integer", "minimum": 1 },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["site_id", "drug", "offset", "count"],
+        "properties": {
+          "site_id": { "type": "string" },
+          "drug": { "type": "string" },
+          "offset": { "type": "integer", "minimum": 0 },
+          "count": { "type": "integer", "minimum": 1 }
+        }
+      }
+    }
+  }
+}

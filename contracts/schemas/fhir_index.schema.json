@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharmashed.example/schemas/fhir_index.schema.json",
+  "title": "FHIR index",
+  "description": "fhir_index.json — resource counts, bundle list, validator status and query-demo counts (M14/M15).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meta", "resource_counts", "bundles", "validation", "query_demo"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generated_at"],
+      "properties": {
+        "generated_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "resource_counts": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "bundles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "path", "resource_type", "count"],
+        "properties": {
+          "name": { "type": "string" },
+          "path": { "type": "string" },
+          "resource_type": { "type": "string" },
+          "count": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "errors", "warnings", "validator_version", "ran_at", "ci_log_url"],
+      "properties": {
+        "status": { "type": "string", "enum": ["pass", "fail", "unknown"] },
+        "errors": { "type": "integer", "minimum": 0 },
+        "warnings": { "type": "integer", "minimum": 0 },
+        "validator_version": { "type": ["string", "null"] },
+        "ran_at": { "type": ["string", "null"], "format": "date-time" },
+        "ci_log_url": { "type": ["string", "null"], "format": "uri" }
+      }
+    },
+    "query_demo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["laboratory", "model_prediction"],
+      "properties": {
+        "laboratory": { "$ref": "#/$defs/queryResult" },
+        "model_prediction": { "$ref": "#/$defs/queryResult" }
+      }
+    }
+  },
+  "$defs": {
+    "queryResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["query", "count"],
+      "properties": {
+        "query": { "type": "string" },
+        "count": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

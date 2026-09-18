@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "frozen_tag": "fixture-not-frozen",
+    "frozen_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "generated_at": "2026-01-01T00:00:00Z"
+  },
+  "circularity_statement": "Fixture placeholder: these checks compare model output to the same observed dataset used to design the checks; treat as a consistency check, not a validation.",
+  "checks": [
+    {
+      "id": "C1",
+      "status": "unavailable",
+      "reason": "LOD not yet sourced (fixture)",
+      "data": {}
+    },
+    {
+      "id": "C2",
+      "status": "pass",
+      "reason": null,
+      "data": {
+        "observed_order": [
+          "TLS",
+          "GNT",
+          "BNV",
+          "CBR",
+          "OSL"
+        ],
+        "predicted_order": [
+          "TLS",
+          "GNT"
+        ],
+        "kendall_tau": 1.0
+      }
+    },
+    {
+      "id": "C3",
+      "status": "unavailable",
+      "reason": "Oslo not in fixture cities",
+      "data": {}
+    },
+    {
+      "id": "C4",
+      "status": "pass",
+      "reason": null,
+      "data": {
+        "rows": []
+      }
+    },
+    {
+      "id": "C5",
+      "status": "unavailable",
+      "reason": "ablations not run in fixture",
+      "data": {}
+    }
+  ]
+}
