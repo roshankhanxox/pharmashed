@@ -83,7 +83,8 @@ class RunContext:
 
         drug_params, _ = load_drug_params(params_path, mode=mode)
         priors = load_priors(priors_path)
-        consumption_rows = load_consumption(consumption_path, mode=mode)
+        consumption_dict = load_consumption(consumption_path, mode=mode)
+        consumption_rows = list(consumption_dict.values())
         sites = load_sites(sites_path)
 
         return cls(

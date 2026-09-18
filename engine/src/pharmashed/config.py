@@ -1,6 +1,6 @@
 """Global constants (A5). No magic strings or numbers in module code."""
 
-N_DRAWS = 10_000
+N_DRAWS = 1_000  # D40: reduced from 10k for illustrative prototype
 N_STORED = 1_000
 SEED = 42
 

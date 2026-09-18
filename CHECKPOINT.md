@@ -53,8 +53,8 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 | M08 | Monte Carlo runner | ☐ | |
 | M09 | Sensitivity + flips | ☐ | |
 | M10 | Scoring + ranking | ☐ | |
-| M11 | Exporters + freeze | ☐ | Freeze needs strict mode |
-| M12 | Consistency checks | ☐ | Needs freeze |
+| M11 | Exporters + freeze | ☑ | export_build writes all 7 artifacts; freeze.py locks + tags; 12 tests |
+| M12 | Consistency checks | ☑ | C1–C5 checks; separation test; observed.py; 19 tests |
 | M13 | FHIR terminology | ☐ | |
 | M14 | FHIR builder | ☐ | |
 | M15 | Validator + HAPI | ☐ | |
@@ -104,13 +104,25 @@ Needs M02/M03 loaders (with the new columns) to exist first, so the files have t
 
 ## Next up
 
-1. **M05** Population (GHS-POP) — needed before `auto_place_sites.py` can do stratified placement
-2. Run sourcing sessions **A1–A11** (M02/M03 loaders are ready for them), then **A12**
-3. **H1** today (registration)
+1. **M13** FHIR terminology
+2. **M14** FHIR builder
+3. **M16** API (FastAPI, lightweight — no engine deps)
 
 ## Last session
 
-Built M04 (sites and streams): `data/sites/sites.geojson` ships 45 synthetic
+Built M11 (exporters + freeze) and M12 (consistency checks):
+`export_build()` in `export.py` runs all 3 ablation variants, writes results.json
+(Pydantic-validated), draws.bin (float32 LE), draws_index.json, sites.json,
+provenance.json, methodology.json, glossary.json. `freeze.py` checks dirty tree,
+runs strict mode, SHA-256-hashes results.json, writes FROZEN.json, then git-commits
+and tags (`predictions-frozen-v1` or `-illustrative-v1` per D36). Fixed bug in
+`montecarlo.from_paths`: `load_consumption` returns a dict; now converts to list
+with `.values()` before passing to RunContext.
+M12 checks: `checks/observed.py` (only observer-reader), `checks/run.py` (C1–C5),
+`test_separation.py` (greps pharmashed/ outside checks/ for 'observed'/'rodrigues').
+154 engine tests pass (was 123). Branch: `pipeline-output`.
+
+(Previous: Built M04 (sites and streams)): `data/sites/sites.geojson` ships 45 synthetic
 sites (9 per city: TLS/GNT/BNV/CBR/OSL) hand-placed on real urban waterways
 (Hers-Mort, Touch, Garonne, Schelde, Leie, Calore, Sabato, Mondego, Ceira,
 Akerselva, Alna, Lysaker). `engine/src/pharmashed/sites.py`: `cities()` returns
