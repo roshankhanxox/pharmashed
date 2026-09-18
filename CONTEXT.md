@@ -30,6 +30,7 @@ Keep this file short (under ~1,500 words). It is loaded at the start of every co
 | `web/` | Vite + React + TS app (M18–M22) |
 | `infra/` | docker-compose for HAPI |
 | `SOURCING.md` | agent protocol for sourcing parameters, consumption and sites |
+| `JUDGEMENT.md` | log of small in-module implementation calls, per module |
 
 Module lookup: `sed -n '/^## M07/,/^## M08/p' IMPLEMENTATION.md`
 
