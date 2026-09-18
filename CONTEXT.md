@@ -29,6 +29,7 @@ Keep this file short (under ~1,500 words). It is loaded at the start of every co
 | `api/` | FastAPI + assistant (M16–M17) |
 | `web/` | Vite + React + TS app (M18–M22) |
 | `infra/` | docker-compose for HAPI |
+| `SOURCING.md` | agent protocol for sourcing parameters, consumption and sites |
 
 Module lookup: `sed -n '/^## M07/,/^## M08/p' IMPLEMENTATION.md`
 
@@ -63,10 +64,13 @@ Add new decisions at the bottom with the next number. Never delete; mark superse
 | D23 | Consistency checks C1–C5 exactly as defined in IMPLEMENTATION.md M12 (pre-registered). C4: observed city max vs max over city sites of predicted p95; pass if observed ≤ predicted ≤ 10× observed |
 | D24 | Ablation variants: full, pop_only, wwtp_only (the last shows the ePiE-like blind spot: PEC = 0) |
 | D25 | No local LLM in scope. Assistant model from env `ASSISTANT_MODEL` |
+| D26 | Data sourcing is agent-driven per `SOURCING.md`: researcher → separate verifier → human review of `docs/sourcing_report.md`. Freeze requires all sourced rows verified; all PNEC rows human-verified |
+| D27 | `R` (WWTP removal) is not required for the MVP because every site has w=0; the loader treats it as optional in that case |
+| D28 | Sites are auto-placed by rules (SOURCING.md S5), with a human preview/reject pass. Replaces manual placement in D03 (the other D03 terms still hold) |
 
 ## 5. Hard rules (never break)
 
-1. **Never invent a scientific number.** Drug parameters and consumption values come only from a human-verified source with `source_url` + `source_note`. If asked to "fill in" a parameter, refuse and add it to CHECKPOINT human tasks.
+1. **Never invent a scientific number.** Drug parameters and consumption values are sourced only via the `SOURCING.md` protocol: a fetched source, a verbatim `evidence_quote` containing the number, then an independent verifier session. Never from memory. In a normal coding session (not a sourcing session), leave such values `todo`.
 2. **Never read `data/observed/` outside `engine/src/pharmashed/checks/`.**
 3. **Never** call the score a probability, or state that a stream is safe or unsafe.
 4. Contracts first: if a data shape changes, update the schema in `contracts/`, regenerate fixtures and types, and log it in §4.

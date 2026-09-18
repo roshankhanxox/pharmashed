@@ -10,7 +10,8 @@ Project: **PharmaShed** — see CONTEXT.md for the brief.
 5. Finish when the module's acceptance list passes, then update `CHECKPOINT.md` per its protocol and commit with `Mxx: <summary> [checkpoint]`.
 
 ## Hard rules (from CONTEXT §5, repeated because they matter most)
-- Never invent a scientific number (drug parameters, consumption, PNEC, LOD, excretion, removal). Leave `status=todo` and add a human task to CHECKPOINT instead.
+- Never invent a scientific number (drug parameters, consumption, PNEC, LOD, excretion, removal). Only a sourcing session following `SOURCING.md` may fill them, with a fetched source and a verbatim evidence quote. In coding sessions, leave them `todo`.
+- A verifier session must never be the same session that researched the values.
 - Never read `data/observed/` outside `engine/src/pharmashed/checks/`.
 - Never call the score a probability or say a stream is safe/unsafe.
 - Data shapes change only via `contracts/` schemas → regenerate fixtures and types → log a decision in CONTEXT §4.
