@@ -42,7 +42,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 
 | ID | Module | Status | Note |
 |---|---|---|---|
-| M00 | Repo scaffold | ☐ | |
+| M00 | Repo scaffold | ☑ | uv workspace + Vite web app + Makefile; `make setup && make test` passes |
 | M01 | Contracts + fixtures + types | ☐ | Unblocks all web work |
 | M02 | Parameter registry | ☐ | Code only; values = human task H2 |
 | M03 | Consumption data | ☐ | Code only; values = human task H3 |
@@ -82,13 +82,21 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 
 ## Next up
 
-1. **M00** Repo scaffold
-2. **M01** Contracts + fixtures (then web M18 and engine M02 can proceed in parallel)
-3. Start **H2/H3/H4** in parallel (human)
+1. **M01** Contracts + fixtures (then web M18 and engine M02 can proceed in parallel)
+2. Start **H2/H3/H4** in parallel (human)
 
 ## Last session
 
-_None yet. Planning docs created: IMPLEMENTATION.md, CONTEXT.md, CHECKPOINT.md, docs/PharmaShed.md v0.2, data/observed/observed_rodrigues2025.csv._
+Built M00 (repo scaffold): uv workspace (`engine`, `api`) with placeholder
+modules per A1; Vite+React+TS `web/` with Tailwind, MapLibre, Zustand,
+vitest, eslint+prettier; Makefile with every A3 target (unimplemented ones
+print `TODO Mxx`); `.gitignore`, `.env.example`. `make setup && make test`
+passes (1 python test, 1 web test); `pnpm build` and `pnpm dev` (served,
+HTTP 200) both verified. Copied `data/observed/observed_rodrigues2025.csv`
+from `~/Downloads/` (found there, matches the schema referenced in CONTEXT
+§6). `docs/PharmaShed.md` (concept doc v0.2) was **not found anywhere** on
+disk — not copied, not fabricated; see Blockers. Repo pushed to
+`github.com/roshankhanxox/pharmashed` (`main`).
 
 ## Follow-ups (cross-module notes)
 
@@ -96,4 +104,8 @@ _(empty)_
 
 ## Blockers
 
-_(none)_
+- `docs/PharmaShed.md` (concept doc v0.2, referenced by CONTEXT.md §2 and
+  the M00 build steps) does not exist anywhere found on disk. Needs to be
+  supplied by a human before M00's doc-copy step can be completed; do not
+  let a coding agent write this from scratch since it would be inventing
+  the concept doc, not transcribing a cited source.
