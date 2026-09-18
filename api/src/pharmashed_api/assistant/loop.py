@@ -15,7 +15,7 @@ from openai import OpenAI
 from pharmashed_api.assistant.guard import check as guard_check
 from pharmashed_api.assistant.tools import TOOL_FN_MAP, TOOL_SCHEMAS_OPENAI
 
-_DEFAULT_MODEL = "llama-3.3-70b-versatile"
+_DEFAULT_MODEL = "openai/gpt-oss-120b"
 _TEMPERATURE = 0.2
 _MAX_TOKENS = 800
 _MAX_TOOL_ROUNDS = 6
@@ -98,8 +98,15 @@ def run(question: str) -> dict:
         msg = response.choices[0].message
         finish = response.choices[0].finish_reason
 
-        # Always append the assistant turn
-        messages.append(msg.model_dump(exclude_unset=False))
+        # Append assistant turn — only include fields the API accepts
+        asst_msg: dict = {"role": "assistant", "content": msg.content}
+        if msg.tool_calls:
+            asst_msg["tool_calls"] = [
+                {"id": tc.id, "type": "function",
+                 "function": {"name": tc.function.name, "arguments": tc.function.arguments}}
+                for tc in msg.tool_calls
+            ]
+        messages.append(asst_msg)
 
         if finish != "tool_calls" or not msg.tool_calls:
             answer = msg.content or ""
