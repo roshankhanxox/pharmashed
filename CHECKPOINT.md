@@ -45,7 +45,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 | M00 | Repo scaffold | ☑ | uv workspace + Vite web app + Makefile; `make setup && make test` passes |
 | M01 | Contracts + fixtures + types | ☑ | 7 schemas, fixtures (2 cities x 3 sites x 6 drugs), pydantic + TS types generated |
 | M02 | Parameter registry | ☑ | Loader + CLI done; values = agent tasks A1–A6 (blocked on those) |
-| M03 | Consumption data | ☐ | Code only; values = agent tasks A7–A11 |
+| M03 | Consumption data | ☑ | Loader + CLI done; values = agent tasks A7–A11 |
 | M04 | Sites + streams | ☐ | Placement = agent task A14 |
 | M05 | Population (GHS-POP) | ☐ | |
 | M06 | Priors + sampling | ☐ | |
@@ -102,14 +102,31 @@ Needs M02/M03 loaders (with the new columns) to exist first, so the files have t
 
 ## Next up
 
-1. **M03** Consumption data (loader with the sourcing columns)
-2. Then run sourcing sessions **A1–A11** (M02/M03 loaders are ready for them), then **A12**
+1. Run sourcing sessions **A1–A11** (M02/M03 loaders are ready for them), then **A12**
+2. **M04** Sites and streams
 3. **H1** today (registration)
 
 ## Last session
 
-Built M02 (parameter registry): `data/params/drug_parameters.csv` ships as
-42 `todo` rows (6 drugs x 7 params) with the sourcing columns from
+Built M03 (consumption data): `data/consumption/consumption.csv` ships as
+30 `todo` rows (5 countries x 6 drugs) with the M03 columns (granularity,
+group_value, molecule_share, share_source_url) plus the sourcing columns
+from `SOURCING.md`. `engine/src/pharmashed/consumption.py`: `ConsumptionRow`
+(validates sourced rows: source_url+note required, granularity required,
+molecule rows need ddd_per_1000_per_day > 0, downscaled rows need
+group_value > 0 + molecule_share in (0,1] + share_source_url),
+`_check_shares_not_copied` (rejects the same molecule_share +
+share_source_url reused across two countries for one drug — SOURCING.md
+S3's "never one share across countries"), `load_rows`, `load_consumption`
+(strict raises `UnsourcedConsumptionError` listing every `todo` row; dev
+returns rows as-is), `consumption_value`, `provenance_entries`. CLI:
+`pharmashed consumption check [--strict]`, wired into `make data-check`.
+`engine/tests/test_consumption.py` (21 tests). `make test` passes (62
+python tests, 1 web test); ruff clean. Strict mode fails on the shipped
+file as expected (all 30 rows still need sourcing via A7-A11).
+
+(Previous session built M02 (parameter registry): `data/params/drug_parameters.csv`
+ships as 42 `todo` rows (6 drugs x 7 params) with the sourcing columns from
 `SOURCING.md` (evidence_quote, retrieved_at, verified, verify_note); `R`
 rows carry the "not required: w=0" note per D27. `data/params/priors.yaml`
 transcribed verbatim from IMPLEMENTATION.md M02 (locked decisions D04-D06,
@@ -120,10 +137,8 @@ min<max), `Dist.sample()` for all 4 distribution kinds, `load_drug_params`
 flags `dev_placeholders_used`; strict mode raises `UnsourcedParameterError`
 listing every non-`R` `todo` row), `load_priors`, `provenance_entries`.
 CLI: `pharmashed params check [--strict]`, wired into `make data-check`.
-`engine/tests/test_params.py` (24 tests) covers every validation rule plus
-strict/dev mode. `make test` passes (41 python tests, 1 web test); ruff
-clean. Strict mode fails on the shipped file as expected (36 rows still
-need sourcing via A1-A6) — that's correct, not a bug.
+Strict mode fails on the shipped file as expected (36 rows still need
+sourcing via A1-A6) — that's correct, not a bug.)
 
 (Full history of M00/M01 sessions is in git log; `docs/PharmaShed.md` v0.2
 is still an open blocker, see Blockers below.)

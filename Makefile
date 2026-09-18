@@ -12,7 +12,8 @@ fixtures:
 
 data-check:
 	uv run pharmashed params check
-	@echo "TODO M03-M04: validate consumption, sites"
+	uv run pharmashed consumption check
+	@echo "TODO M04: validate sites"
 
 run:
 	@echo "TODO M08-M11: engine run (dev mode) -> data/build/"

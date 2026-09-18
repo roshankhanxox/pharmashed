@@ -4,10 +4,18 @@ import argparse
 import sys
 from pathlib import Path
 
+from pharmashed.consumption import (
+    COUNTRIES,
+    UnsourcedConsumptionError,
+)
+from pharmashed.consumption import (
+    load_rows as load_consumption_rows,
+)
 from pharmashed.params import DRUGS, NUMERIC_PARAMS, UnsourcedParameterError, load_rows
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_PARAMS_PATH = REPO_ROOT / "data" / "params" / "drug_parameters.csv"
+DEFAULT_CONSUMPTION_PATH = REPO_ROOT / "data" / "consumption" / "consumption.csv"
 
 
 def _params_check(args: argparse.Namespace) -> int:
@@ -40,6 +48,37 @@ def _params_check(args: argparse.Namespace) -> int:
     return 0
 
 
+def _consumption_check(args: argparse.Namespace) -> int:
+    path = Path(args.path)
+    rows = load_consumption_rows(path)
+
+    by_country: dict[str, dict[str, str]] = {c: {} for c in COUNTRIES}
+    for row in rows:
+        label = row.status if row.status == "todo" else f"{row.status}:{row.granularity}"
+        by_country[row.country][row.drug] = label
+
+    header = "country".ljust(10) + "".join(d.ljust(18) for d in DRUGS)
+    print(header)
+    for country in COUNTRIES:
+        cells = [by_country[country].get(d, "missing") for d in DRUGS]
+        print(country.ljust(10) + "".join(c.ljust(18) for c in cells))
+
+    sourced = sum(1 for r in rows if r.status == "sourced")
+    todo = len(rows) - sourced
+    print(f"\n{sourced} sourced, {todo} todo (of {len(rows)} rows)")
+
+    if args.strict:
+        todo_rows = [r for r in rows if r.status == "todo"]
+        if todo_rows:
+            missing = [f"{r.country}:{r.drug}" for r in todo_rows]
+            print(f"\nSTRICT MODE FAILED: {len(missing)} unsourced row(s)")
+            print(UnsourcedConsumptionError(missing))
+            return 1
+        print("\nSTRICT MODE OK: all rows sourced")
+
+    return 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="pharmashed")
     subparsers = parser.add_subparsers(dest="command")
@@ -51,6 +90,16 @@ def main() -> None:
     check_parser.add_argument("--strict", action="store_true")
     check_parser.add_argument("--path", default=str(DEFAULT_PARAMS_PATH))
     check_parser.set_defaults(func=_params_check)
+
+    consumption_parser = subparsers.add_parser("consumption", help="consumption registry (M03)")
+    consumption_subparsers = consumption_parser.add_subparsers(dest="consumption_command")
+
+    consumption_check_parser = consumption_subparsers.add_parser(
+        "check", help="print sourced/todo status"
+    )
+    consumption_check_parser.add_argument("--strict", action="store_true")
+    consumption_check_parser.add_argument("--path", default=str(DEFAULT_CONSUMPTION_PATH))
+    consumption_check_parser.set_defaults(func=_consumption_check)
 
     args = parser.parse_args()
     if not hasattr(args, "func"):

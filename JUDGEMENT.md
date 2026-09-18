@@ -71,3 +71,21 @@ the old one for context.
 - `R` (WWTP removal) rows are excluded from the strict-mode "unsourced"
   count, per D27 (`w=0` for every MVP site makes `R` unused by the model
   equations in A4).
+
+## M03 — Consumption data
+
+- No dev-placeholder fallback (unlike M02's `load_drug_params`). M03's own
+  spec only asks for `load_consumption(path, mode) -> dict[(country,drug),
+  ConsumptionRow]` and `consumption_value(row) -> float`, with no resolved
+  "sample-ready" structure equivalent to M02's `DrugParams`/`Dist`. Adding a
+  fake consumption placeholder wasn't asked for and there's no downstream
+  consumer yet (that lands with the model core in M07); `consumption_value`
+  just raises on a `todo` row today. Revisit if M07 needs dev mode to run
+  end-to-end on unsourced consumption.
+- The "never one share across countries" rule (M03 spec, SOURCING.md S3) is
+  enforced as a load-time check (`_check_shares_not_copied`), not left as a
+  test-only convention: two sourced `group_downscaled` rows for the same
+  drug with an identical `(molecule_share, share_source_url)` pair raise
+  `ValueError` at `load_rows()`. Same share from two *different*
+  `share_source_url`s is allowed (a genuine coincidence, still individually
+  sourced).
