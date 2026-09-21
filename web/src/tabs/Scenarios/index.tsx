@@ -1,4 +1,4 @@
-import { useMemo, type ReactNode } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { useStore } from "../../data/store";
 import { applyScenario } from "../../data/scenario";
 import { BandChart, type BandRow } from "../../components/charts/BandChart";
@@ -11,15 +11,15 @@ const C = {
   raised:  "#242220",
   border:  "#292524",
   text:    "#f5f4f2",
-  muted:   "#a6a09b",
-  faint:   "#6b6460",
+  muted:   "#bdb8b3",
+  faint:   "#948e89",
   indigo:  "#7c75ff",
 } as const;
 
 const PRESETS = [
-  { label: "Sewer repair", desc: "Targeted repair reduces untreated discharge by half.", m: { lambda: 0.5 } },
-  { label: "Drought", desc: "Low river flow reduces dilution 5-fold.", m: { Q: 0.2 } },
-  { label: "Leakage hotspot", desc: "Barcelona-type high-leakage case (λ × 3).", m: { lambda: 3 } },
+  { label: "Sewer repair", desc: "Targeted repair reduces untreated discharge by half.", m: { lambda: 0.5, Q: 1, C: 1 } },
+  { label: "Drought", desc: "Low river flow reduces dilution 5-fold.", m: { lambda: 1, Q: 0.2, C: 1 } },
+  { label: "Leakage hotspot", desc: "Barcelona-type high-leakage case (λ × 3).", m: { lambda: 3, Q: 1, C: 1 } },
 ];
 
 function SliderField({
@@ -55,6 +55,7 @@ export function ScenariosTab() {
   const multipliers = useStore((s) => s.scenarioMultipliers);
   const setMultipliers = useStore((s) => s.setScenarioMultipliers);
   const resetScenario = useStore((s) => s.resetScenario);
+  const [activePreset, setActivePreset] = useState<string | null>(null);
 
   const siteEntry = useMemo(
     () => results?.results.find((r) => r.site_id === selectedSiteId && r.drug === selectedDrug),
@@ -118,6 +119,7 @@ export function ScenariosTab() {
 
   if (!draws || draws.length === 0) return <EmptyView reason="No stored draws for this site/drug combination." />;
 
+  // Baseline PEC row — fixed, used as ghost (faded) reference band
   const baseRow: BandRow | null = siteEntry
     ? {
         drug: selectedDrug,
@@ -131,6 +133,22 @@ export function ScenariosTab() {
       }
     : null;
 
+  // Scenario PEC row — draws are RQ values, so PEC = RQ × PNEC
+  const isBaseline = multipliers.lambda === 1 && multipliers.Q === 1 && multipliers.C === 1;
+  const scenarioRow: BandRow | null =
+    siteEntry && scenario && !isBaseline
+      ? {
+          drug: selectedDrug,
+          p5: scenario.p5 * siteEntry.pnec_ng_l,
+          p50: scenario.p50 * siteEntry.pnec_ng_l,
+          p95: scenario.p95 * siteEntry.pnec_ng_l,
+          pnec: siteEntry.pnec_ng_l,
+          lod: siteEntry.lod_ng_l ?? null,
+          score: scenario.score,
+          tier: scenario.score >= 0.5 ? "high" : scenario.score >= 0.1 ? "medium" : "low",
+        }
+      : null;
+
   return (
     <div className="flex h-full min-h-0" style={{ background: C.canvas }}>
       {/* Controls sidebar */}
@@ -141,7 +159,7 @@ export function ScenariosTab() {
         {/* Presets */}
         <div>
           <div
-            className="text-[10px] font-semibold uppercase mb-3"
+            className="text-xs font-semibold uppercase mb-3"
             style={{ color: C.faint, letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
           >
             Scenario presets
@@ -150,14 +168,19 @@ export function ScenariosTab() {
             {PRESETS.map((p) => (
               <button
                 key={p.label}
-                onClick={() => setMultipliers(p.m)}
+                onClick={() => { setMultipliers(p.m); setActivePreset(p.label); }}
                 className="text-left p-3 rounded-lg transition-all"
-                style={{ background: C.surface, border: `1px solid ${C.border}` }}
+                style={{
+                  background: activePreset === p.label ? "rgba(124,117,255,0.12)" : C.surface,
+                  border: `1px solid ${activePreset === p.label ? C.indigo : C.border}`,
+                }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor = C.indigo;
+                  if (activePreset !== p.label)
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = C.indigo;
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor = C.border;
+                  if (activePreset !== p.label)
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = C.border;
                 }}
               >
                 <div className="text-xs font-medium" style={{ color: C.text }}>{p.label}</div>
@@ -171,7 +194,7 @@ export function ScenariosTab() {
             >
               <div className="text-xs font-medium" style={{ color: C.muted }}>Riparian restoration</div>
               <span
-                className="text-[10px] px-1.5 py-0.5 rounded inline-block mt-1"
+                className="text-xs px-1.5 py-0.5 rounded inline-block mt-1"
                 style={{ background: "#1c1400", color: "#fbbf24", border: "1px solid #78350f", fontFamily: "ui-monospace, monospace" }}
               >
                 Illustrative
@@ -186,7 +209,7 @@ export function ScenariosTab() {
         {/* Fine controls */}
         <div className="flex flex-col gap-3">
           <div
-            className="text-[10px] font-semibold uppercase"
+            className="text-xs font-semibold uppercase"
             style={{ color: C.faint, letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
           >
             Fine controls
@@ -216,7 +239,7 @@ export function ScenariosTab() {
             onChange={(v) => setMultipliers({ C: v })}
           />
           <button
-            onClick={resetScenario}
+            onClick={() => { resetScenario(); setActivePreset(null); }}
             className="text-xs text-left underline"
             style={{ color: C.faint }}
           >
@@ -233,7 +256,7 @@ export function ScenariosTab() {
       <div className="flex-1 min-w-0 p-6 overflow-y-auto flex flex-col gap-6" style={{ background: C.canvas }}>
         <div>
           <div
-            className="text-[10px] font-semibold uppercase mb-1"
+            className="text-xs font-semibold uppercase mb-1"
             style={{ color: C.faint, letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
           >
             Scenario explorer
@@ -250,7 +273,7 @@ export function ScenariosTab() {
           >
             <div className="flex-1 min-w-36">
               <div
-                className="text-[10px] font-semibold uppercase mb-1"
+                className="text-xs font-semibold uppercase mb-1"
                 style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
               >
                 Baseline score
@@ -267,7 +290,7 @@ export function ScenariosTab() {
 
             <div className="flex-1 min-w-36">
               <div
-                className="text-[10px] font-semibold uppercase mb-1"
+                className="text-xs font-semibold uppercase mb-1"
                 style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
               >
                 Scenario score
@@ -292,12 +315,22 @@ export function ScenariosTab() {
         {baseRow && scenario && (
           <div>
             <div
-              className="text-[10px] font-semibold uppercase mb-2"
+              className="text-xs font-semibold uppercase mb-2"
               style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
             >
               Predicted <Term term="PEC">PEC</Term> ranges — recomputed over {scenario.n} stored draws
             </div>
-            <BandChart rows={[baseRow]} />
+            {scenarioRow ? (
+              <>
+                <div className="flex gap-4 text-xs mb-2" style={{ color: C.faint }}>
+                  <span style={{ opacity: 0.45 }}>── baseline</span>
+                  <span style={{ color: C.indigo }}>── scenario</span>
+                </div>
+                <BandChart rows={[scenarioRow]} ghostRows={[baseRow]} />
+              </>
+            ) : (
+              <BandChart rows={[baseRow]} />
+            )}
           </div>
         )}
 
