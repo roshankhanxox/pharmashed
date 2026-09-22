@@ -17,7 +17,7 @@ export function FhirTab() {
   if (!fhirIndex) return <LoadingView />;
 
   const { resource_counts, bundles } = fhirIndex;
-  const oahMeta = (fhirIndex as Record<string, unknown>)["oah_example_counts"] as Record<string, unknown> | undefined;
+  const oahMeta = (fhirIndex as unknown as Record<string, unknown>)["oah_example_counts"] as Record<string, unknown> | undefined;
   const pharmaBundles = bundles.filter((b) => b.name !== OAH_BUNDLE_NAME);
   const oahBundleMeta = bundles.find((b) => b.name === OAH_BUNDLE_NAME);
 

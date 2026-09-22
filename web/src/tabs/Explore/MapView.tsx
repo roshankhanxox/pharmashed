@@ -416,8 +416,8 @@ function SiteTooltip({
           <span
             className="text-xs px-1.5 py-0.5 rounded"
             style={{
-              background: overall.tier === "high" ? "rgba(239,68,68,0.15)" : overall.tier === "medium" ? "rgba(245,158,11,0.15)" : "rgba(34,197,94,0.15)",
-              color: TIER_DOT[overall.tier] ?? "#aaa",
+              background: scoreTier(overall.score) === "high" ? "rgba(239,68,68,0.15)" : scoreTier(overall.score) === "medium" ? "rgba(245,158,11,0.15)" : "rgba(34,197,94,0.15)",
+              color: TIER_DOT[scoreTier(overall.score)] ?? "#aaa",
               fontFamily: "ui-monospace, monospace",
             }}
           >
