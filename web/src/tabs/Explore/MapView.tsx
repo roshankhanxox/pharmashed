@@ -1,8 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useStore } from "../../data/store";
 import type { StyleSpecification } from "maplibre-gl";
+
+interface TooltipState {
+  siteId: string;
+  x: number;
+  y: number;
+}
 
 const TIER_COLORS: Record<string, string> = {
   high: "#ef4444",
@@ -32,9 +38,11 @@ const BASEMAP_STYLE: StyleSpecification = {
 
 export function MapView() {
   const mapRef = useRef<HTMLDivElement>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<maplibregl.Map | null>(null);
   const markersRef = useRef<maplibregl.Marker[]>([]);
   const fittedRef = useRef(false);
+  const [tooltip, setTooltip] = useState<TooltipState | null>(null);
 
   const results = useStore((s) => s.results);
   const sites = useStore((s) => s.sites);
@@ -185,6 +193,30 @@ export function MapView() {
         setSelectedCity(site.city);
       });
 
+      el.addEventListener("mouseenter", (e) => {
+        const containerRect = mapContainerRef.current?.getBoundingClientRect();
+        if (!containerRect) return;
+        setTooltip({
+          siteId,
+          x: (e as MouseEvent).clientX - containerRect.left,
+          y: (e as MouseEvent).clientY - containerRect.top,
+        });
+      });
+
+      el.addEventListener("mousemove", (e) => {
+        const containerRect = mapContainerRef.current?.getBoundingClientRect();
+        if (!containerRect) return;
+        setTooltip((prev) =>
+          prev?.siteId === siteId
+            ? { siteId, x: (e as MouseEvent).clientX - containerRect.left, y: (e as MouseEvent).clientY - containerRect.top }
+            : prev
+        );
+      });
+
+      el.addEventListener("mouseleave", () => {
+        setTooltip(null);
+      });
+
       const marker = new maplibregl.Marker({ element: el })
         .setLngLat([site.lonlat[0], site.lonlat[1]])
         .addTo(map);
@@ -198,8 +230,8 @@ export function MapView() {
     surface: "#1a1917",
     border:  "#292524",
     text:    "#f5f4f2",
-    muted:   "#a6a09b",
-    faint:   "#6b6460",
+    muted:   "#bdb8b3",
+    faint:   "#948e89",
     indigo:  "#7c75ff",
   } as const;
 
@@ -213,7 +245,7 @@ export function MapView() {
         {/* Cities */}
         <div className="flex gap-1.5 items-center min-w-0">
           <span
-            className="text-[10px] font-semibold uppercase w-8 shrink-0"
+            className="text-xs font-semibold uppercase w-8 shrink-0"
             style={{ color: C.faint, letterSpacing: "0.06em", fontFamily: "ui-monospace, monospace" }}
           >
             City
@@ -256,7 +288,7 @@ export function MapView() {
         {/* Drugs */}
         <div className="flex gap-1 items-center min-w-0">
           <span
-            className="text-[10px] font-semibold uppercase w-8 shrink-0"
+            className="text-xs font-semibold uppercase w-8 shrink-0"
             style={{ color: C.faint, letterSpacing: "0.06em", fontFamily: "ui-monospace, monospace" }}
           >
             Drug
@@ -289,7 +321,7 @@ export function MapView() {
               { label: "Low", color: "#22c55e", r: 4 },
             ] as const
           ).map(({ label, color, r }) => (
-            <span key={label} className="flex items-center gap-1.5 text-[10px]" style={{ color: C.faint }}>
+            <span key={label} className="flex items-center gap-1.5 text-xs" style={{ color: C.faint }}>
               <span
                 style={{
                   display: "inline-block",
@@ -305,14 +337,136 @@ export function MapView() {
               {label}
             </span>
           ))}
-          <span className="ml-auto text-[10px]" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>
+          <span className="ml-auto text-xs" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>
             score = share of draws with RQ &gt; 1
           </span>
         </div>
       </div>
 
-      {/* Map canvas */}
-      <div ref={mapRef} className="flex-1 min-h-0" style={{ background: "#1a1917" }} />
+      {/* Map canvas + tooltip overlay */}
+      <div ref={mapContainerRef} className="flex-1 min-h-0 relative" style={{ background: "#1a1917" }}>
+        <div ref={mapRef} className="w-full h-full" />
+        {tooltip && results && (
+          <SiteTooltip
+            siteId={tooltip.siteId}
+            x={tooltip.x}
+            y={tooltip.y}
+            results={results}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── Hover tooltip ─────────────────────────────────────────────────────────── */
+
+const TIER_DOT: Record<string, string> = {
+  high: "#ef4444",
+  medium: "#f59e0b",
+  low: "#22c55e",
+};
+
+function SiteTooltip({
+  siteId,
+  x,
+  y,
+  results,
+}: {
+  siteId: string;
+  x: number;
+  y: number;
+  results: import("../../types/contracts").Results;
+}) {
+  const siteResults = results.results
+    .filter((r) => r.site_id === siteId)
+    .sort((a, b) => b.score - a.score);
+
+  const overall = results.site_overall?.find((s) => s.site_id === siteId);
+  const topDrugs = siteResults.slice(0, 4);
+
+  // Position tooltip so it stays inside the container
+  const OFFSET = 14;
+  const style: React.CSSProperties = {
+    position: "absolute",
+    left: x + OFFSET,
+    top: y + OFFSET,
+    pointerEvents: "none",
+    zIndex: 1000,
+    background: "#1a1917",
+    border: "1px solid #292524",
+    borderRadius: 10,
+    padding: "10px 12px",
+    minWidth: 200,
+    maxWidth: 240,
+    boxShadow: "0 4px 16px rgba(0,0,0,0.5)",
+  };
+
+  return (
+    <div style={style}>
+      {/* Header */}
+      <div className="flex items-baseline justify-between gap-3 mb-2">
+        <span
+          className="text-xs font-semibold"
+          style={{ color: "#f5f4f2", fontFamily: "ui-monospace, monospace" }}
+        >
+          {siteId}
+        </span>
+        {overall && (
+          <span
+            className="text-xs px-1.5 py-0.5 rounded"
+            style={{
+              background: overall.tier === "high" ? "rgba(239,68,68,0.15)" : overall.tier === "medium" ? "rgba(245,158,11,0.15)" : "rgba(34,197,94,0.15)",
+              color: TIER_DOT[overall.tier] ?? "#aaa",
+              fontFamily: "ui-monospace, monospace",
+            }}
+          >
+            score {overall.score.toFixed(2)}
+          </span>
+        )}
+      </div>
+
+      {/* Drug rows */}
+      <div className="flex flex-col gap-1 mb-2.5">
+        {topDrugs.map((r) => (
+          <div key={r.drug} className="flex items-center gap-2">
+            <span
+              style={{
+                display: "inline-block",
+                width: 7,
+                height: 7,
+                borderRadius: "50%",
+                background: TIER_DOT[r.tier] ?? "#aaa",
+                flexShrink: 0,
+              }}
+            />
+            <span className="text-xs flex-1 truncate" style={{ color: "#bdb8b3" }}>
+              {r.drug}
+            </span>
+            <span
+              className="text-xs tabular-nums"
+              style={{ color: TIER_DOT[r.tier] ?? "#aaa", fontFamily: "ui-monospace, monospace" }}
+            >
+              {r.score.toFixed(2)}
+            </span>
+            <span
+              className="text-xs"
+              style={{ color: "#948e89", fontFamily: "ui-monospace, monospace" }}
+            >
+              RQ {r.rq.p50.toFixed(1)}
+            </span>
+          </div>
+        ))}
+        {siteResults.length > 4 && (
+          <div className="text-xs" style={{ color: "#948e89" }}>
+            +{siteResults.length - 4} more drugs
+          </div>
+        )}
+      </div>
+
+      <div className="text-xs" style={{ color: "#948e89" }}>
+        Click to inspect full profile →
+      </div>
     </div>
   );
 }

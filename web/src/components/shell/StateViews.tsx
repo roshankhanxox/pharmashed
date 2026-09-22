@@ -1,7 +1,7 @@
 export function LoadingView({ label = "Loading…" }: { label?: string }) {
   return (
     <div className="flex items-center justify-center h-full min-h-32 text-sm animate-pulse"
-      style={{ color: "#6b6460" }}>
+      style={{ color: "#948e89" }}>
       {label}
     </div>
   );
@@ -10,7 +10,7 @@ export function LoadingView({ label = "Loading…" }: { label?: string }) {
 export function EmptyView({ reason }: { reason: string }) {
   return (
     <div className="flex items-center justify-center h-full min-h-32 text-sm px-4 text-center"
-      style={{ color: "#6b6460" }}>
+      style={{ color: "#948e89" }}>
       {reason}
     </div>
   );

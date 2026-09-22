@@ -99,7 +99,16 @@ export interface FHIRIndex {
     path: string;
     resource_type: string;
     count: number;
+    source?: string;
+    description?: string;
   }[];
+  oah_example_counts?: {
+    Location: number;
+    Organization: number;
+    Observation: number;
+    source: string;
+    note: string;
+  };
   validation: {
     status: "pass" | "fail" | "unknown";
     errors: number;

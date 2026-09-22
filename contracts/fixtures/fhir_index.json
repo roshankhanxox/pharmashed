@@ -3,9 +3,17 @@
     "generated_at": "2026-09-18T00:00:00Z"
   },
   "resource_counts": {
-    "Location": 105,
-    "Observation": 660,
+    "Location": 107,
+    "Observation": 663,
+    "Organization": 1,
     "Provenance": 37
+  },
+  "oah_example_counts": {
+    "Location": 2,
+    "Organization": 1,
+    "Observation": 3,
+    "source": "hl7-eu/oah (OneAquaHealth IG, master branch)",
+    "note": "Air-quality and water-chemistry observations from Benevento (IT) and Almyros (GR) — unmodified IG examples, credited to the OneAquaHealth consortium"
   },
   "bundles": [
     {
@@ -61,6 +69,14 @@
       "path": "fhir/out/reference-measurements.json",
       "resource_type": "Bundle",
       "count": 6
+    },
+    {
+      "name": "oah-examples",
+      "path": "fhir/out/oah-examples.json",
+      "resource_type": "Bundle",
+      "count": 6,
+      "source": "OneAquaHealth IG (hl7-eu/oah)",
+      "description": "Unmodified OAH IG example resources: Benevento air-quality (Benzene, NO2) and Almyros water-chemistry (aluminium dissolved) — demonstrating co-existence of PharmaShed predictions and consortium environmental data on one FHIR server"
     }
   ],
   "validation": {

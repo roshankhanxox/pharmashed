@@ -25,7 +25,7 @@ export function ModelDiagram({ stages }: { stages: DiagramStage[] }) {
               <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300 text-center">
                 {stage.name}
               </span>
-              <span className="text-[10px] text-neutral-400 text-center mt-1 leading-tight">
+              <span className="text-xs text-neutral-400 text-center mt-1 leading-tight">
                 {stage.prior_summary}
               </span>
               {stage.provenance_key && (

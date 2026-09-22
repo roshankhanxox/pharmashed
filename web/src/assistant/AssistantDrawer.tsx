@@ -10,8 +10,8 @@ const C = {
   raised:  "#242220",
   border:  "#292524",
   text:    "#f5f4f2",
-  muted:   "#a6a09b",
-  faint:   "#6b6460",
+  muted:   "#bdb8b3",
+  faint:   "#948e89",
   indigo:  "#7c75ff",
 } as const;
 
@@ -126,7 +126,7 @@ export function AssistantDrawer() {
             />
             <h2 className="font-semibold text-sm" style={{ color: C.text }}>PharmaShed Assistant</h2>
             <span
-              className="text-[10px] px-1.5 py-0.5 rounded"
+              className="text-xs px-1.5 py-0.5 rounded"
               style={{ background: C.raised, color: C.faint, fontFamily: "ui-monospace, monospace", border: `1px solid ${C.border}` }}
             >
               Groq
@@ -188,7 +188,7 @@ export function AssistantDrawer() {
                   {m.toolCalls.map((tc, j) => (
                     <span
                       key={j}
-                      className="text-[10px] px-2 py-0.5 rounded-full"
+                      className="text-xs px-2 py-0.5 rounded-full"
                       style={{ background: C.raised, color: C.faint, fontFamily: "ui-monospace, monospace", border: `1px solid ${C.border}` }}
                     >
                       {tc.name}
@@ -211,7 +211,7 @@ export function AssistantDrawer() {
               {/* Guard warning */}
               {m.guardWarn && (
                 <div
-                  className="text-[10px] rounded px-2 py-0.5"
+                  className="text-xs rounded px-2 py-0.5"
                   style={{ background: "#1c1400", color: "#fbbf24", border: "1px solid #78350f" }}
                 >
                   ⚠ Some numbers could not be verified against tool results
@@ -231,7 +231,7 @@ export function AssistantDrawer() {
                         if (lnk.drug) setSelectedDrug(lnk.drug);
                         close();
                       }}
-                      className="text-[10px] underline"
+                      className="text-xs underline"
                       style={{ color: C.indigo }}
                     >
                       {lnk.label}
@@ -250,7 +250,7 @@ export function AssistantDrawer() {
 
         {/* Standing footer */}
         <div
-          className="px-5 py-2 text-[10px] shrink-0"
+          className="px-5 py-2 text-xs shrink-0"
           style={{ borderTop: `1px solid ${C.border}`, color: C.faint }}
         >
           Scores reflect assumed priors · assistant never computes values itself
@@ -303,11 +303,11 @@ function MarkdownText({ text }: { text: string }) {
         code: ({ children, className }) => {
           const isBlock = !!className;
           return isBlock ? (
-            <pre className="my-2 p-3 rounded-lg text-xs overflow-x-auto" style={{ background: "#0c0a09", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>
+            <pre className="my-2 p-3 rounded-lg text-xs overflow-x-auto" style={{ background: "#0c0a09", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>
               <code>{children}</code>
             </pre>
           ) : (
-            <code className="px-1.5 py-0.5 rounded text-[11px]" style={{ background: "#0c0a09", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>{children}</code>
+            <code className="px-1.5 py-0.5 rounded text-[11px]" style={{ background: "#0c0a09", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>{children}</code>
           );
         },
         ul: ({ children }) => <ul className="list-disc list-outside ml-4 mb-2 space-y-0.5">{children}</ul>,
@@ -320,14 +320,14 @@ function MarkdownText({ text }: { text: string }) {
         ),
         thead: ({ children }) => <thead>{children}</thead>,
         th: ({ children }) => (
-          <th className="px-3 py-1.5 text-left font-semibold border-b" style={{ borderColor: "#292524", color: "#a6a09b" }}>{children}</th>
+          <th className="px-3 py-1.5 text-left font-semibold border-b" style={{ borderColor: "#292524", color: "#bdb8b3" }}>{children}</th>
         ),
         td: ({ children }) => (
           <td className="px-3 py-1.5 border-b" style={{ borderColor: "#1a1917", color: "#f5f4f2" }}>{children}</td>
         ),
         tr: ({ children }) => <tr className="hover:bg-white/5 transition-colors">{children}</tr>,
         blockquote: ({ children }) => (
-          <blockquote className="border-l-2 pl-3 my-2 italic" style={{ borderColor: "#7c75ff", color: "#a6a09b" }}>{children}</blockquote>
+          <blockquote className="border-l-2 pl-3 my-2 italic" style={{ borderColor: "#7c75ff", color: "#bdb8b3" }}>{children}</blockquote>
         ),
         h1: ({ children }) => <h1 className="text-base font-bold mb-2 mt-1">{children}</h1>,
         h2: ({ children }) => <h2 className="text-sm font-semibold mb-1.5 mt-1">{children}</h2>,

@@ -8,10 +8,10 @@
   --color-border:        #292524;
   --color-border-subtle: #1e1c1b;
   --color-text:          #f5f4f2;
-  --color-text-muted:    #a6a09b;
-  --color-text-faint:    #6b6460;
-  --color-indigo:        #7c75ff;   /* electric indigo lightened for dark bg */
-  --color-indigo-deep:   #615fff;   /* hover/pressed */
+  --color-text-muted:    #b8b2ac;  /* was #a6a09b — bumped for contrast */
+  --color-text-faint:    #857f7a;  /* was #6b6460 — bumped for contrast */
+  --color-indigo:        #7c75ff;
+  --color-indigo-deep:   #615fff;
   --color-indigo-glow:   rgba(124,117,255,0.12);
   --color-high:          #ef4444;
   --color-medium:        #f59e0b;
@@ -20,7 +20,7 @@
   /* Typography */
   --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-sans:    'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-mono:    ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+  --font-mono:    'SFMono-Regular', ui-monospace, Menlo, Monaco, Consolas, monospace;
 }
 
 :root {
@@ -28,11 +28,18 @@
   background: #0c0a09;
   color: #f5f4f2;
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11'; /* Inter optical features */
+  font-optical-sizing: auto;
 }
 
 body {
   margin: 0;
   background: #0c0a09;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Animations */
@@ -59,3 +66,7 @@ body {
 
 /* Display font util */
 .font-display { font-family: 'Playfair Display', Georgia, serif; }
+
+/* Minimum legible sizes — override Tailwind's 12px floor */
+.text-xs { font-size: 0.8125rem; } /* 13px */
+.text-\[10px\] { font-size: 0.8125rem; } /* safety net for any stragglers */

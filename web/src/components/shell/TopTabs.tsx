@@ -42,7 +42,7 @@ export function TopTabs() {
               onClick={() => setActiveTab(t.id)}
               className="relative px-3 py-3.5 text-sm transition-colors shrink-0"
               style={{
-                color: active ? "#f5f4f2" : "#79716b",
+                color: active ? "#f5f4f2" : "#a09a95",
                 fontWeight: active ? 500 : 400,
                 borderBottom: active ? "2px solid #7c75ff" : "2px solid transparent",
               }}

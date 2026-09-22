@@ -8,8 +8,8 @@ const C = {
   raised:  "#242220",
   border:  "#292524",
   text:    "#f5f4f2",
-  muted:   "#a6a09b",
-  faint:   "#6b6460",
+  muted:   "#bdb8b3",
+  faint:   "#948e89",
   indigo:  "#7c75ff",
   indigoDp:"#615fff",
 } as const;
@@ -59,13 +59,21 @@ const CITATIONS = [
     ref: "Rodrigues et al. 2025",
     detail: "J. Hazard. Mater. 499:139946",
     note: "102 sites · 5 cities · 20 drugs — the observed dataset used for all consistency checks",
-    href: "https://doi.org/10.1016/j.jhazmat.2025.139946",
+    href: "https://pubmed.ncbi.nlm.nih.gov/39489128/",
+    doi: "10.1016/j.jhazmat.2025.139946",
+  },
+  {
+    ref: "Oldenkamp et al. 2018",
+    detail: "Environ. Sci. Technol. 52(21)",
+    note: "ePiE model — WWTP-routed pharmaceutical exposure, the baseline PharmaShed extends with the untreated pathway",
+    href: "https://doi.org/10.1021/acs.est.8b03862",
+    doi: "10.1021/acs.est.8b03862",
   },
   {
     ref: "OneAquaHealth FHIR IG",
-    detail: "HL7 FHIR · v0.1.x",
-    note: "Data standard for integrated environmental & health observations",
-    href: "https://oneaquahealth.org/fhir/",
+    detail: "HL7 FHIR · v0.1.x · hl7-eu/oah",
+    note: "Data standard for integrated environmental & health observations — profile used for PharmaShed FHIR output",
+    href: "https://github.com/hl7-eu/oah",
   },
   {
     ref: "IEEE Hackathon 2026",
@@ -309,7 +317,7 @@ export function HomeTab() {
                 <div>
                   <div className="text-sm font-medium" style={{ color: C.text }}>{c.name}</div>
                   <div
-                    className="text-[10px]"
+                    className="text-xs"
                     style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}
                   >
                     {c.id} · {c.note}
@@ -380,7 +388,7 @@ export function HomeTab() {
           <p className="text-xs mt-4 leading-relaxed" style={{ color: C.faint }}>
             Once parameters are sourced, every screen updates automatically — the consistency checks re-run, FHIR resources drop the{" "}
             <code
-              className="px-1 py-0.5 rounded text-[10px]"
+              className="px-1 py-0.5 rounded text-xs"
               style={{ background: C.raised, color: C.muted, fontFamily: "ui-monospace, monospace" }}
             >
               illustrative-parameter
@@ -410,7 +418,7 @@ export function HomeTab() {
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = C.border; }}
               >
                 <div
-                  className="text-[10px] font-semibold mb-2 tracking-widest"
+                  className="text-xs font-semibold mb-2 tracking-widest"
                   style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}
                 >
                   {item.icon}
@@ -452,7 +460,15 @@ export function HomeTab() {
                     {c.ref}
                   </div>
                   <div className="text-sm font-medium mb-0.5" style={{ color: C.text }}>{c.detail}</div>
-                  <div className="text-xs" style={{ color: C.faint }}>{c.note}</div>
+                  <div className="text-xs mb-1" style={{ color: C.faint }}>{c.note}</div>
+                  {"doi" in c && c.doi && (
+                    <div
+                      className="text-xs"
+                      style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}
+                    >
+                      doi:{c.doi}
+                    </div>
+                  )}
                 </div>
                 <a
                   href={c.href}

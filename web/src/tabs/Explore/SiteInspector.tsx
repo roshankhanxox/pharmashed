@@ -10,8 +10,8 @@ const C = {
   raised:  "#242220",
   border:  "#292524",
   text:    "#f5f4f2",
-  muted:   "#a6a09b",
-  faint:   "#6b6460",
+  muted:   "#bdb8b3",
+  faint:   "#948e89",
   indigo:  "#7c75ff",
 } as const;
 
@@ -77,14 +77,14 @@ export function SiteInspector() {
               {selectedSiteId}
             </h2>
             <span
-              className="text-[10px] px-1.5 py-0.5 rounded"
+              className="text-xs px-1.5 py-0.5 rounded"
               style={{ background: "#1c1400", color: "#fbbf24", border: "1px solid #78350f", fontFamily: "ui-monospace, monospace" }}
             >
               Illustrative
             </span>
             {overall && (
               <span
-                className="text-[10px] px-1.5 py-0.5 rounded"
+                className="text-xs px-1.5 py-0.5 rounded"
                 style={{ background: C.surface, color: C.muted, border: `1px solid ${C.border}`, fontFamily: "ui-monospace, monospace" }}
               >
                 #{overall.rank_in_city} of {first.n_in_city} in {selectedSiteId.split("-")[0]}
@@ -105,7 +105,7 @@ export function SiteInspector() {
       {/* BandChart */}
       <div>
         <div
-          className="text-[10px] font-semibold uppercase mb-2"
+          className="text-xs font-semibold uppercase mb-2"
           style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
         >
           Predicted concentrations · click a drug row to expand
@@ -125,7 +125,7 @@ export function SiteInspector() {
         >
           <div>
             <div
-              className="text-[10px] font-semibold uppercase mb-2"
+              className="text-xs font-semibold uppercase mb-2"
               style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
             >
               {expanded.drug} — draw distribution
@@ -136,7 +136,7 @@ export function SiteInspector() {
           {expanded.drivers?.length > 0 && (
             <div>
               <div
-                className="text-[10px] font-semibold uppercase mb-2"
+                className="text-xs font-semibold uppercase mb-2"
                 style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
               >
                 Sensitivity — Spearman ρ

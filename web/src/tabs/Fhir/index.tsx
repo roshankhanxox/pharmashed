@@ -3,15 +3,41 @@ import { useStore } from "../../data/store";
 import { LoadingView } from "../../components/shell/StateViews";
 import { loadFhirBundle } from "../../data/loaders";
 
+const OAH_BUNDLE_NAME = "oah-examples";
+
 export function FhirTab() {
   const fhirIndex = useStore((s) => s.fhirIndex);
   const [selected, setSelected] = useState<string | null>(null);
   const [bundle, setBundle] = useState<object | null>(null);
   const [loading, setLoading] = useState(false);
+  const [oahExpanded, setOahExpanded] = useState(false);
+  const [oahBundle, setOahBundle] = useState<object | null>(null);
+  const [oahLoading, setOahLoading] = useState(false);
 
   if (!fhirIndex) return <LoadingView />;
 
   const { resource_counts, bundles } = fhirIndex;
+  const oahMeta = (fhirIndex as Record<string, unknown>)["oah_example_counts"] as Record<string, unknown> | undefined;
+  const pharmaBundles = bundles.filter((b) => b.name !== OAH_BUNDLE_NAME);
+  const oahBundleMeta = bundles.find((b) => b.name === OAH_BUNDLE_NAME);
+
+  async function loadOahBundle() {
+    if (!oahBundleMeta || oahBundle) return;
+    setOahLoading(true);
+    try {
+      const data = await loadFhirBundle(oahBundleMeta.path);
+      setOahBundle(data as object);
+    } catch {
+      setOahBundle({ error: "Failed to load OAH examples bundle" });
+    } finally {
+      setOahLoading(false);
+    }
+  }
+
+  function toggleOah() {
+    setOahExpanded((v) => !v);
+    loadOahBundle();
+  }
 
   async function selectBundle(name: string, path: string) {
     setSelected(name);
@@ -35,15 +61,15 @@ export function FhirTab() {
       >
         <div>
           <div
-            className="text-[10px] font-semibold uppercase mb-2"
-            style={{ color: "#6b6460", letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
+            className="text-xs font-semibold uppercase mb-2"
+            style={{ color: "#948e89", letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
           >
             Resource counts
           </div>
           <dl className="text-xs space-y-1">
             {Object.entries(resource_counts).map(([type, count]) => (
               <div key={type} className="flex justify-between">
-                <dt style={{ color: "#a6a09b" }}>{type}</dt>
+                <dt style={{ color: "#bdb8b3" }}>{type}</dt>
                 <dd style={{ color: "#f5f4f2", fontFamily: "ui-monospace, monospace" }}>{count}</dd>
               </div>
             ))}
@@ -52,13 +78,13 @@ export function FhirTab() {
 
         <div>
           <div
-            className="text-[10px] font-semibold uppercase mb-2"
-            style={{ color: "#6b6460", letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
+            className="text-xs font-semibold uppercase mb-2"
+            style={{ color: "#948e89", letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
           >
             Bundles
           </div>
           <div className="flex flex-col gap-1">
-            {bundles.map((b) => (
+            {pharmaBundles.map((b) => (
               <button
                 key={b.name}
                 onClick={() => selectBundle(b.name, b.path)}
@@ -66,12 +92,12 @@ export function FhirTab() {
                 style={{
                   background: selected === b.name ? "#1a1917" : "transparent",
                   border: `1px solid ${selected === b.name ? "#292524" : "transparent"}`,
-                  color: selected === b.name ? "#7c75ff" : "#a6a09b",
+                  color: selected === b.name ? "#7c75ff" : "#bdb8b3",
                   fontFamily: "ui-monospace, monospace",
                 }}
               >
                 {b.name}
-                <span className="ml-1.5 text-xs" style={{ color: "#6b6460" }}>({b.count})</span>
+                <span className="ml-1.5 text-xs" style={{ color: "#948e89" }}>({b.count})</span>
               </button>
             ))}
           </div>
@@ -86,32 +112,32 @@ export function FhirTab() {
         {/* FHIR explainer — what does this solve? */}
         <div className="rounded-xl p-5" style={{ background: "#1a1917", border: "1px solid #292524" }}>
           <div
-            className="text-[10px] font-semibold uppercase mb-3"
-            style={{ color: "#6b6460", letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
+            className="text-xs font-semibold uppercase mb-3"
+            style={{ color: "#948e89", letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
           >
             What FHIR solves here
           </div>
           <h2 className="text-base font-semibold mb-3" style={{ color: "#f5f4f2" }}>
             Environmental predictions, interoperable with health records
           </h2>
-          <p className="text-sm leading-relaxed mb-4" style={{ color: "#a6a09b" }}>
+          <p className="text-sm leading-relaxed mb-4" style={{ color: "#bdb8b3" }}>
             FHIR (Fast Healthcare Interoperability Resources) is the HL7 standard for exchanging health data. The <strong style={{ color: "#f5f4f2" }}>OneAquaHealth Implementation Guide</strong> extends it to cover environmental health observations — air quality, water chemistry, pharmaceutical concentrations — in the same format as patient lab results.
           </p>
           <div className="grid gap-3 sm:grid-cols-3 mb-4">
             {[
               { icon: "⇄", title: "Interoperability", body: "A water authority and a hospital can query the same FHIR server. Environmental predictions and patient prescriptions share one standard." },
               { icon: "≠", title: "Model vs lab — distinguished", body: "category: model-prediction separates PharmaShed outputs from real lab results. Both can live in the same server, filterable by a single query parameter." },
-              { icon: "⊕", title: "Co-hosted with OAH data", body: "PharmaShed bundles sit alongside the OneAquaHealth IG's own Benevento example resources — demonstrating the consortium vision of one FHIR server for the whole One Health ecosystem." },
+              { icon: "⊕", title: "Co-hosted with OAH data", body: "PharmaShed bundles sit alongside the OneAquaHealth IG's own example resources — Benevento air quality (Benzene, NO₂) and Almyros water chemistry (aluminium dissolved) — demonstrating the consortium vision of one FHIR server for the whole One Health ecosystem. See the OAH Examples panel below." },
             ].map((item) => (
               <div key={item.title} className="rounded-lg p-4" style={{ background: "#242220", border: "1px solid #292524" }}>
                 <div className="text-lg mb-2" style={{ color: "#7c75ff", fontFamily: "ui-monospace, monospace" }}>{item.icon}</div>
                 <div className="text-xs font-semibold mb-1" style={{ color: "#f5f4f2" }}>{item.title}</div>
-                <div className="text-xs leading-relaxed" style={{ color: "#79716b" }}>{item.body}</div>
+                <div className="text-xs leading-relaxed" style={{ color: "#a09a95" }}>{item.body}</div>
               </div>
             ))}
           </div>
-          <p className="text-xs leading-relaxed" style={{ color: "#6b6460" }}>
-            Each PharmaShed prediction becomes an <code className="px-1 rounded" style={{ background: "#242220", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>Observation</code> resource with the <code className="px-1 rounded" style={{ background: "#242220", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>observation-with-component-oah</code> profile, components for PEC p05/p50/p95, RQ p50, priority score, and LOD share — and a <code className="px-1 rounded" style={{ background: "#242220", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>meta.tag: illustrative-parameter</code> that drops the moment real values replace illustrative ones.
+          <p className="text-xs leading-relaxed" style={{ color: "#948e89" }}>
+            Each PharmaShed prediction becomes an <code className="px-1 rounded" style={{ background: "#242220", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>Observation</code> resource with the <code className="px-1 rounded" style={{ background: "#242220", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>observation-with-component-oah</code> profile, components for PEC p05/p50/p95, RQ p50, priority score, and LOD share — and a <code className="px-1 rounded" style={{ background: "#242220", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>meta.tag: illustrative-parameter</code> that drops the moment real values replace illustrative ones.
           </p>
         </div>
 
@@ -130,9 +156,9 @@ export function FhirTab() {
               count={resource_counts["Observation"] ?? "?"}
             />
           </div>
-          <p className="text-xs mt-3" style={{ color: "#6b6460" }}>
+          <p className="text-xs mt-3" style={{ color: "#948e89" }}>
             A server query distinguishes model output from lab results via category{" "}
-            <code className="px-1 rounded" style={{ background: "#242220", color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>model-prediction</code>.
+            <code className="px-1 rounded" style={{ background: "#242220", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>model-prediction</code>.
           </p>
         </div>
 
@@ -152,7 +178,84 @@ export function FhirTab() {
           </div>
         )}
         {!loading && !bundle && (
-          <p className="text-xs" style={{ color: "#6b6460" }}>Select a bundle from the list to inspect its raw FHIR JSON.</p>
+          <p className="text-xs" style={{ color: "#948e89" }}>Select a bundle from the list to inspect its raw FHIR JSON.</p>
+        )}
+
+        {/* OAH IG Examples panel */}
+        {oahBundleMeta && (
+          <div className="rounded-xl" style={{ background: "#1a1917", border: "1px solid #7c75ff" }}>
+            {/* Header row — click to expand */}
+            <div
+              className="flex items-center justify-between px-5 py-4 cursor-pointer select-none"
+              onClick={toggleOah}
+            >
+              <div>
+                <div
+                  className="text-xs font-semibold uppercase mb-1"
+                  style={{ color: "#7c75ff", letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
+                >
+                  OneAquaHealth IG · Example data
+                </div>
+                <div className="text-sm font-semibold" style={{ color: "#f5f4f2" }}>
+                  OAH consortium resources co-hosted on this server
+                </div>
+                <div className="text-xs mt-0.5" style={{ color: "#bdb8b3" }}>
+                  Benevento air quality (Benzene, NO₂) · Almyros water chemistry — unmodified, credited to OAH IG (hl7-eu/oah)
+                </div>
+              </div>
+              <div className="shrink-0 ml-4 text-xs" style={{ color: "#7c75ff" }}>
+                {oahExpanded ? "▲ collapse" : "▼ expand"}
+              </div>
+            </div>
+
+            {oahExpanded && (
+              <div className="px-5 pb-5 flex flex-col gap-4" style={{ borderTop: "1px solid #292524" }}>
+                {/* Resource count chips */}
+                {oahMeta && (
+                  <div className="flex flex-wrap gap-2 pt-4">
+                    {(["Location", "Organization", "Observation"] as const).map((type) => (
+                      <div
+                        key={type}
+                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs"
+                        style={{ background: "#242220", border: "1px solid #292524" }}
+                      >
+                        <span style={{ color: "#7c75ff", fontFamily: "ui-monospace, monospace", fontWeight: 600 }}>
+                          {String(oahMeta[type] ?? 0)}
+                        </span>
+                        <span style={{ color: "#bdb8b3" }}>{type}</span>
+                      </div>
+                    ))}
+                    <div
+                      className="flex items-center px-2.5 py-1 rounded-lg text-xs"
+                      style={{ background: "#242220", border: "1px solid #292524", color: "#948e89", fontFamily: "ui-monospace, monospace" }}
+                    >
+                      category: laboratory
+                    </div>
+                  </div>
+                )}
+
+                <p className="text-xs leading-relaxed" style={{ color: "#bdb8b3" }}>
+                  These resources use the same{" "}
+                  <code className="px-1 rounded" style={{ background: "#242220", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>ObservationWithCompOah</code>{" "}
+                  profile as PharmaShed predictions. Both are distinguishable by{" "}
+                  <code className="px-1 rounded" style={{ background: "#242220", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>category</code>:
+                  OAH examples use <code className="px-1 rounded" style={{ background: "#242220", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>laboratory</code>;
+                  PharmaShed uses <code className="px-1 rounded" style={{ background: "#242220", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>model-prediction</code>.
+                  A single query parameter separates them on the same server.
+                </p>
+
+                {oahLoading && <LoadingView label="Loading OAH examples…" />}
+                {!oahLoading && oahBundle && (
+                  <div
+                    className="rounded-lg p-3 text-xs overflow-x-auto"
+                    style={{ background: "#0c0a09", border: "1px solid #292524", fontFamily: "ui-monospace, monospace" }}
+                  >
+                    <JsonTree value={oahBundle} depth={0} />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>
@@ -184,7 +287,7 @@ function QueryBox({ label, query, count }: { label: string; query: string; count
   return (
     <div className="flex-1 min-w-0">
       <div className="text-xs text-neutral-400 mb-1">{label}</div>
-      <code className="block bg-neutral-100 dark:bg-neutral-800 rounded p-2 text-[10px] break-all text-neutral-700 dark:text-neutral-300">
+      <code className="block bg-neutral-100 dark:bg-neutral-800 rounded p-2 text-xs break-all text-neutral-700 dark:text-neutral-300">
         {query}
       </code>
       <div className="text-xs text-neutral-400 mt-1">n = {count}</div>

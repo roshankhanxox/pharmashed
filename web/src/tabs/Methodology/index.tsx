@@ -4,23 +4,23 @@ import { LoadingView } from "../../components/shell/StateViews";
 import { ModelDiagram } from "../../components/charts/ModelDiagram";
 import { InfoButton } from "../../components/provenance/InfoButton";
 
-const ABLATION_LABELS = ["Population only", "Full model", "Full model (alt)"];
+const ABLATION_LABELS = ["WWTP-only (ePiE baseline)", "Population only", "Full model"];
 
 const ABLATION_DESCRIPTIONS = [
+  "Mimics ePiE and GREAT-ER: drug loads routed only via wastewater treatment plant outfalls. Every site in this dataset has w = 0 (no WWTP on the stream), so this model predicts PEC = 0 everywhere — rankings are arbitrary. This is the blind spot PharmaShed addresses.",
   "Uses only the population within a 500 m buffer of each site to estimate drug load. No national consumption data, no λ. Shows what population density alone tells you — it rank-orders cities but misses within-city variation driven by infrastructure quality.",
-  "The full PharmaShed model: population × national consumption rates × untreated leakage fraction λ ∈ (0.002, 0.15). This is what the map shows. Compare with Population-only to see how much consumption and λ add.",
-  "Same as Full — shown here for comparison against the Population-only step to isolate the contribution of the untreated pathway.",
+  "The full PharmaShed model: population × national consumption rates × untreated leakage fraction λ ∈ (0.002, 0.15). This is what the Explore map shows. Compare with Population-only to see how much the untreated pathway (λ) adds.",
 ];
 
 export function MethodologyTab() {
   const methodology = useStore((s) => s.methodology);
-  const [ablationIdx, setAblationIdx] = useState(2);
+  const [ablationIdx, setAblationIdx] = useState(2); // default: Full model
 
   if (!methodology) return <LoadingView />;
 
   const { stages, priors_table, identifiability_text, ablations } = methodology;
 
-  const variantOrder = ["pop_only", "full", "full"] as const;
+  const variantOrder = ["wwtp_only", "pop_only", "full"] as const;
   const variant = variantOrder[ablationIdx] ?? "full";
   const ablationPerCity = ablations?.per_city?.filter((a) => a.variant === variant) ?? [];
 
@@ -30,7 +30,7 @@ export function MethodologyTab() {
       {/* Intro */}
       <div>
         <h1 className="text-base font-semibold mb-1">Model methodology</h1>
-        <p className="text-sm leading-relaxed max-w-2xl" style={{ color: "#a6a09b" }}>
+        <p className="text-sm leading-relaxed max-w-2xl" style={{ color: "#bdb8b3" }}>
           PharmaShed estimates pharmaceutical concentrations at urban stream sites using a Monte Carlo mass-balance model. The core innovation is the <strong>untreated discharge pathway</strong> (λ): drug loads reaching streams directly via sewer leakage, misconnections, and overflow events — absent from ePiE and GREAT-ER, which only model treatment-plant outfalls.
         </p>
       </div>
@@ -39,7 +39,7 @@ export function MethodologyTab() {
       <section>
         <h2
           className="text-sm font-semibold uppercase tracking-wide mb-3"
-          style={{ color: "#6b6460" }}
+          style={{ color: "#948e89" }}
         >
           Model pipeline
         </h2>
@@ -50,7 +50,7 @@ export function MethodologyTab() {
       <section>
         <h2
           className="text-sm font-semibold uppercase tracking-wide mb-3"
-          style={{ color: "#6b6460" }}
+          style={{ color: "#948e89" }}
         >
           Priors
         </h2>
@@ -65,7 +65,7 @@ export function MethodologyTab() {
                   <th
                     key={h}
                     className="text-left py-2.5 px-3 font-semibold"
-                    style={{ color: "#6b6460", fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em", fontSize: "10px" }}
+                    style={{ color: "#948e89", fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em", fontSize: "12px" }}
                   >
                     {h.toUpperCase()}
                   </th>
@@ -76,18 +76,18 @@ export function MethodologyTab() {
               {priors_table?.map((row: PriorRow) => (
                 <tr key={row.param} style={{ borderBottom: "1px solid #1e1c1b" }}>
                   <td className="py-2 px-3" style={{ color: "#7c75ff", fontFamily: "ui-monospace, monospace" }}>{row.param}</td>
-                  <td className="py-2 px-3" style={{ color: "#a6a09b" }}>{row.distribution ?? "—"}</td>
-                  <td className="py-2 px-3" style={{ color: "#a6a09b", fontFamily: "ui-monospace, monospace" }}>{row.range ?? "—"}</td>
-                  <td className="py-2 px-3" style={{ color: "#6b6460" }}>{row.unit ?? ""}</td>
+                  <td className="py-2 px-3" style={{ color: "#bdb8b3" }}>{row.distribution ?? "—"}</td>
+                  <td className="py-2 px-3" style={{ color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>{row.range ?? "—"}</td>
+                  <td className="py-2 px-3" style={{ color: "#948e89" }}>{row.unit ?? ""}</td>
                   <td className="py-2 px-3">
                     <span
-                      className="px-1.5 py-0.5 rounded text-[10px]"
+                      className="px-1.5 py-0.5 rounded text-xs"
                       style={
                         row.status === "sourced"
                           ? { background: "#052e16", color: "#4ade80" }
                           : row.status === "assumption"
                           ? { background: "#1c1400", color: "#fbbf24" }
-                          : { background: "#1a1917", color: "#6b6460" }
+                          : { background: "#1a1917", color: "#948e89" }
                       }
                     >
                       {row.status}
@@ -107,7 +107,7 @@ export function MethodologyTab() {
       <section>
         <h2
           className="text-sm font-semibold uppercase tracking-wide mb-3"
-          style={{ color: "#6b6460" }}
+          style={{ color: "#948e89" }}
         >
           Identifiability
         </h2>
@@ -137,11 +137,11 @@ export function MethodologyTab() {
         <section>
           <h2
             className="text-sm font-semibold uppercase tracking-wide mb-2"
-            style={{ color: "#6b6460" }}
+            style={{ color: "#948e89" }}
           >
             Ablation — how much does each component add?
           </h2>
-          <p className="text-xs mb-4 leading-relaxed" style={{ color: "#79716b" }}>
+          <p className="text-xs mb-4 leading-relaxed" style={{ color: "#a09a95" }}>
             The ablation compares how site priority rankings change as model components are added one at a time. A large rank shift shows that the component carries meaningful information.
           </p>
 
@@ -168,7 +168,7 @@ export function MethodologyTab() {
                 style={{
                   background: ablationIdx === i ? "rgba(124,117,255,0.15)" : "#1a1917",
                   border: `1px solid ${ablationIdx === i ? "#7c75ff" : "#292524"}`,
-                  color: ablationIdx === i ? "#7c75ff" : "#a6a09b",
+                  color: ablationIdx === i ? "#7c75ff" : "#bdb8b3",
                 }}
               >
                 {label}
@@ -180,13 +180,23 @@ export function MethodologyTab() {
           {ABLATION_DESCRIPTIONS[ablationIdx] && (
             <div
               className="rounded-lg px-4 py-3 text-xs leading-relaxed mb-4"
-              style={{ background: "#1a1917", border: "1px solid #292524", color: "#a6a09b" }}
+              style={{ background: "#1a1917", border: "1px solid #292524", color: "#bdb8b3" }}
             >
               {ABLATION_DESCRIPTIONS[ablationIdx]}
             </div>
           )}
 
-          {ablationPerCity.length > 0 && (
+          {variant === "wwtp_only" && (
+            <div
+              className="rounded-lg px-4 py-3 text-xs"
+              style={{ background: "#450a0a", border: "1px solid #7f1d1d", color: "#fca5a5" }}
+            >
+              No rankings to show — all sites score 0 under the WWTP-only model.
+              Switch to <strong style={{ color: "#fecaca" }}>Full model</strong> to see how the untreated pathway changes everything.
+            </div>
+          )}
+
+          {variant !== "wwtp_only" && ablationPerCity.length > 0 && (
             <div className="flex flex-wrap gap-6">
               {ablationPerCity.map((cityData) => (
                 <div key={cityData.city} className="text-xs">
@@ -199,8 +209,8 @@ export function MethodologyTab() {
                   <div className="flex flex-col gap-1">
                     {cityData.ranking.map((siteId, i) => (
                       <div key={siteId} className="flex gap-2">
-                        <span className="w-4 text-right shrink-0" style={{ color: "#6b6460", fontFamily: "ui-monospace, monospace" }}>{i + 1}.</span>
-                        <span style={{ color: "#a6a09b" }}>{siteId}</span>
+                        <span className="w-4 text-right shrink-0" style={{ color: "#948e89", fontFamily: "ui-monospace, monospace" }}>{i + 1}.</span>
+                        <span style={{ color: "#bdb8b3" }}>{siteId}</span>
                       </div>
                     ))}
                   </div>

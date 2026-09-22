@@ -16,7 +16,7 @@ export function FooterStrip() {
       style={{
         borderTop: "1px solid #292524",
         background: "#0c0a09",
-        color: "#6b6460",
+        color: "#948e89",
         fontFamily: "ui-monospace, monospace",
         letterSpacing: "0.02em",
       }}
