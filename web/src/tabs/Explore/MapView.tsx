@@ -325,7 +325,7 @@ export function MapView() {
                   color: isActive ? C.indigo : C.muted,
                 }}
               >
-                {citizen ? cityName(city) : city}
+                {cityName(city)}
                 {summary && !citizen && (
                   <span className="ml-1.5 space-x-0.5">
                     {summary.high > 0 && (
@@ -408,7 +408,7 @@ export function MapView() {
         <div className="text-xs" style={{ color: C.faint }}>
           {citizen
             ? "Each glow marks one place we look at. Colour is not estimated between places."
-            : "Each glow is one monitoring site. Scores are not interpolated between sites."}
+            : "Each glow is one monitoring site. Scores are not interpolated between sites. H / M / L after a city = its number of high / medium / low priority sites."}
         </div>
       </div>
 

@@ -4,7 +4,7 @@ import { DrawHistogram } from "../../components/charts/DrawHistogram";
 import { Tornado } from "../../components/charts/Tornado";
 import { Term } from "../../components/glossary/Term";
 import { CitizenSiteCard } from "./CitizenSiteCard";
-import { TIER_LEGEND } from "../../data/copy";
+import { TopSitesPanel } from "./TopSitesPanel";
 
 const C = {
   canvas:  "var(--c-canvas)",
@@ -25,33 +25,9 @@ export function SiteInspector() {
   const audience       = useStore((s) => s.audience);
   const openAssistantFor = useStore((s) => s.openAssistantFor);
 
-  if (!results || !selectedSiteId) {
-    if (audience === "citizen") {
-      return (
-        <div className="flex flex-col items-center justify-center h-full gap-3 px-8 text-center">
-          <div className="text-4xl">👆</div>
-          <p className="text-lg font-medium" style={{ color: C.text }}>
-            Tap a coloured dot on the map to see how high that spot ranks for testing.
-          </p>
-          <p className="text-base leading-relaxed" style={{ color: C.muted }}>
-            Red = {TIER_LEGEND.high.toLowerCase()} · Amber = {TIER_LEGEND.medium.toLowerCase()} · Green = {TIER_LEGEND.low.toLowerCase()}
-          </p>
-        </div>
-      );
-    }
-    return (
-      <div className="flex flex-col items-center justify-center h-full gap-3 px-8 text-center">
-        <div className="text-3xl">👆</div>
-        <p className="text-sm" style={{ color: C.faint }}>
-          Click a site marker on the map to inspect its pharmaceutical concentration profile.
-        </p>
-        <p className="text-xs leading-relaxed" style={{ color: C.faint }}>
-          Markers are coloured by sampling priority score — the share of Monte Carlo draws where the risk quotient RQ exceeds 1.
-          Red = high (&ge;0.5) · Amber = medium (&ge;0.1) · Green = low.
-        </p>
-      </div>
-    );
-  }
+  // Nothing selected yet: show the highest-priority sites instead of a blank panel.
+  if (!results) return null;
+  if (!selectedSiteId) return <TopSitesPanel />;
 
   if (audience === "citizen") return <CitizenSiteCard siteId={selectedSiteId} />;
 
