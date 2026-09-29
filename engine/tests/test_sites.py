@@ -48,7 +48,7 @@ def test_sites_geojson_exists():
 
 def test_load_sites_count():
     sites = load_sites(SITES_GEOJSON)
-    assert 40 <= len(sites) <= 50, f"Expected 40–50 sites, got {len(sites)}"
+    assert 100 <= len(sites) <= 110, f"Expected 100–110 sites (D41), got {len(sites)}"
 
 
 def test_load_sites_types():
@@ -68,7 +68,7 @@ def test_load_sites_per_city_count():
     from collections import Counter
     counts = Counter(s.city for s in sites)
     for city, count in counts.items():
-        assert 8 <= count <= 10, f"{city}: expected 8–10 sites, got {count}"
+        assert 20 <= count <= 22, f"{city}: expected 20–22 sites (D41), got {count}"
 
 
 def test_load_sites_ids_unique():

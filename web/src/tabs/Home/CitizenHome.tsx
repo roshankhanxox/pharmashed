@@ -60,7 +60,7 @@ export function CitizenHome() {
             <button
               onClick={() => setActiveTab("explore")}
               className="px-6 py-3 rounded-lg text-base font-semibold"
-              style={{ background: "var(--c-indigo)", color: "#fff" }}
+              style={{ background: "var(--c-accent)", color: "var(--c-on-accent)" }}
             >
               Open the stream map →
             </button>
@@ -83,7 +83,7 @@ export function CitizenHome() {
             { n: "6", label: "common medicines" },
           ].map(({ n, label }, i) => (
             <div key={label} className="flex-1 py-5 text-center" style={{ borderLeft: i > 0 ? "1px solid var(--c-border)" : "none" }}>
-              <div className="text-3xl font-semibold" style={{ color: "var(--c-indigo)" }}>{n}</div>
+              <div className="text-3xl font-semibold" style={{ color: "var(--c-accent)" }}>{n}</div>
               <div className="text-sm mt-0.5" style={{ color: "var(--c-muted2)" }}>{label}</div>
             </div>
           ))}
@@ -115,7 +115,7 @@ export function CitizenHome() {
                 <div className="flex gap-4 items-start rounded-xl p-4" style={{ background: "var(--c-surface)", border: "1px solid var(--c-border)" }}>
                   <div
                     className="w-9 h-9 shrink-0 rounded-full flex items-center justify-center font-semibold"
-                    style={{ background: "var(--c-indigo)", color: "#fff" }}
+                    style={{ background: "var(--c-accent)", color: "var(--c-on-accent)" }}
                   >
                     {s.n}
                   </div>
@@ -151,7 +151,7 @@ export function CitizenHome() {
         <Reveal>
           <p className="text-sm text-center pb-6" style={{ color: "var(--c-muted2)" }}>
             Want the model, the checks and the health-data standard behind this?{" "}
-            <button onClick={() => setAudience("expert")} className="underline font-medium" style={{ color: "var(--c-indigo)" }}>
+            <button onClick={() => setAudience("expert")} className="underline font-medium" style={{ color: "var(--c-accent)" }}>
               Switch to Expert view
             </button>
           </p>

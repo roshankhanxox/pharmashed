@@ -80,7 +80,7 @@ export function CitizenSiteCard({ siteId }: { siteId: string }) {
           <button
             onClick={() => openAssistantFor(siteId)}
             className="px-5 py-2.5 rounded-lg font-semibold"
-            style={{ background: "var(--c-indigo)", color: "#fff" }}
+            style={{ background: "var(--c-accent)", color: "var(--c-on-accent)" }}
           >
             Ask about this site
           </button>
@@ -100,7 +100,7 @@ export function CitizenSiteCard({ siteId }: { siteId: string }) {
           <p>{DEMO_NOTICE}</p>
           <p>
             Want the charts and numbers?{" "}
-            <button onClick={() => setAudience("expert")} className="underline font-medium" style={{ color: "var(--c-indigo)" }}>
+            <button onClick={() => setAudience("expert")} className="underline font-medium" style={{ color: "var(--c-accent)" }}>
               Switch to Expert view
             </button>
           </p>

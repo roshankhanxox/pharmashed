@@ -130,7 +130,7 @@ export function BandChart({ rows, onRowClick, expandedDrug, ghostRows }: BandCha
                 y1={0}
                 x2={toX(row.pnec)}
                 y2={20}
-                stroke="#6366f1"
+                stroke="var(--c-accent)"
                 strokeWidth={1}
                 strokeDasharray="3,2"
               />
@@ -156,8 +156,8 @@ export function BandChart({ rows, onRowClick, expandedDrug, ghostRows }: BandCha
 
         {/* legend */}
         <g transform={`translate(${LABEL_W},${h - 18})`}>
-          <line x1={0} y1={-3} x2={12} y2={-3} stroke="var(--c-indigo-soft)" strokeWidth={1} strokeDasharray="3,2" />
-          <text x={16} y={0} fontSize={12} fill="var(--c-indigo-soft)"><Term term="PNEC">PNEC</Term></text>
+          <line x1={0} y1={-3} x2={12} y2={-3} stroke="var(--c-accent-soft)" strokeWidth={1} strokeDasharray="3,2" />
+          <text x={16} y={0} fontSize={12} fill="var(--c-accent-soft)"><Term term="PNEC">PNEC</Term></text>
           <line x1={60} y1={-3} x2={72} y2={-3} stroke="var(--c-slate)" strokeWidth={1} strokeDasharray="2,2" />
           <text x={76} y={0} fontSize={12} fill="var(--c-slate)">LOD</text>
         </g>

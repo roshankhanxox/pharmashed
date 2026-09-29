@@ -18,6 +18,11 @@ export type Audience = "citizen" | "expert";
 /** Tabs that only exist in expert view. */
 export const EXPERT_ONLY_TABS: readonly Tab[] = ["consistency", "methodology", "fhir"];
 
+/** City id of a site id ("TLS-01" -> "TLS"). */
+export function cityOfSite(siteId: string): string {
+  return siteId.split("-")[0];
+}
+
 const AUDIENCE_KEY = "ps-audience";
 const DEFAULT_AUDIENCE: Audience = "citizen";
 
@@ -158,8 +163,17 @@ export const useStore = create<AppStore>((set, get) => ({
     set({ audience: a, ...(leaveTab ? { activeTab: "home" as Tab } : {}) });
   },
   setActiveTab: (t) => set({ activeTab: t }),
-  setSelectedCity: (c) => set({ selectedCity: c }),
-  setSelectedSiteId: (id) => set({ selectedSiteId: id }),
+  // City and site selection stay consistent: switching to another city drops a site that belongs to a
+  // different city (the inspector then shows that city's top sites), and picking a site moves the
+  // city filter to the site's city. Site ids look like "TLS-01": the prefix is the city id.
+  setSelectedCity: (c) =>
+    set((s) =>
+      c && s.selectedSiteId && cityOfSite(s.selectedSiteId) !== c
+        ? { selectedCity: c, selectedSiteId: null, expandedDrug: null }
+        : { selectedCity: c },
+    ),
+  setSelectedSiteId: (id) =>
+    set(id ? { selectedSiteId: id, selectedCity: cityOfSite(id) } : { selectedSiteId: null }),
   setSelectedDrug: (d) => set({ selectedDrug: d }),
   setExpandedDrug: (d) => set({ expandedDrug: d }),
 

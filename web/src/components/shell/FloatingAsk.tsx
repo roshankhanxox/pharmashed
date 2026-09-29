@@ -16,9 +16,9 @@ export function FloatingAsk() {
       aria-label="Open the PharmaShed assistant"
       className="fixed z-40 right-5 bottom-14 flex items-center gap-2 px-5 py-3 rounded-full font-semibold"
       style={{
-        background: "var(--c-indigo)",
-        color: "#fff",
-        boxShadow: "0 6px 20px rgba(79,70,229,0.35)",
+        background: "var(--c-accent)",
+        color: "var(--c-on-accent)",
+        boxShadow: "0 6px 20px color-mix(in srgb, var(--c-accent) 35%, transparent)",
       }}
     >
       <span aria-hidden="true">✦</span>

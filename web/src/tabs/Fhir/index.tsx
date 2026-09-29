@@ -3,6 +3,7 @@ import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 import { useStore } from "../../data/store";
 import { LoadingView } from "../../components/shell/StateViews";
 import { loadFhirBundle } from "../../data/loaders";
+import { validationBadge, type ValidationInfo } from "./validation";
 
 const OAH_BUNDLE_NAME = "oah-examples";
 
@@ -94,7 +95,7 @@ export function FhirTab() {
                 style={{
                   background: selected === b.name ? "var(--c-surface)" : "transparent",
                   border: `1px solid ${selected === b.name ? "var(--c-border)" : "transparent"}`,
-                  color: selected === b.name ? "var(--c-indigo)" : "var(--c-muted)",
+                  color: selected === b.name ? "var(--c-accent)" : "var(--c-muted)",
                 }}
               >
                 {b.name}
@@ -104,7 +105,7 @@ export function FhirTab() {
           </div>
         </div>
 
-        <ValidationBadge fhirIndex={{ validation: fhirIndex.validation }} />
+        <ValidationBadge validation={fhirIndex.validation} />
       </aside>
 
       {/* Right: explainer + JSON viewer */}
@@ -131,7 +132,7 @@ export function FhirTab() {
               { icon: "⊕", title: "Co-hosted with OAH data", body: "PharmaShed bundles sit alongside the OneAquaHealth IG's own example resources — Benevento air quality (Benzene, NO₂) and Almyros water chemistry (aluminium dissolved) — demonstrating the consortium vision of one FHIR server for the whole One Health ecosystem. See the OAH Examples panel below." },
             ].map((item) => (
               <div key={item.title} className="rounded-lg p-4" style={{ background: "var(--c-raised)", border: "1px solid var(--c-border)" }}>
-                <div className="text-lg mb-2" style={{ color: "var(--c-indigo)" }}>{item.icon}</div>
+                <div className="text-lg mb-2" style={{ color: "var(--c-accent)" }}>{item.icon}</div>
                 <div className="text-xs font-semibold mb-1" style={{ color: "var(--c-text)" }}>{item.title}</div>
                 <div className="text-xs leading-relaxed" style={{ color: "var(--c-muted2)" }}>{item.body}</div>
               </div>
@@ -184,7 +185,7 @@ export function FhirTab() {
 
         {/* OAH IG Examples panel */}
         {oahBundleMeta && (
-          <div className="rounded-xl" style={{ background: "var(--c-surface)", border: "1px solid var(--c-indigo)" }}>
+          <div className="rounded-xl" style={{ background: "var(--c-surface)", border: "1px solid var(--c-accent)" }}>
             {/* Header row — click to expand */}
             <div
               className="flex items-center justify-between px-5 py-4 cursor-pointer select-none"
@@ -193,7 +194,7 @@ export function FhirTab() {
               <div>
                 <div
                   className="text-xs font-semibold uppercase mb-1"
-                  style={{ color: "var(--c-indigo)", letterSpacing: "0.06em" }}
+                  style={{ color: "var(--c-accent)", letterSpacing: "0.06em" }}
                 >
                   OneAquaHealth IG · Example data
                 </div>
@@ -204,7 +205,7 @@ export function FhirTab() {
                   Benevento air quality (Benzene, NO₂) · Almyros water chemistry — unmodified, credited to OAH IG (hl7-eu/oah)
                 </div>
               </div>
-              <div className="shrink-0 ml-4 text-xs" style={{ color: "var(--c-indigo)" }}>
+              <div className="shrink-0 ml-4 text-xs" style={{ color: "var(--c-accent)" }}>
                 {oahExpanded ? "▲ collapse" : "▼ expand"}
               </div>
             </div>
@@ -220,7 +221,7 @@ export function FhirTab() {
                         className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs"
                         style={{ background: "var(--c-raised)", border: "1px solid var(--c-border)" }}
                       >
-                        <span style={{ color: "var(--c-indigo)", fontWeight: 600 }}>
+                        <span style={{ color: "var(--c-accent)", fontWeight: 600 }}>
                           {String(oahMeta[type] ?? 0)}
                         </span>
                         <span style={{ color: "var(--c-muted)" }}>{type}</span>
@@ -263,22 +264,19 @@ export function FhirTab() {
   );
 }
 
-function ValidationBadge({ fhirIndex }: { fhirIndex: { validation?: { errors?: number; status?: string; ci_log_url?: string | null } } }) {
-  const errors = fhirIndex.validation?.errors ?? 0;
+function ValidationBadge({ validation }: { validation?: ValidationInfo }) {
+  const { tone, text } = validationBadge(validation);
+  const colours = {
+    ok: { bg: "var(--c-ok-bg)", border: "var(--c-ok-border)", text: "var(--c-ok-text)" },
+    warn: { bg: "var(--c-warn-bg)", border: "var(--c-warn-border)", text: "var(--c-warn-text)" },
+    neutral: { bg: "var(--c-raised)", border: "var(--c-border)", text: "var(--c-muted)" },
+  }[tone];
   return (
     <div
       className="rounded-lg px-3 py-2 text-xs"
-      style={{
-        background: errors === 0 ? "var(--c-ok-bg)" : "var(--c-warn-bg)",
-        border: `1px solid ${errors === 0 ? "var(--c-ok-border)" : "var(--c-warn-border)"}`,
-        color: errors === 0 ? "var(--c-ok-text)" : "var(--c-warn-text)",
-      }}
+      style={{ background: colours.bg, border: `1px solid ${colours.border}`, color: colours.text }}
     >
-      {errors === 0 ? (
-        <span>✓ Validates against OneAquaHealth IG</span>
-      ) : (
-        <span>⚠ {errors} validation error{errors !== 1 ? "s" : ""}</span>
-      )}
+      <span>{text}</span>
     </div>
   );
 }
@@ -347,7 +345,7 @@ function JsonTree({ value, depth }: { value: unknown; depth: number }) {
         <ul className="ml-4 border-l border-neutral-200 dark:border-neutral-700 pl-2">
           {entries.map(([k, v]) => (
             <li key={k}>
-              <span className={`text-xs font-mono ${HIGHLIGHTED_KEYS.has(k) ? "text-purple-700 dark:text-purple-300 font-semibold" : "text-neutral-600 dark:text-neutral-400"}`}>
+              <span className={`text-xs font-mono ${HIGHLIGHTED_KEYS.has(k) ? "text-[color:var(--c-accent)] font-semibold" : "text-neutral-600 dark:text-neutral-400"}`}>
                 {k}:{" "}
               </span>
               <JsonTree value={v} depth={depth + 1} />

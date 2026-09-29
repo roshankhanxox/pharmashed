@@ -29,7 +29,7 @@ export function ConsistencyTab() {
         <span className="text-lg">🔒</span>
         <span>
           Predictions frozen at tag{" "}
-          <code className="px-1.5 py-0.5 rounded" style={{ background: "var(--c-raised)", color: "var(--c-indigo)" }}>{meta.frozen_tag}</code>
+          <code className="px-1.5 py-0.5 rounded" style={{ background: "var(--c-raised)", color: "var(--c-accent)" }}>{meta.frozen_tag}</code>
           {" · "}sha256{" "}
           <code className="px-1.5 py-0.5 rounded" style={{ background: "var(--c-raised)", color: "var(--c-muted)" }}>{meta.frozen_sha256.slice(0, 12)}…</code>
         </span>

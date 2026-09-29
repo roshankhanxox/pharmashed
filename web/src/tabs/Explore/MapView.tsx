@@ -146,10 +146,10 @@ export function MapView() {
         source: SITES_SOURCE,
         filter: ["==", ["get", "id"], ""],
         paint: {
-          "circle-color": "#3b82f6",
+          "circle-color": "#1c1917",
           "circle-opacity": 0,
           "circle-radius": 13,
-          "circle-stroke-color": "#3b82f6",
+          "circle-stroke-color": "#1c1917",
           "circle-stroke-width": 3,
         },
       });
@@ -292,7 +292,7 @@ export function MapView() {
     text:    "var(--c-text)",
     muted:   "var(--c-muted)",
     faint:   "var(--c-faint)",
-    indigo:  "var(--c-indigo)",
+    indigo:  "var(--c-accent)",
   } as const;
 
   return (
@@ -321,11 +321,11 @@ export function MapView() {
                 className="px-2 py-0.5 text-xs rounded transition-all shrink-0"
                 style={{
                   border: `1px solid ${isActive ? C.indigo : C.border}`,
-                  background: isActive ? "rgba(124,117,255,0.12)" : "transparent",
+                  background: isActive ? "var(--c-accent-tint)" : "transparent",
                   color: isActive ? C.indigo : C.muted,
                 }}
               >
-                {citizen ? cityName(city) : city}
+                {cityName(city)}
                 {summary && !citizen && (
                   <span className="ml-1.5 space-x-0.5">
                     {summary.high > 0 && (
@@ -361,7 +361,7 @@ export function MapView() {
               className="px-2 py-0.5 text-xs rounded transition-all shrink-0"
               style={{
                 border: `1px solid ${selectedDrug === d ? C.indigo : C.border}`,
-                background: selectedDrug === d ? "rgba(124,117,255,0.12)" : "transparent",
+                background: selectedDrug === d ? "var(--c-accent-tint)" : "transparent",
                 color: selectedDrug === d ? C.indigo : C.muted,
               }}
             >
@@ -408,7 +408,7 @@ export function MapView() {
         <div className="text-xs" style={{ color: C.faint }}>
           {citizen
             ? "Each glow marks one place we look at. Colour is not estimated between places."
-            : "Each glow is one monitoring site. Scores are not interpolated between sites."}
+            : "Each glow is one monitoring site. Scores are not interpolated between sites. H / M / L after a city = its number of high / medium / low priority sites."}
         </div>
       </div>
 

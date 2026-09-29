@@ -53,7 +53,7 @@ export function TopTabs() {
               style={{
                 color: active ? "var(--c-text)" : "var(--c-muted2)",
                 fontWeight: active ? 500 : 400,
-                borderBottom: active ? "2px solid var(--c-indigo)" : "2px solid transparent",
+                borderBottom: active ? "2px solid var(--c-accent)" : "2px solid transparent",
               }}
             >
               {t.label}
@@ -72,12 +72,12 @@ export function TopTabs() {
         onClick={openAssistant}
         className="ml-3 shrink-0 px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all"
         style={{
-          background: "var(--c-indigo)",
-          color: "#ffffff",
+          background: "var(--c-accent)",
+          color: "var(--c-on-accent)",
           letterSpacing: "0.04em",
         }}
-        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "var(--c-indigo-deep)"; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "var(--c-indigo)"; }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "var(--c-accent-deep)"; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "var(--c-accent)"; }}
       >
         Assistant
       </button>

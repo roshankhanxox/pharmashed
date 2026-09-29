@@ -78,7 +78,7 @@ export function MethodologyTab() {
             <tbody>
               {priors_table?.map((row: PriorRow) => (
                 <tr key={row.param} style={{ borderBottom: "1px solid var(--c-border-subtle)" }}>
-                  <td className="py-2 px-3" style={{ color: "var(--c-indigo)" }}>{row.param}</td>
+                  <td className="py-2 px-3" style={{ color: "var(--c-accent)" }}>{row.param}</td>
                   <td className="py-2 px-3" style={{ color: "var(--c-muted)" }}>{row.distribution ?? "—"}</td>
                   <td className="py-2 px-3" style={{ color: "var(--c-muted)" }}>{row.range ?? "—"}</td>
                   <td className="py-2 px-3" style={{ color: "var(--c-faint)" }}>{row.unit ?? ""}</td>
@@ -169,9 +169,9 @@ export function MethodologyTab() {
                 onClick={() => setAblationIdx(i)}
                 className="px-3 py-1.5 text-xs rounded-lg transition-all"
                 style={{
-                  background: ablationIdx === i ? "rgba(124,117,255,0.15)" : "var(--c-surface)",
-                  border: `1px solid ${ablationIdx === i ? "var(--c-indigo)" : "var(--c-border)"}`,
-                  color: ablationIdx === i ? "var(--c-indigo)" : "var(--c-muted)",
+                  background: ablationIdx === i ? "var(--c-accent-tint)" : "var(--c-surface)",
+                  border: `1px solid ${ablationIdx === i ? "var(--c-accent)" : "var(--c-border)"}`,
+                  color: ablationIdx === i ? "var(--c-accent)" : "var(--c-muted)",
                 }}
               >
                 {label}
