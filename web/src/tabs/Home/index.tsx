@@ -1,6 +1,7 @@
 import { useStore } from "../../data/store";
 import { ArchDiagram } from "./ArchDiagram";
 import { CitizenHome } from "./CitizenHome";
+import { AskBar } from "../../components/shell/AskBar";
 import { Reveal } from "../../components/shell/Reveal";
 import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 
@@ -183,6 +184,11 @@ function ExpertHome() {
           >
             Read methodology
           </button>
+        </div>
+
+        <div className="mt-8">
+          <div className="text-sm font-medium mb-2" style={{ color: C.muted }}>Or ask the assistant:</div>
+          <AskBar />
         </div>
       </section></Reveal>
 

@@ -17,6 +17,7 @@ import { FooterStrip } from "./components/shell/FooterStrip";
 import { DevBanner } from "./components/shell/DevBanner";
 import { ProvenanceDrawer } from "./components/provenance/ProvenanceDrawer";
 import { AssistantDrawer } from "./assistant/AssistantDrawer";
+import { FloatingAsk } from "./components/shell/FloatingAsk";
 import { LoadingView, InvalidView } from "./components/shell/StateViews";
 
 import { HomeTab } from "./tabs/Home";
@@ -111,6 +112,7 @@ function App() {
 
       <FooterStrip />
       <ProvenanceDrawer />
+      <FloatingAsk />
       <AssistantDrawer />
     </div>
   );

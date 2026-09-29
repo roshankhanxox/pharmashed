@@ -5,6 +5,7 @@
 import { useStore } from "../../data/store";
 import { DEMO_NOTICE, SCORE_CAVEAT, TIER_LEGEND } from "../../data/copy";
 import { Reveal } from "../../components/shell/Reveal";
+import { AskBar } from "../../components/shell/AskBar";
 import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 
 const TIER_COLOR = { high: "#ef4444", medium: "#f59e0b", low: "#22c55e" } as const;
@@ -33,7 +34,6 @@ const STEPS = [
 export function CitizenHome() {
   const setActiveTab = useStore((s) => s.setActiveTab);
   const setAudience = useStore((s) => s.setAudience);
-  const openAssistant = useStore((s) => s.openAssistant);
   const results = useStore((s) => s.results);
   const scrollRef = useSmoothScroll();
   const siteCount = results ? new Set(results.results.map((r) => r.site_id)).size : 0;
@@ -64,13 +64,12 @@ export function CitizenHome() {
             >
               Open the stream map →
             </button>
-            <button
-              onClick={openAssistant}
-              className="px-6 py-3 rounded-lg text-base font-medium"
-              style={{ border: "1px solid var(--c-border)", color: "var(--c-text)", background: "var(--c-surface)" }}
-            >
-              Ask a question
-            </button>
+          </div>
+        </Reveal>
+        <Reveal delay={240}>
+          <div className="mt-8">
+            <div className="text-sm font-medium mb-2" style={{ color: "var(--c-muted)" }}>Or just ask:</div>
+            <AskBar />
           </div>
         </Reveal>
       </section>
