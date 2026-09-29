@@ -3,6 +3,7 @@ import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 import { useStore } from "../../data/store";
 import { LoadingView } from "../../components/shell/StateViews";
 import { loadFhirBundle } from "../../data/loaders";
+import { validationBadge, type ValidationInfo } from "./validation";
 
 const OAH_BUNDLE_NAME = "oah-examples";
 
@@ -104,7 +105,7 @@ export function FhirTab() {
           </div>
         </div>
 
-        <ValidationBadge fhirIndex={{ validation: fhirIndex.validation }} />
+        <ValidationBadge validation={fhirIndex.validation} />
       </aside>
 
       {/* Right: explainer + JSON viewer */}
@@ -263,22 +264,19 @@ export function FhirTab() {
   );
 }
 
-function ValidationBadge({ fhirIndex }: { fhirIndex: { validation?: { errors?: number; status?: string; ci_log_url?: string | null } } }) {
-  const errors = fhirIndex.validation?.errors ?? 0;
+function ValidationBadge({ validation }: { validation?: ValidationInfo }) {
+  const { tone, text } = validationBadge(validation);
+  const colours = {
+    ok: { bg: "var(--c-ok-bg)", border: "var(--c-ok-border)", text: "var(--c-ok-text)" },
+    warn: { bg: "var(--c-warn-bg)", border: "var(--c-warn-border)", text: "var(--c-warn-text)" },
+    neutral: { bg: "var(--c-raised)", border: "var(--c-border)", text: "var(--c-muted)" },
+  }[tone];
   return (
     <div
       className="rounded-lg px-3 py-2 text-xs"
-      style={{
-        background: errors === 0 ? "var(--c-ok-bg)" : "var(--c-warn-bg)",
-        border: `1px solid ${errors === 0 ? "var(--c-ok-border)" : "var(--c-warn-border)"}`,
-        color: errors === 0 ? "var(--c-ok-text)" : "var(--c-warn-text)",
-      }}
+      style={{ background: colours.bg, border: `1px solid ${colours.border}`, color: colours.text }}
     >
-      {errors === 0 ? (
-        <span>✓ Validates against OneAquaHealth IG</span>
-      ) : (
-        <span>⚠ {errors} validation error{errors !== 1 ? "s" : ""}</span>
-      )}
+      <span>{text}</span>
     </div>
   );
 }
