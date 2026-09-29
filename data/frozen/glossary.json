@@ -1,0 +1,57 @@
+{
+  "PEC": {
+    "symbol": "PEC",
+    "name": "predicted concentration",
+    "definition": "Model estimate of drug concentration at a site, in ng/L."
+  },
+  "PNEC": {
+    "symbol": "PNEC",
+    "name": "no-effect threshold",
+    "definition": "Concentration below which no ecotoxicological effect is expected, in ng/L."
+  },
+  "RQ": {
+    "symbol": "RQ",
+    "name": "risk ratio",
+    "definition": "PEC \u00f7 PNEC; values > 1 indicate potential concern."
+  },
+  "LOD": {
+    "symbol": "LOD",
+    "name": "detection limit",
+    "definition": "Analytical limit of detection for a drug, in ng/L."
+  },
+  "\u03bb": {
+    "symbol": "\u03bb",
+    "name": "leakage",
+    "definition": "Fraction of wastewater entering the stream untreated (sewer leakage, misconnections)."
+  },
+  "Q": {
+    "symbol": "Q",
+    "name": "stream flow",
+    "definition": "Stream discharge in m\u00b3/s; higher flow dilutes concentrations."
+  },
+  "\u03c4": {
+    "symbol": "\u03c4",
+    "name": "travel time",
+    "definition": "Time for water to travel from entry point to monitoring site, in hours."
+  },
+  "k": {
+    "symbol": "k",
+    "name": "in-stream loss rate",
+    "definition": "First-order decay rate constant in 1/h (biodegradation, sorption, photolysis)."
+  },
+  "fe": {
+    "symbol": "fe",
+    "name": "excretion fraction",
+    "definition": "Fraction of a dose excreted as unchanged parent compound."
+  },
+  "DDD": {
+    "symbol": "DDD",
+    "name": "daily dose",
+    "definition": "WHO defined daily dose in grams; used to convert consumption statistics to mass."
+  },
+  "score": {
+    "symbol": "score",
+    "name": "sampling priority score",
+    "definition": "Fraction of simulation draws with RQ > 1. Guides where to sample first. Not a probability of exceedance."
+  }
+}

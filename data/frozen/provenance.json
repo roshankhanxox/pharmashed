@@ -1,0 +1,752 @@
+{
+  "param:carbamazepine:atc": {
+    "label": "carbamazepine atc",
+    "value": "N03AF01",
+    "unit": null,
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:carbamazepine:ddd_g": {
+    "label": "carbamazepine ddd_g",
+    "value": "1.0",
+    "unit": "g",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:carbamazepine:fe": {
+    "label": "carbamazepine fe",
+    "value": "0.03",
+    "unit": "fraction",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:carbamazepine:R": {
+    "label": "carbamazepine R",
+    "value": null,
+    "unit": "fraction",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "not required: w=0 for all MVP sites",
+    "status": "todo"
+  },
+  "param:carbamazepine:k_per_h": {
+    "label": "carbamazepine k_per_h",
+    "value": "0.001",
+    "unit": "1/h",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:carbamazepine:pnec_ng_l": {
+    "label": "carbamazepine pnec_ng_l",
+    "value": "0.5",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:carbamazepine:lod_ng_l": {
+    "label": "carbamazepine lod_ng_l",
+    "value": "0.1",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:atenolol:atc": {
+    "label": "atenolol atc",
+    "value": "C07AB03",
+    "unit": null,
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:atenolol:ddd_g": {
+    "label": "atenolol ddd_g",
+    "value": "0.075",
+    "unit": "g",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:atenolol:fe": {
+    "label": "atenolol fe",
+    "value": "0.85",
+    "unit": "fraction",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:atenolol:R": {
+    "label": "atenolol R",
+    "value": null,
+    "unit": "fraction",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "not required: w=0 for all MVP sites",
+    "status": "todo"
+  },
+  "param:atenolol:k_per_h": {
+    "label": "atenolol k_per_h",
+    "value": "0.01",
+    "unit": "1/h",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:atenolol:pnec_ng_l": {
+    "label": "atenolol pnec_ng_l",
+    "value": "5",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:atenolol:lod_ng_l": {
+    "label": "atenolol lod_ng_l",
+    "value": "0.5",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:losartan:atc": {
+    "label": "losartan atc",
+    "value": "C09CA01",
+    "unit": null,
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:losartan:ddd_g": {
+    "label": "losartan ddd_g",
+    "value": "0.05",
+    "unit": "g",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:losartan:fe": {
+    "label": "losartan fe",
+    "value": "0.04",
+    "unit": "fraction",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:losartan:R": {
+    "label": "losartan R",
+    "value": null,
+    "unit": "fraction",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "not required: w=0 for all MVP sites",
+    "status": "todo"
+  },
+  "param:losartan:k_per_h": {
+    "label": "losartan k_per_h",
+    "value": "0.02",
+    "unit": "1/h",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:losartan:pnec_ng_l": {
+    "label": "losartan pnec_ng_l",
+    "value": "0.2",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:losartan:lod_ng_l": {
+    "label": "losartan lod_ng_l",
+    "value": "0.1",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:irbesartan:atc": {
+    "label": "irbesartan atc",
+    "value": "C09CA04",
+    "unit": null,
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:irbesartan:ddd_g": {
+    "label": "irbesartan ddd_g",
+    "value": "0.15",
+    "unit": "g",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:irbesartan:fe": {
+    "label": "irbesartan fe",
+    "value": "0.2",
+    "unit": "fraction",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:irbesartan:R": {
+    "label": "irbesartan R",
+    "value": null,
+    "unit": "fraction",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "not required: w=0 for all MVP sites",
+    "status": "todo"
+  },
+  "param:irbesartan:k_per_h": {
+    "label": "irbesartan k_per_h",
+    "value": "0.01",
+    "unit": "1/h",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:irbesartan:pnec_ng_l": {
+    "label": "irbesartan pnec_ng_l",
+    "value": "1",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:irbesartan:lod_ng_l": {
+    "label": "irbesartan lod_ng_l",
+    "value": "0.1",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:paracetamol:atc": {
+    "label": "paracetamol atc",
+    "value": "N02BE01",
+    "unit": null,
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:paracetamol:ddd_g": {
+    "label": "paracetamol ddd_g",
+    "value": "3.0",
+    "unit": "g",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:paracetamol:fe": {
+    "label": "paracetamol fe",
+    "value": "0.03",
+    "unit": "fraction",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:paracetamol:R": {
+    "label": "paracetamol R",
+    "value": null,
+    "unit": "fraction",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "not required: w=0 for all MVP sites",
+    "status": "todo"
+  },
+  "param:paracetamol:k_per_h": {
+    "label": "paracetamol k_per_h",
+    "value": "0.1",
+    "unit": "1/h",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:paracetamol:pnec_ng_l": {
+    "label": "paracetamol pnec_ng_l",
+    "value": "10",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:paracetamol:lod_ng_l": {
+    "label": "paracetamol lod_ng_l",
+    "value": "1",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:citalopram:atc": {
+    "label": "citalopram atc",
+    "value": "N06AB04",
+    "unit": null,
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:citalopram:ddd_g": {
+    "label": "citalopram ddd_g",
+    "value": "0.02",
+    "unit": "g",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:citalopram:fe": {
+    "label": "citalopram fe",
+    "value": "0.12",
+    "unit": "fraction",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:citalopram:R": {
+    "label": "citalopram R",
+    "value": null,
+    "unit": "fraction",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "not required: w=0 for all MVP sites",
+    "status": "todo"
+  },
+  "param:citalopram:k_per_h": {
+    "label": "citalopram k_per_h",
+    "value": "0.02",
+    "unit": "1/h",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:citalopram:pnec_ng_l": {
+    "label": "citalopram pnec_ng_l",
+    "value": "0.2",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "param:citalopram:lod_ng_l": {
+    "label": "citalopram lod_ng_l",
+    "value": "0.1",
+    "unit": "ng/L",
+    "distribution": "fixed",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "prior:lambda": {
+    "label": "leakage (lambda)",
+    "value": null,
+    "unit": "fraction",
+    "distribution": "loguniform",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Effective untreated fraction; bulk from city-wide exfiltration ~0.5-3% dwf, tail to 13% catchment-scale.",
+    "status": "assumption"
+  },
+  "prior:Q": {
+    "label": "stream flow (Q) by size class",
+    "value": null,
+    "unit": "m3/s",
+    "distribution": "loguniform",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Team assumption scaled by visible channel width; capped at 2 m3/s for 1.5-8 m urban streams.",
+    "status": "assumption"
+  },
+  "prior:tau_h": {
+    "label": "travel time (tau)",
+    "value": null,
+    "unit": "h",
+    "distribution": "uniform",
+    "source_title": null,
+    "source_url": null,
+    "source_note": "Travel time from input to site; team assumption; sensitivity shows its influence.",
+    "status": "assumption"
+  },
+  "consumption:PT:carbamazepine": {
+    "label": "PT carbamazepine consumption",
+    "value": 2.4,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:PT:atenolol": {
+    "label": "PT atenolol consumption",
+    "value": 9.6,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:PT:losartan": {
+    "label": "PT losartan consumption",
+    "value": 18.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:PT:irbesartan": {
+    "label": "PT irbesartan consumption",
+    "value": 6.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:PT:paracetamol": {
+    "label": "PT paracetamol consumption",
+    "value": 36.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:PT:citalopram": {
+    "label": "PT citalopram consumption",
+    "value": 12.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:IT:carbamazepine": {
+    "label": "IT carbamazepine consumption",
+    "value": 1.2,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:IT:atenolol": {
+    "label": "IT atenolol consumption",
+    "value": 4.8,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:IT:losartan": {
+    "label": "IT losartan consumption",
+    "value": 9.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:IT:irbesartan": {
+    "label": "IT irbesartan consumption",
+    "value": 3.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:IT:paracetamol": {
+    "label": "IT paracetamol consumption",
+    "value": 18.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:IT:citalopram": {
+    "label": "IT citalopram consumption",
+    "value": 6.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:FR:carbamazepine": {
+    "label": "FR carbamazepine consumption",
+    "value": 2.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:FR:atenolol": {
+    "label": "FR atenolol consumption",
+    "value": 8.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:FR:losartan": {
+    "label": "FR losartan consumption",
+    "value": 15.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:FR:irbesartan": {
+    "label": "FR irbesartan consumption",
+    "value": 5.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:FR:paracetamol": {
+    "label": "FR paracetamol consumption",
+    "value": 30.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:FR:citalopram": {
+    "label": "FR citalopram consumption",
+    "value": 10.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:BE:carbamazepine": {
+    "label": "BE carbamazepine consumption",
+    "value": 1.6,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:BE:atenolol": {
+    "label": "BE atenolol consumption",
+    "value": 6.4,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:BE:losartan": {
+    "label": "BE losartan consumption",
+    "value": 12.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:BE:irbesartan": {
+    "label": "BE irbesartan consumption",
+    "value": 4.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:BE:paracetamol": {
+    "label": "BE paracetamol consumption",
+    "value": 24.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:BE:citalopram": {
+    "label": "BE citalopram consumption",
+    "value": 8.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:NO:carbamazepine": {
+    "label": "NO carbamazepine consumption",
+    "value": 2.8,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:NO:atenolol": {
+    "label": "NO atenolol consumption",
+    "value": 11.2,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:NO:losartan": {
+    "label": "NO losartan consumption",
+    "value": 21.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:NO:irbesartan": {
+    "label": "NO irbesartan consumption",
+    "value": 7.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:NO:paracetamol": {
+    "label": "NO paracetamol consumption",
+    "value": 42.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  },
+  "consumption:NO:citalopram": {
+    "label": "NO citalopram consumption",
+    "value": 14.0,
+    "unit": "DDD/1000 inhabitants/day",
+    "distribution": null,
+    "source_title": null,
+    "source_url": null,
+    "source_note": "illustrative \u2014 not sourced (D33)",
+    "status": "illustrative"
+  }
+}
