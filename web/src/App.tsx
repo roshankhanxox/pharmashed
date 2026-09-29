@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "./data/store";
 import {
   loadResults,
@@ -31,6 +31,15 @@ function App() {
   const dataLoading = useStore((s) => s.dataLoading);
   const dataError = useStore((s) => s.dataError);
   const results = useStore((s) => s.results);
+
+  // Page transition: fade the current tab out, then swap and fade the new one in.
+  const [shownTab, setShownTab] = useState(activeTab);
+  const leaving = activeTab !== shownTab;
+  useEffect(() => {
+    if (!leaving) return;
+    const swap = setTimeout(() => setShownTab(activeTab), 150);
+    return () => clearTimeout(swap);
+  }, [activeTab, leaving]);
 
   const {
     setResults, setSites, setDrawsIndex, setDrawsView,
@@ -91,13 +100,13 @@ function App() {
       {isDev && <DevBanner />}
       <TopTabs />
 
-      <main className="flex-1 min-h-0 overflow-hidden animate-fade-in" key={activeTab}>
-        {activeTab === "home" && <HomeTab />}
-        {activeTab === "explore" && <ExploreTab />}
-        {activeTab === "scenarios" && <ScenariosTab />}
-        {activeTab === "consistency" && <ConsistencyTab />}
-        {activeTab === "methodology" && <MethodologyTab />}
-        {activeTab === "fhir" && <FhirTab />}
+      <main className={`flex-1 min-h-0 overflow-hidden ${leaving ? "page-out" : "page-in"}`} key={shownTab}>
+        {shownTab === "home" && <HomeTab />}
+        {shownTab === "explore" && <ExploreTab />}
+        {shownTab === "scenarios" && <ScenariosTab />}
+        {shownTab === "consistency" && <ConsistencyTab />}
+        {shownTab === "methodology" && <MethodologyTab />}
+        {shownTab === "fhir" && <FhirTab />}
       </main>
 
       <FooterStrip />

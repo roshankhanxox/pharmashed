@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useStore } from "../../data/store";
 import { LoadingView } from "../../components/shell/StateViews";
 import { ModelDiagram } from "../../components/charts/ModelDiagram";
+import { Reveal } from "../../components/shell/Reveal";
+import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 import { InfoButton } from "../../components/provenance/InfoButton";
 
 const ABLATION_LABELS = ["WWTP-only (ePiE baseline)", "Population only", "Full model"];
@@ -13,6 +15,7 @@ const ABLATION_DESCRIPTIONS = [
 ];
 
 export function MethodologyTab() {
+  const scrollRef = useSmoothScroll();
   const methodology = useStore((s) => s.methodology);
   const [ablationIdx, setAblationIdx] = useState(2); // default: Full model
 
@@ -25,7 +28,7 @@ export function MethodologyTab() {
   const ablationPerCity = ablations?.per_city?.filter((a) => a.variant === variant) ?? [];
 
   return (
-    <div className="h-full overflow-y-auto p-6 flex flex-col gap-8 max-w-4xl mx-auto" style={{ background: "var(--c-canvas)", color: "var(--c-text)" }}>
+    <div ref={scrollRef} className="h-full overflow-y-auto p-6 flex flex-col gap-8 max-w-4xl mx-auto" style={{ background: "var(--c-canvas)", color: "var(--c-text)" }}>
 
       {/* Intro */}
       <div>
@@ -36,7 +39,7 @@ export function MethodologyTab() {
       </div>
 
       {/* Model diagram */}
-      <section>
+      <Reveal><section>
         <h2
           className="text-sm font-semibold uppercase tracking-wide mb-3"
           style={{ color: "var(--c-faint)" }}
@@ -44,10 +47,10 @@ export function MethodologyTab() {
           Model pipeline
         </h2>
         <ModelDiagram stages={stages} />
-      </section>
+      </section></Reveal>
 
       {/* Priors table */}
-      <section>
+      <Reveal><section>
         <h2
           className="text-sm font-semibold uppercase tracking-wide mb-3"
           style={{ color: "var(--c-faint)" }}
@@ -101,10 +104,10 @@ export function MethodologyTab() {
             </tbody>
           </table>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* Identifiability */}
-      <section>
+      <Reveal><section>
         <h2
           className="text-sm font-semibold uppercase tracking-wide mb-3"
           style={{ color: "var(--c-faint)" }}
@@ -130,11 +133,11 @@ export function MethodologyTab() {
             Implication: the score reflects uncertainty under prior assumptions, not a posterior estimate. This is intentional and disclosed — see D08 in CONTEXT.md.
           </p>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* Ablation toggle */}
       {ablations && (
-        <section>
+        <Reveal><section>
           <h2
             className="text-sm font-semibold uppercase tracking-wide mb-2"
             style={{ color: "var(--c-faint)" }}
@@ -218,7 +221,7 @@ export function MethodologyTab() {
               ))}
             </div>
           )}
-        </section>
+        </section></Reveal>
       )}
     </div>
   );

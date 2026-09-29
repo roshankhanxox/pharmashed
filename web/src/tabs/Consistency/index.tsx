@@ -1,9 +1,12 @@
 import { useStore } from "../../data/store";
+import { Reveal } from "../../components/shell/Reveal";
+import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 import { LoadingView } from "../../components/shell/StateViews";
 import { DotOnBand } from "../../components/charts/DotOnBand";
 import { Scatter, type ScatterPoint } from "../../components/charts/Scatter";
 
 export function ConsistencyTab() {
+  const scrollRef = useSmoothScroll();
   const checks = useStore((s) => s.checks);
   if (!checks) return <LoadingView />;
 
@@ -11,7 +14,7 @@ export function ConsistencyTab() {
   const items = rawItems as unknown as CheckItem[];
 
   return (
-    <div className="h-full overflow-y-auto p-6 flex flex-col gap-6 max-w-3xl mx-auto" style={{ background: "var(--c-canvas)", color: "var(--c-text)" }}>
+    <div ref={scrollRef} className="h-full overflow-y-auto p-6 flex flex-col gap-6 max-w-3xl mx-auto" style={{ background: "var(--c-canvas)", color: "var(--c-text)" }}>
 
       {/* D35 reframing header */}
       <div>
@@ -40,7 +43,7 @@ export function ConsistencyTab() {
 
       {/* Checks */}
       {items.map((check) => (
-        <CheckCard key={check.id} check={check} />
+        <Reveal key={check.id}><CheckCard check={check} /></Reveal>
       ))}
 
       {/* Illustrative caveat */}

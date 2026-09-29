@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 import { useStore } from "../../data/store";
 import { LoadingView } from "../../components/shell/StateViews";
 import { loadFhirBundle } from "../../data/loaders";
@@ -6,6 +7,7 @@ import { loadFhirBundle } from "../../data/loaders";
 const OAH_BUNDLE_NAME = "oah-examples";
 
 export function FhirTab() {
+  const scrollRef = useSmoothScroll();
   const fhirIndex = useStore((s) => s.fhirIndex);
   const [selected, setSelected] = useState<string | null>(null);
   const [bundle, setBundle] = useState<object | null>(null);
@@ -106,7 +108,7 @@ export function FhirTab() {
       </aside>
 
       {/* Right: explainer + JSON viewer */}
-      <div className="flex-1 min-w-0 overflow-y-auto p-6 flex flex-col gap-6" style={{ background: "var(--c-canvas)" }}>
+      <div ref={scrollRef} className="flex-1 min-w-0 overflow-y-auto p-6 flex flex-col gap-6" style={{ background: "var(--c-canvas)" }}>
 
         {/* FHIR explainer — what does this solve? */}
         <div className="rounded-xl p-5" style={{ background: "var(--c-surface)", border: "1px solid var(--c-border)" }}>
