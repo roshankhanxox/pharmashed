@@ -30,7 +30,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
       title={dark ? "Switch to light theme" : "Switch to dark theme"}
-      className="shrink-0 ml-auto px-3 py-1.5 text-sm rounded-lg transition-colors"
+      className="shrink-0 px-3 py-1.5 text-sm rounded-lg transition-colors"
       style={{ color: "var(--c-muted)", border: "1px solid var(--c-border)", background: "transparent" }}
     >
       {dark ? "☀ Light" : "☾ Dark"}

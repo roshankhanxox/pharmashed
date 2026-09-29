@@ -1,9 +1,12 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { useStore } from "../../data/store";
 import { applyScenario } from "../../data/scenario";
 import { BandChart, type BandRow } from "../../components/charts/BandChart";
 import { EmptyView, LoadingView } from "../../components/shell/StateViews";
 import { Term } from "../../components/glossary/Term";
+import { useSmoothScroll } from "../../hooks/useSmoothScroll";
+import { Reveal } from "../../components/shell/Reveal";
+import { DEMO_NOTICE, SCORE_CAVEAT, TIER_LABEL, scenarioSentence, tierOf } from "../../data/copy";
 
 const C = {
   canvas:  "var(--c-canvas)",
@@ -17,9 +20,21 @@ const C = {
 } as const;
 
 const PRESETS = [
-  { label: "Sewer repair", desc: "Targeted repair reduces untreated discharge by half.", m: { lambda: 0.5, Q: 1, C: 1 } },
-  { label: "Drought", desc: "Low river flow reduces dilution 5-fold.", m: { lambda: 1, Q: 0.2, C: 1 } },
-  { label: "Leakage hotspot", desc: "Barcelona-type high-leakage case (λ × 3).", m: { lambda: 3, Q: 1, C: 1 } },
+  {
+    label: "Sewer repair", desc: "Targeted repair reduces untreated discharge by half.",
+    plainLabel: "Repair the leaking sewers", plainDesc: "Half as much untreated wastewater reaches the stream.",
+    m: { lambda: 0.5, Q: 1, C: 1 },
+  },
+  {
+    label: "Drought", desc: "Low river flow reduces dilution 5-fold.",
+    plainLabel: "A dry spell", plainDesc: "The stream carries much less water, so there is less dilution.",
+    m: { lambda: 1, Q: 0.2, C: 1 },
+  },
+  {
+    label: "Leakage hotspot", desc: "Barcelona-type high-leakage case (λ × 3).",
+    plainLabel: "A badly leaking sewer", plainDesc: "Three times as much wastewater leaks into the stream.",
+    m: { lambda: 3, Q: 1, C: 1 },
+  },
 ];
 
 function SliderField({
@@ -56,6 +71,28 @@ export function ScenariosTab() {
   const setMultipliers = useStore((s) => s.setScenarioMultipliers);
   const resetScenario = useStore((s) => s.resetScenario);
   const [activePreset, setActivePreset] = useState<string | null>(null);
+  const citizen = useStore((s) => s.audience) === "citizen";
+  const setSelectedSiteId = useStore((s) => s.setSelectedSiteId);
+  const setSelectedCity = useStore((s) => s.setSelectedCity);
+  const setSelectedDrug = useStore((s) => s.setSelectedDrug);
+  const mainRef = useSmoothScroll();
+
+  // Never show a dead end: with nothing chosen, start from the top-ranked site and its top drug.
+  useEffect(() => {
+    if (!results) return;
+    const overall = results.site_overall ?? [];
+    if (!selectedSiteId) {
+      const top = [...overall].sort((a, b) => b.score - a.score)[0];
+      if (top) {
+        setSelectedSiteId(top.site_id);
+        setSelectedCity(top.site_id.split("-")[0]);
+        if (selectedDrug === "all") setSelectedDrug(top.top_drug);
+      }
+    } else if (selectedDrug === "all") {
+      const own = overall.find((o) => o.site_id === selectedSiteId);
+      if (own) setSelectedDrug(own.top_drug);
+    }
+  }, [results, selectedSiteId, selectedDrug, setSelectedSiteId, setSelectedCity, setSelectedDrug]);
 
   const siteEntry = useMemo(
     () => results?.results.find((r) => r.site_id === selectedSiteId && r.drug === selectedDrug),
@@ -162,7 +199,7 @@ export function ScenariosTab() {
             className="text-xs font-semibold uppercase mb-3"
             style={{ color: C.faint, letterSpacing: "0.06em" }}
           >
-            Scenario presets
+            {citizen ? "Pick a change" : "Scenario presets"}
           </div>
           <div className="flex flex-col gap-2">
             {PRESETS.map((p) => (
@@ -183,12 +220,12 @@ export function ScenariosTab() {
                     (e.currentTarget as HTMLButtonElement).style.borderColor = C.border;
                 }}
               >
-                <div className="text-xs font-medium" style={{ color: C.text }}>{p.label}</div>
-                <div className="text-[11px] mt-0.5" style={{ color: C.faint }}>{p.desc}</div>
+                <div className="text-xs font-medium" style={{ color: C.text }}>{citizen ? p.plainLabel : p.label}</div>
+                <div className="text-[11px] mt-0.5" style={{ color: C.faint }}>{citizen ? p.plainDesc : p.desc}</div>
               </button>
             ))}
             {/* Riparian card */}
-            <div
+            {!citizen && <div
               className="p-3 rounded-lg"
               style={{ background: C.surface, border: `1px dashed ${C.border}` }}
             >
@@ -202,12 +239,12 @@ export function ScenariosTab() {
               <div className="text-[11px] mt-1" style={{ color: C.faint }}>
                 Assumes additional in-stream removal — set C multiplier below.
               </div>
-            </div>
+            </div>}
           </div>
         </div>
 
         {/* Fine controls */}
-        <div className="flex flex-col gap-3">
+        {!citizen && <div className="flex flex-col gap-3">
           <div
             className="text-xs font-semibold uppercase"
             style={{ color: C.faint, letterSpacing: "0.06em" }}
@@ -245,28 +282,64 @@ export function ScenariosTab() {
           >
             Reset to baseline
           </button>
-        </div>
+        </div>}
 
-        <p className="text-[11px] leading-relaxed" style={{ color: C.faint }}>
-          The model constrains λ/Q jointly — these controls show how much each assumption carries.
-        </p>
+        {citizen ? (
+          <button
+            onClick={() => { resetScenario(); setActivePreset(null); }}
+            className="text-sm text-left underline"
+            style={{ color: C.muted }}
+          >
+            Start over
+          </button>
+        ) : (
+          <p className="text-[11px] leading-relaxed" style={{ color: C.faint }}>
+            The model constrains λ/Q jointly — these controls show how much each assumption carries.
+          </p>
+        )}
       </aside>
 
       {/* Before / After panel */}
-      <div className="flex-1 min-w-0 p-6 overflow-y-auto flex flex-col gap-6" style={{ background: C.canvas }}>
+      <div ref={mainRef} className="flex-1 min-w-0 p-6 overflow-y-auto flex flex-col gap-6" style={{ background: C.canvas }}>
         <div>
           <div
             className="text-xs font-semibold uppercase mb-1"
             style={{ color: C.faint, letterSpacing: "0.06em" }}
           >
-            Scenario explorer
+            {citizen ? "What if?" : "Scenario explorer"}
           </div>
           <h2 className="text-base font-semibold" style={{ color: C.text }}>
-            {selectedSiteId} — {selectedDrug}
+            {citizen ? `Site ${selectedSiteId} · ${selectedDrug}` : `${selectedSiteId} — ${selectedDrug}`}
           </h2>
         </div>
 
-        {baseline && scenario && (
+        {citizen && baseline && scenario && (
+          <Reveal>
+            <div className="rounded-xl p-6 flex flex-col gap-4" style={{ background: C.surface, border: `1px solid ${C.border}` }}>
+              <div className="flex gap-6 flex-wrap items-center">
+                {([
+                  { title: "Today", tier: tierOf(baseline.score) },
+                  { title: activePreset ? "With this change" : "Pick a change on the left", tier: tierOf(scenario.score) },
+                ] as const).map((c, i) => (
+                  <div key={c.title} className="flex items-center gap-6">
+                    {i > 0 && <div className="text-2xl" style={{ color: C.border }}>→</div>}
+                    <div>
+                      <div className="text-sm mb-1" style={{ color: C.faint }}>{c.title}</div>
+                      <div className="text-2xl font-semibold" style={{ color: C.text }}>{TIER_LABEL[c.tier]}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {activePreset && (
+                <p className="text-base" style={{ color: C.muted }}>
+                  {scenarioSentence(tierOf(baseline.score), tierOf(scenario.score), scenario.score - baseline.score)}
+                </p>
+              )}
+            </div>
+          </Reveal>
+        )}
+
+        {!citizen && baseline && scenario && (
           <div
             className="rounded-xl p-5 flex gap-6 flex-wrap items-center"
             style={{ background: C.surface, border: `1px solid ${C.border}` }}
@@ -311,7 +384,7 @@ export function ScenariosTab() {
           </div>
         )}
 
-        {baseRow && scenario && (
+        {!citizen && baseRow && scenario && (
           <div>
             <div
               className="text-xs font-semibold uppercase mb-2"
@@ -333,9 +406,16 @@ export function ScenariosTab() {
           </div>
         )}
 
-        <p className="text-xs leading-relaxed" style={{ color: C.faint }}>
-          Scores recomputed live over 1,000 stored simulation draws under stated priors. Score is the share of draws with RQ &gt; 1 — it is not a probability.
-        </p>
+        {citizen ? (
+          <div className="text-sm leading-relaxed flex flex-col gap-1.5" style={{ color: C.faint }}>
+            <p>This is a what-if, not a forecast. {SCORE_CAVEAT}</p>
+            <p>{DEMO_NOTICE}</p>
+          </div>
+        ) : (
+          <p className="text-xs leading-relaxed" style={{ color: C.faint }}>
+            Scores recomputed live over 1,000 stored simulation draws under stated priors. Score is the share of draws with RQ &gt; 1 — it is not a probability.
+          </p>
+        )}
       </div>
     </div>
   );

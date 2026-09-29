@@ -1,5 +1,8 @@
 import { useStore } from "../../data/store";
 import { ArchDiagram } from "./ArchDiagram";
+import { CitizenHome } from "./CitizenHome";
+import { Reveal } from "../../components/shell/Reveal";
+import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 
 /* ─── palette shorthands ─────────────────────────────────────────────────── */
 const C = {
@@ -102,18 +105,19 @@ function Divider() {
 
 /* ─── main component ──────────────────────────────────────────────────────── */
 
-export function HomeTab() {
+function ExpertHome() {
   const setActiveTab = useStore((s) => s.setActiveTab);
+  const scrollRef = useSmoothScroll();
   const results = useStore((s) => s.results);
   const siteCount = results
     ? [...new Set(results.results.map((r) => r.site_id))].length.toString()
     : "—";
 
   return (
-    <div className="overflow-y-auto h-full scrollbar-none" style={{ background: C.canvas, color: C.text }}>
+    <div ref={scrollRef} className="overflow-y-auto h-full scrollbar-none" style={{ background: C.canvas, color: C.text }}>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <section className="px-8 pt-20 pb-16 max-w-4xl mx-auto">
+      <Reveal><section className="px-8 pt-20 pb-16 max-w-4xl mx-auto">
 
         {/* badge */}
         <a
@@ -180,7 +184,7 @@ export function HomeTab() {
             Read methodology
           </button>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* ── STATS BAR ─────────────────────────────────────────────────────── */}
       <div style={{ borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`, background: C.surface }}>
@@ -210,7 +214,7 @@ export function HomeTab() {
       <div className="max-w-4xl mx-auto px-8 py-14 flex flex-col gap-0">
 
         {/* ── THE GAP ──────────────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>The problem</Eyebrow>
           <div className="grid gap-3 sm:grid-cols-3">
             {[
@@ -250,12 +254,12 @@ export function HomeTab() {
               </div>
             ))}
           </div>
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── HOW IT WORKS ─────────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>How it works</Eyebrow>
           <div className="flex flex-col">
             {HOW_STEPS.map((s, i) => (
@@ -289,20 +293,20 @@ export function HomeTab() {
               </div>
             ))}
           </div>
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── ARCHITECTURE ─────────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>Architecture & data flow</Eyebrow>
           <ArchDiagram />
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── COVERAGE ─────────────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>Coverage</Eyebrow>
           <div className="flex flex-wrap gap-2 mb-5">
             {CITIES.map((c) => (
@@ -340,12 +344,12 @@ export function HomeTab() {
               </span>
             ))}
           </div>
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── BRING YOUR DATA ───────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>Deploying with real data</Eyebrow>
           <div
             className="rounded-xl p-5 mb-5"
@@ -392,12 +396,12 @@ export function HomeTab() {
             </code>{" "}
             tag, and the footer switches from "illustrative" to "all cited".
           </p>
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── EXPLORE THE APP ───────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>Explore the prototype</Eyebrow>
           <div className="grid gap-3 sm:grid-cols-2">
             {([
@@ -435,12 +439,12 @@ export function HomeTab() {
               </button>
             ))}
           </div>
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── REFERENCES ───────────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>References</Eyebrow>
           <div className="flex flex-col gap-3">
             {CITATIONS.map((c) => (
@@ -487,7 +491,7 @@ export function HomeTab() {
               </div>
             ))}
           </div>
-        </section>
+        </section></Reveal>
 
         <div className="text-xs text-center pb-4 mt-8" style={{ color: C.faint }}>
           PHARMASHED · IEEE ONEAQUAHEALTH HACKATHON 2026
@@ -495,4 +499,10 @@ export function HomeTab() {
       </div>
     </div>
   );
+}
+
+/** Home tab: plain-language page for citizens, the technical story for experts. */
+export function HomeTab() {
+  const audience = useStore((s) => s.audience);
+  return audience === "citizen" ? <CitizenHome /> : <ExpertHome />;
 }

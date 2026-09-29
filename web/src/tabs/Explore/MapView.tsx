@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { TIER_LABEL, TIER_LEGEND } from "../../data/copy";
 import { useStore } from "../../data/store";
 import type { StyleSpecification } from "maplibre-gl";
 
@@ -52,12 +53,15 @@ export function MapView() {
   const setSelectedSiteId = useStore((s) => s.setSelectedSiteId);
   const setSelectedCity = useStore((s) => s.setSelectedCity);
   const setSelectedDrug = useStore((s) => s.setSelectedDrug);
+  const audience = useStore((s) => s.audience);
+  const citizen = audience === "citizen";
 
   const drugs = results?.drugs ?? [];
   const cities = results
     ? [...new Set(results.results.map((r) => r.site_id.split("-")[0]))]
     : [];
   const citySummary = results?.city_summary ?? [];
+  const cityName = (id: string) => sites?.cities.find((c) => c.id === id)?.name ?? id;
 
   // Initialise map once
   useEffect(() => {
@@ -245,7 +249,7 @@ export function MapView() {
         {/* Cities */}
         <div className="flex gap-1.5 items-start min-w-0">
           <span
-            className="text-xs font-semibold uppercase w-12 shrink-0 pt-1"
+            className="text-xs font-semibold uppercase w-20 shrink-0 pt-1"
             style={{ color: C.faint, letterSpacing: "0.06em" }}
           >
             City
@@ -265,8 +269,8 @@ export function MapView() {
                   color: isActive ? C.indigo : C.muted,
                 }}
               >
-                {city}
-                {summary && (
+                {citizen ? cityName(city) : city}
+                {summary && !citizen && (
                   <span className="ml-1.5 space-x-0.5">
                     {summary.high > 0 && (
                       <span style={{ color: "var(--c-danger-text)", fontWeight: 600 }}>{summary.high}H</span>
@@ -288,10 +292,10 @@ export function MapView() {
         {/* Drugs */}
         <div className="flex gap-1.5 items-start min-w-0">
           <span
-            className="text-xs font-semibold uppercase w-12 shrink-0 pt-1"
+            className="text-xs font-semibold uppercase w-20 shrink-0 pt-1"
             style={{ color: C.faint, letterSpacing: "0.06em" }}
           >
-            Drug
+            {citizen ? "Medicine" : "Drug"}
           </span>
           <div className="flex gap-1 flex-wrap">
           {(["all", ...drugs] as string[]).map((d) => (
@@ -313,12 +317,12 @@ export function MapView() {
 
         {/* Tier legend */}
         <div className="flex gap-4 items-center">
-          <span className="w-8 shrink-0" />
+          <span className="w-20 shrink-0" />
           {(
             [
-              { label: "High ≥0.5", color: "#ef4444", r: 8 },
-              { label: "Medium ≥0.1", color: "#f59e0b", r: 6 },
-              { label: "Low", color: "#22c55e", r: 4 },
+              { label: citizen ? TIER_LEGEND.high : "High ≥0.5", color: "#ef4444", r: 8 },
+              { label: citizen ? TIER_LEGEND.medium : "Medium ≥0.1", color: "#f59e0b", r: 6 },
+              { label: citizen ? TIER_LEGEND.low : "Low", color: "#22c55e", r: 4 },
             ] as const
           ).map(({ label, color, r }) => (
             <span key={label} className="flex items-center gap-1.5 text-xs" style={{ color: C.faint }}>
@@ -337,9 +341,11 @@ export function MapView() {
               {label}
             </span>
           ))}
-          <span className="ml-auto text-xs" style={{ color: C.faint }}>
-            score = share of draws with RQ &gt; 1
-          </span>
+          {!citizen && (
+            <span className="ml-auto text-xs" style={{ color: C.faint }}>
+              score = share of draws with RQ &gt; 1
+            </span>
+          )}
         </div>
       </div>
 
@@ -378,6 +384,7 @@ function SiteTooltip({
   y: number;
   results: import("../../types/contracts").Results;
 }) {
+  const citizen = useStore((s) => s.audience) === "citizen";
   const siteResults = results.results
     .filter((r) => r.site_id === siteId)
     .sort((a, b) => b.score - a.score);
@@ -420,7 +427,7 @@ function SiteTooltip({
               color: TIER_DOT[scoreTier(overall.score)] ?? "#aaa",
             }}
           >
-            score {overall.score.toFixed(2)}
+            {citizen ? TIER_LABEL[scoreTier(overall.score)] : `score ${overall.score.toFixed(2)}`}
           </span>
         )}
       </div>
@@ -442,29 +449,37 @@ function SiteTooltip({
             <span className="text-xs flex-1 truncate" style={{ color: "var(--c-muted)" }}>
               {r.drug}
             </span>
-            <span
-              className="text-xs tabular-nums"
-              style={{ color: TIER_DOT[r.tier] ?? "#aaa" }}
-            >
-              {r.score.toFixed(2)}
-            </span>
-            <span
-              className="text-xs"
-              style={{ color: "var(--c-faint)" }}
-            >
-              RQ {r.rq.p50.toFixed(1)}
-            </span>
+            {citizen ? (
+              <span className="text-xs" style={{ color: "var(--c-muted)" }}>
+                {TIER_LABEL[scoreTier(r.score)]}
+              </span>
+            ) : (
+              <>
+                <span
+                  className="text-xs tabular-nums"
+                  style={{ color: TIER_DOT[r.tier] ?? "#aaa" }}
+                >
+                  {r.score.toFixed(2)}
+                </span>
+                <span
+                  className="text-xs"
+                  style={{ color: "var(--c-faint)" }}
+                >
+                  RQ {r.rq.p50.toFixed(1)}
+                </span>
+              </>
+            )}
           </div>
         ))}
         {siteResults.length > 4 && (
           <div className="text-xs" style={{ color: "var(--c-faint)" }}>
-            +{siteResults.length - 4} more drugs
+            +{siteResults.length - 4} more {citizen ? "medicines" : "drugs"}
           </div>
         )}
       </div>
 
       <div className="text-xs" style={{ color: "var(--c-faint)" }}>
-        Click to inspect full profile →
+        {citizen ? "Tap to see details →" : "Click to inspect full profile →"}
       </div>
     </div>
   );

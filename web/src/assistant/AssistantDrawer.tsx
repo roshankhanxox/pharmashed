@@ -22,6 +22,14 @@ const SUGGESTED: string[] = [
   "What would happen if leakage were halved at TLS-001?",
 ];
 
+/** Starter questions for citizen view: plain wording, no model terms. */
+const SUGGESTED_CITIZEN: string[] = [
+  "Which streams in Toulouse should be tested first?",
+  "What does testing priority mean?",
+  "Why do medicines in streams matter?",
+  "What would repairing sewers change at the top site?",
+];
+
 interface ToolCall {
   name: string;
 }
@@ -36,6 +44,7 @@ interface Message {
 
 export function AssistantDrawer() {
   const open = useStore((s) => s.assistantOpen);
+  const citizen = useStore((s) => s.audience) === "citizen";
   const close = useStore((s) => s.closeAssistant);
   const setActiveTab = useStore((s) => s.setActiveTab);
   const setSelectedSiteId = useStore((s) => s.setSelectedSiteId);
@@ -159,7 +168,7 @@ export function AssistantDrawer() {
             <div>
               <p className="text-xs mb-3" style={{ color: C.faint }}>Suggested questions:</p>
               <div className="flex flex-col gap-1.5">
-                {SUGGESTED.map((q) => (
+                {(citizen ? SUGGESTED_CITIZEN : SUGGESTED).map((q) => (
                   <button
                     key={q}
                     onClick={() => send(q)}

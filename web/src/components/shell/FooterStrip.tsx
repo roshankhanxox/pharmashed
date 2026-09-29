@@ -1,7 +1,9 @@
 import { useStore } from "../../data/store";
+import { DEMO_NOTICE } from "../../data/copy";
 
 export function FooterStrip() {
   const results = useStore((s) => s.results);
+  const audience = useStore((s) => s.audience);
   if (!results) return null;
 
   const { meta } = results;
@@ -20,10 +22,16 @@ export function FooterStrip() {
         letterSpacing: "0.02em",
       }}
     >
-      <span>N = {meta.n_draws.toLocaleString()} draws</span>
-      <span>engine {meta.engine_version}</span>
-      <span>predictions frozen: {frozen}</span>
-      <span>{citedLabel}</span>
+      {audience === "citizen" ? (
+        <span>{DEMO_NOTICE}</span>
+      ) : (
+        <>
+          <span>N = {meta.n_draws.toLocaleString()} draws</span>
+          <span>engine {meta.engine_version}</span>
+          <span>predictions frozen: {frozen}</span>
+          <span>{citedLabel}</span>
+        </>
+      )}
     </footer>
   );
 }

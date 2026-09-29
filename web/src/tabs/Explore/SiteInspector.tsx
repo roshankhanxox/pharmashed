@@ -3,6 +3,8 @@ import { BandChart, type BandRow } from "../../components/charts/BandChart";
 import { DrawHistogram } from "../../components/charts/DrawHistogram";
 import { Tornado } from "../../components/charts/Tornado";
 import { Term } from "../../components/glossary/Term";
+import { CitizenSiteCard } from "./CitizenSiteCard";
+import { TIER_LEGEND } from "../../data/copy";
 
 const C = {
   canvas:  "var(--c-canvas)",
@@ -20,8 +22,22 @@ export function SiteInspector() {
   const selectedSiteId = useStore((s) => s.selectedSiteId);
   const expandedDrug   = useStore((s) => s.expandedDrug);
   const setExpandedDrug = useStore((s) => s.setExpandedDrug);
+  const audience       = useStore((s) => s.audience);
 
   if (!results || !selectedSiteId) {
+    if (audience === "citizen") {
+      return (
+        <div className="flex flex-col items-center justify-center h-full gap-3 px-8 text-center">
+          <div className="text-4xl">👆</div>
+          <p className="text-lg font-medium" style={{ color: C.text }}>
+            Tap a coloured dot on the map to see how high that spot ranks for testing.
+          </p>
+          <p className="text-base leading-relaxed" style={{ color: C.muted }}>
+            Red = {TIER_LEGEND.high.toLowerCase()} · Amber = {TIER_LEGEND.medium.toLowerCase()} · Green = {TIER_LEGEND.low.toLowerCase()}
+          </p>
+        </div>
+      );
+    }
     return (
       <div className="flex flex-col items-center justify-center h-full gap-3 px-8 text-center">
         <div className="text-3xl">👆</div>
@@ -35,6 +51,8 @@ export function SiteInspector() {
       </div>
     );
   }
+
+  if (audience === "citizen") return <CitizenSiteCard siteId={selectedSiteId} />;
 
   const siteResults = results.results
     .filter((r) => r.site_id === selectedSiteId)

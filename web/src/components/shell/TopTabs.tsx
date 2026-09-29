@@ -1,4 +1,6 @@
 import { useStore, type Tab } from "../../data/store";
+import { CITIZEN_TAB_LABEL } from "../../data/copy";
+import { AudienceToggle } from "./AudienceToggle";
 import { ThemeToggle } from "./ThemeToggle";
 
 const TABS: { id: Tab; label: string }[] = [
@@ -14,6 +16,12 @@ export function TopTabs() {
   const activeTab    = useStore((s) => s.activeTab);
   const setActiveTab = useStore((s) => s.setActiveTab);
   const openAssistant = useStore((s) => s.openAssistant);
+  const audience     = useStore((s) => s.audience);
+
+  // Citizen view shows only the tabs that have a citizen version.
+  const tabs = audience === "citizen"
+    ? TABS.filter((t) => t.id in CITIZEN_TAB_LABEL).map((t) => ({ ...t, label: CITIZEN_TAB_LABEL[t.id] ?? t.label }))
+    : TABS;
 
   return (
     <header
@@ -35,7 +43,7 @@ export function TopTabs() {
 
       {/* Nav tabs */}
       <nav className="flex gap-0 flex-1 overflow-x-auto scrollbar-none">
-        {TABS.map((t) => {
+        {tabs.map((t) => {
           const active = activeTab === t.id;
           return (
             <button
@@ -54,7 +62,10 @@ export function TopTabs() {
         })}
       </nav>
 
-      <ThemeToggle />
+      <div className="ml-auto flex items-center gap-2">
+        <AudienceToggle />
+        <ThemeToggle />
+      </div>
 
       {/* Assistant CTA */}
       <button
