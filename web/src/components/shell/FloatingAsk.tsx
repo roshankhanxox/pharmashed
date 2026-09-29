@@ -17,7 +17,7 @@ export function FloatingAsk() {
       className="fixed z-40 right-5 bottom-14 flex items-center gap-2 px-5 py-3 rounded-full font-semibold"
       style={{
         background: "var(--c-accent)",
-        color: "#fff",
+        color: "var(--c-on-accent)",
         boxShadow: "0 6px 20px color-mix(in srgb, var(--c-accent) 35%, transparent)",
       }}
     >

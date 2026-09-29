@@ -73,7 +73,7 @@ export function TopTabs() {
         className="ml-3 shrink-0 px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all"
         style={{
           background: "var(--c-accent)",
-          color: "#ffffff",
+          color: "var(--c-on-accent)",
           letterSpacing: "0.04em",
         }}
         onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "var(--c-accent-deep)"; }}

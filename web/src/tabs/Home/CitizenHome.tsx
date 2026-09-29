@@ -60,7 +60,7 @@ export function CitizenHome() {
             <button
               onClick={() => setActiveTab("explore")}
               className="px-6 py-3 rounded-lg text-base font-semibold"
-              style={{ background: "var(--c-accent)", color: "#fff" }}
+              style={{ background: "var(--c-accent)", color: "var(--c-on-accent)" }}
             >
               Open the stream map →
             </button>
@@ -115,7 +115,7 @@ export function CitizenHome() {
                 <div className="flex gap-4 items-start rounded-xl p-4" style={{ background: "var(--c-surface)", border: "1px solid var(--c-border)" }}>
                   <div
                     className="w-9 h-9 shrink-0 rounded-full flex items-center justify-center font-semibold"
-                    style={{ background: "var(--c-accent)", color: "#fff" }}
+                    style={{ background: "var(--c-accent)", color: "var(--c-on-accent)" }}
                   >
                     {s.n}
                   </div>

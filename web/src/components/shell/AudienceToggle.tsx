@@ -31,7 +31,7 @@ export function AudienceToggle() {
             className="px-3 py-1 text-sm rounded-md transition-colors"
             style={{
               background: active ? "var(--c-accent)" : "transparent",
-              color: active ? "#ffffff" : "var(--c-muted)",
+              color: active ? "var(--c-on-accent)" : "var(--c-muted)",
               fontWeight: active ? 600 : 400,
             }}
           >

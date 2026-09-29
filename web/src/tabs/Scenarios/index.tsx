@@ -128,7 +128,7 @@ export function ScenariosTab() {
         <button
           onClick={() => useStore.getState().setActiveTab("explore")}
           className="px-5 py-2.5 text-sm font-medium rounded-xl transition-colors"
-          style={{ background: C.indigo, color: "#fff" }}
+          style={{ background: C.indigo, color: "var(--c-on-accent)" }}
         >
           Go to Explore →
         </button>
@@ -147,7 +147,7 @@ export function ScenariosTab() {
         <button
           onClick={() => useStore.getState().setActiveTab("explore")}
           className="px-5 py-2.5 text-sm font-medium rounded-xl transition-colors"
-          style={{ background: C.indigo, color: "#fff" }}
+          style={{ background: C.indigo, color: "var(--c-on-accent)" }}
         >
           Go to Explore →
         </button>

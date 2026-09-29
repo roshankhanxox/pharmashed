@@ -165,7 +165,7 @@ function ExpertHome() {
           <button
             onClick={() => setActiveTab("explore")}
             className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all"
-            style={{ background: C.indigo, color: "#fff", letterSpacing: "0.02em" }}
+            style={{ background: C.indigo, color: "var(--c-on-accent)", letterSpacing: "0.02em" }}
             onMouseEnter={(e) => (e.currentTarget.style.background = C.indigoDp)}
             onMouseLeave={(e) => (e.currentTarget.style.background = C.indigo)}
           >

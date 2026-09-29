@@ -249,7 +249,7 @@ export function AssistantDrawer() {
                 className="max-w-[90%] rounded-xl px-4 py-3 text-sm"
                 style={
                   m.role === "user"
-                    ? { background: C.indigo, color: "#fff" }
+                    ? { background: C.indigo, color: "var(--c-on-accent)" }
                     : { background: C.surface, color: C.text, border: `1px solid ${C.border}` }
                 }
               >
@@ -350,7 +350,7 @@ export function AssistantDrawer() {
               type="submit"
               disabled={!input.trim() || loading || apiAvailable === false}
               className="px-3 py-2 text-sm rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-              style={{ background: C.indigo, color: "#fff" }}
+              style={{ background: C.indigo, color: "var(--c-on-accent)" }}
             >
               Send
             </button>

@@ -80,7 +80,7 @@ export function CitizenSiteCard({ siteId }: { siteId: string }) {
           <button
             onClick={() => openAssistantFor(siteId)}
             className="px-5 py-2.5 rounded-lg font-semibold"
-            style={{ background: "var(--c-accent)", color: "#fff" }}
+            style={{ background: "var(--c-accent)", color: "var(--c-on-accent)" }}
           >
             Ask about this site
           </button>

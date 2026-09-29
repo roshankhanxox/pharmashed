@@ -50,7 +50,7 @@ export function AskBar() {
           type="submit"
           disabled={!text.trim()}
           className="px-5 py-2 rounded-lg font-semibold disabled:opacity-40"
-          style={{ background: "var(--c-accent)", color: "#fff" }}
+          style={{ background: "var(--c-accent)", color: "var(--c-on-accent)" }}
         >
           Ask
         </button>

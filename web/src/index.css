@@ -42,6 +42,7 @@
   --c-accent-soft:   #0369a1;
   --c-accent-tint:   rgba(7,89,133,0.09);
   --c-accent-line:   rgba(7,89,133,0.35);
+  --c-on-accent:     #ffffff;  /* text on accent-coloured buttons */
   --c-blue:          #2563eb;
   --c-slate:         #64748b;
 
@@ -86,11 +87,12 @@
   --c-muted:         #bdb8b3;
   --c-muted2:        #a09a95;
   --c-faint:         #948e89;
-  --c-accent:        #7c75ff;
-  --c-accent-deep:   #615fff;
-  --c-accent-soft:   #818cf8;
-  --c-accent-tint:   rgba(124,117,255,0.12);
-  --c-accent-line:   rgba(124,117,255,0.35);
+  --c-accent:        #7cb7dd;  /* soft water blue, 9:1 on the dark canvas, also 9:1 under dark button text */
+  --c-accent-deep:   #64a5cf;
+  --c-accent-soft:   #9ccbe8;
+  --c-accent-tint:   rgba(124,183,221,0.12);
+  --c-accent-line:   rgba(124,183,221,0.35);
+  --c-on-accent:     #0c0a09;
   --c-blue:          #60a5fa;
   --c-slate:         #94a3b8;
 

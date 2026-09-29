@@ -98,7 +98,7 @@ export function SiteInspector() {
         <button
           onClick={() => openAssistantFor(selectedSiteId, expandedDrug)}
           className="shrink-0 px-3.5 py-2 text-sm font-semibold rounded-lg"
-          style={{ background: C.indigo, color: "#fff" }}
+          style={{ background: C.indigo, color: "var(--c-on-accent)" }}
         >
           Ask about this site
         </button>
