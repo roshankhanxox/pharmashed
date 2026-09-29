@@ -1,0 +1,50 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "pharmashed-site-size-class",
+  "url": "https://pharmashed.example/fhir/StructureDefinition/site-size-class",
+  "version": "0.1.0",
+  "name": "PharmaShedSiteSizeClass",
+  "title": "Stream size class of a site",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-01-01",
+  "description": "Size class of the stream at a PharmaShed site (S, M or L), which selects the flow prior used by the model.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Location"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Stream size class",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://pharmashed.example/fhir/StructureDefinition/site-size-class"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "code"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -190,3 +190,84 @@ def test_bundles_are_valid_json(tmp_path):
     for p in out_dir.glob("*.json"):
         data = json.loads(p.read_text())
         assert "resourceType" in data or "resource_counts" in data  # bundle or index
+
+
+# --- shape rules the HL7 validator enforces against the OneAquaHealth profiles ---------------------
+
+
+def _built(tmp_path: Path):
+    build_dir = _minimal_build(tmp_path)
+    out = tmp_path / "fhir"
+    index = build_all(build_dir, out, ref_obs=build_reference_observations())
+    return out, index
+
+
+def test_every_bundle_entry_has_a_fullurl_matching_its_resource(tmp_path):
+    """Entries outside transactions need a fullUrl, and relative references resolve against it."""
+    out, index = _built(tmp_path)
+    for b in index["bundles"]:
+        bundle = json.loads((out / f"{b['name']}.json").read_text())
+        for entry in bundle["entry"]:
+            r = entry["resource"]
+            assert entry["fullUrl"].endswith(f"/{r['resourceType']}/{r['id']}"), (b["name"], r["id"])
+
+
+def test_locations_follow_the_real_oah_profile(tmp_path):
+    """Profile is location-oah (location-oah-indicators does not exist); it requires identifier, name, mode=instance."""
+    assert _OAH_LOCATION_PROFILE.endswith("/StructureDefinition/location-oah")
+    site = {"id": "TLS-01", "city": "TLS", "size_class": "S", "lonlat": [1.4, 43.6], "population_buffer": 500}
+    loc = build_locations({"sites": [site]})[0]
+    assert loc["mode"] == "instance"
+    assert loc["identifier"] and loc["name"]
+
+
+def test_predictions_have_the_performer_and_effective_time_the_profile_requires(tmp_path):
+    build_dir = _minimal_build(tmp_path)
+    results = json.loads((build_dir / "results.json").read_text())
+    obs = build_prediction_observations(results)[0]
+    assert obs["performer"] == [{"reference": "Organization/pharmashed"}]
+    assert obs["effectiveDateTime"] == results["meta"]["generated_at"]
+
+
+def test_the_performing_organization_is_in_the_locations_bundle(tmp_path):
+    out, _ = _built(tmp_path)
+    locations = json.loads((out / "locations.json").read_text())
+    assert any(e["resource"]["resourceType"] == "Organization" and e["resource"]["id"] == "pharmashed"
+               for e in locations["entry"])
+
+
+def test_every_tag_names_its_code_system_and_uses_a_defined_code(tmp_path):
+    """A code without a system cannot be validated; tag codes must exist in our tags CodeSystem."""
+    out, index = _built(tmp_path)
+    tags_cs = json.loads((_REPO_ROOT / "fhir" / "terminology" / "CodeSystem-pharmashed-tags.json").read_text())
+    defined = {c["code"]: c["display"] for c in tags_cs["concept"]}
+    seen = set()
+    for b in index["bundles"]:
+        if b["name"] in ("terminology", "oah-examples"):
+            continue
+        for entry in json.loads((out / f"{b['name']}.json").read_text())["entry"]:
+            for tag in entry["resource"].get("meta", {}).get("tag", []):
+                assert tag["system"] == tags_cs["url"], (b["name"], tag)
+                assert tag["code"] in defined, tag
+                assert tag.get("display", defined[tag["code"]]) == defined[tag["code"]], tag  # display must match
+                seen.add(tag["code"])
+    assert {"synthetic", "model-output"} <= seen
+
+
+def test_reference_measurement_ids_are_valid_fhir_ids():
+    import re
+
+    for obs in build_reference_observations():
+        assert re.fullmatch(r"[A-Za-z0-9\-.]{1,64}", obs["id"]), obs["id"]
+
+
+def test_our_location_extension_is_defined_in_the_terminology_folder():
+    ext = json.loads((_REPO_ROOT / "fhir" / "terminology" / "StructureDefinition-pharmashed-site-size-class.json").read_text())
+    site = {"id": "TLS-01", "city": "TLS", "size_class": "S", "lonlat": [1.4, 43.6]}
+    used = build_locations({"sites": [site]})[0]["extension"][0]["url"]
+    assert ext["url"] == used
+
+
+def test_the_index_starts_as_unvalidated_so_a_rebuild_cannot_keep_a_stale_pass(tmp_path):
+    _, index = _built(tmp_path)
+    assert index["validation"]["status"] == "unknown" and index["validation"]["ran_at"] is None

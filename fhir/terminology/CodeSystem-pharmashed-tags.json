@@ -1,0 +1,35 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "pharmashed-tags",
+  "url": "https://pharmashed.example/fhir/CodeSystem/pharmashed-tags",
+  "version": "0.1.0",
+  "name": "PharmaShedTags",
+  "title": "PharmaShed resource tags",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-01-01",
+  "description": "Tags PharmaShed puts in meta.tag so that model output, synthetic placements and illustrative inputs stay distinguishable from real data on a shared FHIR server.",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "model-output",
+      "display": "Model output",
+      "definition": "The resource is produced by the PharmaShed model, not measured."
+    },
+    {
+      "code": "illustrative-parameter",
+      "display": "Illustrative parameters",
+      "definition": "Some input parameters behind this resource are declared illustrative placeholders, not sourced values (D33). The tag is dropped when real values replace them."
+    },
+    {
+      "code": "synthetic",
+      "display": "Synthetic placement",
+      "definition": "The Location is a synthetic placement on a real waterway, not a real monitoring site."
+    },
+    {
+      "code": "external-reference-R1",
+      "display": "External reference measurement (R1)",
+      "definition": "A published field measurement (source R1) kept as reference data for the consistency checks; not produced by PharmaShed."
+    }
+  ]
+}

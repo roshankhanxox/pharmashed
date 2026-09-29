@@ -2,6 +2,7 @@
 data/raw/
 data/build/
 fhir/out/
+fhir/ig/
 fhir/validator/*.jar
 
 # python

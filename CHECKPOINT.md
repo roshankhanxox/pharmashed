@@ -57,7 +57,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 | M12 | Consistency checks | ☑ | C1-C5 run on the frozen illustrative run: C1, C2, C5 pass; C3, C4 fail (illustrative inputs, not evidence, D35); separation test |
 | M13 | FHIR terminology | ☑ | 4 terminology JSON files (3 CodeSystems + 1 ValueSet) |
 | M14 | FHIR builder | ☑ | builder.py: Location/Group/Consumption/Prediction bundles; 18 tests |
-| M15 | Validator + HAPI | ◐ | Scripts written but **never run** (validator jar download + IG needed; Docker daemon was off). FHIR tab badge now says "Not yet validated" until a pass is recorded |
+| M15 | Validator + HAPI | ☑ | HL7 validator run on all 10 bundles against the OAH IG (pinned commit): 0 errors, 1,513 warnings, recorded in `fhir_index.validation`. The local HAPI server (docker compose) has not been run |
 | M16 | API | ☑ | FastAPI app; core/scenario/fhir routes; 15 tests |
 | M17 | Assistant | ☑ | api/assistant/: tool-use loop, numeric guard, usage limits (S3). Provider is OpenAI `gpt-5-mini` with Groq fallback, not Anthropic (D25: model from env). Needs `OPENAI_API_KEY` |
 | M18 | Web shell + data layer | ☑ | Vite + React + Zustand; Vercel deploy; light/dark theme |
@@ -117,11 +117,18 @@ Needs M02/M03 loaders (with the new columns) to exist first, so the files have t
 
 ## Next up
 
-1. **M15 follow-through** Run the HL7 validator (and HAPI) once and record the result in `fhir_index.validation`; until then nothing may claim the bundles validate.
-2. **Live check** After merging, set `PHARMASHED_DATA` on Render if needed and check the live site (see Follow-ups).
-3. **S5** Citizen reports + gamification, and **M23** CI.
+1. **Live check** After merging, confirm the live FHIR tab shows the green validation badge (needs the release snapshot deployed).
+2. **S5** Citizen reports + gamification, and **M23** CI.
 
 ## Last session
+
+T2 FHIR validation (branch `T2-fhir-validator`):
+Ran the official HL7 validator on all bundles against the OneAquaHealth IG (compiled from FSH source at a pinned commit; the
+IG has no published package, and the old script's package URL 404s). First run found real problems, now fixed: no `fullUrl` on
+entries, a guessed Location profile URL that does not exist, predictions missing the `performer` and `effective[x]` the
+profile requires, an undefined extension, tags without a code system, and ids with underscores. Result: 0 errors, 1,513
+warnings (best-practice). Added `scripts/validate_fhir.py` (`make fhir-validate`), the pure summarising logic with tests, and
+the badge now shows the recorded run. Engine 203, api 54, web 28 pass.
 
 T1 engine end to end (branch `T1-engine-end-to-end`):
 Downloaded GHS-POP (the fetch script had wrong URLs and tile maths) and computed real populations for the 105 sites
@@ -213,7 +220,7 @@ is still an open blocker, see Blockers below.)
 - **Deployment data (code done, one manual step):** `data/release/` is a committed snapshot of the frozen run (`make release`, `scripts/make_release.py`, compact JSON, 5 MB). The API falls back to it when `data/build/` is absent, and `render.yaml` sets `PHARMASHED_DATA=data/release`. If the Render service was not created from the blueprint, set `PHARMASHED_DATA` to `data/release` in the dashboard (before this the live API served the old hand-made fixtures: `n_draws` 10,000, generated 2026-09-18) and confirm `/api/meta` shows `frozen_tag: predictions-frozen-illustrative-v1`. Re-run `make release` and commit after any new freeze.
 - Site auto-placement used index-thirds strata because population was pending; with real GHS-POP available it could be re-run with the population strata from SOURCING.md S5.
 - **Contract drift (resolved):** `fhir_index` schema, pydantic model and TS types now include the optional OAH example fields and the fixture uses the schema's `query_demo` shape; the FHIR tab reads the real per-category counts (it used to show 663 for both).
-- **Validator / HAPI never run.** `validate.sh` downloads `validator_cli.jar` and the OAH IG; Docker was not running when checked. README says bundles conform to the OAH profiles; that is unverified until the validator has run.
+- **Validator (done) / HAPI (not run).** `scripts/validate_fhir.py` (`make fhir-validate`) validates every bundle and records the result; re-run it, then `make release`, after any rebuild of the bundles (a rebuild resets validation to unknown). The local HAPI FHIR server has not been run (Docker Desktop was off).
 - `make fhir-validate` and `make api` are still `TODO` stubs in the Makefile (`run`, `fhir`, `freeze`, `checks` and `release` are real).
 - `uv run pytest engine api` in one command fails at collection (both `tests/` folders are packages: "No module named tests.test_api"); run `uv run pytest engine` and `uv run pytest api` separately. `make test` was not checked.
 - Deployment: `OPENAI_API_KEY` is set on Render (the live `/api/assistant/status` reports `openai` / `gpt-5-mini`). The free tier sleeps, so wake the API before a demo. Assistant limits are in memory and reset on restart.

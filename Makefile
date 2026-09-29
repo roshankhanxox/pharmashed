@@ -31,7 +31,7 @@ fhir:
 	uv run pharmashed fhir
 
 fhir-validate:
-	@echo "TODO M15: run HL7 validator"
+	uv run python scripts/validate_fhir.py
 
 release:
 	uv run python scripts/make_release.py

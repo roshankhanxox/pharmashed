@@ -25,7 +25,13 @@ _HL7_OBS_CAT = "http://terminology.hl7.org/CodeSystem/observation-category"
 
 # OAH IG profiles (D17, D37)
 _OAH_PREDICTION_PROFILE = "http://hl7.eu/fhir/ig/oah/StructureDefinition/observation-with-component-oah"
-_OAH_LOCATION_PROFILE   = "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah-indicators"
+_OAH_LOCATION_PROFILE   = "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
+
+# Identity and provenance of our own resources
+_BASE = "https://pharmashed.example/fhir"
+_SITE_ID_SYSTEM = f"{_BASE}/site-id"
+_TAG_CS = f"{_BASE}/CodeSystem/pharmashed-tags"
+_ORG_ID = "pharmashed"
 
 # Drug → ATC (illustrative codes; A1-A6 will source real codes)
 _DRUG_ATC: dict[str, str] = {
@@ -63,10 +69,12 @@ def _build_location(site: dict) -> dict:
         "id": f"site-{site['id']}",
         "meta": {
             "profile": [_OAH_LOCATION_PROFILE],
-            "tag": [{"code": "synthetic", "display": "Synthetic placement — not a real monitoring site"}],
+            "tag": [{"system": _TAG_CS, "code": "synthetic", "display": "Synthetic placement"}],
         },
+        "identifier": [{"system": _SITE_ID_SYSTEM, "value": site["id"]}],
         "status": "active",
         "name": site.get("name", site["id"]),
+        "mode": "instance",
         "description": (
             f"Synthetic monitoring site on {site['city']} urban waterway. "
             f"Size class {site['size_class']}. Population buffer: {site.get('population_buffer', 0):.0f} inhabitants."
@@ -176,7 +184,7 @@ def build_consumption_observations(consumption_csv_path: Path) -> list[dict]:
 
 # --- Prediction Observations ---
 
-def _build_prediction_obs(entry: dict, engine_version: str) -> dict:
+def _build_prediction_obs(entry: dict, engine_version: str, generated_at: str) -> dict:
     drug = entry["drug"]
     site_id = entry["site_id"]
     atc = _DRUG_ATC.get(drug, "unknown")
@@ -219,11 +227,11 @@ def _build_prediction_obs(entry: dict, engine_version: str) -> dict:
     country = _CITY_COUNTRY.get(site_id[:3], "")
     derived_from = [_ref("Observation", f"cons-{country}-{drug}")] if country else []
 
-    meta_tags = [{"code": "model-output"}]
+    meta_tags = [{"system": _TAG_CS, "code": "model-output"}]
     all_cited = entry.get("all_params_cited", True)
     if not all_cited:
-        meta_tags.append({"code": "illustrative-parameter",
-                          "display": "Some parameters are illustrative (D33)"})
+        meta_tags.append({"system": _TAG_CS, "code": "illustrative-parameter",
+                          "display": "Illustrative parameters"})
 
     return {
         "resourceType": "Observation",
@@ -244,6 +252,8 @@ def _build_prediction_obs(entry: dict, engine_version: str) -> dict:
             "text": f"{drug} predicted concentration",
         },
         "subject": _ref("Location", f"site-{site_id}"),
+        "effectiveDateTime": generated_at,
+        "performer": [_ref("Organization", _ORG_ID)],
         "method": {"text": f"PharmaShed PEC {engine_version}, variant full"},
         "component": components,
         "derivedFrom": derived_from,
@@ -253,11 +263,12 @@ def _build_prediction_obs(entry: dict, engine_version: str) -> dict:
 def build_prediction_observations(results_json: dict) -> list[dict]:
     engine_version = results_json.get("meta", {}).get("engine_version", "0.0.0")
     all_cited = results_json.get("meta", {}).get("all_params_cited", True)
+    generated_at = results_json.get("meta", {}).get("generated_at") or _now()
     obs_list = []
     for entry in results_json.get("results", []):
         entry = dict(entry)
         entry["all_params_cited"] = all_cited
-        obs_list.append(_build_prediction_obs(entry, engine_version))
+        obs_list.append(_build_prediction_obs(entry, engine_version, generated_at))
     return obs_list
 
 
@@ -268,12 +279,28 @@ def build_prediction_observations(results_json: dict) -> list[dict]:
 
 # --- Bundle building ---
 
+def build_organization() -> dict:
+    """The Organization that performs (runs) the model; referenced by every prediction."""
+    return {
+        "resourceType": "Organization",
+        "id": _ORG_ID,
+        "meta": {"tag": [{"system": _TAG_CS, "code": "model-output"}]},
+        "active": True,
+        "name": "PharmaShed (model run)",
+    }
+
+
 def _collection_bundle(id_: str, resources: list[dict]) -> dict:
+    """A collection bundle. Every entry gets a fullUrl (required outside transactions/batches),
+    built from the resource type and id so relative references like Location/site-TLS-01 resolve."""
     return {
         "resourceType": "Bundle",
         "id": id_,
         "type": "collection",
-        "entry": [{"resource": r} for r in resources],
+        "entry": [
+            {"fullUrl": f"{_BASE}/{r['resourceType']}/{r['id']}", "resource": r}
+            for r in resources
+        ],
     }
 
 
@@ -400,7 +427,7 @@ def build_all(
     # Write bundles
     bundles: list[tuple[str, list[dict]]] = [
         ("terminology", term_resources),
-        ("locations", locations + groups),
+        ("locations", locations + groups + [build_organization()]),
         ("consumption", consumption_obs),
         ("reference-measurements", ref_obs),
     ]
