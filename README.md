@@ -31,7 +31,7 @@ PharmaShed fills that gap by modelling the **untreated pathway**: sewer leakage,
 | **Ablation comparison** | WWTP-only vs population-only vs full model, side by side |
 | **Consistency checks** | 5 pre-registered checks against Rodrigues et al. 2025 field data |
 | **FHIR R4 output** | Location + Observation bundles conforming to the OneAquaHealth IG profiles |
-| **AI assistant** | Groq-backed, tool-use loop, numeric guard — can only cite numbers from live tool calls |
+| **AI assistant** | OpenAI `gpt-5-mini` (Groq fallback), tool-use loop, numeric guard, usage limits — can only cite numbers from live tool calls |
 
 ---
 
@@ -74,7 +74,7 @@ score = fraction of draws with RQ > 1
 | Frontend | Vite + React + TypeScript strict, Zustand, MapLibre GL, hand-written SVG charts, Tailwind |
 | Scenario math | Client-side Float32 arithmetic over precomputed draws — no server call on slider drag |
 | FHIR | Static R4 bundles, `observation-with-component-oah` and `location-oah` OAH IG profiles |
-| AI assistant | Groq (open-source LLM), tool-use loop, numeric guard |
+| AI assistant | OpenAI `gpt-5-mini` (Groq fallback), tool-use loop, numeric guard |
 | CI | Vercel (frontend) + Render (API) |
 
 ---
@@ -102,6 +102,19 @@ The sourcing pipeline is built and ready. Replacing `drug_parameters.csv` and `c
 
 ---
 
+## Reproducing the data
+
+The numbers in the app come from the engine, not from hand-made fixtures. Inputs are still **illustrative** (see Parameters below); populations are real (GHS-POP R2023A, 500 m buffers).
+
+```bash
+uv run python scripts/fetch_ghspop.py --download   # 4 population tiles, about 200 MB, into data/raw/ (git-ignored)
+uv run pharmashed population compute                # writes real populations into data/sites/sites.geojson
+uv run python scripts/fill_illustrative.py          # only fills rows that are still todo
+uv run pharmashed build                             # model run into data/build/, FHIR bundles into fhir/out/
+uv run pharmashed freeze                            # strict run, git commit and tag (needs a clean tree)
+uv run pharmashed checks                            # consistency checks C1-C5 against the frozen run
+```
+
 ## Local development
 
 ```bash
@@ -125,7 +138,7 @@ cd web && pnpm tsc --noEmit
 
 | Variable | Where | Purpose |
 |---|---|---|
-| `GROQ_API_KEY` | API (Render dashboard) | Assistant LLM |
+| `OPENAI_API_KEY` | API (Render dashboard) | Assistant LLM (`GROQ_API_KEY` is an optional fallback) |
 | `CORS_ORIGINS` | API | Allowed frontend origins |
 | `PHARMASHED_DATA` | API | Path to data directory (defaults to `data/build/`) |
 | `VITE_DATA_BASE` | Web `.env.production` | API base URL for deployed frontend |
