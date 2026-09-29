@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException
+from typing import Literal
+
+from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from pharmashed_api.assistant import loop
+from pharmashed_api.assistant.limits import limiter
 
 router = APIRouter()
 
@@ -24,6 +27,19 @@ class AssistantContext(BaseModel):
 class AssistantRequest(BaseModel):
     question: str = Field(max_length=2000)
     context: AssistantContext | None = None
+    audience: Literal["citizen", "expert"] = "expert"
+
+
+def _client_id(request: Request) -> str:
+    """Identify the caller for rate limiting.
+
+    Behind Render's proxy the caller's address is the last entry the proxy appended to
+    X-Forwarded-For (earlier entries can be forged by the client). Locally it is the socket peer.
+    """
+    forwarded = request.headers.get("x-forwarded-for")
+    if forwarded:
+        return forwarded.split(",")[-1].strip()
+    return request.client.host if request.client else "unknown"
 
 
 @router.get("/assistant/status")
@@ -41,11 +57,14 @@ def assistant_status() -> dict:
 
 
 @router.post("/assistant")
-def assistant(req: AssistantRequest) -> dict:
+def assistant(req: AssistantRequest, request: Request) -> dict:
     if loop.provider() is None:
         raise HTTPException(
             503,
             "No assistant API key configured — set OPENAI_API_KEY (or GROQ_API_KEY) to enable the assistant.",
         )
+    refusal = limiter.check(_client_id(request))
+    if refusal:
+        raise HTTPException(429, refusal)
     context = req.context.model_dump() if req.context else None
-    return loop.run(req.question, context)
+    return loop.run(req.question, context, req.audience)

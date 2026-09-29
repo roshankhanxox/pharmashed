@@ -75,6 +75,8 @@ export function AssistantDrawer() {
   const [provider, setProvider] = useState<string | null>(null);
   const context = useStore((s) => s.assistantContext);
   const clearContext = useStore((s) => s.clearAssistantContext);
+  const pendingQuestion = useStore((s) => s.assistantPendingQuestion);
+  const clearPending = useStore((s) => s.clearPendingQuestion);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   // Check on first open whether the backend has an API key. This is a plain GET, so it
@@ -106,6 +108,7 @@ export function AssistantDrawer() {
         body: JSON.stringify({
           question,
           context: context ? { site_id: context.siteId, drug: context.drug } : undefined,
+          audience: citizen ? "citizen" : "expert",
         }),
       });
       const data = await res.json() as {
@@ -134,6 +137,14 @@ export function AssistantDrawer() {
       setLoading(false);
     }
   }
+
+  // A question typed on the Home ask bar is sent once the drawer is open and the backend has been checked.
+  useEffect(() => {
+    if (!open || !pendingQuestion || apiAvailable === null) return;
+    const question = pendingQuestion;
+    clearPending();
+    if (apiAvailable) void send(question);
+  }, [open, pendingQuestion, apiAvailable]);
 
   if (!open) return null;
 
@@ -220,7 +231,7 @@ export function AssistantDrawer() {
           {messages.map((m, i) => (
             <div key={i} className={`flex flex-col gap-1 ${m.role === "user" ? "items-end" : "items-start"}`}>
               {/* Tool chips */}
-              {m.toolCalls && m.toolCalls.length > 0 && (
+              {!citizen && m.toolCalls && m.toolCalls.length > 0 && (
                 <div className="flex gap-1 flex-wrap">
                   {m.toolCalls.map((tc, j) => (
                     <span
@@ -290,7 +301,9 @@ export function AssistantDrawer() {
           className="px-5 py-2 text-xs shrink-0"
           style={{ borderTop: `1px solid ${C.border}`, color: C.faint }}
         >
-          Scores reflect assumed priors · assistant never computes values itself
+          {citizen
+            ? "A guide for where to test, using demo numbers. Not a verdict on any stream."
+            : "Scores reflect assumed priors · assistant never computes values itself"}
         </div>
 
         {/* Input */}
@@ -323,7 +336,7 @@ export function AssistantDrawer() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={apiAvailable === false || loading}
-              placeholder={context ? `Ask about ${context.siteId}…` : "Ask about sites, scores, drivers…"}
+              placeholder={context ? `Ask about ${context.siteId}…` : citizen ? "Ask about a stream or a medicine…" : "Ask about sites, scores, drivers…"}
               className="flex-1 px-3 py-2 text-sm rounded-lg focus:outline-none disabled:opacity-40"
               style={{
                 background: C.surface,

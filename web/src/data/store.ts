@@ -70,6 +70,8 @@ export interface AppStore {
   // drawers
   assistantOpen: boolean;
   assistantContext: AssistantContext | null;
+  /** A question typed outside the drawer (Home ask bar); the drawer sends it once and clears it. */
+  assistantPendingQuestion: string | null;
   provenanceKey: string | null;
 
   // actions
@@ -98,6 +100,9 @@ export interface AppStore {
   /** Opens the assistant already focused on a site (and optionally a drug). */
   openAssistantFor: (siteId: string, drug?: string | null) => void;
   clearAssistantContext: () => void;
+  /** Opens the assistant and asks a question straight away. */
+  openAssistantWith: (question: string) => void;
+  clearPendingQuestion: () => void;
   closeAssistant: () => void;
   openProvenance: (key: string) => void;
   closeProvenance: () => void;
@@ -128,6 +133,7 @@ export const useStore = create<AppStore>((set, get) => ({
 
   assistantOpen: false,
   assistantContext: null,
+  assistantPendingQuestion: null,
   provenanceKey: null,
 
   setResults: (r) => set({ results: r }),
@@ -165,6 +171,8 @@ export const useStore = create<AppStore>((set, get) => ({
   openAssistantFor: (siteId, drug = null) =>
     set({ assistantOpen: true, assistantContext: { siteId, drug } }),
   clearAssistantContext: () => set({ assistantContext: null }),
+  openAssistantWith: (question) => set({ assistantOpen: true, assistantPendingQuestion: question }),
+  clearPendingQuestion: () => set({ assistantPendingQuestion: null }),
   closeAssistant: () => set({ assistantOpen: false }),
   openProvenance: (key) => set({ provenanceKey: key }),
   closeProvenance: () => set({ provenanceKey: null }),

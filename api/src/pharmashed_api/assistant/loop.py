@@ -104,6 +104,20 @@ def _context_note(context: dict | None) -> str:
     )
 
 
+_CITIZEN_NOTE = (
+    "\nThe user is not a specialist. Answer in plain, friendly language for a member of the public. "
+    "Do not use the abbreviations PEC, PNEC, RQ, λ or Q, and do not quote concentrations in ng/L. "
+    "Talk about \"testing priority\" (High, Medium or Lower) instead of scores, and describe amounts in words. "
+    "You may mention a rank (for example \"#9 of 21 sites\") and which medicines matter most, and what each is used for. "
+    "Keep it under 120 words. Still call tools before saying anything about a site, and never call a stream safe or unsafe."
+)
+
+
+def _audience_note(audience: str) -> str:
+    """System-prompt addendum for who is asking: citizens get plain language."""
+    return _CITIZEN_NOTE if audience == "citizen" else ""
+
+
 def _call_tool(name: str, args: dict) -> Any:
     fn = TOOL_FN_MAP.get(name)
     if fn is None:
@@ -131,8 +145,10 @@ def _extract_links(text: str, tool_calls: list[dict]) -> list[dict]:
     return links
 
 
-def run(question: str, context: dict | None = None) -> dict:
-    """Run the tool-use loop for one question, optionally about a site/drug the user has open."""
+def run(question: str, context: dict | None = None, audience: str = "expert") -> dict:
+    """Run the tool-use loop for one question, optionally about a site/drug the user has open.
+
+    `audience` is "citizen" for plain-language answers or "expert" for the technical style."""
     prov = provider()
     if prov is None:
         raise RuntimeError("No assistant API key configured (OPENAI_API_KEY or GROQ_API_KEY)")
@@ -141,7 +157,7 @@ def run(question: str, context: dict | None = None) -> dict:
     params = _params(prov)
 
     messages: list[dict] = [
-        {"role": "system", "content": _SYSTEM + _context_note(context)},
+        {"role": "system", "content": _SYSTEM + _context_note(context) + _audience_note(audience)},
         {"role": "user", "content": question},
     ]
     all_tool_calls: list[dict] = []
