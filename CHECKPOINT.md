@@ -118,7 +118,7 @@ Needs M02/M03 loaders (with the new columns) to exist first, so the files have t
 ## Next up
 
 1. **M15 follow-through** Run the HL7 validator (and HAPI) once and record the result in `fhir_index.validation`; until then nothing may claim the bundles validate.
-2. **Deployment data** Get the built data to the deployed API (see Follow-ups) and check the live site.
+2. **Live check** After merging, set `PHARMASHED_DATA` on Render if needed and check the live site (see Follow-ups).
 3. **S5** Citizen reports + gamification, and **M23** CI.
 
 ## Last session
@@ -210,13 +210,13 @@ is still an open blocker, see Blockers below.)
 ## Follow-ups (cross-module notes)
 
 - **Demo numbers (resolved, D42):** the app now serves real engine output (`make build`, `make freeze`, `make checks`) instead of `scripts/gen_rich_fixtures.py` fixtures. Inputs are still illustrative. Regenerate with: `uv run pharmashed build`, then (clean tree) `uv run pharmashed freeze`, `uv run pharmashed checks`, `uv run pharmashed fhir`.
-- **Deployment data (open):** `data/build/` and `fhir/out/` are git-ignored, so a deployed API has nothing to serve unless `PHARMASHED_DATA` points at a committed folder. Decide how the deployed API gets the built data (for example a committed `data/release/` snapshot) and what `render.yaml` sets. The API's default data folder was also wrong (fixed in this PR).
+- **Deployment data (code done, one manual step):** `data/release/` is a committed snapshot of the frozen run (`make release`, `scripts/make_release.py`, compact JSON, 5 MB). The API falls back to it when `data/build/` is absent, and `render.yaml` sets `PHARMASHED_DATA=data/release`. If the Render service was not created from the blueprint, set `PHARMASHED_DATA` to `data/release` in the dashboard (before this the live API served the old hand-made fixtures: `n_draws` 10,000, generated 2026-09-18) and confirm `/api/meta` shows `frozen_tag: predictions-frozen-illustrative-v1`. Re-run `make release` and commit after any new freeze.
 - Site auto-placement used index-thirds strata because population was pending; with real GHS-POP available it could be re-run with the population strata from SOURCING.md S5.
 - **Contract drift (resolved):** `fhir_index` schema, pydantic model and TS types now include the optional OAH example fields and the fixture uses the schema's `query_demo` shape; the FHIR tab reads the real per-category counts (it used to show 663 for both).
 - **Validator / HAPI never run.** `validate.sh` downloads `validator_cli.jar` and the OAH IG; Docker was not running when checked. README says bundles conform to the OAH profiles; that is unverified until the validator has run.
-- `make fhir`, `make fhir-validate`, `make checks` and `make api` are still `TODO` stubs in the Makefile.
+- `make fhir-validate` and `make api` are still `TODO` stubs in the Makefile (`run`, `fhir`, `freeze`, `checks` and `release` are real).
 - `uv run pytest engine api` in one command fails at collection (both `tests/` folders are packages: "No module named tests.test_api"); run `uv run pytest engine` and `uv run pytest api` separately. `make test` was not checked.
-- Deployment: set `OPENAI_API_KEY` in the Render dashboard; the free tier sleeps, so wake the API before a demo. Assistant limits are in memory and reset on restart.
+- Deployment: `OPENAI_API_KEY` is set on Render (the live `/api/assistant/status` reports `openai` / `gpt-5-mini`). The free tier sleeps, so wake the API before a demo. Assistant limits are in memory and reset on restart.
 - `suggestion.md` and `SCRIPT.md` are local and git-ignored.
 
 ## Blockers

@@ -113,7 +113,10 @@ uv run python scripts/fill_illustrative.py          # only fills rows that are s
 uv run pharmashed build                             # model run into data/build/, FHIR bundles into fhir/out/
 uv run pharmashed freeze                            # strict run, git commit and tag (needs a clean tree)
 uv run pharmashed checks                            # consistency checks C1-C5 against the frozen run
+uv run python scripts/make_release.py               # committed snapshot in data/release/ that the deployed API serves
 ```
+
+The API reads `data/build/` when it exists (local development) and falls back to `data/release/` (a deployed server, where the git-ignored build folder is absent). `PHARMASHED_DATA` overrides both.
 
 ## Local development
 
