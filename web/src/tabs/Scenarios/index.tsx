@@ -6,7 +6,8 @@ import { EmptyView, LoadingView } from "../../components/shell/StateViews";
 import { Term } from "../../components/glossary/Term";
 import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 import { Reveal } from "../../components/shell/Reveal";
-import { DEMO_NOTICE, SCORE_CAVEAT, TIER_LABEL, scenarioSentence, tierOf } from "../../data/copy";
+import { ScenarioWhy } from "./ScenarioWhy";
+import { TIER_LABEL, scenarioSentence, tierOf } from "../../data/copy";
 
 const C = {
   canvas:  "var(--c-canvas)",
@@ -406,11 +407,16 @@ export function ScenariosTab() {
           </div>
         )}
 
+        {baseline && scenario && (
+          <Reveal>
+            <ScenarioWhy citizen={citizen} multipliers={multipliers} baseline={baseline} scenario={scenario} />
+          </Reveal>
+        )}
+
         {citizen ? (
-          <div className="text-sm leading-relaxed flex flex-col gap-1.5" style={{ color: C.faint }}>
-            <p>This is a what-if, not a forecast. {SCORE_CAVEAT}</p>
-            <p>{DEMO_NOTICE}</p>
-          </div>
+          <p className="text-sm leading-relaxed" style={{ color: C.faint }}>
+            This is a what-if, not a forecast.
+          </p>
         ) : (
           <p className="text-xs leading-relaxed" style={{ color: C.faint }}>
             Scores recomputed live over 1,000 stored simulation draws under stated priors. Score is the share of draws with RQ &gt; 1 — it is not a probability.
