@@ -30,6 +30,24 @@ const SUGGESTED_CITIZEN: string[] = [
   "What would repairing sewers change at the top site?",
 ];
 
+/** Starter questions about one site, worded for the current audience. */
+function siteSuggestions(siteId: string, drug: string | null, citizen: boolean): string[] {
+  if (citizen) {
+    return [
+      `Why does ${siteId} have this testing priority?`,
+      `Which medicine matters most at ${siteId}?`,
+      `What would repairing the sewers change at ${siteId}?`,
+      "What does this ranking mean, and what doesn't it mean?",
+    ];
+  }
+  return [
+    `What drives the sampling priority score at ${siteId}?`,
+    `What would flip ${siteId} to a different tier?`,
+    drug ? `Where does the PNEC for ${drug} come from?` : `Where do the PNEC values used at ${siteId} come from?`,
+    `What happens at ${siteId} if leakage is halved?`,
+  ];
+}
+
 interface ToolCall {
   name: string;
 }
@@ -54,19 +72,23 @@ export function AssistantDrawer() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [apiAvailable, setApiAvailable] = useState<boolean | null>(null);
+  const [provider, setProvider] = useState<string | null>(null);
+  const context = useStore((s) => s.assistantContext);
+  const clearContext = useStore((s) => s.clearAssistantContext);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // Check API availability on first open
+  // Check on first open whether the backend has an API key. This is a plain GET, so it
+  // does not spend a model call (the old check sent a real "ping" question).
   useEffect(() => {
     if (!open || apiAvailable !== null) return;
-    fetch(`${apiBase()}/assistant`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: "ping" }),
-    })
-      .then((r) => setApiAvailable(r.status !== 503))
+    fetch(`${apiBase()}/assistant/status`)
+      .then((r) => r.json() as Promise<{ available: boolean; provider: string | null }>)
+      .then((s) => {
+        setApiAvailable(s.available);
+        setProvider(s.provider);
+      })
       .catch(() => setApiAvailable(false));
-  }, [open]);
+  }, [open, apiAvailable]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -81,7 +103,10 @@ export function AssistantDrawer() {
       const res = await fetch(`${apiBase()}/assistant`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({
+          question,
+          context: context ? { site_id: context.siteId, drug: context.drug } : undefined,
+        }),
       });
       const data = await res.json() as {
         answer_markdown?: string;
@@ -138,7 +163,7 @@ export function AssistantDrawer() {
               className="text-xs px-1.5 py-0.5 rounded"
               style={{ background: C.raised, color: C.faint, border: `1px solid ${C.border}` }}
             >
-              Groq
+              {provider === "openai" ? "OpenAI" : provider === "groq" ? "Groq" : "LLM"}
             </span>
           </div>
           <button
@@ -158,7 +183,7 @@ export function AssistantDrawer() {
             className="text-xs px-5 py-3 shrink-0"
             style={{ background: "var(--c-warn-bg)", borderBottom: `1px solid var(--c-warn-border)`, color: "var(--c-warn-text)" }}
           >
-            Assistant unavailable — LLM API key not configured on the backend. Start the API server with <code style={{ }}>GROQ_API_KEY</code> set.
+            Assistant unavailable — LLM API key not configured on the backend. Start the API server with <code>OPENAI_API_KEY</code> (or <code>GROQ_API_KEY</code>) set.
           </div>
         )}
 
@@ -168,7 +193,10 @@ export function AssistantDrawer() {
             <div>
               <p className="text-xs mb-3" style={{ color: C.faint }}>Suggested questions:</p>
               <div className="flex flex-col gap-1.5">
-                {(citizen ? SUGGESTED_CITIZEN : SUGGESTED).map((q) => (
+                {(context
+                  ? siteSuggestions(context.siteId, context.drug, citizen)
+                  : citizen ? SUGGESTED_CITIZEN : SUGGESTED
+                ).map((q) => (
                   <button
                     key={q}
                     onClick={() => send(q)}
@@ -267,6 +295,25 @@ export function AssistantDrawer() {
 
         {/* Input */}
         <div className="px-4 pb-4 shrink-0">
+          {context && (
+            <div
+              className="flex items-center gap-2 mb-2 text-xs rounded-lg px-3 py-1.5 w-fit max-w-full"
+              style={{ background: C.raised, color: C.muted, border: `1px solid ${C.border}` }}
+            >
+              <span className="truncate">
+                Asking about <strong style={{ color: C.text }}>{context.siteId}{context.drug ? ` · ${context.drug}` : ""}</strong>
+              </span>
+              <button
+                onClick={clearContext}
+                aria-label="Stop asking about this site"
+                title="Ask about anything instead"
+                className="leading-none"
+                style={{ color: C.faint }}
+              >
+                ×
+              </button>
+            </div>
+          )}
           <form
             onSubmit={(e) => { e.preventDefault(); send(input); }}
             className="flex gap-2"
@@ -276,7 +323,7 @@ export function AssistantDrawer() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={apiAvailable === false || loading}
-              placeholder="Ask about sites, scores, drivers…"
+              placeholder={context ? `Ask about ${context.siteId}…` : "Ask about sites, scores, drivers…"}
               className="flex-1 px-3 py-2 text-sm rounded-lg focus:outline-none disabled:opacity-40"
               style={{
                 background: C.surface,

@@ -16,7 +16,7 @@ export function CitizenSiteCard({ siteId }: { siteId: string }) {
   const sites = useStore((s) => s.sites);
   const setAudience = useStore((s) => s.setAudience);
   const setActiveTab = useStore((s) => s.setActiveTab);
-  const openAssistant = useStore((s) => s.openAssistant);
+  const openAssistantFor = useStore((s) => s.openAssistantFor);
   if (!results) return null;
 
   const drugs = results.results
@@ -78,7 +78,7 @@ export function CitizenSiteCard({ siteId }: { siteId: string }) {
       <Reveal delay={160}>
         <div className="flex gap-3 flex-wrap">
           <button
-            onClick={openAssistant}
+            onClick={() => openAssistantFor(siteId)}
             className="px-5 py-2.5 rounded-lg font-semibold"
             style={{ background: "var(--c-indigo)", color: "#fff" }}
           >

@@ -23,6 +23,7 @@ export function SiteInspector() {
   const expandedDrug   = useStore((s) => s.expandedDrug);
   const setExpandedDrug = useStore((s) => s.setExpandedDrug);
   const audience       = useStore((s) => s.audience);
+  const openAssistantFor = useStore((s) => s.openAssistantFor);
 
   if (!results || !selectedSiteId) {
     if (audience === "citizen") {
@@ -118,6 +119,13 @@ export function SiteInspector() {
             {" "}under stated priors
           </p>
         </div>
+        <button
+          onClick={() => openAssistantFor(selectedSiteId, expandedDrug)}
+          className="shrink-0 px-3.5 py-2 text-sm font-semibold rounded-lg"
+          style={{ background: C.indigo, color: "#fff" }}
+        >
+          Ask about this site
+        </button>
       </div>
 
       {/* BandChart */}

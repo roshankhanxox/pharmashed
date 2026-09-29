@@ -31,6 +31,12 @@ function loadAudience(): Audience {
   }
 }
 
+/** The site (and optionally drug) the assistant has been asked about, sent to the API as context. */
+export interface AssistantContext {
+  siteId: string;
+  drug: string | null;
+}
+
 export interface ScenarioMultipliers {
   lambda: number;
   Q: number;
@@ -63,6 +69,7 @@ export interface AppStore {
 
   // drawers
   assistantOpen: boolean;
+  assistantContext: AssistantContext | null;
   provenanceKey: string | null;
 
   // actions
@@ -88,6 +95,9 @@ export interface AppStore {
   resetScenario: () => void;
 
   openAssistant: () => void;
+  /** Opens the assistant already focused on a site (and optionally a drug). */
+  openAssistantFor: (siteId: string, drug?: string | null) => void;
+  clearAssistantContext: () => void;
   closeAssistant: () => void;
   openProvenance: (key: string) => void;
   closeProvenance: () => void;
@@ -117,6 +127,7 @@ export const useStore = create<AppStore>((set, get) => ({
   scenarioMultipliers: { ...DEFAULT_MULTIPLIERS },
 
   assistantOpen: false,
+  assistantContext: null,
   provenanceKey: null,
 
   setResults: (r) => set({ results: r }),
@@ -151,6 +162,9 @@ export const useStore = create<AppStore>((set, get) => ({
   resetScenario: () => set({ scenarioMultipliers: { ...DEFAULT_MULTIPLIERS } }),
 
   openAssistant: () => set({ assistantOpen: true }),
+  openAssistantFor: (siteId, drug = null) =>
+    set({ assistantOpen: true, assistantContext: { siteId, drug } }),
+  clearAssistantContext: () => set({ assistantContext: null }),
   closeAssistant: () => set({ assistantOpen: false }),
   openProvenance: (key) => set({ provenanceKey: key }),
   closeProvenance: () => set({ provenanceKey: null }),
