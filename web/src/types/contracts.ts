@@ -99,16 +99,19 @@ export interface FHIRIndex {
     path: string;
     resource_type: string;
     count: number;
-    source?: string;
-    description?: string;
+    source?: string | null;
+    description?: string | null;
   }[];
+  /**
+   * Counts and credit for the OneAquaHealth IG's own example resources co-hosted with PharmaShed bundles (D38).
+   */
   oah_example_counts?: {
     Location: number;
     Organization: number;
     Observation: number;
     source: string;
     note: string;
-  };
+  } | null;
   validation: {
     status: "pass" | "fail" | "unknown";
     errors: number;
@@ -187,7 +190,7 @@ export interface Provenance {
     source_title: string | null;
     source_url: string | null;
     source_note: string | null;
-    status: "sourced" | "assumption" | "todo";
+    status: "sourced" | "assumption" | "illustrative" | "todo";
   };
 }
 

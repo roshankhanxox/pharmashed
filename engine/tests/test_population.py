@@ -12,7 +12,7 @@ from affine import Affine
 from rasterio.crs import CRS
 
 from pharmashed.contracts import Site
-from pharmashed.population import _to_mollweide, population_in_buffer
+from pharmashed.population import _to_mollweide, density_at, population_in_buffer
 
 # A real Toulouse site (TLS-07) placed in the Garonne area.
 # We build a synthetic 3×3 100 m Mollweide raster centred on the same point
@@ -140,3 +140,44 @@ def test_population_non_negative(tmp_path: Path) -> None:
     site = _make_site()
     pop = population_in_buffer(site, [raster], radius_m=_RADIUS)
     assert pop >= 0.0
+
+
+def test_population_circle_straddling_two_tiles_matches_one_big_raster(tmp_path: Path) -> None:
+    """A buffer split across two adjacent tiles sums both pieces, with no cell counted twice."""
+    top = _TLS_MY + 1.5 * _CELL
+    rng = np.random.default_rng(7)
+    left = rng.integers(1, 50, size=(3, 3)).astype(np.float32)
+    right = rng.integers(1, 50, size=(3, 3)).astype(np.float32)
+
+    # The tile edge runs through the site: left tile ends at the site's x, right tile starts there.
+    _write_raster(tmp_path / "left.tif", left, _TLS_MX - 3 * _CELL, top)
+    _write_raster(tmp_path / "right.tif", right, _TLS_MX, top)
+    # Reference: the same cells in one raster.
+    _write_raster(tmp_path / "whole.tif", np.hstack([left, right]), _TLS_MX - 3 * _CELL, top)
+
+    site = _make_site()
+    split = population_in_buffer(site, [tmp_path / "left.tif", tmp_path / "right.tif"], radius_m=_RADIUS)
+    whole = population_in_buffer(site, [tmp_path / "whole.tif"], radius_m=_RADIUS)
+    assert split == pytest.approx(whole)
+    assert split > 0
+
+
+def test_population_ignores_tiles_the_buffer_does_not_touch(tmp_path: Path) -> None:
+    """A far-away tile contributes nothing and does not raise."""
+    top = _TLS_MY + 1.5 * _CELL
+    near = np.full((3, 3), 2.0, dtype=np.float32)
+    far = np.full((3, 3), 999.0, dtype=np.float32)
+    _write_raster(tmp_path / "near.tif", near, _TLS_MX - 1.5 * _CELL, top)
+    _write_raster(tmp_path / "far.tif", far, _TLS_MX + 500_000, top)
+
+    site = _make_site()
+    both = population_in_buffer(site, [tmp_path / "far.tif", tmp_path / "near.tif"], radius_m=_RADIUS)
+    only_near = population_in_buffer(site, [tmp_path / "near.tif"], radius_m=_RADIUS)
+    assert both == pytest.approx(only_near)
+
+
+def test_density_at_reads_the_cell_under_the_point(tmp_path: Path) -> None:
+    top = _TLS_MY + 1.5 * _CELL
+    data = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=np.float32)
+    _write_raster(tmp_path / "d.tif", data, _TLS_MX - 1.5 * _CELL, top)
+    assert density_at(_TLS_LON, _TLS_LAT, [tmp_path / "d.tif"]) == pytest.approx(5.0)

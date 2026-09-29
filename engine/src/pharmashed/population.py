@@ -24,9 +24,8 @@ from pathlib import Path
 
 import numpy as np
 import rasterio
-import rasterio.io
-import rasterio.merge
 import rasterio.mask
+from rasterio.windows import Window
 from pyproj import Transformer
 from shapely.geometry import Point, mapping
 from shapely.ops import transform as shapely_transform
@@ -65,7 +64,7 @@ def population_in_buffer(
 
     Returns:
         Population estimate (float ≥ 0). Returns 0.0 if the buffer falls
-        entirely outside the raster or contains only nodata.
+        entirely outside the rasters or contains only nodata.
 
     Raises:
         FileNotFoundError: if any raster_path does not exist.
@@ -75,46 +74,36 @@ def population_in_buffer(
             raise FileNotFoundError(f"GHS-POP raster not found: {p}")
 
     buf = _site_buffer_mollweide(site, radius_m)
+    minx, miny, maxx, maxy = buf.bounds
 
-    if len(raster_paths) == 1:
-        src_ctx = rasterio.open(raster_paths[0])
-    else:
-        # merge multiple tiles into a single in-memory dataset
-        datasets = [rasterio.open(p) for p in raster_paths]
-        merged_data, merged_transform = rasterio.merge.merge(datasets)
-        for ds in datasets:
-            ds.close()
-        # wrap in a MemoryFile so rasterio.mask can use it
-        memfile = rasterio.io.MemoryFile()
-        profile = datasets[0].profile.copy()
-        profile.update(
-            height=merged_data.shape[1],
-            width=merged_data.shape[2],
-            transform=merged_transform,
-        )
-        with memfile.open(**profile) as ds:
-            ds.write(merged_data)
-        src_ctx = memfile.open()
-
-    with src_ctx as src:
-        try:
-            masked, _ = rasterio.mask.mask(
-                src,
-                shapes=[mapping(buf)],
-                crop=True,
-                all_touched=False,
-                filled=True,
-                nodata=src.nodata if src.nodata is not None else -1,
-            )
-        except ValueError:
-            # buffer doesn't overlap raster extent at all
-            return 0.0
-
-        nodata = src.nodata if src.nodata is not None else -1
-        data = masked[0].astype(np.float64)
-        data[data == nodata] = 0.0
-        data[data < 0] = 0.0
-        return float(data.sum())
+    # A 500 m circle almost always sits inside one 1,000 km tile, and only occasionally straddles
+    # two. So read just the tiles the circle touches (windowed by rasterio.mask) and add the pieces:
+    # tiles never overlap, so no cell is counted twice. Stitching every tile into one in-memory
+    # mosaic per site (as this once did) needs gigabytes and minutes for 105 sites.
+    total = 0.0
+    for path in raster_paths:
+        with rasterio.open(path) as src:
+            left, bottom, right, top = src.bounds
+            if maxx < left or minx > right or maxy < bottom or miny > top:
+                continue
+            nodata = src.nodata if src.nodata is not None else -1
+            try:
+                masked, _ = rasterio.mask.mask(
+                    src,
+                    shapes=[mapping(buf)],
+                    crop=True,
+                    all_touched=False,
+                    filled=True,
+                    nodata=nodata,
+                )
+            except ValueError:
+                # buffer's bounding box overlaps the tile but no cell centre falls inside it
+                continue
+            data = masked[0].astype(np.float64)
+            data[data == nodata] = 0.0
+            data[data < 0] = 0.0
+            total += float(data.sum())
+    return total
 
 
 def density_at(lon: float, lat: float, raster_paths: list[Path] | None = None) -> float:
@@ -134,7 +123,7 @@ def density_at(lon: float, lat: float, raster_paths: list[Path] | None = None) -
         with rasterio.open(p) as src:
             try:
                 row, col = src.index(mx, my)
-                val = src.read(1)[row, col]
+                val = src.read(1, window=Window(col, row, 1, 1))[0, 0]
                 nodata = src.nodata if src.nodata is not None else -1
                 return max(0.0, float(val)) if val != nodata else 0.0
             except Exception:

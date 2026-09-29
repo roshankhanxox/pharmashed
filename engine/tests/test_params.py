@@ -47,19 +47,43 @@ def _row(**overrides) -> dict:
     return base
 
 
+def _todo_file(tmp_path):
+    """A 42-row all-todo file (R rows carry the D27 note), the state before values were filled in."""
+    from pharmashed.params import PARAMS
+
+    path = tmp_path / "params_todo.csv"
+    rows = []
+    for drug in DRUGS:
+        for param in PARAMS:
+            note = "not required: w=0 for all MVP sites" if param == "R" else ""
+            rows.append(_row(drug=drug, param=param, source_note=note))
+    with open(path, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
+        writer.writeheader()
+        writer.writerows(rows)
+    return path
+
+
 # --- shipped file -------------------------------------------------------
 
 
-def test_shipped_csv_has_42_rows_all_todo():
+def test_shipped_csv_has_42_rows_covering_every_drug():
     rows = load_rows(PARAMS_CSV)
     assert len(rows) == 42
-    assert all(r.status == "todo" for r in rows)
     assert {r.drug for r in rows} == set(DRUGS)
+    assert all(r.status in ("sourced", "illustrative", "todo") for r in rows)
 
 
-def test_shipped_csv_fails_strict_mode():
+def test_shipped_csv_passes_strict_mode_because_illustrative_rows_are_declared():
+    """D36: strict mode refuses `todo` rows only (R excepted, D27), and accepts illustrative ones."""
+    params, dev_used = load_drug_params(PARAMS_CSV, mode="strict")
+    assert set(params) == set(DRUGS)
+    assert dev_used is False
+
+
+def test_todo_file_fails_strict_mode(tmp_path):
     with pytest.raises(UnsourcedParameterError) as exc_info:
-        load_drug_params(PARAMS_CSV, mode="strict")
+        load_drug_params(_todo_file(tmp_path), mode="strict")
     # 42 rows - 6 R rows (optional, CONTEXT D27) = 36
     assert len(exc_info.value.missing) == 36
     assert all(":R" not in m for m in exc_info.value.missing)
@@ -234,8 +258,8 @@ def test_dist_triangular_sample_in_range():
 # --- load_drug_params: dev vs strict -------------------------------------------------------
 
 
-def test_dev_mode_uses_placeholders_and_flags_it():
-    params, dev_placeholders_used = load_drug_params(PARAMS_CSV, mode="dev")
+def test_dev_mode_uses_placeholders_and_flags_it(tmp_path):
+    params, dev_placeholders_used = load_drug_params(_todo_file(tmp_path), mode="dev")
     assert dev_placeholders_used is True
     assert set(params) == set(DRUGS)
     for drug_params in params.values():
@@ -243,9 +267,10 @@ def test_dev_mode_uses_placeholders_and_flags_it():
         assert drug_params.pnec_ng_l.value is not None
 
 
-def test_strict_mode_raises_on_shipped_file():
-    with pytest.raises(UnsourcedParameterError):
-        load_drug_params(PARAMS_CSV, mode="strict")
+def test_dev_mode_does_not_flag_placeholders_when_only_r_is_todo():
+    """The shipped file has every required row illustrative and R (unused, w=0) still todo."""
+    _, dev_placeholders_used = load_drug_params(PARAMS_CSV, mode="dev")
+    assert dev_placeholders_used is False
 
 
 def test_strict_mode_succeeds_when_all_required_rows_sourced(tmp_path):
@@ -358,8 +383,8 @@ def test_lambda_prior_to_dist_samples_in_range():
 # --- provenance_entries -------------------------------------------------------
 
 
-def test_provenance_entries_keys():
-    rows = load_rows(PARAMS_CSV)
+def test_provenance_entries_keys(tmp_path):
+    rows = load_rows(_todo_file(tmp_path))
     priors = load_priors(PRIORS_YAML)
     entries = provenance_entries(rows, priors)
 

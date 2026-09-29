@@ -1,0 +1,38 @@
+# ILLUSTRATIVE VALUES (CONTEXT D33). These are deliberately round numbers of a plausible order of
+# magnitude, chosen so the prototype pipeline has something to compute. They are NOT sourced, carry
+# no citation, and must never be presented as measurements. They were not tuned against the observed
+# field data (CONTEXT hard rule: predictions are made before any comparison).
+#
+# scripts/fill_illustrative.py copies these into drug_parameters.csv / consumption.csv, only for rows
+# that are still `todo` (or, with --refresh, already illustrative). A row later sourced through SOURCING.md simply replaces its illustrative value.
+
+# NOTE ON PNEC AND LOD: the population proxy covers only a 500 m circle around each site (D14), so
+# the model's concentrations are small (roughly 0.04 to 3 ng/L at a typical site). To let the prototype
+# show all three priority tiers, the placeholder PNEC (no-effect threshold) and LOD values below are set
+# in that same low range. Real thresholds are usually orders of magnitude higher, so these are demo
+# scaffolding, not a scientific claim and not a finding about any drug.
+drugs:
+  #                  ATC       DDD (g)  fe (fraction)  k (1/h)  PNEC (ng/L)  LOD (ng/L)
+  carbamazepine: {atc: N03AF01, ddd_g: 1.0,   fe: 0.03, k_per_h: 0.001, pnec_ng_l: 0.5,  lod_ng_l: 0.1}
+  atenolol:      {atc: C07AB03, ddd_g: 0.075, fe: 0.85, k_per_h: 0.01,  pnec_ng_l: 5,    lod_ng_l: 0.5}
+  losartan:      {atc: C09CA01, ddd_g: 0.05,  fe: 0.04, k_per_h: 0.02,  pnec_ng_l: 0.2,  lod_ng_l: 0.1}
+  irbesartan:    {atc: C09CA04, ddd_g: 0.15,  fe: 0.20, k_per_h: 0.01,  pnec_ng_l: 1,    lod_ng_l: 0.1}
+  paracetamol:   {atc: N02BE01, ddd_g: 3.0,   fe: 0.03, k_per_h: 0.1,   pnec_ng_l: 10,   lod_ng_l: 1}
+  citalopram:    {atc: N06AB04, ddd_g: 0.02,  fe: 0.12, k_per_h: 0.02,  pnec_ng_l: 0.2,  lod_ng_l: 0.1}
+
+# Consumption in DDD per 1000 inhabitants per day = base per drug x a round country factor.
+consumption:
+  base:
+    carbamazepine: 2
+    atenolol: 8
+    losartan: 15
+    irbesartan: 5
+    paracetamol: 30
+    citalopram: 10
+  country_factor:
+    # Keys are quoted: an unquoted NO is parsed by YAML as the boolean false (the "Norway problem").
+    "FR": 1.0
+    "BE": 0.8
+    "IT": 0.6
+    "PT": 1.2
+    "NO": 1.4

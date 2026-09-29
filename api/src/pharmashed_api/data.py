@@ -13,7 +13,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-_DEFAULT_DATA = Path(__file__).resolve().parents[4] / "data" / "build"
+# api/src/pharmashed_api/data.py -> parents[3] is the repo root (parents[4] is the folder above it).
+_DEFAULT_DATA = Path(__file__).resolve().parents[3] / "data" / "build"
 
 
 def _data_dir() -> Path:

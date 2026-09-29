@@ -30,15 +30,16 @@ def _params_check(args: argparse.Namespace) -> int:
     for row in rows:
         by_drug[row.drug][row.param] = row.status
 
-    header = "drug".ljust(16) + "".join(p.ljust(12) for p in ["atc", *NUMERIC_PARAMS])
+    header = "drug".ljust(16) + "".join(p.ljust(14) for p in ["atc", *NUMERIC_PARAMS])
     print(header)
     for drug in DRUGS:
         cells = [by_drug[drug].get(p, "missing") for p in ["atc", *NUMERIC_PARAMS]]
-        print(drug.ljust(16) + "".join(c.ljust(12) for c in cells))
+        print(drug.ljust(16) + "".join(c.ljust(14) for c in cells))
 
     sourced = sum(1 for r in rows if r.status == "sourced")
-    todo = len(rows) - sourced
-    print(f"\n{sourced} sourced, {todo} todo (of {len(rows)} rows)")
+    illustrative = sum(1 for r in rows if r.status == "illustrative")
+    todo = len(rows) - sourced - illustrative
+    print(f"\n{sourced} sourced, {illustrative} illustrative, {todo} todo (of {len(rows)} rows)")
 
     if args.strict:
         todo_rows = [r for r in rows if r.status == "todo" and r.param != "R"]
@@ -47,7 +48,7 @@ def _params_check(args: argparse.Namespace) -> int:
             print(f"\nSTRICT MODE FAILED: {len(missing)} unsourced parameter(s)")
             print(UnsourcedParameterError(missing))
             return 1
-        print("\nSTRICT MODE OK: all required rows sourced")
+        print("\nSTRICT MODE OK: no todo rows (illustrative rows are accepted, D36)")
 
     return 0
 
@@ -61,15 +62,16 @@ def _consumption_check(args: argparse.Namespace) -> int:
         label = row.status if row.status == "todo" else f"{row.status}:{row.granularity}"
         by_country[row.country][row.drug] = label
 
-    header = "country".ljust(10) + "".join(d.ljust(18) for d in DRUGS)
+    header = "country".ljust(10) + "".join(d.ljust(26) for d in DRUGS)
     print(header)
     for country in COUNTRIES:
         cells = [by_country[country].get(d, "missing") for d in DRUGS]
-        print(country.ljust(10) + "".join(c.ljust(18) for c in cells))
+        print(country.ljust(10) + "".join(c.ljust(26) for c in cells))
 
     sourced = sum(1 for r in rows if r.status == "sourced")
-    todo = len(rows) - sourced
-    print(f"\n{sourced} sourced, {todo} todo (of {len(rows)} rows)")
+    illustrative = sum(1 for r in rows if r.status == "illustrative")
+    todo = len(rows) - sourced - illustrative
+    print(f"\n{sourced} sourced, {illustrative} illustrative, {todo} todo (of {len(rows)} rows)")
 
     if args.strict:
         todo_rows = [r for r in rows if r.status == "todo"]
@@ -78,7 +80,7 @@ def _consumption_check(args: argparse.Namespace) -> int:
             print(f"\nSTRICT MODE FAILED: {len(missing)} unsourced row(s)")
             print(UnsourcedConsumptionError(missing))
             return 1
-        print("\nSTRICT MODE OK: all rows sourced")
+        print("\nSTRICT MODE OK: no todo rows (illustrative rows are accepted, D36)")
 
     return 0
 
@@ -124,6 +126,97 @@ def _population_compute(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run(args: argparse.Namespace) -> int:
+    """Run the Monte Carlo model for every site x drug and write the build artifacts."""
+    from pharmashed.export import export_build  # noqa: PLC0415
+    from pharmashed.montecarlo import RunContext  # noqa: PLC0415
+    from pharmashed.params import UnsourcedParameterError  # noqa: PLC0415
+    from pharmashed.consumption import UnsourcedConsumptionError  # noqa: PLC0415
+
+    try:
+        ctx = RunContext.from_paths(mode=args.mode)
+    except (UnsourcedParameterError, UnsourcedConsumptionError) as exc:
+        print(f"STRICT MODE FAILED: {exc}")
+        return 1
+
+    zero_pop = [s.id for s in ctx.sites if s.population_buffer <= 0]
+    if zero_pop:
+        print(f"note: {len(zero_pop)} site(s) have zero population and will score 0: {', '.join(zero_pop)}")
+
+    out = Path(args.out)
+    results_path = export_build(ctx, out, variant=args.variant)
+    print(
+        f"wrote {results_path} ({len(ctx.sites)} sites x {len(DRUGS)} drugs, "
+        f"{ctx.n_draws} draws, mode={args.mode}, variant={args.variant}); "
+        f"{ctx.illustrative_count()} illustrative and {ctx.sourced_count()} sourced input rows"
+    )
+    return 0
+
+
+DEFAULT_BUILD_DIR = REPO_ROOT / "data" / "build"
+DEFAULT_FHIR_OUT = REPO_ROOT / "fhir" / "out"
+
+
+def _fhir(args: argparse.Namespace) -> int:
+    """Build the FHIR bundles and fhir_index.json from the model output in data/build/."""
+    from pharmashed.checks.fhir_obs import build_reference_observations  # noqa: PLC0415
+    from pharmashed.fhir.builder import build_all  # noqa: PLC0415
+
+    build_dir = Path(args.build_dir)
+    if not (build_dir / "results.json").exists():
+        print(f"No results.json in {build_dir}. Run `pharmashed run` first.")
+        return 1
+    index = build_all(build_dir, Path(args.out), ref_obs=build_reference_observations())
+    counts = index["resource_counts"]
+    print(
+        f"wrote {len(index['bundles'])} bundles to {args.out}: "
+        f"{counts.get('Location', 0)} Location, {counts.get('Observation', 0)} Observation, "
+        f"{index['query_demo']['model_prediction']['count']} model predictions, "
+        f"{index['query_demo']['laboratory']['count']} lab/reference observations"
+    )
+    return 0
+
+
+def _build(args: argparse.Namespace) -> int:
+    """Run the model, then build the FHIR bundles (everything except freeze and checks)."""
+    status = _run(args)
+    if status != 0:
+        return status
+    args.build_dir = args.out
+    args.out = str(DEFAULT_FHIR_OUT)
+    return _fhir(args)
+
+
+def _freeze(args: argparse.Namespace) -> int:
+    """Freeze the predictions: strict run into data/frozen/, git commit and tag (D36)."""
+    from pharmashed.freeze import FreezeError, run_freeze  # noqa: PLC0415
+
+    try:
+        path = run_freeze(mode="strict")
+    except FreezeError as exc:
+        print(f"FREEZE REFUSED: {exc}")
+        return 1
+    print(f"froze predictions: {path}")
+    return 0
+
+
+def _checks(args: argparse.Namespace) -> int:
+    """Run the pre-registered consistency checks C1-C5 against the frozen predictions."""
+    from pharmashed.checks.run import FrozenIntegrityError, run_checks  # noqa: PLC0415
+
+    try:
+        path = run_checks(frozen_dir=Path(args.frozen_dir), build_dir=Path(args.build_dir))
+    except FrozenIntegrityError as exc:
+        print(f"FROZEN FILE CHANGED: {exc}")
+        return 1
+    import json  # noqa: PLC0415
+
+    for check in json.loads(path.read_text())["checks"]:
+        print(f"  {check['id']}: {check['status']:11s} {check['reason']}")
+    print(f"wrote {path}")
+    return 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="pharmashed")
     subparsers = parser.add_subparsers(dest="command")
@@ -153,6 +246,31 @@ def main() -> None:
     pop_compute.add_argument("--sites", default=str(DEFAULT_SITES_PATH))
     pop_compute.add_argument("--radius", type=float, default=500.0)
     pop_compute.set_defaults(func=_population_compute)
+
+    run_parser = subparsers.add_parser("run", help="run the model and write data/build/ (M08-M11)")
+    run_parser.add_argument("--mode", choices=["dev", "strict"], default="strict")
+    run_parser.add_argument("--variant", choices=["full", "pop_only", "wwtp_only"], default="full")
+    run_parser.add_argument("--out", default=str(REPO_ROOT / "data" / "build"))
+    run_parser.set_defaults(func=_run)
+
+    build_parser = subparsers.add_parser("build", help="run the model and build FHIR bundles")
+    build_parser.add_argument("--mode", choices=["dev", "strict"], default="strict")
+    build_parser.add_argument("--variant", choices=["full", "pop_only", "wwtp_only"], default="full")
+    build_parser.add_argument("--out", default=str(DEFAULT_BUILD_DIR))
+    build_parser.set_defaults(func=_build)
+
+    fhir_parser = subparsers.add_parser("fhir", help="build FHIR bundles from data/build/ (M14)")
+    fhir_parser.add_argument("--build-dir", default=str(DEFAULT_BUILD_DIR))
+    fhir_parser.add_argument("--out", default=str(DEFAULT_FHIR_OUT))
+    fhir_parser.set_defaults(func=_fhir)
+
+    freeze_parser = subparsers.add_parser("freeze", help="freeze predictions: commit + git tag (M11)")
+    freeze_parser.set_defaults(func=_freeze)
+
+    checks_parser = subparsers.add_parser("checks", help="consistency checks C1-C5 on frozen predictions (M12)")
+    checks_parser.add_argument("--frozen-dir", default=str(REPO_ROOT / "data" / "frozen"))
+    checks_parser.add_argument("--build-dir", default=str(DEFAULT_BUILD_DIR))
+    checks_parser.set_defaults(func=_checks)
 
     sites_parser = subparsers.add_parser("sites", help="site registry (M04)")
     sites_subparsers = sites_parser.add_subparsers(dest="sites_command")

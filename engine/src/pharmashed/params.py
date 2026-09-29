@@ -61,7 +61,7 @@ class ParamRow(BaseModel):
     retrieved_at: str | None = None
     verified: Literal["none", "agent", "human", "failed"] = "none"
     verify_note: str | None = None
-    status: Literal["sourced", "todo"] = "todo"
+    status: Literal["sourced", "illustrative", "todo"] = "todo"
 
     @model_validator(mode="before")
     @classmethod
@@ -87,14 +87,28 @@ class ParamRow(BaseModel):
 
     @model_validator(mode="after")
     def _check_sourced_rules(self) -> ParamRow:
-        if self.status != "sourced":
+        if self.status == "todo":
             return self
 
-        if not self.source_url or not self.source_note:
-            raise ValueError(
-                f"{self.drug}:{self.param} is status=sourced but missing "
-                "source_url and/or source_note"
-            )
+        if self.status == "sourced":
+            if not self.source_url or not self.source_note:
+                raise ValueError(
+                    f"{self.drug}:{self.param} is status=sourced but missing "
+                    "source_url and/or source_note"
+                )
+        else:
+            # illustrative (D33): a declared placeholder. It must say so, and it must never carry
+            # a citation, or it could be mistaken for a sourced value (CONTEXT hard rule 1).
+            if not (self.source_note or "").lower().startswith("illustrative"):
+                raise ValueError(
+                    f"{self.drug}:{self.param} is status=illustrative but source_note does not "
+                    "start with 'illustrative'"
+                )
+            if self.source_url or self.source_title or self.evidence_quote:
+                raise ValueError(
+                    f"{self.drug}:{self.param} is status=illustrative and must not carry "
+                    "source_url, source_title or evidence_quote"
+                )
 
         if self.param == "atc":
             if not self.value:
@@ -124,6 +138,10 @@ class ParamRow(BaseModel):
         if self.param == "atc" or self.value in (None, ""):
             return None
         return float(self.value)
+
+
+# Rows whose value the model may use: sourced, or declared illustrative (D33/D36).
+USABLE_STATUSES = ("sourced", "illustrative")
 
 
 class Dist(BaseModel):
@@ -219,7 +237,8 @@ def load_drug_params(path: str | Path, mode: Mode = "strict") -> tuple[dict[str,
 
     placeholders = None
     dev_placeholders_used = False
-    if mode == "dev" and any(r.status == "todo" for r in rows):
+    # R is optional (w=0 everywhere), so a todo R row alone does not mean placeholders are in use.
+    if mode == "dev" and any(r.status == "todo" and r.param != "R" for r in rows):
         with open(DEV_PLACEHOLDERS_PATH) as f:
             placeholders = yaml.safe_load(f)
         dev_placeholders_used = True
@@ -233,7 +252,7 @@ def load_drug_params(path: str | Path, mode: Mode = "strict") -> tuple[dict[str,
         kwargs: dict = {"drug": drug}
 
         atc_row = row_by_param.get("atc")
-        if atc_row and atc_row.status == "sourced":
+        if atc_row and atc_row.status in USABLE_STATUSES:
             kwargs["atc"] = atc_row.value
         elif placeholders is not None:
             kwargs["atc"] = placeholders["drug_parameters"]["atc"]
@@ -242,7 +261,7 @@ def load_drug_params(path: str | Path, mode: Mode = "strict") -> tuple[dict[str,
 
         for param in NUMERIC_PARAMS:
             row = row_by_param.get(param)
-            if row and row.status == "sourced":
+            if row and row.status in USABLE_STATUSES:
                 kwargs[param] = _row_to_dist(row)
             elif placeholders is not None:
                 kwargs[param] = _dev_placeholder_dist(param, placeholders)
@@ -338,7 +357,7 @@ def provenance_entries(rows: Iterable[ParamRow], priors: Priors) -> dict[str, Pr
             source_title=row.source_title,
             source_url=row.source_url,
             source_note=row.source_note,
-            status="sourced" if row.status == "sourced" else "todo",
+            status=row.status,
         )
 
     entries["prior:lambda"] = ProvenanceEntry(

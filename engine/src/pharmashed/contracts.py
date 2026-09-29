@@ -260,6 +260,18 @@ class FhirBundle(Strict):
     path: str
     resource_type: str
     count: int = Field(ge=0)
+    source: str | None = None
+    description: str | None = None
+
+
+class OahExampleCounts(Strict):
+    """Counts and credit for the OneAquaHealth IG's own example resources co-hosted with ours (D38)."""
+
+    Location: int = Field(ge=0)
+    Organization: int = Field(ge=0)
+    Observation: int = Field(ge=0)
+    source: str
+    note: str
 
 
 class FhirValidation(Strict):
@@ -289,5 +301,6 @@ class FhirIndex(Strict):
     meta: FhirIndexMeta
     resource_counts: dict[str, int]
     bundles: list[FhirBundle]
+    oah_example_counts: OahExampleCounts | None = None
     validation: FhirValidation
     query_demo: QueryDemo

@@ -92,9 +92,9 @@
       "query": "Observation?category=laboratory",
       "count": 6
     },
-    "by_city": {
-      "query": "Location?address-city=Toulouse",
-      "count": 21
+    "model_prediction": {
+      "query": "Observation?category=https://pharmashed.example/fhir/CodeSystem/observation-category|model-prediction",
+      "count": 630
     }
   }
 }

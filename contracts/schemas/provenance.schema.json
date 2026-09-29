@@ -16,7 +16,7 @@
       "source_title": { "type": ["string", "null"] },
       "source_url": { "type": ["string", "null"], "format": "uri" },
       "source_note": { "type": ["string", "null"] },
-      "status": { "type": "string", "enum": ["sourced", "assumption", "todo"] }
+      "status": { "type": "string", "enum": ["sourced", "assumption", "illustrative", "todo"] }
     }
   }
 }

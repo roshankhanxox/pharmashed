@@ -279,15 +279,20 @@ def _collection_bundle(id_: str, resources: list[dict]) -> dict:
 
 # --- FhirIndex ---
 
-def _build_fhir_index(bundles_meta: list[dict], resource_counts: dict[str, int]) -> dict:
+def _build_fhir_index(
+    bundles_meta: list[dict],
+    resource_counts: dict[str, int],
+    oah_example_counts: dict | None = None,
+) -> dict:
     from pharmashed.contracts import (  # noqa: PLC0415
-        FhirBundle, FhirIndex, FhirIndexMeta, FhirValidation, QueryDemo, QueryResult,
+        FhirBundle, FhirIndex, FhirIndexMeta, FhirValidation, OahExampleCounts, QueryDemo, QueryResult,
     )
 
     return FhirIndex(
         meta=FhirIndexMeta(generated_at=datetime.now(timezone.utc)),
         resource_counts=resource_counts,
         bundles=[FhirBundle(**b) for b in bundles_meta],
+        oah_example_counts=OahExampleCounts(**oah_example_counts) if oah_example_counts else None,
         validation=FhirValidation(
             status="unknown",
             errors=0,
@@ -307,6 +312,46 @@ def _build_fhir_index(bundles_meta: list[dict], resource_counts: dict[str, int])
             ),
         ),
     ).model_dump(mode="json")
+
+
+_OAH_EXAMPLES = _REPO_ROOT / "fhir" / "examples" / "oah-examples.json"
+_OAH_SOURCE = "OneAquaHealth IG (hl7-eu/oah)"
+_OAH_DESCRIPTION = (
+    "Unmodified OAH IG example resources: Benevento air-quality (Benzene, NO2) and Almyros "
+    "water-chemistry (aluminium dissolved), demonstrating co-existence of PharmaShed predictions "
+    "and consortium environmental data on one FHIR server"
+)
+_OAH_NOTE = (
+    "Air-quality and water-chemistry observations from Benevento (IT) and Almyros (GR): "
+    "unmodified IG examples, credited to the OneAquaHealth consortium"
+)
+
+
+def _add_oah_examples(out_dir: Path, bundles_meta: list[dict]) -> dict | None:
+    """Copy the IG's example bundle into out_dir untouched and list it in the index.
+
+    Returns the per-type counts for fhir_index.oah_example_counts, or None if the examples file
+    is not present.
+    """
+    if not _OAH_EXAMPLES.exists():
+        return None
+    bundle = json.loads(_OAH_EXAMPLES.read_text())
+    (out_dir / "oah-examples.json").write_text(json.dumps(bundle, indent=2))
+
+    counts: dict[str, int] = {"Location": 0, "Organization": 0, "Observation": 0}
+    for entry in bundle.get("entry", []):
+        rt = entry.get("resource", {}).get("resourceType", "")
+        if rt in counts:
+            counts[rt] += 1
+    bundles_meta.append({
+        "name": "oah-examples",
+        "path": "fhir/out/oah-examples.json",
+        "resource_type": "Bundle",
+        "count": len(bundle.get("entry", [])),
+        "source": _OAH_SOURCE,
+        "description": _OAH_DESCRIPTION,
+    })
+    return {**counts, "source": "hl7-eu/oah (OneAquaHealth IG, master branch)", "note": _OAH_NOTE}
 
 
 def build_all(
@@ -388,6 +433,10 @@ def build_all(
             "count": len(resources),
         })
 
+    # The OneAquaHealth IG's own example resources, co-hosted unmodified next to ours (D38). Counted
+    # separately so resource_counts stays a count of PharmaShed's own output.
+    oah_counts = _add_oah_examples(out_dir, bundles_meta)
+
     # Categorised Observation counts for query_demo
     lab_count = sum(
         1 for o in ref_obs
@@ -399,6 +448,6 @@ def build_all(
     resource_counts["Observation:laboratory"] = lab_count
     resource_counts["Observation:model-prediction"] = pred_count
 
-    index = _build_fhir_index(bundles_meta, resource_counts)
+    index = _build_fhir_index(bundles_meta, resource_counts, oah_counts)
     (out_dir / "fhir_index.json").write_text(json.dumps(index, indent=2, default=str))
     return index

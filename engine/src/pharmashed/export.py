@@ -216,7 +216,6 @@ def export_build(
     overalls = site_overall(flat)
     summaries = city_summary(overalls)
 
-    any_illustrative = _any_illustrative(ctx)
     results = Results(
         meta=ResultsMeta(
             engine_version=_ENGINE_VERSION,
@@ -225,10 +224,10 @@ def export_build(
             n_draws=ctx.n_draws,
             n_stored=ctx.n_stored,
             variant=variant,  # type: ignore[arg-type]
-            dev_placeholders=False,
+            dev_placeholders=ctx.dev_placeholders,
             frozen_tag=frozen_tag,
-            param_count=len(result_entries),
-            all_params_cited=not any_illustrative,
+            param_count=len(ctx.param_rows),
+            all_params_cited=ctx.all_inputs_sourced(),
         ),
         drugs=config.DRUGS,
         results=result_entries,
@@ -247,10 +246,7 @@ def export_build(
     (out_dir / "sites.json").write_text(sites_doc.model_dump_json(indent=2))
 
     # provenance.json
-    param_rows = _params_mod.load_rows(
-        Path(__file__).resolve().parents[3] / "data" / "params" / "drug_parameters.csv"
-    )
-    prov = _params_mod.provenance_entries(param_rows, ctx.priors)
+    prov = _params_mod.provenance_entries(ctx.param_rows, ctx.priors)
     prov.update(_cons_mod.provenance_entries(ctx.consumption_rows))
     (out_dir / "provenance.json").write_text(
         json.dumps({k: v.model_dump() for k, v in prov.items()}, indent=2)
@@ -263,14 +259,6 @@ def export_build(
     (out_dir / "glossary.json").write_text(json.dumps(_GLOSSARY, indent=2))
 
     return results_path
-
-
-def _any_illustrative(ctx: RunContext) -> bool:
-    """Return True if any loaded consumption row has illustrative status."""
-    for row in ctx.consumption_rows:
-        if row.status not in ("sourced",):
-            return True
-    return False
 
 
 def _write_methodology(ctx: RunContext, out_dir: Path) -> None:

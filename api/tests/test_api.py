@@ -192,3 +192,13 @@ def test_scenario_rq_p50_scales(client):
     if base_p50 > 0:
         ratio = scaled_p50 / base_p50
         assert 0.3 <= ratio <= 0.7, f"Expected ~0.5, got {ratio}"
+
+
+def test_default_data_dir_is_the_repo_data_build_folder(monkeypatch):
+    """Without PHARMASHED_DATA the API must look in <repo>/data/build (it once looked one folder too high)."""
+    import pharmashed_api.data as _data
+
+    monkeypatch.delenv("PHARMASHED_DATA", raising=False)
+    repo = Path(__file__).resolve().parents[2]
+    assert _data._data_dir() == repo / "data" / "build"
+    assert (repo / "data").is_dir()

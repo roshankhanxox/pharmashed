@@ -1,16 +1,14 @@
 """Download GHS-POP tiles covering the five PharmaShed cities (M05).
 
 Release used: GHS-POP R2023A, epoch 2025, 100 m resolution, Mollweide
-(ESRI:54009). Tiles are 1°×1° in Mollweide coordinates. Each tile is
-named GHS_POP_E2025_GLOBE_R2023A_54009_100_V1_0_R<row>_C<col>.tif.
+(ESRI:54009). The world grid is 18 rows x 36 columns of 1,000 km tiles
+(10,000 x 10,000 cells of 100 m). Each tile is published as a zip named
+GHS_POP_E2025_GLOBE_R2023A_54009_100_V1_0_R<row>_C<col>.zip under ``tiles/``
+on the JRC open-data server (no login needed); the zip holds one .tif.
 
-JRC GHSL download page (requires free registration):
-  https://human-settlement.emergency.copernicus.eu/download.php?ds=pop
-
-This script downloads the minimum set of tiles that cover the 500 m buffers
-around all five cities. It will print the required tile URLs; download them
-manually if automated download fails (the JRC site sometimes requires a
-session token).
+This script works out the minimum set of tiles that cover the 500 m buffers
+around all five cities, and with --download fetches each zip and extracts
+the .tif into data/raw/.
 
 Usage::
 
@@ -43,20 +41,20 @@ CITIES = {
     "OSL": (10.7522, 59.9139),
 }
 
-# GHS-POP R2023A tile grid: tiles are 1° Mollweide cells (100,000 m)
-# Row/col numbering: origin at top-left of the world grid.
-# Full grid: 18 rows × 36 cols at 10°-equivalent Mollweide spacing.
-# Tile size: 100,000 m × 100,000 m in Mollweide
-_TILE_SIZE_M = 100_000  # 100 km tiles
-_GRID_ORIGIN_X = -18_040_095.696  # Mollweide west extent
-_GRID_ORIGIN_Y =   9_000_000.0    # Mollweide north extent
+# GHS-POP R2023A tile grid (Mollweide, ESRI:54009): 18 rows x 36 cols of 1,000 km tiles,
+# numbered from the top-left corner of the world grid.
+_TILE_SIZE_M = 1_000_000
+_GRID_ORIGIN_X = -18_041_000.0  # Mollweide west edge of the grid
+_GRID_ORIGIN_Y = 9_000_000.0    # Mollweide north edge of the grid
 
-# JRC base URL (direct tile download; may require session cookie for large files)
+# JRC open-data server: tiles are published as zips under tiles/
 _BASE_URL = (
     "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_POP_GLOBE_R2023A/"
-    "GHS_POP_E2025_GLOBE_R2023A_54009_100/V1-0/"
+    "GHS_POP_E2025_GLOBE_R2023A_54009_100/V1-0/tiles/"
 )
-_TILE_TPL = "GHS_POP_E2025_GLOBE_R2023A_54009_100_V1_0_R{row}_C{col}.tif"
+_TILE_STEM = "GHS_POP_E2025_GLOBE_R2023A_54009_100_V1_0_R{row}_C{col}"
+_TILE_TPL = _TILE_STEM + ".tif"
+_ZIP_TPL = _TILE_STEM + ".zip"
 _BUFFER_M = 5_000  # 5 km safety margin around city centre
 
 
@@ -95,25 +93,31 @@ def main() -> None:
 
     for row, col in tiles:
         name = _TILE_TPL.format(row=row, col=col)
-        url = _BASE_URL + name
+        zip_name = _ZIP_TPL.format(row=row, col=col)
+        url = _BASE_URL + zip_name
         dest = out_dir / name
         if dest.exists():
             log.info("  already exists: %s", dest)
             continue
-        log.info("  %s\n    URL: %s", name, url)
+        log.info("  R%d C%d  %s", row, col, url)
         if args.download:
             try:
+                import io  # noqa: PLC0415
+                import zipfile  # noqa: PLC0415
+
                 import requests  # noqa: PLC0415
-                r = requests.get(url, stream=True, timeout=120)
+                r = requests.get(url, timeout=300)
                 r.raise_for_status()
-                with open(dest, "wb") as f:
-                    for chunk in r.iter_content(chunk_size=1 << 20):
-                        f.write(chunk)
-                log.info("    → saved %s (%.1f MB)", dest, dest.stat().st_size / 1e6)
+                with zipfile.ZipFile(io.BytesIO(r.content)) as zf:
+                    tif_names = [n for n in zf.namelist() if n.lower().endswith(".tif")]
+                    if not tif_names:
+                        raise RuntimeError(f"no .tif inside {zip_name}")
+                    dest.write_bytes(zf.read(tif_names[0]))
+                log.info("    -> saved %s (%.1f MB)", dest, dest.stat().st_size / 1e6)
             except Exception as exc:
-                log.warning("    download failed: %s — download manually", exc)
+                log.warning("    download failed: %s", exc)
         else:
-            log.info("    Run with --download to attempt automated fetch.")
+            log.info("    Run with --download to fetch and extract it.")
 
     log.info(
         "\nProvenance note: GHS-POP R2023A, epoch 2025, 100 m, ESRI:54009.\n"

@@ -18,8 +18,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1094.3491120524704,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -40,8 +40,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 2708.5682759284973,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -62,8 +62,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 303.04690537042916,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -84,8 +84,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 387.74841246008873,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -106,8 +106,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 154.88987670093775,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -128,8 +128,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 192.97638525022194,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -150,8 +150,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1441.138921437785,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -172,8 +172,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 612.4097416102886,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -194,8 +194,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1225.2092063575983,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -216,8 +216,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1268.5648006349802,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -238,8 +238,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 2988.62648903206,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -260,8 +260,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1904.9341089725494,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -282,8 +282,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 566.931619245559,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -304,8 +304,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 553.4462370835245,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -326,8 +326,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 930.9452191703022,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -348,8 +348,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1291.8812598586082,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -370,8 +370,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 758.8251925706863,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -392,8 +392,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 69.04119900986552,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -414,8 +414,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 13.334640979766846,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -436,8 +436,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 6178.392749786377,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -458,8 +458,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1003.5295913219452,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -480,8 +480,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1297.6018253844231,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -502,8 +502,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 7890.491321563721,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -524,8 +524,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 77.88276513665915,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -546,8 +546,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 76.02721736766398,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -568,8 +568,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1857.7856947779655,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -590,8 +590,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 2739.2624510526657,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -612,8 +612,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 381.4537566546351,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -634,8 +634,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 771.2870164737105,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -656,8 +656,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1202.4309327136725,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -678,8 +678,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1085.6767707448453,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -700,8 +700,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 7377.3264808654785,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -722,8 +722,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 6778.736395150423,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -744,8 +744,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1251.1389657706022,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -766,8 +766,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 138.4626361504197,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -788,8 +788,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1089.1240686140954,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -810,8 +810,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 174.08054214529693,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -832,8 +832,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 83.71320708654821,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -854,8 +854,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 200.7049307874404,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -876,8 +876,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 164.83330915123224,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -898,8 +898,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 516.1168840173632,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -920,8 +920,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1460.746887549758,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -942,8 +942,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 142.1382755935192,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -964,8 +964,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 569.672937780153,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -986,8 +986,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 83.54215951869264,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1008,8 +1008,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 16.37934477487579,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1030,8 +1030,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1117.1506425514817,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1052,8 +1052,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 53.47428152372595,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1074,8 +1074,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 5669.9368571399245,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1096,8 +1096,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 30.22163128387183,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1118,8 +1118,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 61.38533033011481,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1140,8 +1140,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 42.83666972257197,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1162,8 +1162,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 171.89137258380651,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1184,8 +1184,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 2.0102729297359474,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1206,8 +1206,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 2.0777830948936753,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1228,8 +1228,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 116.7114511388354,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1250,8 +1250,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 545.5708732288331,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1272,8 +1272,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 60.50475750910118,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1294,8 +1294,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 82.18269205233082,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1316,8 +1316,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 44.13627050817013,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1338,8 +1338,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 540.8202575594187,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1360,8 +1360,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 3839.5841368585825,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1382,8 +1382,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 304.6864055262413,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1404,8 +1404,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 0.23644305307243485,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1426,8 +1426,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 7.6318473644860205,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1448,8 +1448,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 171.25137208332308,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1470,8 +1470,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1495.8571538424585,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1492,8 +1492,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 3.23528835066827,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1514,8 +1514,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 0.9462681960721966,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1536,8 +1536,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 776.8080614220817,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1558,8 +1558,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 160.85373691748828,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1580,8 +1580,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 139.6718442523852,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1602,8 +1602,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 49.72218379471451,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1624,8 +1624,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1839.0974760594545,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1646,8 +1646,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 181.78727167099714,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1668,8 +1668,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 455.3880089192535,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1690,8 +1690,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 5.070627244189382,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1712,8 +1712,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 43.0851731300354,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1734,8 +1734,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 100.14807017727435,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1756,8 +1756,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 8.046036268526223,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1778,8 +1778,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 0.39791383752890397,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1800,8 +1800,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 0.16911450815678108,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1822,8 +1822,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1521.8333968505613,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1844,8 +1844,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 62.94401744008064,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1866,8 +1866,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 2061.2205901313573,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1888,8 +1888,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 4511.640276312828,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1910,8 +1910,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 60.71041119284928,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1932,8 +1932,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 9.953877225518227,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1954,8 +1954,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 4162.421462032944,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1976,8 +1976,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 2960.7213216573,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -1998,8 +1998,8 @@
         "size_class": "M",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1185.9063339103013,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2020,8 +2020,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 5274.565107345581,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2042,8 +2042,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 2933.949330791831,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2064,8 +2064,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 0.0,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2086,8 +2086,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 0.0,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2108,8 +2108,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 3437.116370767355,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2130,8 +2130,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 850.3860374800861,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2152,8 +2152,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1815.3394508194178,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2174,8 +2174,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 2.6045271158218384,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2196,8 +2196,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 2602.490093100816,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2218,8 +2218,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 129.67468268983066,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2240,8 +2240,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1563.596779294312,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2262,8 +2262,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 27.891248682513833,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2284,8 +2284,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1923.5095393843949,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     },
@@ -2306,8 +2306,8 @@
         "size_class": "S",
         "w": 0,
         "valid": true,
-        "population_buffer": 0,
-        "population_source_key": "pop:pending-m05",
+        "population_buffer": 1137.4728065375239,
+        "population_source_key": "pop:ghs-pop-r2023a-500.0m",
         "placement": "auto"
       }
     }

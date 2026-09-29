@@ -35,25 +35,39 @@ def _write_csv(path, rows):
         writer.writerows(rows)
 
 
+def _todo_file(tmp_path):
+    """A 30-row all-todo file, the state before any values were filled in."""
+    path = tmp_path / "consumption_todo.csv"
+    _write_csv(path, [_row(country=c, drug=d) for c in COUNTRIES for d in DRUGS])
+    return path
+
+
 # --- shipped file -------------------------------------------------------
 
 
-def test_shipped_csv_has_30_rows_all_todo():
+def test_shipped_csv_has_30_rows_covering_every_country_and_drug():
     rows = load_rows(CONSUMPTION_CSV)
     assert len(rows) == 30
-    assert all(r.status == "todo" for r in rows)
     assert {r.country for r in rows} == set(COUNTRIES)
     assert {r.drug for r in rows} == set(DRUGS)
+    # Nothing may pretend to be more than it is: every row is sourced, illustrative or still todo.
+    assert all(r.status in ("sourced", "illustrative", "todo") for r in rows)
 
 
-def test_shipped_csv_fails_strict_mode():
+def test_shipped_csv_passes_strict_mode_because_illustrative_rows_are_declared():
+    """D36: strict mode refuses `todo` rows only, and accepts declared illustrative ones."""
+    by_key = load_consumption(CONSUMPTION_CSV, mode="strict")
+    assert len(by_key) == 30
+
+
+def test_todo_file_fails_strict_mode(tmp_path):
     with pytest.raises(UnsourcedConsumptionError) as exc_info:
-        load_consumption(CONSUMPTION_CSV, mode="strict")
+        load_consumption(_todo_file(tmp_path), mode="strict")
     assert len(exc_info.value.missing) == 30
 
 
-def test_shipped_csv_ok_in_dev_mode():
-    by_key = load_consumption(CONSUMPTION_CSV, mode="dev")
+def test_todo_file_ok_in_dev_mode(tmp_path):
+    by_key = load_consumption(_todo_file(tmp_path), mode="dev")
     assert len(by_key) == 30
     assert by_key[("PT", "irbesartan")].status == "todo"
 
@@ -282,9 +296,15 @@ def test_strict_mode_succeeds_when_all_rows_sourced(tmp_path):
 # --- provenance_entries -------------------------------------------------------
 
 
-def test_provenance_entries_keys():
-    rows = load_rows(CONSUMPTION_CSV)
-    entries = provenance_entries(rows)
+def test_provenance_entries_keys(tmp_path):
+    entries = provenance_entries(load_rows(_todo_file(tmp_path)))
     assert "consumption:PT:irbesartan" in entries
     assert entries["consumption:PT:irbesartan"].status == "todo"
     assert entries["consumption:PT:irbesartan"].value is None
+
+
+def test_shipped_provenance_marks_illustrative_rows_and_carries_no_citation():
+    entries = provenance_entries(load_rows(CONSUMPTION_CSV))
+    e = entries["consumption:PT:irbesartan"]
+    assert e.status == "illustrative"
+    assert e.value is not None and e.source_url is None
