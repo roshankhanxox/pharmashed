@@ -146,10 +146,10 @@ export function MapView() {
         source: SITES_SOURCE,
         filter: ["==", ["get", "id"], ""],
         paint: {
-          "circle-color": "#3b82f6",
+          "circle-color": "#1c1917",
           "circle-opacity": 0,
           "circle-radius": 13,
-          "circle-stroke-color": "#3b82f6",
+          "circle-stroke-color": "#1c1917",
           "circle-stroke-width": 3,
         },
       });

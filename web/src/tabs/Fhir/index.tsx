@@ -345,7 +345,7 @@ function JsonTree({ value, depth }: { value: unknown; depth: number }) {
         <ul className="ml-4 border-l border-neutral-200 dark:border-neutral-700 pl-2">
           {entries.map(([k, v]) => (
             <li key={k}>
-              <span className={`text-xs font-mono ${HIGHLIGHTED_KEYS.has(k) ? "text-sky-800 dark:text-sky-300 font-semibold" : "text-neutral-600 dark:text-neutral-400"}`}>
+              <span className={`text-xs font-mono ${HIGHLIGHTED_KEYS.has(k) ? "text-[color:var(--c-accent)] font-semibold" : "text-neutral-600 dark:text-neutral-400"}`}>
                 {k}:{" "}
               </span>
               <JsonTree value={v} depth={depth + 1} />
