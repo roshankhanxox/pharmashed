@@ -46,27 +46,40 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 | M01 | Contracts + fixtures + types | ☑ | 7 schemas, fixtures (2 cities x 3 sites x 6 drugs), pydantic + TS types generated |
 | M02 | Parameter registry | ☑ | Loader + CLI done; values = agent tasks A1–A6 (blocked on those) |
 | M03 | Consumption data | ☑ | Loader + CLI done; values = agent tasks A7–A11 |
-| M04 | Sites + streams | ☑ | 45 synthetic sites (9/city); loader + CLI; fetch_streams.py + auto_place_sites.py written |
-| M05 | Population (GHS-POP) | ☐ | |
-| M06 | Priors + sampling | ☐ | |
-| M07 | Model core | ☐ | |
-| M08 | Monte Carlo runner | ☐ | |
-| M09 | Sensitivity + flips | ☐ | |
-| M10 | Scoring + ranking | ☐ | |
+| M04 | Sites + streams | ☑ | Now 105 sites (21/city, auto-placed from OSM streams, D41); loader + CLI; fetch_streams.py + auto_place_sites.py |
+| M05 | Population (GHS-POP) | ◐ | `population.py` + tests done, but the GHS-POP raster is not downloaded (`data/raw/` empty; `scripts/fetch_ghspop.py` not run) and all 105 sites carry `population_buffer=0` / `pop:pending-m05` |
+| M06 | Priors + sampling | ☑ | priors.py (unit-tested; not yet run end to end on the 105 sites) |
+| M07 | Model core | ☑ | model.py |
+| M08 | Monte Carlo runner | ☑ | montecarlo.py; N_DRAWS = 1,000 (D40). Never run on the real site set: `data/build/` and `data/frozen/` are empty |
+| M09 | Sensitivity + flips | ☑ | sensitivity.py |
+| M10 | Scoring + ranking | ☑ | scoring.py |
 | M11 | Exporters + freeze | ☑ | export_build writes all 7 artifacts; freeze.py locks + tags; 12 tests |
 | M12 | Consistency checks | ☑ | C1–C5 checks; separation test; observed.py; 19 tests |
 | M13 | FHIR terminology | ☑ | 4 terminology JSON files (3 CodeSystems + 1 ValueSet) |
 | M14 | FHIR builder | ☑ | builder.py: Location/Group/Consumption/Prediction bundles; 18 tests |
-| M15 | Validator + HAPI | ☑ | validate.sh, docker-compose.yml, load_hapi.py (not run locally — Java+Docker) |
+| M15 | Validator + HAPI | ◐ | Scripts written but **never run** (validator jar download + IG needed; Docker daemon was off). FHIR tab badge now says "Not yet validated" until a pass is recorded |
 | M16 | API | ☑ | FastAPI app; core/scenario/fhir routes; 15 tests |
-| M17 | Assistant | ☐ | Needs API key |
-| M18 | Web shell + data layer | ☐ | |
-| M19 | Explore tab | ☐ | |
-| M20 | Scenarios tab | ☐ | |
-| M21 | Consistency + Methodology tabs | ☐ | |
-| M22 | FHIR tab + Assistant drawer | ☐ | |
-| M23 | CI | ☐ | Grows incrementally |
-| M24 | Docs + demo script | ☐ | Last |
+| M17 | Assistant | ☑ | api/assistant/: tool-use loop, numeric guard, usage limits (S3). Provider is OpenAI `gpt-5-mini` with Groq fallback, not Anthropic (D25: model from env). Needs `OPENAI_API_KEY` |
+| M18 | Web shell + data layer | ☑ | Vite + React + Zustand; Vercel deploy; light/dark theme |
+| M19 | Explore tab | ☑ | Map (glow layers, S6), site inspector, top-sites empty state (S7) |
+| M20 | Scenarios tab | ☑ | Client-side scenarios (D13) + "why does it change" explanations |
+| M21 | Consistency + Methodology tabs | ☑ | |
+| M22 | FHIR tab + Assistant drawer | ☑ | Drawer opens with site context; FHIR badge honest about validation |
+| M23 | CI | ☐ | `.github/workflows/` is empty. Note: PR #14 reused the label "M23" for site-density work, which is not this |
+| M24 | Docs + demo script | ◐ | README rewritten. `docs/` is empty (`docs/PharmaShed.md` still missing, see Blockers). Demo script lives in local, git-ignored SCRIPT.md |
+
+## Product sessions (UI work outside the M-series)
+
+| ID | What | Status | Note |
+|---|---|---|---|
+| S1 | Readability: light theme default, theme toggle, 14px minimum type, CSS colour tokens | ☑ | PR #15 |
+| S2 | Citizen / Expert view, plain-language citizen pages, what-if explanations; Lenis smooth scroll and fades | ☑ | PR #15 |
+| S3 | Assistant everywhere (floating button, Home ask bar), plain-language answers, usage limits | ☑ | PR #16 |
+| S4 | Assistant on OpenAI `gpt-5-mini` (Groq fallback), status endpoint, site context ("Ask about this site") | ☑ | PR #15 |
+| S5 | Citizen reports + gamification | ☐ | Not started. Needs a database; citizen reports must never change the model score |
+| S6 | Heat-glow map; MapLibre worker bundling fix for production | ☑ | PR #17 |
+| S7 | Housekeeping: this file, FHIR badge honesty, Explore empty state, city chips, stale tests | ☑ | this PR |
+
 
 ## Agent sourcing tasks (SOURCING.md — fresh session each) — PAUSED (D33)
 
@@ -104,12 +117,20 @@ Needs M02/M03 loaders (with the new columns) to exist first, so the files have t
 
 ## Next up
 
-1. **M17** Assistant (tool-calling Claude; needs ANTHROPIC_API_KEY)
-2. **M18** Web shell + data layer (Vite + React + Zustand)
-3. **M19** Explore tab (map + site list)
+1. **Run the engine end to end.** Download GHS-POP (M05), run the pipeline on the 105 sites into `data/build/`, and serve that. Today the app serves illustrative fixtures from `scripts/gen_rich_fixtures.py` (see Follow-ups), not engine output.
+2. **M15 follow-through** Run the HL7 validator (and HAPI) once and record the result in `fhir_index.validation`; until then nothing may claim the bundles validate.
+3. **Contract drift** Bring `fhir_index` schema, pydantic and TS types in line with the fixture, then log a decision. (M23 CI is also open.)
 
 ## Last session
 
+S7 housekeeping (branch `S7-housekeeping`):
+FHIR tab badge used to show a green "Validates against OneAquaHealth IG" whenever the error count was 0, including
+when `validation.status` was `unknown` and the validator had never run; it now shows a pass only for a recorded run
+(4 tests). Explore's empty right panel now lists the top sites for the current drug/city filters. City chips show city
+names (expert view keeps the H/M/L counts with a key). Site tests updated for the 105-site dataset (D41). This file
+brought up to date. Checked today: web 22 tests pass; api 52 pass; engine 170 pass, 2 fail (contracts drift below). Found that the demo data is script-generated, not engine output (first Follow-up).
+
+(Previous: M13–M16.)
 Built M13–M16 (FHIR + API):
 M13: 4 terminology files in fhir/terminology/ (CodeSystem-observation-category,
 CodeSystem-components, CodeSystem-consumption, ValueSet-observation-category).
@@ -187,10 +208,18 @@ is still an open blocker, see Blockers below.)
 
 ## Follow-ups (cross-module notes)
 
+- **Where the demo numbers come from (important):** the scores, PEC/RQ ranges and stored draws the app shows are generated by `scripts/gen_rich_fixtures.py` into `contracts/fixtures/` (its docstring: "without running the engine"). They are plausible-looking illustrative values, not output of `montecarlo.py`. `data/build/` and `data/frozen/` are empty, no freeze has happened, the GHS-POP raster is missing, and every site has population 0. The UI badges say "illustrative", but README wording such as "Monte Carlo engine ... 1,000 draws per site x drug" and "Replacing the CSVs ... causes the engine to recompute 630,000 draws" describes the pipeline design, not what produced the current demo data. Also check what the deployed API serves (`PHARMASHED_DATA` is not set in `render.yaml`; the default `data/build/` is git-ignored).
 - D33: write `scripts/fill_illustrative.py` + `illustrative_values.yaml` + `illustrative_consumption.yaml` (part of M02/M03); keep A1's sourced carbamazepine rows (atc, ddd_g, fe).
 - D34/D35: UI badges + amber banner + footer counts (M18, M19, M21, M22); FHIR `meta.tag` `illustrative-parameter` (M14).
 - D37/D38: M14 applies the IG Location profile; M15 adds `scripts/load_ig_examples.py`; M22 adds the third FHIR query panel.
 - D39: during M14, check whether the 12 Benevento IG example Locations sit near streams; record the decision in CONTEXT §4.
+
+- **Contract drift (open, needs a decision):** `contracts/fixtures/fhir_index.json` was edited by hand (UI session commits) and no longer matches `contracts/schemas/fhir_index.schema.json`: extra `oah_example_counts`, bundle `source`/`description`, and `query_demo.by_city` where the schema requires `query_demo.model_prediction`. The TS type was hand-edited to match. Fails `test_contracts.py::test_fixture_validates_against_schema[fhir_index]` and `test_fixture_parses_with_pydantic_model[FhirIndex]`. Fix through the schema, then regenerate types (`pnpm run gen:types`) and log a decision; the intended shape of `query_demo` must be chosen first.
+- **Validator / HAPI never run.** `validate.sh` downloads `validator_cli.jar` and the OAH IG; Docker was not running when checked. README says bundles conform to the OAH profiles; that is unverified until the validator has run.
+- `make fhir`, `make fhir-validate`, `make checks` and `make api` are still `TODO` stubs in the Makefile.
+- `uv run pytest engine api` in one command fails at collection (both `tests/` folders are packages: "No module named tests.test_api"); run `uv run pytest engine` and `uv run pytest api` separately. `make test` was not checked.
+- Deployment: set `OPENAI_API_KEY` in the Render dashboard; the free tier sleeps, so wake the API before a demo. Assistant limits are in memory and reset on restart.
+- `suggestion.md` and `SCRIPT.md` are local and git-ignored.
 
 ## Blockers
 
