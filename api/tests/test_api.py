@@ -194,11 +194,36 @@ def test_scenario_rq_p50_scales(client):
         assert 0.3 <= ratio <= 0.7, f"Expected ~0.5, got {ratio}"
 
 
-def test_default_data_dir_is_the_repo_data_build_folder(monkeypatch):
-    """Without PHARMASHED_DATA the API must look in <repo>/data/build (it once looked one folder too high)."""
+def test_default_data_dir_uses_build_when_present_else_the_release_snapshot(monkeypatch, tmp_path):
+    """Without PHARMASHED_DATA: data/build if generated, otherwise the committed data/release."""
     import pharmashed_api.data as _data
 
     monkeypatch.delenv("PHARMASHED_DATA", raising=False)
     repo = Path(__file__).resolve().parents[2]
-    assert _data._data_dir() == repo / "data" / "build"
-    assert (repo / "data").is_dir()
+    # Paths are anchored at the repo root (they once pointed one folder above it).
+    assert _data._BUILD == repo / "data" / "build"
+    assert _data._RELEASE == repo / "data" / "release"
+
+    build, release = tmp_path / "build", tmp_path / "release"
+    build.mkdir(), release.mkdir()
+    monkeypatch.setattr(_data, "_BUILD", build)
+    monkeypatch.setattr(_data, "_RELEASE", release)
+    assert _data._data_dir() == release          # no build output: fall back to the snapshot
+    (build / "results.json").write_text("{}")
+    assert _data._data_dir() == build            # build output exists: use it
+    monkeypatch.setenv("PHARMASHED_DATA", str(tmp_path / "custom"))
+    assert _data._data_dir() == tmp_path / "custom"  # an explicit override always wins
+
+
+def test_committed_release_snapshot_has_everything_the_api_serves():
+    """data/release is what the deployed API reads; it must be complete and describe the frozen run."""
+    release = Path(__file__).resolve().parents[2] / "data" / "release"
+    for name in ("results.json", "sites.json", "provenance.json", "methodology.json", "glossary.json",
+                 "checks.json", "draws_index.json", "draws.bin", "fhir_index.json", "RELEASE.json"):
+        assert (release / name).exists(), f"data/release/{name} is missing; run scripts/make_release.py"
+    meta = json.loads((release / "results.json").read_text())["meta"]
+    assert meta["frozen_tag"], "release snapshot was not built from a frozen run"
+    assert meta["dev_placeholders"] is False
+    index = json.loads((release / "fhir_index.json").read_text())
+    for bundle in index["bundles"]:
+        assert (release / "fhir" / "out" / f"{bundle['name']}.json").exists(), bundle["name"]

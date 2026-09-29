@@ -10,6 +10,8 @@ services:
     envVars:
       - key: OPENAI_API_KEY
         sync: false          # set manually in Render dashboard
+      - key: PHARMASHED_DATA
+        value: data/release   # committed snapshot made by scripts/make_release.py
       - key: ASSISTANT_MODEL
         value: gpt-5-mini
       - key: GROQ_API_KEY    # optional fallback provider, used only if OPENAI_API_KEY is unset
