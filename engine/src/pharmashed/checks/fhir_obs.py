@@ -81,13 +81,13 @@ def build_reference_observations(path: Path | None = None) -> list[dict]:
         drug = _COMPOUND_DRUG[compound]
         city = _SCOPE_CITY[scope]
         atc = _DRUG_ATC.get(drug, "unknown")
-        obs_id = f"ref-{city}-{drug}-{metric}"
+        obs_id = f"ref-{city}-{drug}-{metric.replace('_', '-')}"  # FHIR ids allow letters, digits, - and .
         ucum_unit = "ng/L" if "ng" in unit else ("%" if "percent" in unit else "1")
 
         obs: dict[str, Any] = {
             "resourceType": "Observation",
             "id": obs_id,
-            "meta": {"tag": [{"code": _REF_TAG, "display": _REF_DISPLAY}]},
+            "meta": {"tag": [{"system": "https://pharmashed.example/fhir/CodeSystem/pharmashed-tags", "code": _REF_TAG, "display": "External reference measurement (R1)"}]},
             "status": "final",
             "category": [
                 {"coding": [{"system": _HL7_OBS_CAT, "code": "laboratory"}]}
@@ -104,9 +104,12 @@ def build_reference_observations(path: Path | None = None) -> list[dict]:
                 "code": ucum_unit,
             },
         }
+        # Keep the source citation with the value now that the tag's display must match its code system.
+        notes = [{"text": _REF_DISPLAY}]
         note = row.get("note", "")
         if note:
-            obs["note"] = [{"text": note}]
+            notes.append({"text": note})
+        obs["note"] = notes
         obs_list.append(obs)
 
     return obs_list
