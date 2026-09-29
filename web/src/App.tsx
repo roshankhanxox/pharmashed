@@ -14,7 +14,7 @@ import { createDrawsView } from "./data/draws";
 
 import { TopTabs } from "./components/shell/TopTabs";
 import { FooterStrip } from "./components/shell/FooterStrip";
-import { DevBanner } from "./components/shell/DevBanner";
+import { DevBanner, PrototypeBanner } from "./components/shell/DevBanner";
 import { ProvenanceDrawer } from "./components/provenance/ProvenanceDrawer";
 import { AssistantDrawer } from "./assistant/AssistantDrawer";
 import { FloatingAsk } from "./components/shell/FloatingAsk";
@@ -95,10 +95,12 @@ function App() {
   }
 
   const isDev = results?.meta.dev_placeholders ?? false;
+  const isIllustrative = !isDev && results?.meta.all_params_cited === false;
 
   return (
     <div className="h-svh flex flex-col overflow-hidden" style={{ background: "var(--c-canvas)", color: "var(--c-text)" }}>
       {isDev && <DevBanner />}
+      {isIllustrative && <PrototypeBanner />}
       <TopTabs />
 
       <main className={`flex-1 min-h-0 overflow-hidden ${leaving ? "page-out" : "page-in"}`} key={shownTab}>

@@ -70,7 +70,8 @@ export function FhirTab() {
             Resource counts
           </div>
           <dl className="text-xs space-y-1">
-            {Object.entries(resource_counts).map(([type, count]) => (
+            {/* Keys like "Observation:laboratory" are category counts for the query panel, not resource types. */}
+            {Object.entries(resource_counts).filter(([type]) => !type.includes(":")).map(([type, count]) => (
               <div key={type} className="flex justify-between">
                 <dt style={{ color: "var(--c-muted)" }}>{type}</dt>
                 <dd style={{ color: "var(--c-text)" }}>{count}</dd>
