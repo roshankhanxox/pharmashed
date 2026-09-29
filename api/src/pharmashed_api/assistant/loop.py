@@ -1,7 +1,14 @@
-"""Assistant tool-use loop — Groq backend (llama-3.3-70b-versatile).
+"""Assistant tool-use loop.
 
-Uses the OpenAI-compatible client pointed at api.groq.com.
-Implements the same max-6-round tool-use loop and numeric guard as before.
+Two OpenAI-compatible providers are supported:
+
+* OpenAI (default when OPENAI_API_KEY is set) — model from ASSISTANT_MODEL, default ``gpt-5-mini``.
+  GPT-5 models are reasoning models: they take ``max_completion_tokens`` (hidden reasoning tokens
+  count against it) and ``reasoning_effort``, and reject a custom ``temperature``.
+* Groq (when only GROQ_API_KEY is set) — default ``openai/gpt-oss-120b``.
+
+Set ASSISTANT_PROVIDER=openai|groq to force one. Implements the same max-6-round tool-use loop
+and numeric guard for both.
 """
 
 from __future__ import annotations
@@ -15,10 +22,17 @@ from openai import OpenAI
 from pharmashed_api.assistant.guard import check as guard_check
 from pharmashed_api.assistant.tools import TOOL_FN_MAP, TOOL_SCHEMAS_OPENAI
 
-_DEFAULT_MODEL = "openai/gpt-oss-120b"
-_TEMPERATURE = 0.2
-_MAX_TOKENS = 800
+_DEFAULT_MODELS = {"openai": "gpt-5-mini", "groq": "openai/gpt-oss-120b"}
+_GROQ_BASE_URL = "https://api.groq.com/openai/v1"
+_KEY_ENV = {"openai": "OPENAI_API_KEY", "groq": "GROQ_API_KEY"}
 _MAX_TOOL_ROUNDS = 6
+
+# Groq / chat models: plain sampling params.
+_GROQ_PARAMS = {"max_tokens": 800, "temperature": 0.2}
+# OpenAI reasoning models: no temperature; the token budget must leave room for reasoning.
+# Reasoning effort trades speed for care: set ASSISTANT_REASONING_EFFORT to minimal|low|medium|high.
+_OPENAI_MAX_COMPLETION_TOKENS = 4000
+_DEFAULT_REASONING_EFFORT = "low"
 
 _SYSTEM = """\
 You are the PharmaShed assistant. You help environmental officers and researchers understand model outputs — you never compute values yourself.
@@ -34,15 +48,60 @@ Rules:
 
 _CORRECTION_PROMPT = (
     "Your previous answer contained numbers that do not appear in the tool results: {unmatched}. "
-    "Please revise to use only numbers returned by tools, or explain in words without specific figures."
+    "Rewrite the answer using only numbers returned by tools, or explain in words without specific figures. "
+    "Reply with the rewritten answer only: do not mention this correction or apologise."
 )
 
 
-def _groq_client() -> OpenAI:
-    api_key = os.environ.get("GROQ_API_KEY")
+def provider() -> str | None:
+    """Which provider will be used, or None if no API key is configured."""
+    forced = os.environ.get("ASSISTANT_PROVIDER", "").lower()
+    if forced in _KEY_ENV:
+        return forced if os.environ.get(_KEY_ENV[forced]) else None
+    for name in ("openai", "groq"):
+        if os.environ.get(_KEY_ENV[name]):
+            return name
+    return None
+
+
+def model_name(prov: str) -> str:
+    """Model id for a provider. A leading ``openai/`` is dropped for the OpenAI API itself,
+    which uses bare ids (``gpt-5-mini``); the prefixed form is a Groq/gateway convention."""
+    model = os.environ.get("ASSISTANT_MODEL") or _DEFAULT_MODELS[prov]
+    if prov == "openai" and model.startswith("openai/"):
+        model = model.removeprefix("openai/")
+    return model
+
+
+def _client(prov: str) -> OpenAI:
+    api_key = os.environ.get(_KEY_ENV[prov])
     if not api_key:
-        raise RuntimeError("GROQ_API_KEY not set")
-    return OpenAI(api_key=api_key, base_url="https://api.groq.com/openai/v1")
+        raise RuntimeError(f"{_KEY_ENV[prov]} not set")
+    if prov == "groq":
+        return OpenAI(api_key=api_key, base_url=_GROQ_BASE_URL)
+    return OpenAI(api_key=api_key)
+
+
+def _params(prov: str) -> dict:
+    if prov == "openai":
+        return {
+            "max_completion_tokens": _OPENAI_MAX_COMPLETION_TOKENS,
+            "reasoning_effort": os.environ.get("ASSISTANT_REASONING_EFFORT") or _DEFAULT_REASONING_EFFORT,
+        }
+    return dict(_GROQ_PARAMS)
+
+
+def _context_note(context: dict | None) -> str:
+    """System-prompt addendum naming the site/drug the user is looking at in the app."""
+    if not context or not context.get("site_id"):
+        return ""
+    site = context["site_id"]
+    drug = context.get("drug")
+    where = f"site {site}" + (f" and drug {drug}" if drug else "")
+    return (
+        f"\nThe user is currently looking at {where} in the app. When they say \"this site\", "
+        f"\"here\" or \"it\", they mean that. Still call tools for every number."
+    )
 
 
 def _call_tool(name: str, args: dict) -> Any:
@@ -72,13 +131,17 @@ def _extract_links(text: str, tool_calls: list[dict]) -> list[dict]:
     return links
 
 
-def run(question: str) -> dict:
-    """Run the Groq tool-use loop for one question."""
-    model = os.environ.get("ASSISTANT_MODEL", _DEFAULT_MODEL)
-    client = _groq_client()
+def run(question: str, context: dict | None = None) -> dict:
+    """Run the tool-use loop for one question, optionally about a site/drug the user has open."""
+    prov = provider()
+    if prov is None:
+        raise RuntimeError("No assistant API key configured (OPENAI_API_KEY or GROQ_API_KEY)")
+    model = model_name(prov)
+    client = _client(prov)
+    params = _params(prov)
 
     messages: list[dict] = [
-        {"role": "system", "content": _SYSTEM},
+        {"role": "system", "content": _SYSTEM + _context_note(context)},
         {"role": "user", "content": question},
     ]
     all_tool_calls: list[dict] = []
@@ -88,11 +151,10 @@ def run(question: str) -> dict:
     for _ in range(_MAX_TOOL_ROUNDS):
         response = client.chat.completions.create(
             model=model,
-            max_tokens=_MAX_TOKENS,
-            temperature=_TEMPERATURE,
             tools=TOOL_SCHEMAS_OPENAI,
             tool_choice="auto",
             messages=messages,
+            **params,
         )
 
         msg = response.choices[0].message
@@ -110,6 +172,8 @@ def run(question: str) -> dict:
 
         if finish != "tool_calls" or not msg.tool_calls:
             answer = msg.content or ""
+            if not answer and finish == "length":
+                answer = "The answer was cut off before it finished. Please try again or ask a shorter question."
             break
 
         # Execute each tool call
@@ -137,9 +201,8 @@ def run(question: str) -> dict:
         messages.append({"role": "user", "content": correction})
         retry = client.chat.completions.create(
             model=model,
-            max_tokens=_MAX_TOKENS,
-            temperature=_TEMPERATURE,
             messages=messages,
+            **params,
         )
         revised = retry.choices[0].message.content or answer
         guard2 = guard_check(revised, all_tool_results, question)

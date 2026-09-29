@@ -5,14 +5,14 @@ import { useStore } from "../data/store";
 import { apiBase } from "../data/loaders";
 
 const C = {
-  canvas:  "#0c0a09",
-  surface: "#1a1917",
-  raised:  "#242220",
-  border:  "#292524",
-  text:    "#f5f4f2",
-  muted:   "#bdb8b3",
-  faint:   "#948e89",
-  indigo:  "#7c75ff",
+  canvas:  "var(--c-canvas)",
+  surface: "var(--c-surface)",
+  raised:  "var(--c-raised)",
+  border:  "var(--c-border)",
+  text:    "var(--c-text)",
+  muted:   "var(--c-muted)",
+  faint:   "var(--c-faint)",
+  indigo:  "var(--c-indigo)",
 } as const;
 
 const SUGGESTED: string[] = [
@@ -21,6 +21,32 @@ const SUGGESTED: string[] = [
   "Where does the PNEC for irbesartan come from?",
   "What would happen if leakage were halved at TLS-001?",
 ];
+
+/** Starter questions for citizen view: plain wording, no model terms. */
+const SUGGESTED_CITIZEN: string[] = [
+  "Which streams in Toulouse should be tested first?",
+  "What does testing priority mean?",
+  "Why do medicines in streams matter?",
+  "What would repairing sewers change at the top site?",
+];
+
+/** Starter questions about one site, worded for the current audience. */
+function siteSuggestions(siteId: string, drug: string | null, citizen: boolean): string[] {
+  if (citizen) {
+    return [
+      `Why does ${siteId} have this testing priority?`,
+      `Which medicine matters most at ${siteId}?`,
+      `What would repairing the sewers change at ${siteId}?`,
+      "What does this ranking mean, and what doesn't it mean?",
+    ];
+  }
+  return [
+    `What drives the sampling priority score at ${siteId}?`,
+    `What would flip ${siteId} to a different tier?`,
+    drug ? `Where does the PNEC for ${drug} come from?` : `Where do the PNEC values used at ${siteId} come from?`,
+    `What happens at ${siteId} if leakage is halved?`,
+  ];
+}
 
 interface ToolCall {
   name: string;
@@ -36,6 +62,7 @@ interface Message {
 
 export function AssistantDrawer() {
   const open = useStore((s) => s.assistantOpen);
+  const citizen = useStore((s) => s.audience) === "citizen";
   const close = useStore((s) => s.closeAssistant);
   const setActiveTab = useStore((s) => s.setActiveTab);
   const setSelectedSiteId = useStore((s) => s.setSelectedSiteId);
@@ -45,19 +72,23 @@ export function AssistantDrawer() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [apiAvailable, setApiAvailable] = useState<boolean | null>(null);
+  const [provider, setProvider] = useState<string | null>(null);
+  const context = useStore((s) => s.assistantContext);
+  const clearContext = useStore((s) => s.clearAssistantContext);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // Check API availability on first open
+  // Check on first open whether the backend has an API key. This is a plain GET, so it
+  // does not spend a model call (the old check sent a real "ping" question).
   useEffect(() => {
     if (!open || apiAvailable !== null) return;
-    fetch(`${apiBase()}/assistant`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: "ping" }),
-    })
-      .then((r) => setApiAvailable(r.status !== 503))
+    fetch(`${apiBase()}/assistant/status`)
+      .then((r) => r.json() as Promise<{ available: boolean; provider: string | null }>)
+      .then((s) => {
+        setApiAvailable(s.available);
+        setProvider(s.provider);
+      })
       .catch(() => setApiAvailable(false));
-  }, [open]);
+  }, [open, apiAvailable]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -72,7 +103,10 @@ export function AssistantDrawer() {
       const res = await fetch(`${apiBase()}/assistant`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({
+          question,
+          context: context ? { site_id: context.siteId, drug: context.drug } : undefined,
+        }),
       });
       const data = await res.json() as {
         answer_markdown?: string;
@@ -127,9 +161,9 @@ export function AssistantDrawer() {
             <h2 className="font-semibold text-sm" style={{ color: C.text }}>PharmaShed Assistant</h2>
             <span
               className="text-xs px-1.5 py-0.5 rounded"
-              style={{ background: C.raised, color: C.faint, fontFamily: "ui-monospace, monospace", border: `1px solid ${C.border}` }}
+              style={{ background: C.raised, color: C.faint, border: `1px solid ${C.border}` }}
             >
-              Groq
+              {provider === "openai" ? "OpenAI" : provider === "groq" ? "Groq" : "LLM"}
             </span>
           </div>
           <button
@@ -147,9 +181,9 @@ export function AssistantDrawer() {
         {apiAvailable === false && (
           <div
             className="text-xs px-5 py-3 shrink-0"
-            style={{ background: "#1c1400", borderBottom: `1px solid #78350f`, color: "#fbbf24" }}
+            style={{ background: "var(--c-warn-bg)", borderBottom: `1px solid var(--c-warn-border)`, color: "var(--c-warn-text)" }}
           >
-            Assistant unavailable — LLM API key not configured on the backend. Start the API server with <code style={{ fontFamily: "ui-monospace, monospace" }}>GROQ_API_KEY</code> set.
+            Assistant unavailable — LLM API key not configured on the backend. Start the API server with <code>OPENAI_API_KEY</code> (or <code>GROQ_API_KEY</code>) set.
           </div>
         )}
 
@@ -159,7 +193,10 @@ export function AssistantDrawer() {
             <div>
               <p className="text-xs mb-3" style={{ color: C.faint }}>Suggested questions:</p>
               <div className="flex flex-col gap-1.5">
-                {SUGGESTED.map((q) => (
+                {(context
+                  ? siteSuggestions(context.siteId, context.drug, citizen)
+                  : citizen ? SUGGESTED_CITIZEN : SUGGESTED
+                ).map((q) => (
                   <button
                     key={q}
                     onClick={() => send(q)}
@@ -189,7 +226,7 @@ export function AssistantDrawer() {
                     <span
                       key={j}
                       className="text-xs px-2 py-0.5 rounded-full"
-                      style={{ background: C.raised, color: C.faint, fontFamily: "ui-monospace, monospace", border: `1px solid ${C.border}` }}
+                      style={{ background: C.raised, color: C.faint, border: `1px solid ${C.border}` }}
                     >
                       {tc.name}
                     </span>
@@ -212,7 +249,7 @@ export function AssistantDrawer() {
               {m.guardWarn && (
                 <div
                   className="text-xs rounded px-2 py-0.5"
-                  style={{ background: "#1c1400", color: "#fbbf24", border: "1px solid #78350f" }}
+                  style={{ background: "var(--c-warn-bg)", color: "var(--c-warn-text)", border: "1px solid var(--c-warn-border)" }}
                 >
                   ⚠ Some numbers could not be verified against tool results
                 </div>
@@ -258,6 +295,25 @@ export function AssistantDrawer() {
 
         {/* Input */}
         <div className="px-4 pb-4 shrink-0">
+          {context && (
+            <div
+              className="flex items-center gap-2 mb-2 text-xs rounded-lg px-3 py-1.5 w-fit max-w-full"
+              style={{ background: C.raised, color: C.muted, border: `1px solid ${C.border}` }}
+            >
+              <span className="truncate">
+                Asking about <strong style={{ color: C.text }}>{context.siteId}{context.drug ? ` · ${context.drug}` : ""}</strong>
+              </span>
+              <button
+                onClick={clearContext}
+                aria-label="Stop asking about this site"
+                title="Ask about anything instead"
+                className="leading-none"
+                style={{ color: C.faint }}
+              >
+                ×
+              </button>
+            </div>
+          )}
           <form
             onSubmit={(e) => { e.preventDefault(); send(input); }}
             className="flex gap-2"
@@ -267,7 +323,7 @@ export function AssistantDrawer() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={apiAvailable === false || loading}
-              placeholder="Ask about sites, scores, drivers…"
+              placeholder={context ? `Ask about ${context.siteId}…` : "Ask about sites, scores, drivers…"}
               className="flex-1 px-3 py-2 text-sm rounded-lg focus:outline-none disabled:opacity-40"
               style={{
                 background: C.surface,
@@ -298,16 +354,16 @@ function MarkdownText({ text }: { text: string }) {
       remarkPlugins={[remarkGfm]}
       components={{
         p: ({ children }) => <p className="mb-2 last:mb-0 leading-relaxed">{children}</p>,
-        strong: ({ children }) => <strong className="font-semibold" style={{ color: "#f5f4f2" }}>{children}</strong>,
+        strong: ({ children }) => <strong className="font-semibold" style={{ color: "var(--c-text)" }}>{children}</strong>,
         em: ({ children }) => <em className="italic">{children}</em>,
         code: ({ children, className }) => {
           const isBlock = !!className;
           return isBlock ? (
-            <pre className="my-2 p-3 rounded-lg text-xs overflow-x-auto" style={{ background: "#0c0a09", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>
+            <pre className="my-2 p-3 rounded-lg text-xs overflow-x-auto" style={{ background: "var(--c-canvas)", color: "var(--c-muted)" }}>
               <code>{children}</code>
             </pre>
           ) : (
-            <code className="px-1.5 py-0.5 rounded text-[11px]" style={{ background: "#0c0a09", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>{children}</code>
+            <code className="px-1.5 py-0.5 rounded text-[11px]" style={{ background: "var(--c-canvas)", color: "var(--c-muted)" }}>{children}</code>
           );
         },
         ul: ({ children }) => <ul className="list-disc list-outside ml-4 mb-2 space-y-0.5">{children}</ul>,
@@ -320,20 +376,20 @@ function MarkdownText({ text }: { text: string }) {
         ),
         thead: ({ children }) => <thead>{children}</thead>,
         th: ({ children }) => (
-          <th className="px-3 py-1.5 text-left font-semibold border-b" style={{ borderColor: "#292524", color: "#bdb8b3" }}>{children}</th>
+          <th className="px-3 py-1.5 text-left font-semibold border-b" style={{ borderColor: "var(--c-border)", color: "var(--c-muted)" }}>{children}</th>
         ),
         td: ({ children }) => (
-          <td className="px-3 py-1.5 border-b" style={{ borderColor: "#1a1917", color: "#f5f4f2" }}>{children}</td>
+          <td className="px-3 py-1.5 border-b" style={{ borderColor: "var(--c-surface)", color: "var(--c-text)" }}>{children}</td>
         ),
         tr: ({ children }) => <tr className="hover:bg-white/5 transition-colors">{children}</tr>,
         blockquote: ({ children }) => (
-          <blockquote className="border-l-2 pl-3 my-2 italic" style={{ borderColor: "#7c75ff", color: "#bdb8b3" }}>{children}</blockquote>
+          <blockquote className="border-l-2 pl-3 my-2 italic" style={{ borderColor: "var(--c-indigo)", color: "var(--c-muted)" }}>{children}</blockquote>
         ),
         h1: ({ children }) => <h1 className="text-base font-bold mb-2 mt-1">{children}</h1>,
         h2: ({ children }) => <h2 className="text-sm font-semibold mb-1.5 mt-1">{children}</h2>,
         h3: ({ children }) => <h3 className="text-sm font-medium mb-1 mt-1">{children}</h3>,
         a: ({ href, children }) => (
-          <a href={href} target="_blank" rel="noreferrer" className="underline" style={{ color: "#7c75ff" }}>{children}</a>
+          <a href={href} target="_blank" rel="noreferrer" className="underline" style={{ color: "var(--c-indigo)" }}>{children}</a>
         ),
       }}
     >

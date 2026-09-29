@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useStore } from "../../data/store";
 import { LoadingView } from "../../components/shell/StateViews";
 import { ModelDiagram } from "../../components/charts/ModelDiagram";
+import { Reveal } from "../../components/shell/Reveal";
+import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 import { InfoButton } from "../../components/provenance/InfoButton";
 
 const ABLATION_LABELS = ["WWTP-only (ePiE baseline)", "Population only", "Full model"];
@@ -13,6 +15,7 @@ const ABLATION_DESCRIPTIONS = [
 ];
 
 export function MethodologyTab() {
+  const scrollRef = useSmoothScroll();
   const methodology = useStore((s) => s.methodology);
   const [ablationIdx, setAblationIdx] = useState(2); // default: Full model
 
@@ -25,47 +28,47 @@ export function MethodologyTab() {
   const ablationPerCity = ablations?.per_city?.filter((a) => a.variant === variant) ?? [];
 
   return (
-    <div className="h-full overflow-y-auto p-6 flex flex-col gap-8 max-w-4xl mx-auto" style={{ background: "#0c0a09", color: "#f5f4f2" }}>
+    <div ref={scrollRef} className="h-full overflow-y-auto p-6 flex flex-col gap-8 max-w-4xl mx-auto" style={{ background: "var(--c-canvas)", color: "var(--c-text)" }}>
 
       {/* Intro */}
       <div>
         <h1 className="text-base font-semibold mb-1">Model methodology</h1>
-        <p className="text-sm leading-relaxed max-w-2xl" style={{ color: "#bdb8b3" }}>
+        <p className="text-sm leading-relaxed max-w-2xl" style={{ color: "var(--c-muted)" }}>
           PharmaShed estimates pharmaceutical concentrations at urban stream sites using a Monte Carlo mass-balance model. The core innovation is the <strong>untreated discharge pathway</strong> (λ): drug loads reaching streams directly via sewer leakage, misconnections, and overflow events — absent from ePiE and GREAT-ER, which only model treatment-plant outfalls.
         </p>
       </div>
 
       {/* Model diagram */}
-      <section>
+      <Reveal><section>
         <h2
           className="text-sm font-semibold uppercase tracking-wide mb-3"
-          style={{ color: "#948e89" }}
+          style={{ color: "var(--c-faint)" }}
         >
           Model pipeline
         </h2>
         <ModelDiagram stages={stages} />
-      </section>
+      </section></Reveal>
 
       {/* Priors table */}
-      <section>
+      <Reveal><section>
         <h2
           className="text-sm font-semibold uppercase tracking-wide mb-3"
-          style={{ color: "#948e89" }}
+          style={{ color: "var(--c-faint)" }}
         >
           Priors
         </h2>
         <div
           className="overflow-x-auto rounded-xl"
-          style={{ border: "1px solid #292524" }}
+          style={{ border: "1px solid var(--c-border)" }}
         >
           <table className="text-xs w-full">
             <thead>
-              <tr style={{ borderBottom: "1px solid #292524", background: "#1a1917" }}>
+              <tr style={{ borderBottom: "1px solid var(--c-border)", background: "var(--c-surface)" }}>
                 {["Parameter", "Distribution", "Range", "Unit", "Status"].map((h) => (
                   <th
                     key={h}
                     className="text-left py-2.5 px-3 font-semibold"
-                    style={{ color: "#948e89", fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em", fontSize: "12px" }}
+                    style={{ color: "var(--c-faint)", letterSpacing: "0.04em", fontSize: "12px" }}
                   >
                     {h.toUpperCase()}
                   </th>
@@ -74,20 +77,20 @@ export function MethodologyTab() {
             </thead>
             <tbody>
               {priors_table?.map((row: PriorRow) => (
-                <tr key={row.param} style={{ borderBottom: "1px solid #1e1c1b" }}>
-                  <td className="py-2 px-3" style={{ color: "#7c75ff", fontFamily: "ui-monospace, monospace" }}>{row.param}</td>
-                  <td className="py-2 px-3" style={{ color: "#bdb8b3" }}>{row.distribution ?? "—"}</td>
-                  <td className="py-2 px-3" style={{ color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>{row.range ?? "—"}</td>
-                  <td className="py-2 px-3" style={{ color: "#948e89" }}>{row.unit ?? ""}</td>
+                <tr key={row.param} style={{ borderBottom: "1px solid var(--c-border-subtle)" }}>
+                  <td className="py-2 px-3" style={{ color: "var(--c-indigo)" }}>{row.param}</td>
+                  <td className="py-2 px-3" style={{ color: "var(--c-muted)" }}>{row.distribution ?? "—"}</td>
+                  <td className="py-2 px-3" style={{ color: "var(--c-muted)" }}>{row.range ?? "—"}</td>
+                  <td className="py-2 px-3" style={{ color: "var(--c-faint)" }}>{row.unit ?? ""}</td>
                   <td className="py-2 px-3">
                     <span
                       className="px-1.5 py-0.5 rounded text-xs"
                       style={
                         row.status === "sourced"
-                          ? { background: "#052e16", color: "#4ade80" }
+                          ? { background: "var(--c-ok-bg)", color: "var(--c-ok-text)" }
                           : row.status === "assumption"
-                          ? { background: "#1c1400", color: "#fbbf24" }
-                          : { background: "#1a1917", color: "#948e89" }
+                          ? { background: "var(--c-warn-bg)", color: "var(--c-warn-text)" }
+                          : { background: "var(--c-surface)", color: "var(--c-faint)" }
                       }
                     >
                       {row.status}
@@ -101,22 +104,22 @@ export function MethodologyTab() {
             </tbody>
           </table>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* Identifiability */}
-      <section>
+      <Reveal><section>
         <h2
           className="text-sm font-semibold uppercase tracking-wide mb-3"
-          style={{ color: "#948e89" }}
+          style={{ color: "var(--c-faint)" }}
         >
           Identifiability
         </h2>
         <div
           className="rounded-xl p-5 text-sm leading-relaxed"
-          style={{ background: "#1c1400", border: "1px solid #78350f", color: "#fbbf24" }}
+          style={{ background: "var(--c-warn-bg)", border: "1px solid var(--c-warn-border)", color: "var(--c-warn-text)" }}
         >
-          <div className="font-semibold mb-2" style={{ color: "#fde68a" }}>λ and Q are not jointly identifiable from a single PEC measurement</div>
-          <p style={{ color: "#fcd34d" }}>
+          <div className="font-semibold mb-2" style={{ color: "var(--c-warn-strong)" }}>λ and Q are not jointly identifiable from a single PEC measurement</div>
+          <p style={{ color: "var(--c-warn-soft)" }}>
             {identifiability_text || (
               <>
                 The leakage fraction λ and river flow Q appear as a ratio in the PEC equation: PEC ∝ λ / Q.
@@ -126,31 +129,31 @@ export function MethodologyTab() {
               </>
             )}
           </p>
-          <p className="text-xs mt-3" style={{ color: "#a16207" }}>
+          <p className="text-xs mt-3" style={{ color: "var(--c-warn-dim)" }}>
             Implication: the score reflects uncertainty under prior assumptions, not a posterior estimate. This is intentional and disclosed — see D08 in CONTEXT.md.
           </p>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* Ablation toggle */}
       {ablations && (
-        <section>
+        <Reveal><section>
           <h2
             className="text-sm font-semibold uppercase tracking-wide mb-2"
-            style={{ color: "#948e89" }}
+            style={{ color: "var(--c-faint)" }}
           >
             Ablation — how much does each component add?
           </h2>
-          <p className="text-xs mb-4 leading-relaxed" style={{ color: "#a09a95" }}>
+          <p className="text-xs mb-4 leading-relaxed" style={{ color: "var(--c-muted2)" }}>
             The ablation compares how site priority rankings change as model components are added one at a time. A large rank shift shows that the component carries meaningful information.
           </p>
 
           {/* WWTP-only explanation banner */}
           <div
             className="rounded-xl p-4 mb-4 text-xs leading-relaxed"
-            style={{ background: "#450a0a", border: "1px solid #7f1d1d", color: "#fca5a5" }}
+            style={{ background: "var(--c-danger-bg)", border: "1px solid var(--c-danger-border)", color: "var(--c-danger-text)" }}
           >
-            <div className="font-semibold mb-1" style={{ color: "#fecaca" }}>
+            <div className="font-semibold mb-1" style={{ color: "var(--c-danger-strong)" }}>
               WWTP-only baseline (ePiE / GREAT-ER equivalent) → predicts PEC = 0 for every site here
             </div>
             WWTP = Wastewater Treatment Plant. Standard models (ePiE, GREAT-ER) route all drug load through WWTP outfalls.
@@ -166,9 +169,9 @@ export function MethodologyTab() {
                 onClick={() => setAblationIdx(i)}
                 className="px-3 py-1.5 text-xs rounded-lg transition-all"
                 style={{
-                  background: ablationIdx === i ? "rgba(124,117,255,0.15)" : "#1a1917",
-                  border: `1px solid ${ablationIdx === i ? "#7c75ff" : "#292524"}`,
-                  color: ablationIdx === i ? "#7c75ff" : "#bdb8b3",
+                  background: ablationIdx === i ? "rgba(124,117,255,0.15)" : "var(--c-surface)",
+                  border: `1px solid ${ablationIdx === i ? "var(--c-indigo)" : "var(--c-border)"}`,
+                  color: ablationIdx === i ? "var(--c-indigo)" : "var(--c-muted)",
                 }}
               >
                 {label}
@@ -180,7 +183,7 @@ export function MethodologyTab() {
           {ABLATION_DESCRIPTIONS[ablationIdx] && (
             <div
               className="rounded-lg px-4 py-3 text-xs leading-relaxed mb-4"
-              style={{ background: "#1a1917", border: "1px solid #292524", color: "#bdb8b3" }}
+              style={{ background: "var(--c-surface)", border: "1px solid var(--c-border)", color: "var(--c-muted)" }}
             >
               {ABLATION_DESCRIPTIONS[ablationIdx]}
             </div>
@@ -189,10 +192,10 @@ export function MethodologyTab() {
           {variant === "wwtp_only" && (
             <div
               className="rounded-lg px-4 py-3 text-xs"
-              style={{ background: "#450a0a", border: "1px solid #7f1d1d", color: "#fca5a5" }}
+              style={{ background: "var(--c-danger-bg)", border: "1px solid var(--c-danger-border)", color: "var(--c-danger-text)" }}
             >
               No rankings to show — all sites score 0 under the WWTP-only model.
-              Switch to <strong style={{ color: "#fecaca" }}>Full model</strong> to see how the untreated pathway changes everything.
+              Switch to <strong style={{ color: "var(--c-danger-strong)" }}>Full model</strong> to see how the untreated pathway changes everything.
             </div>
           )}
 
@@ -202,15 +205,15 @@ export function MethodologyTab() {
                 <div key={cityData.city} className="text-xs">
                   <div
                     className="font-semibold mb-2"
-                    style={{ color: "#f5f4f2", fontFamily: "ui-monospace, monospace" }}
+                    style={{ color: "var(--c-text)" }}
                   >
                     {cityData.city}
                   </div>
                   <div className="flex flex-col gap-1">
                     {cityData.ranking.map((siteId, i) => (
                       <div key={siteId} className="flex gap-2">
-                        <span className="w-4 text-right shrink-0" style={{ color: "#948e89", fontFamily: "ui-monospace, monospace" }}>{i + 1}.</span>
-                        <span style={{ color: "#bdb8b3" }}>{siteId}</span>
+                        <span className="w-4 text-right shrink-0" style={{ color: "var(--c-faint)" }}>{i + 1}.</span>
+                        <span style={{ color: "var(--c-muted)" }}>{siteId}</span>
                       </div>
                     ))}
                   </div>
@@ -218,7 +221,7 @@ export function MethodologyTab() {
               ))}
             </div>
           )}
-        </section>
+        </section></Reveal>
       )}
     </div>
   );

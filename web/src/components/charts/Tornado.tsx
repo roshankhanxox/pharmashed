@@ -14,7 +14,7 @@ interface TornadoProps {
 
 const W = 320;
 const ROW_H = 22;
-const LABEL_W = 70;
+const LABEL_W = 95;
 const CHART_W = W - LABEL_W - 20;
 const MID = LABEL_W + CHART_W / 2;
 
@@ -31,19 +31,19 @@ export function Tornado({ drivers, driverSentence }: TornadoProps) {
         {sorted.map((d, i) => {
           const bw = (Math.abs(d.rho) / 1) * (CHART_W / 2);
           const x = d.rho >= 0 ? MID : MID - bw;
-          const fill = d.rho >= 0 ? "#60a5fa" : "#f87171";
+          const fill = d.rho >= 0 ? "var(--c-blue)" : "var(--c-danger-text)";
           const y = i * ROW_H + 4;
           return (
             <g key={d.param}>
               <rect x={x} y={y} width={bw} height={14} fill={fill} opacity={0.7} rx={2} />
-              <text x={LABEL_W - 4} y={y + 10} textAnchor="end" fontSize={10} fill="#555">
+              <text x={LABEL_W - 4} y={y + 10} textAnchor="end" fontSize={12} fill="#555">
                 {d.param}
               </text>
               <text
                 x={d.rho >= 0 ? x + bw + 4 : x - 4}
                 y={y + 10}
                 textAnchor={d.rho >= 0 ? "start" : "end"}
-                fontSize={9}
+                fontSize={12}
                 fill="#777"
               >
                 {d.rho > 0 ? "+" : ""}{d.rho.toFixed(2)}
@@ -51,7 +51,7 @@ export function Tornado({ drivers, driverSentence }: TornadoProps) {
             </g>
           );
         })}
-        <text x={MID} y={h - 5} textAnchor="middle" fontSize={9} fill="#888">
+        <text x={MID} y={h - 5} textAnchor="middle" fontSize={12} fill="#888">
           ρ (Spearman)
         </text>
       </svg>

@@ -13,8 +13,8 @@ interface DrawHistogramProps {
 }
 
 const W = 400;
-const H = 120;
-const PAD = { top: 10, right: 20, bottom: 30, left: 40 };
+const H = 150;
+const PAD = { top: 36, right: 20, bottom: 38, left: 40 };
 const IW = W - PAD.left - PAD.right;
 const IH = H - PAD.top - PAD.bottom;
 
@@ -41,24 +41,24 @@ export function DrawHistogram({ histogram, score }: DrawHistogramProps) {
               y={IH - barH}
               width={binW - 2}
               height={barH}
-              fill={isExceedance ? "#ef4444" : "#60a5fa"}
+              fill={isExceedance ? "#ef4444" : "var(--c-blue)"}
               opacity={0.7}
             />
           );
         })}
 
-        {/* RQ=1 vertical line */}
-        {rq1X >= 0 && rq1X <= IW && (
-          <>
-            <line x1={rq1X} y1={0} x2={rq1X} y2={IH} stroke="currentColor" strokeWidth={1.5} className="text-neutral-800 dark:text-neutral-200" />
-            <text x={rq1X + 3} y={10} fontSize={9} fill="currentColor" className="text-neutral-700 dark:text-neutral-300">RQ = 1</text>
-          </>
-        )}
-
-        {/* score label */}
-        <text x={IW} y={10} textAnchor="end" fontSize={10} fill="#ef4444">
+        {/* Labels sit above the plot on their own lines so they never cover bars or each other */}
+        <text x={0} y={-26} fontSize={12} fontWeight={600} fill="#ef4444">
           score = {score.toFixed(3)} (share with RQ &gt; 1)
         </text>
+
+        {/* RQ=1 vertical line, extended up to its label */}
+        {rq1X >= 0 && rq1X <= IW && (
+          <>
+            <line x1={rq1X} y1={-11} x2={rq1X} y2={IH} stroke="currentColor" strokeWidth={1.5} className="text-neutral-800 dark:text-neutral-200" />
+            <text x={rq1X} y={-14} fontSize={12} textAnchor="middle" fill="currentColor" className="text-neutral-700 dark:text-neutral-300">RQ = 1</text>
+          </>
+        )}
 
         {/* axes */}
         <line x1={0} y1={IH} x2={IW} y2={IH} stroke="currentColor" className="text-neutral-200 dark:text-neutral-700" />
@@ -66,12 +66,12 @@ export function DrawHistogram({ histogram, score }: DrawHistogramProps) {
 
         {/* x labels */}
         {log10_edges.map((e, i) => (
-          <text key={i} x={i * binW} y={IH + 12} fontSize={8} fill="currentColor" className="text-neutral-400 dark:text-neutral-500" textAnchor="middle">
+          <text key={i} x={i * binW} y={IH + 12} fontSize={12} fill="currentColor" className="text-neutral-600 dark:text-neutral-400" textAnchor="middle">
             {e === 0 ? "1" : `10^${e}`}
           </text>
         ))}
 
-        <text x={IW / 2} y={IH + 25} fontSize={9} fill="currentColor" className="text-neutral-400 dark:text-neutral-500" textAnchor="middle">
+        <text x={IW / 2} y={IH + 33} fontSize={12} fill="currentColor" className="text-neutral-600 dark:text-neutral-400" textAnchor="middle">
           log₁₀ RQ
         </text>
       </g>

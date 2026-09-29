@@ -1,17 +1,20 @@
 import { useStore } from "../../data/store";
 import { ArchDiagram } from "./ArchDiagram";
+import { CitizenHome } from "./CitizenHome";
+import { Reveal } from "../../components/shell/Reveal";
+import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 
 /* ─── palette shorthands ─────────────────────────────────────────────────── */
 const C = {
-  canvas:  "#0c0a09",
-  surface: "#1a1917",
-  raised:  "#242220",
-  border:  "#292524",
-  text:    "#f5f4f2",
-  muted:   "#bdb8b3",
-  faint:   "#948e89",
-  indigo:  "#7c75ff",
-  indigoDp:"#615fff",
+  canvas:  "var(--c-canvas)",
+  surface: "var(--c-surface)",
+  raised:  "var(--c-raised)",
+  border:  "var(--c-border)",
+  text:    "var(--c-text)",
+  muted:   "var(--c-muted)",
+  faint:   "var(--c-faint)",
+  indigo:  "var(--c-indigo)",
+  indigoDp:"var(--c-indigo-deep)",
 } as const;
 
 /* ─── data ───────────────────────────────────────────────────────────────── */
@@ -89,7 +92,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <p
       className="text-xs uppercase tracking-widest mb-5"
-      style={{ color: C.faint, fontFamily: "ui-monospace, monospace", letterSpacing: "0.10em" }}
+      style={{ color: C.faint, letterSpacing: "0.06em" }}
     >
       {children}
     </p>
@@ -102,18 +105,19 @@ function Divider() {
 
 /* ─── main component ──────────────────────────────────────────────────────── */
 
-export function HomeTab() {
+function ExpertHome() {
   const setActiveTab = useStore((s) => s.setActiveTab);
+  const scrollRef = useSmoothScroll();
   const results = useStore((s) => s.results);
   const siteCount = results
     ? [...new Set(results.results.map((r) => r.site_id))].length.toString()
     : "—";
 
   return (
-    <div className="overflow-y-auto h-full scrollbar-none" style={{ background: C.canvas, color: C.text }}>
+    <div ref={scrollRef} className="overflow-y-auto h-full scrollbar-none" style={{ background: C.canvas, color: C.text }}>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <section className="px-8 pt-20 pb-16 max-w-4xl mx-auto">
+      <Reveal><section className="px-8 pt-20 pb-16 max-w-4xl mx-auto">
 
         {/* badge */}
         <a
@@ -125,7 +129,6 @@ export function HomeTab() {
             background: C.surface,
             border: `1px solid ${C.border}`,
             color: C.muted,
-            fontFamily: "ui-monospace, monospace",
             letterSpacing: "0.04em",
           }}
         >
@@ -181,13 +184,13 @@ export function HomeTab() {
             Read methodology
           </button>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* ── STATS BAR ─────────────────────────────────────────────────────── */}
       <div style={{ borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`, background: C.surface }}>
         <div
           className="max-w-4xl mx-auto flex"
-          style={{ fontFamily: "ui-monospace, monospace" }}
+          style={{ }}
         >
           {[
             { n: siteCount, label: "sampling sites" },
@@ -211,7 +214,7 @@ export function HomeTab() {
       <div className="max-w-4xl mx-auto px-8 py-14 flex flex-col gap-0">
 
         {/* ── THE GAP ──────────────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>The problem</Eyebrow>
           <div className="grid gap-3 sm:grid-cols-3">
             {[
@@ -238,7 +241,7 @@ export function HomeTab() {
               >
                 <div
                   className="text-xl mb-3"
-                  style={{ color: C.indigo, fontFamily: "ui-monospace, monospace" }}
+                  style={{ color: C.indigo }}
                 >
                   {p.icon}
                 </div>
@@ -251,12 +254,12 @@ export function HomeTab() {
               </div>
             ))}
           </div>
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── HOW IT WORKS ─────────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>How it works</Eyebrow>
           <div className="flex flex-col">
             {HOW_STEPS.map((s, i) => (
@@ -268,7 +271,6 @@ export function HomeTab() {
                       background: C.surface,
                       border: `1px solid ${C.indigo}`,
                       color: C.indigo,
-                      fontFamily: "ui-monospace, monospace",
                     }}
                   >
                     {s.n}
@@ -291,20 +293,20 @@ export function HomeTab() {
               </div>
             ))}
           </div>
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── ARCHITECTURE ─────────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>Architecture & data flow</Eyebrow>
           <ArchDiagram />
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── COVERAGE ─────────────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>Coverage</Eyebrow>
           <div className="flex flex-wrap gap-2 mb-5">
             {CITIES.map((c) => (
@@ -318,7 +320,7 @@ export function HomeTab() {
                   <div className="text-sm font-medium" style={{ color: C.text }}>{c.name}</div>
                   <div
                     className="text-xs"
-                    style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}
+                    style={{ color: C.faint }}
                   >
                     {c.id} · {c.note}
                   </div>
@@ -335,7 +337,6 @@ export function HomeTab() {
                   background: C.surface,
                   border: `1px solid ${C.border}`,
                   color: C.muted,
-                  fontFamily: "ui-monospace, monospace",
                   letterSpacing: "0.02em",
                 }}
               >
@@ -343,12 +344,12 @@ export function HomeTab() {
               </span>
             ))}
           </div>
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── BRING YOUR DATA ───────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>Deploying with real data</Eyebrow>
           <div
             className="rounded-xl p-5 mb-5"
@@ -367,14 +368,14 @@ export function HomeTab() {
               >
                 <span
                   className="w-6 h-6 rounded-md flex items-center justify-center text-xs font-semibold shrink-0"
-                  style={{ background: C.raised, color: C.indigo, fontFamily: "ui-monospace, monospace" }}
+                  style={{ background: C.raised, color: C.indigo }}
                 >
                   {i + 1}
                 </span>
                 <div>
                   <code
                     className="text-xs px-2 py-0.5 rounded"
-                    style={{ background: C.raised, color: C.indigo, fontFamily: "ui-monospace, monospace" }}
+                    style={{ background: C.raised, color: C.indigo }}
                   >
                     {s.file}
                   </code>
@@ -389,18 +390,18 @@ export function HomeTab() {
             Once parameters are sourced, every screen updates automatically — the consistency checks re-run, FHIR resources drop the{" "}
             <code
               className="px-1 py-0.5 rounded text-xs"
-              style={{ background: C.raised, color: C.muted, fontFamily: "ui-monospace, monospace" }}
+              style={{ background: C.raised, color: C.muted }}
             >
               illustrative-parameter
             </code>{" "}
             tag, and the footer switches from "illustrative" to "all cited".
           </p>
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── EXPLORE THE APP ───────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>Explore the prototype</Eyebrow>
           <div className="grid gap-3 sm:grid-cols-2">
             {([
@@ -419,7 +420,7 @@ export function HomeTab() {
               >
                 <div
                   className="text-xs font-semibold mb-2 tracking-widest"
-                  style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}
+                  style={{ color: C.faint }}
                 >
                   {item.icon}
                 </div>
@@ -431,19 +432,19 @@ export function HomeTab() {
                 </div>
                 <div
                   className="text-xs mt-3 transition-opacity opacity-0 group-hover:opacity-100"
-                  style={{ color: C.indigo, fontFamily: "ui-monospace, monospace" }}
+                  style={{ color: C.indigo }}
                 >
                   Open →
                 </div>
               </button>
             ))}
           </div>
-        </section>
+        </section></Reveal>
 
         <Divider />
 
         {/* ── REFERENCES ───────────────────────────────────────────────────── */}
-        <section>
+        <Reveal><section>
           <Eyebrow>References</Eyebrow>
           <div className="flex flex-col gap-3">
             {CITATIONS.map((c) => (
@@ -455,7 +456,7 @@ export function HomeTab() {
                 <div className="flex-1 min-w-0">
                   <div
                     className="text-xs mb-1"
-                    style={{ color: C.indigo, fontFamily: "ui-monospace, monospace" }}
+                    style={{ color: C.indigo }}
                   >
                     {c.ref}
                   </div>
@@ -464,7 +465,7 @@ export function HomeTab() {
                   {"doi" in c && c.doi && (
                     <div
                       className="text-xs"
-                      style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}
+                      style={{ color: C.faint }}
                     >
                       doi:{c.doi}
                     </div>
@@ -479,7 +480,6 @@ export function HomeTab() {
                     background: C.raised,
                     border: `1px solid ${C.border}`,
                     color: C.muted,
-                    fontFamily: "ui-monospace, monospace",
                     textDecoration: "none",
                     letterSpacing: "0.04em",
                   }}
@@ -491,12 +491,18 @@ export function HomeTab() {
               </div>
             ))}
           </div>
-        </section>
+        </section></Reveal>
 
-        <div className="text-xs text-center pb-4 mt-8" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>
+        <div className="text-xs text-center pb-4 mt-8" style={{ color: C.faint }}>
           PHARMASHED · IEEE ONEAQUAHEALTH HACKATHON 2026
         </div>
       </div>
     </div>
   );
+}
+
+/** Home tab: plain-language page for citizens, the technical story for experts. */
+export function HomeTab() {
+  const audience = useStore((s) => s.audience);
+  return audience === "citizen" ? <CitizenHome /> : <ExpertHome />;
 }

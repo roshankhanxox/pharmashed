@@ -1,12 +1,12 @@
 const C = {
-  canvas:  "#0c0a09",
-  surface: "#1a1917",
-  raised:  "#242220",
-  border:  "#292524",
-  text:    "#f5f4f2",
-  muted:   "#bdb8b3",
-  faint:   "#948e89",
-  indigo:  "#7c75ff",
+  canvas:  "var(--c-canvas)",
+  surface: "var(--c-surface)",
+  raised:  "var(--c-raised)",
+  border:  "var(--c-border)",
+  text:    "var(--c-text)",
+  muted:   "var(--c-muted)",
+  faint:   "var(--c-faint)",
+  indigo:  "var(--c-indigo)",
   indigoGlow: "rgba(124,117,255,0.08)",
   indigoBorder: "rgba(124,117,255,0.35)",
   high:    "#ef4444",
@@ -37,7 +37,7 @@ function Node({
         {label}
       </div>
       {sub && (
-        <div className="text-xs mt-0.5 leading-relaxed" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>
+        <div className="text-xs mt-0.5 leading-relaxed" style={{ color: C.faint }}>
           {sub}
         </div>
       )}
@@ -49,7 +49,7 @@ function Arrow({ label }: { label?: string }) {
   return (
     <div className="flex flex-col items-center my-2" style={{ gap: 0 }}>
       {label && (
-        <span className="text-xs mb-1" style={{ color: C.faint, fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em" }}>
+        <span className="text-xs mb-1" style={{ color: C.faint, letterSpacing: "0.04em" }}>
           {label}
         </span>
       )}
@@ -82,14 +82,14 @@ export function ArchDiagram() {
     >
       <div
         className="text-xs font-semibold uppercase mb-5"
-        style={{ color: C.faint, letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
+        style={{ color: C.faint, letterSpacing: "0.06em" }}
       >
         Data flow & architecture
       </div>
 
       {/* Layer 1: Inputs */}
       <div>
-        <div className="text-xs mb-2" style={{ color: C.faint, fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em" }}>
+        <div className="text-xs mb-2" style={{ color: C.faint, letterSpacing: "0.04em" }}>
           INPUTS
         </div>
         <div className="flex gap-2">
@@ -111,7 +111,7 @@ export function ArchDiagram() {
           <div className="flex-1">
             <div
               className="text-xs font-semibold uppercase mb-1"
-              style={{ color: C.indigo, fontFamily: "ui-monospace, monospace", letterSpacing: "0.10em" }}
+              style={{ color: C.indigo, letterSpacing: "0.06em" }}
             >
               ★ The innovation — untreated pathway
             </div>
@@ -127,8 +127,8 @@ export function ArchDiagram() {
             className="rounded-lg px-3 py-2 text-center shrink-0"
             style={{ background: C.raised, border: `1px solid ${C.border}` }}
           >
-            <div className="text-xs" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>ePiE / GREAT-ER</div>
-            <div className="text-sm font-semibold mt-0.5" style={{ color: "#f87171" }}>PEC ≈ 0</div>
+            <div className="text-xs" style={{ color: C.faint }}>ePiE / GREAT-ER</div>
+            <div className="text-sm font-semibold mt-0.5" style={{ color: "var(--c-danger-text)" }}>PEC ≈ 0</div>
             <div className="text-xs" style={{ color: C.faint }}>for these streams</div>
           </div>
         </div>
@@ -143,14 +143,14 @@ export function ArchDiagram() {
       >
         <div
           className="text-xs font-semibold uppercase mb-2"
-          style={{ color: C.faint, fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em" }}
+          style={{ color: C.faint, letterSpacing: "0.04em" }}
         >
           Monte Carlo Engine
         </div>
         <div className="grid gap-2 sm:grid-cols-3">
           <div className="rounded-lg px-3 py-2.5" style={{ background: C.surface, border: `1px solid ${C.border}` }}>
             <div className="text-xs font-semibold mb-0.5" style={{ color: C.text }}>Draw parameters</div>
-            <div className="text-xs leading-relaxed" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>
+            <div className="text-xs leading-relaxed" style={{ color: C.faint }}>
               λ ~ LogU(0.002, 0.15)<br />
               Q ~ LogU per size class<br />
               C ~ national data ± σ
@@ -158,7 +158,7 @@ export function ArchDiagram() {
           </div>
           <div className="rounded-lg px-3 py-2.5" style={{ background: C.surface, border: `1px solid ${C.border}` }}>
             <div className="text-xs font-semibold mb-0.5" style={{ color: C.text }}>Compute PEC</div>
-            <div className="text-xs leading-relaxed" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>
+            <div className="text-xs leading-relaxed" style={{ color: C.faint }}>
               load = pop × C × λ<br />
               PEC = load / Q<br />
               RQ = PEC / PNEC
@@ -166,7 +166,7 @@ export function ArchDiagram() {
           </div>
           <div className="rounded-lg px-3 py-2.5" style={{ background: C.surface, border: `1px solid ${C.border}` }}>
             <div className="text-xs font-semibold mb-0.5" style={{ color: C.text }}>1,000 draws</div>
-            <div className="text-xs leading-relaxed" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>
+            <div className="text-xs leading-relaxed" style={{ color: C.faint }}>
               per site × drug pair<br />
               105 sites × 6 drugs<br />
               = 630,000 draws total
@@ -184,14 +184,14 @@ export function ArchDiagram() {
       >
         <div
           className="text-xs font-semibold uppercase mb-2"
-          style={{ color: C.faint, fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em" }}
+          style={{ color: C.faint, letterSpacing: "0.04em" }}
         >
           Sampling Priority Score
         </div>
         <div className="flex items-center gap-4 flex-wrap">
           <div className="text-sm" style={{ color: C.muted }}>
             score = share of 1,000 draws with{" "}
-            <span style={{ color: C.text, fontFamily: "ui-monospace, monospace" }}>RQ &gt; 1</span>
+            <span style={{ color: C.text }}>RQ &gt; 1</span>
           </div>
           <div className="flex gap-2">
             {[
@@ -206,7 +206,7 @@ export function ArchDiagram() {
               >
                 <span className="w-2 h-2 rounded-full shrink-0" style={{ background: t.color }} />
                 <span className="text-xs" style={{ color: C.text }}>{t.label}</span>
-                <span className="text-xs" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>{t.threshold}</span>
+                <span className="text-xs" style={{ color: C.faint }}>{t.threshold}</span>
               </div>
             ))}
           </div>
@@ -217,7 +217,7 @@ export function ArchDiagram() {
 
       {/* Layer 5: Outputs */}
       <div>
-        <div className="text-xs mb-2" style={{ color: C.faint, fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em" }}>
+        <div className="text-xs mb-2" style={{ color: C.faint, letterSpacing: "0.04em" }}>
           OUTPUTS
         </div>
         <div className="flex gap-2">

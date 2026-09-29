@@ -1,7 +1,9 @@
 import { useStore } from "../../data/store";
+import { DEMO_NOTICE } from "../../data/copy";
 
 export function FooterStrip() {
   const results = useStore((s) => s.results);
+  const audience = useStore((s) => s.audience);
   if (!results) return null;
 
   const { meta } = results;
@@ -14,17 +16,22 @@ export function FooterStrip() {
     <footer
       className="px-4 py-1.5 text-xs flex gap-4 flex-wrap shrink-0"
       style={{
-        borderTop: "1px solid #292524",
-        background: "#0c0a09",
-        color: "#948e89",
-        fontFamily: "ui-monospace, monospace",
+        borderTop: "1px solid var(--c-border)",
+        background: "var(--c-canvas)",
+        color: "var(--c-faint)",
         letterSpacing: "0.02em",
       }}
     >
-      <span>N = {meta.n_draws.toLocaleString()} draws</span>
-      <span>engine {meta.engine_version}</span>
-      <span>predictions frozen: {frozen}</span>
-      <span>{citedLabel}</span>
+      {audience === "citizen" ? (
+        <span>{DEMO_NOTICE}</span>
+      ) : (
+        <>
+          <span>N = {meta.n_draws.toLocaleString()} draws</span>
+          <span>engine {meta.engine_version}</span>
+          <span>predictions frozen: {frozen}</span>
+          <span>{citedLabel}</span>
+        </>
+      )}
     </footer>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { TIER_LABEL, TIER_LEGEND } from "../../data/copy";
 import { useStore } from "../../data/store";
 import type { StyleSpecification } from "maplibre-gl";
 
@@ -52,12 +53,15 @@ export function MapView() {
   const setSelectedSiteId = useStore((s) => s.setSelectedSiteId);
   const setSelectedCity = useStore((s) => s.setSelectedCity);
   const setSelectedDrug = useStore((s) => s.setSelectedDrug);
+  const audience = useStore((s) => s.audience);
+  const citizen = audience === "citizen";
 
   const drugs = results?.drugs ?? [];
   const cities = results
     ? [...new Set(results.results.map((r) => r.site_id.split("-")[0]))]
     : [];
   const citySummary = results?.city_summary ?? [];
+  const cityName = (id: string) => sites?.cities.find((c) => c.id === id)?.name ?? id;
 
   // Initialise map once
   useEffect(() => {
@@ -86,7 +90,7 @@ export function MapView() {
             id: "streams",
             type: "line",
             source: "streams",
-            paint: { "line-color": "#60a5fa", "line-width": 1.5, "line-opacity": 0.6 },
+            paint: { "line-color": "#2563eb", "line-width": 1.5, "line-opacity": 0.6 },
           });
         })
         .catch(() => { /* streams.geojson not available — skip */ });
@@ -226,13 +230,13 @@ export function MapView() {
   }, [results, sites, selectedDrug, selectedSiteId]);
 
   const C = {
-    canvas:  "#0c0a09",
-    surface: "#1a1917",
-    border:  "#292524",
-    text:    "#f5f4f2",
-    muted:   "#bdb8b3",
-    faint:   "#948e89",
-    indigo:  "#7c75ff",
+    canvas:  "var(--c-canvas)",
+    surface: "var(--c-surface)",
+    border:  "var(--c-border)",
+    text:    "var(--c-text)",
+    muted:   "var(--c-muted)",
+    faint:   "var(--c-faint)",
+    indigo:  "var(--c-indigo)",
   } as const;
 
   return (
@@ -243,14 +247,14 @@ export function MapView() {
         style={{ borderBottom: `1px solid ${C.border}`, background: C.surface }}
       >
         {/* Cities */}
-        <div className="flex gap-1.5 items-center min-w-0">
+        <div className="flex gap-1.5 items-start min-w-0">
           <span
-            className="text-xs font-semibold uppercase w-8 shrink-0"
-            style={{ color: C.faint, letterSpacing: "0.06em", fontFamily: "ui-monospace, monospace" }}
+            className="text-xs font-semibold uppercase w-20 shrink-0 pt-1"
+            style={{ color: C.faint, letterSpacing: "0.06em" }}
           >
             City
           </span>
-          <div className="flex gap-1.5 overflow-x-auto pb-0.5 flex-nowrap scrollbar-none">
+          <div className="flex gap-1.5 flex-wrap">
           {cities.map((city) => {
             const summary = citySummary.find((c) => c.city === city);
             const isActive = selectedCity === city;
@@ -265,17 +269,17 @@ export function MapView() {
                   color: isActive ? C.indigo : C.muted,
                 }}
               >
-                {city}
-                {summary && (
+                {citizen ? cityName(city) : city}
+                {summary && !citizen && (
                   <span className="ml-1.5 space-x-0.5">
                     {summary.high > 0 && (
-                      <span style={{ color: "#f87171", fontWeight: 600 }}>{summary.high}H</span>
+                      <span style={{ color: "var(--c-danger-text)", fontWeight: 600 }}>{summary.high}H</span>
                     )}
                     {summary.medium > 0 && (
-                      <span style={{ color: "#fbbf24", fontWeight: 600 }}>{summary.medium}M</span>
+                      <span style={{ color: "var(--c-warn-text)", fontWeight: 600 }}>{summary.medium}M</span>
                     )}
                     {summary.low > 0 && (
-                      <span style={{ color: "#4ade80", fontWeight: 600 }}>{summary.low}L</span>
+                      <span style={{ color: "var(--c-ok-text)", fontWeight: 600 }}>{summary.low}L</span>
                     )}
                   </span>
                 )}
@@ -286,14 +290,14 @@ export function MapView() {
         </div>
 
         {/* Drugs */}
-        <div className="flex gap-1 items-center min-w-0">
+        <div className="flex gap-1.5 items-start min-w-0">
           <span
-            className="text-xs font-semibold uppercase w-8 shrink-0"
-            style={{ color: C.faint, letterSpacing: "0.06em", fontFamily: "ui-monospace, monospace" }}
+            className="text-xs font-semibold uppercase w-20 shrink-0 pt-1"
+            style={{ color: C.faint, letterSpacing: "0.06em" }}
           >
-            Drug
+            {citizen ? "Medicine" : "Drug"}
           </span>
-          <div className="flex gap-1 overflow-x-auto pb-0.5 flex-nowrap scrollbar-none">
+          <div className="flex gap-1 flex-wrap">
           {(["all", ...drugs] as string[]).map((d) => (
             <button
               key={d}
@@ -313,12 +317,12 @@ export function MapView() {
 
         {/* Tier legend */}
         <div className="flex gap-4 items-center">
-          <span className="w-8 shrink-0" />
+          <span className="w-20 shrink-0" />
           {(
             [
-              { label: "High ≥0.5", color: "#ef4444", r: 8 },
-              { label: "Medium ≥0.1", color: "#f59e0b", r: 6 },
-              { label: "Low", color: "#22c55e", r: 4 },
+              { label: citizen ? TIER_LEGEND.high : "High ≥0.5", color: "#ef4444", r: 8 },
+              { label: citizen ? TIER_LEGEND.medium : "Medium ≥0.1", color: "#f59e0b", r: 6 },
+              { label: citizen ? TIER_LEGEND.low : "Low", color: "#22c55e", r: 4 },
             ] as const
           ).map(({ label, color, r }) => (
             <span key={label} className="flex items-center gap-1.5 text-xs" style={{ color: C.faint }}>
@@ -337,14 +341,16 @@ export function MapView() {
               {label}
             </span>
           ))}
-          <span className="ml-auto text-xs" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>
-            score = share of draws with RQ &gt; 1
-          </span>
+          {!citizen && (
+            <span className="ml-auto text-xs" style={{ color: C.faint }}>
+              score = share of draws with RQ &gt; 1
+            </span>
+          )}
         </div>
       </div>
 
       {/* Map canvas + tooltip overlay */}
-      <div ref={mapContainerRef} className="flex-1 min-h-0 relative" style={{ background: "#1a1917" }}>
+      <div ref={mapContainerRef} className="flex-1 min-h-0 relative" style={{ background: "var(--c-surface)" }}>
         <div ref={mapRef} className="w-full h-full" />
         {tooltip && results && (
           <SiteTooltip
@@ -378,6 +384,7 @@ function SiteTooltip({
   y: number;
   results: import("../../types/contracts").Results;
 }) {
+  const citizen = useStore((s) => s.audience) === "citizen";
   const siteResults = results.results
     .filter((r) => r.site_id === siteId)
     .sort((a, b) => b.score - a.score);
@@ -393,8 +400,8 @@ function SiteTooltip({
     top: y + OFFSET,
     pointerEvents: "none",
     zIndex: 1000,
-    background: "#1a1917",
-    border: "1px solid #292524",
+    background: "var(--c-surface)",
+    border: "1px solid var(--c-border)",
     borderRadius: 10,
     padding: "10px 12px",
     minWidth: 200,
@@ -408,7 +415,7 @@ function SiteTooltip({
       <div className="flex items-baseline justify-between gap-3 mb-2">
         <span
           className="text-xs font-semibold"
-          style={{ color: "#f5f4f2", fontFamily: "ui-monospace, monospace" }}
+          style={{ color: "var(--c-text)" }}
         >
           {siteId}
         </span>
@@ -418,10 +425,9 @@ function SiteTooltip({
             style={{
               background: scoreTier(overall.score) === "high" ? "rgba(239,68,68,0.15)" : scoreTier(overall.score) === "medium" ? "rgba(245,158,11,0.15)" : "rgba(34,197,94,0.15)",
               color: TIER_DOT[scoreTier(overall.score)] ?? "#aaa",
-              fontFamily: "ui-monospace, monospace",
             }}
           >
-            score {overall.score.toFixed(2)}
+            {citizen ? TIER_LABEL[scoreTier(overall.score)] : `score ${overall.score.toFixed(2)}`}
           </span>
         )}
       </div>
@@ -440,32 +446,40 @@ function SiteTooltip({
                 flexShrink: 0,
               }}
             />
-            <span className="text-xs flex-1 truncate" style={{ color: "#bdb8b3" }}>
+            <span className="text-xs flex-1 truncate" style={{ color: "var(--c-muted)" }}>
               {r.drug}
             </span>
-            <span
-              className="text-xs tabular-nums"
-              style={{ color: TIER_DOT[r.tier] ?? "#aaa", fontFamily: "ui-monospace, monospace" }}
-            >
-              {r.score.toFixed(2)}
-            </span>
-            <span
-              className="text-xs"
-              style={{ color: "#948e89", fontFamily: "ui-monospace, monospace" }}
-            >
-              RQ {r.rq.p50.toFixed(1)}
-            </span>
+            {citizen ? (
+              <span className="text-xs" style={{ color: "var(--c-muted)" }}>
+                {TIER_LABEL[scoreTier(r.score)]}
+              </span>
+            ) : (
+              <>
+                <span
+                  className="text-xs tabular-nums"
+                  style={{ color: TIER_DOT[r.tier] ?? "#aaa" }}
+                >
+                  {r.score.toFixed(2)}
+                </span>
+                <span
+                  className="text-xs"
+                  style={{ color: "var(--c-faint)" }}
+                >
+                  RQ {r.rq.p50.toFixed(1)}
+                </span>
+              </>
+            )}
           </div>
         ))}
         {siteResults.length > 4 && (
-          <div className="text-xs" style={{ color: "#948e89" }}>
-            +{siteResults.length - 4} more drugs
+          <div className="text-xs" style={{ color: "var(--c-faint)" }}>
+            +{siteResults.length - 4} more {citizen ? "medicines" : "drugs"}
           </div>
         )}
       </div>
 
-      <div className="text-xs" style={{ color: "#948e89" }}>
-        Click to inspect full profile →
+      <div className="text-xs" style={{ color: "var(--c-faint)" }}>
+        {citizen ? "Tap to see details →" : "Click to inspect full profile →"}
       </div>
     </div>
   );

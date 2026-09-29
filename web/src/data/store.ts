@@ -12,6 +12,31 @@ import type { DrawsView } from "./draws";
 
 export type Tab = "home" | "explore" | "scenarios" | "consistency" | "methodology" | "fhir";
 
+/** Who the interface is written for. Citizen = plain language and simpler tabs; expert = full technical view. */
+export type Audience = "citizen" | "expert";
+
+/** Tabs that only exist in expert view. */
+export const EXPERT_ONLY_TABS: readonly Tab[] = ["consistency", "methodology", "fhir"];
+
+const AUDIENCE_KEY = "ps-audience";
+const DEFAULT_AUDIENCE: Audience = "citizen";
+
+/** Reads the saved audience; falls back to the default if storage is unavailable. */
+function loadAudience(): Audience {
+  try {
+    const v = localStorage.getItem(AUDIENCE_KEY);
+    return v === "expert" || v === "citizen" ? v : DEFAULT_AUDIENCE;
+  } catch {
+    return DEFAULT_AUDIENCE;
+  }
+}
+
+/** The site (and optionally drug) the assistant has been asked about, sent to the API as context. */
+export interface AssistantContext {
+  siteId: string;
+  drug: string | null;
+}
+
 export interface ScenarioMultipliers {
   lambda: number;
   Q: number;
@@ -32,6 +57,7 @@ export interface AppStore {
   dataLoading: boolean;
 
   // navigation
+  audience: Audience;
   activeTab: Tab;
   selectedCity: string | null;
   selectedSiteId: string | null;
@@ -43,6 +69,7 @@ export interface AppStore {
 
   // drawers
   assistantOpen: boolean;
+  assistantContext: AssistantContext | null;
   provenanceKey: string | null;
 
   // actions
@@ -57,6 +84,7 @@ export interface AppStore {
   setDataError: (e: string | null) => void;
   setDataLoading: (v: boolean) => void;
 
+  setAudience: (a: Audience) => void;
   setActiveTab: (t: Tab) => void;
   setSelectedCity: (c: string | null) => void;
   setSelectedSiteId: (id: string | null) => void;
@@ -67,6 +95,9 @@ export interface AppStore {
   resetScenario: () => void;
 
   openAssistant: () => void;
+  /** Opens the assistant already focused on a site (and optionally a drug). */
+  openAssistantFor: (siteId: string, drug?: string | null) => void;
+  clearAssistantContext: () => void;
   closeAssistant: () => void;
   openProvenance: (key: string) => void;
   closeProvenance: () => void;
@@ -74,7 +105,7 @@ export interface AppStore {
 
 const DEFAULT_MULTIPLIERS: ScenarioMultipliers = { lambda: 1, Q: 1, C: 1 };
 
-export const useStore = create<AppStore>((set) => ({
+export const useStore = create<AppStore>((set, get) => ({
   results: null,
   sites: null,
   drawsIndex: null,
@@ -86,6 +117,7 @@ export const useStore = create<AppStore>((set) => ({
   dataError: null,
   dataLoading: true,
 
+  audience: loadAudience(),
   activeTab: "home",
   selectedCity: null,
   selectedSiteId: null,
@@ -95,6 +127,7 @@ export const useStore = create<AppStore>((set) => ({
   scenarioMultipliers: { ...DEFAULT_MULTIPLIERS },
 
   assistantOpen: false,
+  assistantContext: null,
   provenanceKey: null,
 
   setResults: (r) => set({ results: r }),
@@ -108,6 +141,16 @@ export const useStore = create<AppStore>((set) => ({
   setDataError: (e) => set({ dataError: e }),
   setDataLoading: (v) => set({ dataLoading: v }),
 
+  setAudience: (a) => {
+    try {
+      localStorage.setItem(AUDIENCE_KEY, a);
+    } catch {
+      /* storage unavailable — the choice still applies for this visit */
+    }
+    // A citizen has no expert-only tabs, so leave one if we are on it.
+    const leaveTab = a === "citizen" && EXPERT_ONLY_TABS.includes(get().activeTab);
+    set({ audience: a, ...(leaveTab ? { activeTab: "home" as Tab } : {}) });
+  },
   setActiveTab: (t) => set({ activeTab: t }),
   setSelectedCity: (c) => set({ selectedCity: c }),
   setSelectedSiteId: (id) => set({ selectedSiteId: id }),
@@ -119,6 +162,9 @@ export const useStore = create<AppStore>((set) => ({
   resetScenario: () => set({ scenarioMultipliers: { ...DEFAULT_MULTIPLIERS } }),
 
   openAssistant: () => set({ assistantOpen: true }),
+  openAssistantFor: (siteId, drug = null) =>
+    set({ assistantOpen: true, assistantContext: { siteId, drug } }),
+  clearAssistantContext: () => set({ assistantContext: null }),
   closeAssistant: () => set({ assistantOpen: false }),
   openProvenance: (key) => set({ provenanceKey: key }),
   closeProvenance: () => set({ provenanceKey: null }),

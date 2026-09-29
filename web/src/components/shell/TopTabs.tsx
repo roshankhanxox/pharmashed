@@ -1,4 +1,7 @@
 import { useStore, type Tab } from "../../data/store";
+import { CITIZEN_TAB_LABEL } from "../../data/copy";
+import { AudienceToggle } from "./AudienceToggle";
+import { ThemeToggle } from "./ThemeToggle";
 
 const TABS: { id: Tab; label: string }[] = [
   { id: "home",        label: "Home" },
@@ -13,10 +16,16 @@ export function TopTabs() {
   const activeTab    = useStore((s) => s.activeTab);
   const setActiveTab = useStore((s) => s.setActiveTab);
   const openAssistant = useStore((s) => s.openAssistant);
+  const audience     = useStore((s) => s.audience);
+
+  // Citizen view shows only the tabs that have a citizen version.
+  const tabs = audience === "citizen"
+    ? TABS.filter((t) => t.id in CITIZEN_TAB_LABEL).map((t) => ({ ...t, label: CITIZEN_TAB_LABEL[t.id] ?? t.label }))
+    : TABS;
 
   return (
     <header
-      style={{ background: "#0c0a09", borderBottom: "1px solid #292524" }}
+      style={{ background: "var(--c-surface)", borderBottom: "1px solid var(--c-border)" }}
       className="flex items-center px-5 gap-1 shrink-0"
     >
       {/* Wordmark */}
@@ -26,7 +35,7 @@ export function TopTabs() {
       >
         <span
           className="text-sm font-semibold tracking-tight group-hover:opacity-60 transition-opacity"
-          style={{ color: "#f5f4f2", fontFamily: "'Inter', sans-serif", letterSpacing: "-0.01em" }}
+          style={{ color: "var(--c-text)", fontFamily: "'Inter', sans-serif", letterSpacing: "-0.01em" }}
         >
           PharmaShed
         </span>
@@ -34,7 +43,7 @@ export function TopTabs() {
 
       {/* Nav tabs */}
       <nav className="flex gap-0 flex-1 overflow-x-auto scrollbar-none">
-        {TABS.map((t) => {
+        {tabs.map((t) => {
           const active = activeTab === t.id;
           return (
             <button
@@ -42,9 +51,9 @@ export function TopTabs() {
               onClick={() => setActiveTab(t.id)}
               className="relative px-3 py-3.5 text-sm transition-colors shrink-0"
               style={{
-                color: active ? "#f5f4f2" : "#a09a95",
+                color: active ? "var(--c-text)" : "var(--c-muted2)",
                 fontWeight: active ? 500 : 400,
-                borderBottom: active ? "2px solid #7c75ff" : "2px solid transparent",
+                borderBottom: active ? "2px solid var(--c-indigo)" : "2px solid transparent",
               }}
             >
               {t.label}
@@ -53,17 +62,22 @@ export function TopTabs() {
         })}
       </nav>
 
+      <div className="ml-auto flex items-center gap-2">
+        <AudienceToggle />
+        <ThemeToggle />
+      </div>
+
       {/* Assistant CTA */}
       <button
         onClick={openAssistant}
-        className="ml-auto shrink-0 px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all"
+        className="ml-3 shrink-0 px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all"
         style={{
-          background: "#7c75ff",
+          background: "var(--c-indigo)",
           color: "#ffffff",
           letterSpacing: "0.04em",
         }}
-        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#615fff"; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#7c75ff"; }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "var(--c-indigo-deep)"; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "var(--c-indigo)"; }}
       >
         Assistant
       </button>
