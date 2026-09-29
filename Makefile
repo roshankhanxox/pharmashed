@@ -1,4 +1,4 @@
-.PHONY: setup fixtures data-check run run-strict freeze checks fhir fhir-validate \
+.PHONY: setup fixtures data-check run run-strict freeze checks fhir fhir-validate release \
         hapi-up api web eval-assistant test demo-build
 
 setup:
@@ -32,6 +32,9 @@ fhir:
 
 fhir-validate:
 	@echo "TODO M15: run HL7 validator"
+
+release:
+	uv run python scripts/make_release.py
 
 hapi-up:
 	docker compose -f infra/docker-compose.yml up -d

@@ -14,11 +14,22 @@ from pathlib import Path
 from typing import Any
 
 # api/src/pharmashed_api/data.py -> parents[3] is the repo root (parents[4] is the folder above it).
-_DEFAULT_DATA = Path(__file__).resolve().parents[3] / "data" / "build"
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+_BUILD = _REPO_ROOT / "data" / "build"      # regenerated locally, git-ignored
+_RELEASE = _REPO_ROOT / "data" / "release"  # committed snapshot (scripts/make_release.py) for deployment
+
+
+def _default_data_dir() -> Path:
+    """data/build when it has been generated (local development), else the committed data/release.
+
+    A deployed server has no data/build (it is git-ignored), so it falls through to the snapshot.
+    """
+    return _BUILD if (_BUILD / "results.json").exists() else _RELEASE
 
 
 def _data_dir() -> Path:
-    return Path(os.environ.get("PHARMASHED_DATA", str(_DEFAULT_DATA)))
+    override = os.environ.get("PHARMASHED_DATA")
+    return Path(override) if override else _default_data_dir()
 
 
 @lru_cache(maxsize=1)
