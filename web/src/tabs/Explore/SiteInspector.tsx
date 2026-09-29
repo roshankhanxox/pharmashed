@@ -5,14 +5,14 @@ import { Tornado } from "../../components/charts/Tornado";
 import { Term } from "../../components/glossary/Term";
 
 const C = {
-  canvas:  "#0c0a09",
-  surface: "#1a1917",
-  raised:  "#242220",
-  border:  "#292524",
-  text:    "#f5f4f2",
-  muted:   "#bdb8b3",
-  faint:   "#948e89",
-  indigo:  "#7c75ff",
+  canvas:  "var(--c-canvas)",
+  surface: "var(--c-surface)",
+  raised:  "var(--c-raised)",
+  border:  "var(--c-border)",
+  text:    "var(--c-text)",
+  muted:   "var(--c-muted)",
+  faint:   "var(--c-faint)",
+  indigo:  "var(--c-indigo)",
 } as const;
 
 export function SiteInspector() {
@@ -78,14 +78,14 @@ export function SiteInspector() {
             </h2>
             <span
               className="text-xs px-1.5 py-0.5 rounded"
-              style={{ background: "#1c1400", color: "#fbbf24", border: "1px solid #78350f", fontFamily: "ui-monospace, monospace" }}
+              style={{ background: "var(--c-warn-bg)", color: "var(--c-warn-text)", border: "1px solid var(--c-warn-border)" }}
             >
               Illustrative
             </span>
             {overall && (
               <span
                 className="text-xs px-1.5 py-0.5 rounded"
-                style={{ background: C.surface, color: C.muted, border: `1px solid ${C.border}`, fontFamily: "ui-monospace, monospace" }}
+                style={{ background: C.surface, color: C.muted, border: `1px solid ${C.border}` }}
               >
                 #{overall.rank_in_city} of {first.n_in_city} in {selectedSiteId.split("-")[0]}
               </span>
@@ -106,7 +106,7 @@ export function SiteInspector() {
       <div>
         <div
           className="text-xs font-semibold uppercase mb-2"
-          style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
+          style={{ color: C.faint, letterSpacing: "0.05em" }}
         >
           Predicted concentrations · click a drug row to expand
         </div>
@@ -126,7 +126,7 @@ export function SiteInspector() {
           <div>
             <div
               className="text-xs font-semibold uppercase mb-2"
-              style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
+              style={{ color: C.faint, letterSpacing: "0.05em" }}
             >
               {expanded.drug} — draw distribution
             </div>
@@ -137,7 +137,7 @@ export function SiteInspector() {
             <div>
               <div
                 className="text-xs font-semibold uppercase mb-2"
-                style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
+                style={{ color: C.faint, letterSpacing: "0.05em" }}
               >
                 Sensitivity — Spearman ρ
               </div>

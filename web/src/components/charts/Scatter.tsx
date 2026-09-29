@@ -47,7 +47,7 @@ export function Scatter({ points, rho, n, xLabel = "Predicted", yLabel = "Observ
           <g key={i}>
             <circle cx={scaleX(p.x)} cy={IH - scaleY(p.y)} r={4} fill="#6366f1" opacity={0.7} />
             {p.label && (
-              <text x={scaleX(p.x) + 6} y={IH - scaleY(p.y) + 3} fontSize={8} fill="#555">
+              <text x={scaleX(p.x) + 6} y={IH - scaleY(p.y) + 3} fontSize={12} fill="#555">
                 {p.label}
               </text>
             )}
@@ -56,18 +56,18 @@ export function Scatter({ points, rho, n, xLabel = "Predicted", yLabel = "Observ
 
         {/* ρ, n */}
         {rho != null && (
-          <text x={IW} y={10} textAnchor="end" fontSize={9} fill="#6366f1">
+          <text x={IW} y={10} textAnchor="end" fontSize={12} fill="#6366f1">
             ρ = {rho.toFixed(2)}{n != null ? `, n = ${n}` : ""}
           </text>
         )}
 
         {/* axis labels */}
-        <text x={IW / 2} y={IH + 30} textAnchor="middle" fontSize={9} fill="#888">{xLabel}</text>
+        <text x={IW / 2} y={IH + 30} textAnchor="middle" fontSize={12} fill="#888">{xLabel}</text>
         <text
           x={-(IH / 2)}
           y={-28}
           textAnchor="middle"
-          fontSize={9}
+          fontSize={12}
           fill="#888"
           transform="rotate(-90)"
         >{yLabel}</text>

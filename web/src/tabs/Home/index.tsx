@@ -3,15 +3,15 @@ import { ArchDiagram } from "./ArchDiagram";
 
 /* ─── palette shorthands ─────────────────────────────────────────────────── */
 const C = {
-  canvas:  "#0c0a09",
-  surface: "#1a1917",
-  raised:  "#242220",
-  border:  "#292524",
-  text:    "#f5f4f2",
-  muted:   "#bdb8b3",
-  faint:   "#948e89",
-  indigo:  "#7c75ff",
-  indigoDp:"#615fff",
+  canvas:  "var(--c-canvas)",
+  surface: "var(--c-surface)",
+  raised:  "var(--c-raised)",
+  border:  "var(--c-border)",
+  text:    "var(--c-text)",
+  muted:   "var(--c-muted)",
+  faint:   "var(--c-faint)",
+  indigo:  "var(--c-indigo)",
+  indigoDp:"var(--c-indigo-deep)",
 } as const;
 
 /* ─── data ───────────────────────────────────────────────────────────────── */
@@ -89,7 +89,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <p
       className="text-xs uppercase tracking-widest mb-5"
-      style={{ color: C.faint, fontFamily: "ui-monospace, monospace", letterSpacing: "0.10em" }}
+      style={{ color: C.faint, letterSpacing: "0.06em" }}
     >
       {children}
     </p>
@@ -125,7 +125,6 @@ export function HomeTab() {
             background: C.surface,
             border: `1px solid ${C.border}`,
             color: C.muted,
-            fontFamily: "ui-monospace, monospace",
             letterSpacing: "0.04em",
           }}
         >
@@ -187,7 +186,7 @@ export function HomeTab() {
       <div style={{ borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`, background: C.surface }}>
         <div
           className="max-w-4xl mx-auto flex"
-          style={{ fontFamily: "ui-monospace, monospace" }}
+          style={{ }}
         >
           {[
             { n: siteCount, label: "sampling sites" },
@@ -238,7 +237,7 @@ export function HomeTab() {
               >
                 <div
                   className="text-xl mb-3"
-                  style={{ color: C.indigo, fontFamily: "ui-monospace, monospace" }}
+                  style={{ color: C.indigo }}
                 >
                   {p.icon}
                 </div>
@@ -268,7 +267,6 @@ export function HomeTab() {
                       background: C.surface,
                       border: `1px solid ${C.indigo}`,
                       color: C.indigo,
-                      fontFamily: "ui-monospace, monospace",
                     }}
                   >
                     {s.n}
@@ -318,7 +316,7 @@ export function HomeTab() {
                   <div className="text-sm font-medium" style={{ color: C.text }}>{c.name}</div>
                   <div
                     className="text-xs"
-                    style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}
+                    style={{ color: C.faint }}
                   >
                     {c.id} · {c.note}
                   </div>
@@ -335,7 +333,6 @@ export function HomeTab() {
                   background: C.surface,
                   border: `1px solid ${C.border}`,
                   color: C.muted,
-                  fontFamily: "ui-monospace, monospace",
                   letterSpacing: "0.02em",
                 }}
               >
@@ -367,14 +364,14 @@ export function HomeTab() {
               >
                 <span
                   className="w-6 h-6 rounded-md flex items-center justify-center text-xs font-semibold shrink-0"
-                  style={{ background: C.raised, color: C.indigo, fontFamily: "ui-monospace, monospace" }}
+                  style={{ background: C.raised, color: C.indigo }}
                 >
                   {i + 1}
                 </span>
                 <div>
                   <code
                     className="text-xs px-2 py-0.5 rounded"
-                    style={{ background: C.raised, color: C.indigo, fontFamily: "ui-monospace, monospace" }}
+                    style={{ background: C.raised, color: C.indigo }}
                   >
                     {s.file}
                   </code>
@@ -389,7 +386,7 @@ export function HomeTab() {
             Once parameters are sourced, every screen updates automatically — the consistency checks re-run, FHIR resources drop the{" "}
             <code
               className="px-1 py-0.5 rounded text-xs"
-              style={{ background: C.raised, color: C.muted, fontFamily: "ui-monospace, monospace" }}
+              style={{ background: C.raised, color: C.muted }}
             >
               illustrative-parameter
             </code>{" "}
@@ -419,7 +416,7 @@ export function HomeTab() {
               >
                 <div
                   className="text-xs font-semibold mb-2 tracking-widest"
-                  style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}
+                  style={{ color: C.faint }}
                 >
                   {item.icon}
                 </div>
@@ -431,7 +428,7 @@ export function HomeTab() {
                 </div>
                 <div
                   className="text-xs mt-3 transition-opacity opacity-0 group-hover:opacity-100"
-                  style={{ color: C.indigo, fontFamily: "ui-monospace, monospace" }}
+                  style={{ color: C.indigo }}
                 >
                   Open →
                 </div>
@@ -455,7 +452,7 @@ export function HomeTab() {
                 <div className="flex-1 min-w-0">
                   <div
                     className="text-xs mb-1"
-                    style={{ color: C.indigo, fontFamily: "ui-monospace, monospace" }}
+                    style={{ color: C.indigo }}
                   >
                     {c.ref}
                   </div>
@@ -464,7 +461,7 @@ export function HomeTab() {
                   {"doi" in c && c.doi && (
                     <div
                       className="text-xs"
-                      style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}
+                      style={{ color: C.faint }}
                     >
                       doi:{c.doi}
                     </div>
@@ -479,7 +476,6 @@ export function HomeTab() {
                     background: C.raised,
                     border: `1px solid ${C.border}`,
                     color: C.muted,
-                    fontFamily: "ui-monospace, monospace",
                     textDecoration: "none",
                     letterSpacing: "0.04em",
                   }}
@@ -493,7 +489,7 @@ export function HomeTab() {
           </div>
         </section>
 
-        <div className="text-xs text-center pb-4 mt-8" style={{ color: C.faint, fontFamily: "ui-monospace, monospace" }}>
+        <div className="text-xs text-center pb-4 mt-8" style={{ color: C.faint }}>
           PHARMASHED · IEEE ONEAQUAHEALTH HACKATHON 2026
         </div>
       </div>

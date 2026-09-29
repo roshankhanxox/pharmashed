@@ -6,14 +6,14 @@ import { EmptyView, LoadingView } from "../../components/shell/StateViews";
 import { Term } from "../../components/glossary/Term";
 
 const C = {
-  canvas:  "#0c0a09",
-  surface: "#1a1917",
-  raised:  "#242220",
-  border:  "#292524",
-  text:    "#f5f4f2",
-  muted:   "#bdb8b3",
-  faint:   "#948e89",
-  indigo:  "#7c75ff",
+  canvas:  "var(--c-canvas)",
+  surface: "var(--c-surface)",
+  raised:  "var(--c-raised)",
+  border:  "var(--c-border)",
+  text:    "var(--c-text)",
+  muted:   "var(--c-muted)",
+  faint:   "var(--c-faint)",
+  indigo:  "var(--c-indigo)",
 } as const;
 
 const PRESETS = [
@@ -160,7 +160,7 @@ export function ScenariosTab() {
         <div>
           <div
             className="text-xs font-semibold uppercase mb-3"
-            style={{ color: C.faint, letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
+            style={{ color: C.faint, letterSpacing: "0.06em" }}
           >
             Scenario presets
           </div>
@@ -195,7 +195,7 @@ export function ScenariosTab() {
               <div className="text-xs font-medium" style={{ color: C.muted }}>Riparian restoration</div>
               <span
                 className="text-xs px-1.5 py-0.5 rounded inline-block mt-1"
-                style={{ background: "#1c1400", color: "#fbbf24", border: "1px solid #78350f", fontFamily: "ui-monospace, monospace" }}
+                style={{ background: "var(--c-warn-bg)", color: "var(--c-warn-text)", border: "1px solid var(--c-warn-border)" }}
               >
                 Illustrative
               </span>
@@ -210,7 +210,7 @@ export function ScenariosTab() {
         <div className="flex flex-col gap-3">
           <div
             className="text-xs font-semibold uppercase"
-            style={{ color: C.faint, letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
+            style={{ color: C.faint, letterSpacing: "0.06em" }}
           >
             Fine controls
           </div>
@@ -257,7 +257,7 @@ export function ScenariosTab() {
         <div>
           <div
             className="text-xs font-semibold uppercase mb-1"
-            style={{ color: C.faint, letterSpacing: "0.10em", fontFamily: "ui-monospace, monospace" }}
+            style={{ color: C.faint, letterSpacing: "0.06em" }}
           >
             Scenario explorer
           </div>
@@ -274,11 +274,11 @@ export function ScenariosTab() {
             <div className="flex-1 min-w-36">
               <div
                 className="text-xs font-semibold uppercase mb-1"
-                style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
+                style={{ color: C.faint, letterSpacing: "0.05em" }}
               >
                 Baseline score
               </div>
-              <div className="text-3xl font-bold" style={{ color: C.text, fontFamily: "ui-monospace, monospace" }}>
+              <div className="text-3xl font-bold" style={{ color: C.text }}>
                 {baseline.score.toFixed(3)}
               </div>
               <div className="text-xs mt-1" style={{ color: C.faint }}>
@@ -291,15 +291,14 @@ export function ScenariosTab() {
             <div className="flex-1 min-w-36">
               <div
                 className="text-xs font-semibold uppercase mb-1"
-                style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
+                style={{ color: C.faint, letterSpacing: "0.05em" }}
               >
                 Scenario score
               </div>
               <div
                 className="text-3xl font-bold"
                 style={{
-                  color: scenario.score > baseline.score ? "#f87171" : "#4ade80",
-                  fontFamily: "ui-monospace, monospace",
+                  color: scenario.score > baseline.score ? "var(--c-danger-text)" : "var(--c-ok-text)",
                 }}
               >
                 {scenario.score.toFixed(3)}
@@ -316,7 +315,7 @@ export function ScenariosTab() {
           <div>
             <div
               className="text-xs font-semibold uppercase mb-2"
-              style={{ color: C.faint, letterSpacing: "0.08em", fontFamily: "ui-monospace, monospace" }}
+              style={{ color: C.faint, letterSpacing: "0.05em" }}
             >
               Predicted <Term term="PEC">PEC</Term> ranges — recomputed over {scenario.n} stored draws
             </div>

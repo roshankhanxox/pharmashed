@@ -34,13 +34,13 @@ export function DotOnBand({ minP5, maxP95, observedMax, drug }: DotOnBandProps) 
           y={IH / 4}
           width={Math.max(1, toX(maxP95) - toX(minP5))}
           height={IH / 2}
-          fill="#60a5fa"
+          fill="var(--c-blue)"
           opacity={0.4}
           rx={3}
         />
         {/* observed dot */}
         <circle cx={toX(observedMax)} cy={IH / 2} r={5} fill="#ef4444" />
-        <text x={toX(observedMax)} y={IH / 2 - 8} textAnchor="middle" fontSize={8} fill="#ef4444">
+        <text x={toX(observedMax)} y={IH / 2 - 8} textAnchor="middle" fontSize={12} fill="#ef4444">
           obs
         </text>
 
@@ -51,13 +51,13 @@ export function DotOnBand({ minP5, maxP95, observedMax, drug }: DotOnBandProps) 
           return (
             <g key={t}>
               <line x1={x} y1={IH} x2={x} y2={IH + 3} stroke="#aaa" />
-              <text x={x} y={IH + 12} textAnchor="middle" fontSize={7} fill="#888">
+              <text x={x} y={IH + 12} textAnchor="middle" fontSize={12} fill="#888">
                 {t === 0 ? "1" : `10^${t}`}
               </text>
             </g>
           );
         })}
-        <text x={IW / 2} y={IH + 22} textAnchor="middle" fontSize={8} fill="#888">
+        <text x={IW / 2} y={IH + 22} textAnchor="middle" fontSize={12} fill="#888">
           ng/L (log scale)
         </text>
       </g>

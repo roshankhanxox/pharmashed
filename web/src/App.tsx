@@ -87,7 +87,7 @@ function App() {
   const isDev = results?.meta.dev_placeholders ?? false;
 
   return (
-    <div className="h-svh flex flex-col overflow-hidden" style={{ background: "#0c0a09", color: "#f5f4f2" }}>
+    <div className="h-svh flex flex-col overflow-hidden" style={{ background: "var(--c-canvas)", color: "var(--c-text)" }}>
       {isDev && <DevBanner />}
       <TopTabs />
 

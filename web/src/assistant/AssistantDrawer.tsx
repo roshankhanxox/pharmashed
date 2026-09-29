@@ -5,14 +5,14 @@ import { useStore } from "../data/store";
 import { apiBase } from "../data/loaders";
 
 const C = {
-  canvas:  "#0c0a09",
-  surface: "#1a1917",
-  raised:  "#242220",
-  border:  "#292524",
-  text:    "#f5f4f2",
-  muted:   "#bdb8b3",
-  faint:   "#948e89",
-  indigo:  "#7c75ff",
+  canvas:  "var(--c-canvas)",
+  surface: "var(--c-surface)",
+  raised:  "var(--c-raised)",
+  border:  "var(--c-border)",
+  text:    "var(--c-text)",
+  muted:   "var(--c-muted)",
+  faint:   "var(--c-faint)",
+  indigo:  "var(--c-indigo)",
 } as const;
 
 const SUGGESTED: string[] = [
@@ -127,7 +127,7 @@ export function AssistantDrawer() {
             <h2 className="font-semibold text-sm" style={{ color: C.text }}>PharmaShed Assistant</h2>
             <span
               className="text-xs px-1.5 py-0.5 rounded"
-              style={{ background: C.raised, color: C.faint, fontFamily: "ui-monospace, monospace", border: `1px solid ${C.border}` }}
+              style={{ background: C.raised, color: C.faint, border: `1px solid ${C.border}` }}
             >
               Groq
             </span>
@@ -147,9 +147,9 @@ export function AssistantDrawer() {
         {apiAvailable === false && (
           <div
             className="text-xs px-5 py-3 shrink-0"
-            style={{ background: "#1c1400", borderBottom: `1px solid #78350f`, color: "#fbbf24" }}
+            style={{ background: "var(--c-warn-bg)", borderBottom: `1px solid var(--c-warn-border)`, color: "var(--c-warn-text)" }}
           >
-            Assistant unavailable — LLM API key not configured on the backend. Start the API server with <code style={{ fontFamily: "ui-monospace, monospace" }}>GROQ_API_KEY</code> set.
+            Assistant unavailable — LLM API key not configured on the backend. Start the API server with <code style={{ }}>GROQ_API_KEY</code> set.
           </div>
         )}
 
@@ -189,7 +189,7 @@ export function AssistantDrawer() {
                     <span
                       key={j}
                       className="text-xs px-2 py-0.5 rounded-full"
-                      style={{ background: C.raised, color: C.faint, fontFamily: "ui-monospace, monospace", border: `1px solid ${C.border}` }}
+                      style={{ background: C.raised, color: C.faint, border: `1px solid ${C.border}` }}
                     >
                       {tc.name}
                     </span>
@@ -212,7 +212,7 @@ export function AssistantDrawer() {
               {m.guardWarn && (
                 <div
                   className="text-xs rounded px-2 py-0.5"
-                  style={{ background: "#1c1400", color: "#fbbf24", border: "1px solid #78350f" }}
+                  style={{ background: "var(--c-warn-bg)", color: "var(--c-warn-text)", border: "1px solid var(--c-warn-border)" }}
                 >
                   ⚠ Some numbers could not be verified against tool results
                 </div>
@@ -298,16 +298,16 @@ function MarkdownText({ text }: { text: string }) {
       remarkPlugins={[remarkGfm]}
       components={{
         p: ({ children }) => <p className="mb-2 last:mb-0 leading-relaxed">{children}</p>,
-        strong: ({ children }) => <strong className="font-semibold" style={{ color: "#f5f4f2" }}>{children}</strong>,
+        strong: ({ children }) => <strong className="font-semibold" style={{ color: "var(--c-text)" }}>{children}</strong>,
         em: ({ children }) => <em className="italic">{children}</em>,
         code: ({ children, className }) => {
           const isBlock = !!className;
           return isBlock ? (
-            <pre className="my-2 p-3 rounded-lg text-xs overflow-x-auto" style={{ background: "#0c0a09", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>
+            <pre className="my-2 p-3 rounded-lg text-xs overflow-x-auto" style={{ background: "var(--c-canvas)", color: "var(--c-muted)" }}>
               <code>{children}</code>
             </pre>
           ) : (
-            <code className="px-1.5 py-0.5 rounded text-[11px]" style={{ background: "#0c0a09", color: "#bdb8b3", fontFamily: "ui-monospace, monospace" }}>{children}</code>
+            <code className="px-1.5 py-0.5 rounded text-[11px]" style={{ background: "var(--c-canvas)", color: "var(--c-muted)" }}>{children}</code>
           );
         },
         ul: ({ children }) => <ul className="list-disc list-outside ml-4 mb-2 space-y-0.5">{children}</ul>,
@@ -320,20 +320,20 @@ function MarkdownText({ text }: { text: string }) {
         ),
         thead: ({ children }) => <thead>{children}</thead>,
         th: ({ children }) => (
-          <th className="px-3 py-1.5 text-left font-semibold border-b" style={{ borderColor: "#292524", color: "#bdb8b3" }}>{children}</th>
+          <th className="px-3 py-1.5 text-left font-semibold border-b" style={{ borderColor: "var(--c-border)", color: "var(--c-muted)" }}>{children}</th>
         ),
         td: ({ children }) => (
-          <td className="px-3 py-1.5 border-b" style={{ borderColor: "#1a1917", color: "#f5f4f2" }}>{children}</td>
+          <td className="px-3 py-1.5 border-b" style={{ borderColor: "var(--c-surface)", color: "var(--c-text)" }}>{children}</td>
         ),
         tr: ({ children }) => <tr className="hover:bg-white/5 transition-colors">{children}</tr>,
         blockquote: ({ children }) => (
-          <blockquote className="border-l-2 pl-3 my-2 italic" style={{ borderColor: "#7c75ff", color: "#bdb8b3" }}>{children}</blockquote>
+          <blockquote className="border-l-2 pl-3 my-2 italic" style={{ borderColor: "var(--c-indigo)", color: "var(--c-muted)" }}>{children}</blockquote>
         ),
         h1: ({ children }) => <h1 className="text-base font-bold mb-2 mt-1">{children}</h1>,
         h2: ({ children }) => <h2 className="text-sm font-semibold mb-1.5 mt-1">{children}</h2>,
         h3: ({ children }) => <h3 className="text-sm font-medium mb-1 mt-1">{children}</h3>,
         a: ({ href, children }) => (
-          <a href={href} target="_blank" rel="noreferrer" className="underline" style={{ color: "#7c75ff" }}>{children}</a>
+          <a href={href} target="_blank" rel="noreferrer" className="underline" style={{ color: "var(--c-indigo)" }}>{children}</a>
         ),
       }}
     >

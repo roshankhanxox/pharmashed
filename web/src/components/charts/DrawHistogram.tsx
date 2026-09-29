@@ -41,7 +41,7 @@ export function DrawHistogram({ histogram, score }: DrawHistogramProps) {
               y={IH - barH}
               width={binW - 2}
               height={barH}
-              fill={isExceedance ? "#ef4444" : "#60a5fa"}
+              fill={isExceedance ? "#ef4444" : "var(--c-blue)"}
               opacity={0.7}
             />
           );
@@ -51,12 +51,12 @@ export function DrawHistogram({ histogram, score }: DrawHistogramProps) {
         {rq1X >= 0 && rq1X <= IW && (
           <>
             <line x1={rq1X} y1={0} x2={rq1X} y2={IH} stroke="currentColor" strokeWidth={1.5} className="text-neutral-800 dark:text-neutral-200" />
-            <text x={rq1X + 3} y={10} fontSize={9} fill="currentColor" className="text-neutral-700 dark:text-neutral-300">RQ = 1</text>
+            <text x={rq1X + 3} y={10} fontSize={12} fill="currentColor" className="text-neutral-700 dark:text-neutral-300">RQ = 1</text>
           </>
         )}
 
         {/* score label */}
-        <text x={IW} y={10} textAnchor="end" fontSize={10} fill="#ef4444">
+        <text x={IW} y={10} textAnchor="end" fontSize={12} fill="#ef4444">
           score = {score.toFixed(3)} (share with RQ &gt; 1)
         </text>
 
@@ -66,12 +66,12 @@ export function DrawHistogram({ histogram, score }: DrawHistogramProps) {
 
         {/* x labels */}
         {log10_edges.map((e, i) => (
-          <text key={i} x={i * binW} y={IH + 12} fontSize={8} fill="currentColor" className="text-neutral-400 dark:text-neutral-500" textAnchor="middle">
+          <text key={i} x={i * binW} y={IH + 12} fontSize={12} fill="currentColor" className="text-neutral-600 dark:text-neutral-400" textAnchor="middle">
             {e === 0 ? "1" : `10^${e}`}
           </text>
         ))}
 
-        <text x={IW / 2} y={IH + 25} fontSize={9} fill="currentColor" className="text-neutral-400 dark:text-neutral-500" textAnchor="middle">
+        <text x={IW / 2} y={IH + 25} fontSize={12} fill="currentColor" className="text-neutral-600 dark:text-neutral-400" textAnchor="middle">
           log₁₀ RQ
         </text>
       </g>

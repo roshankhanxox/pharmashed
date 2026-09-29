@@ -23,20 +23,102 @@
   --font-mono:    'SFMono-Regular', ui-monospace, Menlo, Monaco, Consolas, monospace;
 }
 
+/* Tailwind's dark: variant follows the .dark class on <html> (set by the theme toggle),
+   not the OS colour scheme, so the whole app switches together. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme tokens. Light is the default; .dark on <html> switches to the dark set.
+   Components reference these as var(--c-*) instead of hard-coded hex values. */
 :root {
-  color-scheme: dark;
-  background: #0c0a09;
-  color: #f5f4f2;
+  color-scheme: light;
+  --c-canvas:        #faf9f7;
+  --c-surface:       #ffffff;
+  --c-raised:        #f3f1ee;
+  --c-border:        #d6d3d1;
+  --c-border-subtle: #e7e5e4;
+  --c-text:          #1c1917;
+  --c-muted:         #44403c;  /* 9.7:1 on surface */
+  --c-muted2:        #57534e;  /* 7.6:1 */
+  --c-faint:         #66605b;  /* 6.0:1 */
+  --c-indigo:        #4f46e5;
+  --c-indigo-deep:   #4338ca;
+  --c-indigo-soft:   #4f46e5;
+  --c-blue:          #2563eb;
+  --c-slate:         #64748b;
+
+  --c-warn-bg:       #fffbeb;
+  --c-warn-border:   #fcd34d;
+  --c-warn-text:     #92400e;
+  --c-warn-strong:   #78350f;
+  --c-warn-soft:     #92400e;
+  --c-warn-dim:      #a16207;
+
+  --c-danger-bg:     #fef2f2;
+  --c-danger-border: #fca5a5;
+  --c-danger-text:   #b91c1c;
+  --c-danger-strong: #7f1d1d;
+
+  --c-ok-bg:         #f0fdf4;
+  --c-ok-border:     #86efac;
+  --c-ok-text:       #166534;
+
+  --c-info-bg:       #eff6ff;
+  --c-info-border:   #93c5fd;
+  --c-info-text:     #1e40af;
+  --c-info-strong:   #1e3a8a;
+
+  background: var(--c-canvas);
+  color: var(--c-text);
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11'; /* Inter optical features */
   font-optical-sizing: auto;
 }
 
+:root.dark {
+  color-scheme: dark;
+  --c-canvas:        #0c0a09;
+  --c-surface:       #1a1917;
+  --c-raised:        #242220;
+  --c-border:        #292524;
+  --c-border-subtle: #1e1c1b;
+  --c-text:          #f5f4f2;
+  --c-muted:         #bdb8b3;
+  --c-muted2:        #a09a95;
+  --c-faint:         #948e89;
+  --c-indigo:        #7c75ff;
+  --c-indigo-deep:   #615fff;
+  --c-indigo-soft:   #818cf8;
+  --c-blue:          #60a5fa;
+  --c-slate:         #94a3b8;
+
+  --c-warn-bg:       #1c1400;
+  --c-warn-border:   #78350f;
+  --c-warn-text:     #fbbf24;
+  --c-warn-strong:   #fde68a;
+  --c-warn-soft:     #fcd34d;
+  --c-warn-dim:      #a16207;
+
+  --c-danger-bg:     #450a0a;
+  --c-danger-border: #7f1d1d;
+  --c-danger-text:   #fca5a5;
+  --c-danger-strong: #fecaca;
+
+  --c-ok-bg:         #052e16;
+  --c-ok-border:     #166534;
+  --c-ok-text:       #4ade80;
+
+  --c-info-bg:       #0d1624;
+  --c-info-border:   #1e3a5f;
+  --c-info-text:     #93c5fd;
+  --c-info-strong:   #bfdbfe;
+}
+
 body {
   margin: 0;
-  background: #0c0a09;
+  background: var(--c-canvas);
+  color: var(--c-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -67,6 +149,9 @@ body {
 /* Display font util */
 .font-display { font-family: 'Playfair Display', Georgia, serif; }
 
-/* Minimum legible sizes — override Tailwind's 12px floor */
-.text-xs { font-size: 0.8125rem; } /* 13px */
-.text-\[10px\] { font-size: 0.8125rem; } /* safety net for any stragglers */
+/* Type scale — nothing meant to be read is below 14px. Tailwind's defaults
+   (12px / 14px) are too small for this app, so the small steps are raised. */
+.text-xs { font-size: 0.875rem; line-height: 1.5; }   /* 14px */
+.text-sm { font-size: 1rem; line-height: 1.55; }      /* 16px */
+.text-base { font-size: 1.0625rem; }                  /* 17px */
+.text-\[10px\], .text-\[11px\] { font-size: 0.875rem; }
