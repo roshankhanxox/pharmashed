@@ -14,10 +14,11 @@ describe("validationBadge", () => {
   });
 
   it("goes green only for a recorded pass, with version and date", () => {
-    const b = validationBadge({ status: "pass", errors: 0, validator_version: "6.3.0", ran_at: "2026-09-30T10:00:00Z" });
+    const b = validationBadge({ status: "pass", errors: 0, warnings: 1513, validator_version: "6.3.0", ran_at: "2026-09-30T10:00:00Z" });
     expect(b.tone).toBe("ok");
     expect(b.text).toContain("6.3.0");
     expect(b.text).toContain("2026-09-30");
+    expect(b.text).toContain("0 errors, 1,513 warnings");
   });
 
   it("reports errors, singular and plural", () => {

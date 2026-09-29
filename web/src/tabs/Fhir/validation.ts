@@ -24,9 +24,11 @@ export function validationBadge(v?: ValidationInfo): BadgeState {
   }
   if (v?.status === "pass" && v.ran_at) {
     const version = v.validator_version ? ` ${v.validator_version}` : "";
+    const warnings = v.warnings ?? 0;
+    const notes = warnings > 0 ? `, ${warnings.toLocaleString("en-US")} warning${warnings === 1 ? "" : "s"}` : "";
     return {
       tone: "ok",
-      text: `✓ Passed the HL7 validator${version} against the OneAquaHealth IG (${v.ran_at.slice(0, 10)})`,
+      text: `✓ Passed the HL7 validator${version} against the OneAquaHealth IG (${v.ran_at.slice(0, 10)}): 0 errors${notes}`,
     };
   }
   return { tone: "neutral", text: "Not yet validated: the HL7 validator has not been run on these bundles." };
