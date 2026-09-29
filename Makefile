@@ -16,19 +16,19 @@ data-check:
 	@echo "TODO M04: validate sites"
 
 run:
-	@echo "TODO M08-M11: engine run (dev mode) -> data/build/"
+	uv run pharmashed run --mode dev --out data/build
 
 run-strict:
-	@echo "TODO M08-M11: engine run (strict mode)"
+	uv run pharmashed run --mode strict --out data/build
 
 freeze:
-	@echo "TODO M11: strict run -> data/frozen/ + git tag"
+	uv run pharmashed freeze
 
 checks:
-	@echo "TODO M12: consistency checks against frozen predictions"
+	uv run pharmashed checks
 
 fhir:
-	@echo "TODO M14: build FHIR bundles"
+	uv run pharmashed fhir
 
 fhir-validate:
 	@echo "TODO M15: run HL7 validator"

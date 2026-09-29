@@ -84,7 +84,7 @@ def run_freeze(mode: str = "strict", out_dir: Path | None = None) -> Path:
     ctx = RunContext.from_paths(mode="strict")
 
     # Determine tag name (illustrative tag if any row is non-sourced per D36)
-    any_illustrative = any(r.status != "sourced" for r in ctx.consumption_rows)
+    any_illustrative = not ctx.all_inputs_sourced()
     tag = _FREEZE_TAG_ILLUSTRATIVE if any_illustrative else _FREEZE_TAG
 
     _check_no_existing_tag(tag)
@@ -97,9 +97,10 @@ def run_freeze(mode: str = "strict", out_dir: Path | None = None) -> Path:
     # Write to frozen dir with the tag embedded
     results_path = export_build(ctx, frozen_dir, variant="full", frozen_tag=tag)
 
-    # Also write build dir copy (without frozen_tag, for the live API)
+    # Also write the build dir copy for the live API. It carries the tag too, so the app footer
+    # says which frozen run it is showing (it is the same run: same seed, same inputs).
     _BUILD_DIR.mkdir(parents=True, exist_ok=True)
-    export_build(ctx, _BUILD_DIR, variant="full", frozen_tag=None)
+    export_build(ctx, _BUILD_DIR, variant="full", frozen_tag=tag)
 
     # Hash the frozen results.json
     sha = sha256_file(results_path)
