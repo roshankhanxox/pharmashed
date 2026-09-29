@@ -4,6 +4,12 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { TIER_LABEL, TIER_LEGEND } from "../../data/copy";
 import { useStore } from "../../data/store";
 import type { StyleSpecification } from "maplibre-gl";
+// MapLibre 6 runs GeoJSON layers in a worker file that imports a sibling chunk. Vite must bundle it
+// as a self-contained file (?worker&url); without this the production build ships no worker and the
+// site glows never render, silently.
+import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
+
+maplibregl.setWorkerUrl(workerUrl);
 
 interface TooltipState {
   siteId: string;
@@ -37,11 +43,34 @@ const BASEMAP_STYLE: StyleSpecification = {
   layers: [{ id: "osm", type: "raster", source: "osm" }],
 };
 
+const SITES_SOURCE = "sites";
+
+/** Colour expression keyed on the feature's tier. */
+const tierColor = ["match", ["get", "tier"], "high", TIER_COLORS.high, "medium", TIER_COLORS.medium, TIER_COLORS.low];
+
+/** Radius expression keyed on tier, growing with zoom so a glow keeps its look at every scale. */
+function glowRadius(high: number, medium: number, low: number) {
+  return ["match", ["get", "tier"], "high", high, "medium", medium, low];
+}
+
+interface SiteProps {
+  id: string;
+  city: string;
+  tier: "high" | "medium" | "low";
+}
+
+/** One site as a GeoJSON point feature (the map source holds these). */
+interface SiteFeature {
+  type: "Feature";
+  geometry: { type: "Point"; coordinates: [number, number] };
+  properties: SiteProps;
+}
+
 export function MapView() {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<maplibregl.Map | null>(null);
-  const markersRef = useRef<maplibregl.Marker[]>([]);
+  const [mapReady, setMapReady] = useState(false);
   const fittedRef = useRef(false);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
 
@@ -50,7 +79,6 @@ export function MapView() {
   const selectedDrug = useStore((s) => s.selectedDrug);
   const selectedCity = useStore((s) => s.selectedCity);
   const selectedSiteId = useStore((s) => s.selectedSiteId);
-  const setSelectedSiteId = useStore((s) => s.setSelectedSiteId);
   const setSelectedCity = useStore((s) => s.setSelectedCity);
   const setSelectedDrug = useStore((s) => s.setSelectedDrug);
   const audience = useStore((s) => s.audience);
@@ -74,9 +102,98 @@ export function MapView() {
     });
     map.addControl(new maplibregl.NavigationControl(), "top-right");
     mapInstance.current = map;
+    // Dev only: lets browser tests project site coordinates to screen positions (sites are canvas, not DOM).
+    if (import.meta.env.DEV) (window as unknown as { __pharmaMap?: maplibregl.Map }).__pharmaMap = map;
 
     map.on("load", () => {
       map.resize();
+
+      // Sites: a blurred glow per site (the heat feel), a small solid core (shape cue, not colour-only),
+      // and a ring on the selected site. One source, updated whenever the drug filter changes.
+      map.addSource(SITES_SOURCE, { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+      map.addLayer({
+        id: "site-glow",
+        type: "circle",
+        source: SITES_SOURCE,
+        paint: {
+          "circle-color": tierColor as never,
+          "circle-blur": 1,
+          "circle-opacity": ["match", ["get", "tier"], "high", 0.85, "medium", 0.72, 0.55] as never,
+          "circle-radius": [
+            "interpolate", ["linear"], ["zoom"],
+            8, glowRadius(22, 18, 14),
+            11, glowRadius(44, 34, 24),
+            13, glowRadius(78, 60, 44),
+            15, glowRadius(120, 92, 68),
+            17, glowRadius(170, 130, 96),
+          ] as never,
+        },
+      });
+      map.addLayer({
+        id: "site-core",
+        type: "circle",
+        source: SITES_SOURCE,
+        paint: {
+          "circle-color": tierColor as never,
+          "circle-radius": glowRadius(7, 6, 5) as never,
+          "circle-stroke-color": "#ffffff",
+          "circle-stroke-width": 2,
+        },
+      });
+      map.addLayer({
+        id: "site-selected",
+        type: "circle",
+        source: SITES_SOURCE,
+        filter: ["==", ["get", "id"], ""],
+        paint: {
+          "circle-color": "#3b82f6",
+          "circle-opacity": 0,
+          "circle-radius": 13,
+          "circle-stroke-color": "#3b82f6",
+          "circle-stroke-width": 3,
+        },
+      });
+
+      // With overlapping glows several features sit under the cursor: pick the nearest site.
+      const nearest = (e: maplibregl.MapLayerMouseEvent): maplibregl.MapGeoJSONFeature | null => {
+        let best: maplibregl.MapGeoJSONFeature | null = null;
+        let bestDist = Infinity;
+        for (const f of e.features ?? []) {
+          if (f.geometry.type !== "Point") continue;
+          const [lng, lat] = f.geometry.coordinates;
+          const pt = map.project([lng, lat]);
+          const d = Math.hypot(pt.x - e.point.x, pt.y - e.point.y);
+          if (d < bestDist) { best = f; bestDist = d; }
+        }
+        return best;
+      };
+
+      map.on("mousemove", "site-glow", (e) => {
+        const f = nearest(e);
+        if (!f) return;
+        map.getCanvas().style.cursor = "pointer";
+        const rect = mapContainerRef.current?.getBoundingClientRect();
+        if (!rect) return;
+        // Keep the tooltip (about 240 x 200 px) inside the map so it is never cut off at an edge.
+        setTooltip({
+          siteId: (f.properties as SiteProps).id,
+          x: Math.min(e.originalEvent.clientX - rect.left, rect.width - 260),
+          y: Math.min(e.originalEvent.clientY - rect.top, rect.height - 210),
+        });
+      });
+      map.on("mouseleave", "site-glow", () => {
+        map.getCanvas().style.cursor = "";
+        setTooltip(null);
+      });
+      map.on("click", "site-glow", (e) => {
+        const f = nearest(e);
+        if (!f) return;
+        const props = f.properties as SiteProps;
+        useStore.getState().setSelectedSiteId(props.id);
+        useStore.getState().setSelectedCity(props.city);
+      });
+
+      setMapReady(true);
       // Streams layer — silently skip if endpoint not available
       const BASE = (import.meta.env.VITE_DATA_BASE as string | undefined) ?? "/api";
       const STATIC = BASE !== "/api";
@@ -91,7 +208,7 @@ export function MapView() {
             type: "line",
             source: "streams",
             paint: { "line-color": "#2563eb", "line-width": 1.5, "line-opacity": 0.6 },
-          });
+          }, "site-glow");
         })
         .catch(() => { /* streams.geojson not available — skip */ });
     });
@@ -131,103 +248,42 @@ export function MapView() {
     else map.once("load", fly);
   }, []);
 
-  // Rebuild markers when drug/selection changes
+  // Push the visible sites (for the chosen drug, or each site's overall score) into the map source.
   useEffect(() => {
     const map = mapInstance.current;
-    if (!map || !results || !sites) return;
+    if (!map || !mapReady || !results || !sites) return;
 
-    // Remove old markers
-    markersRef.current.forEach((m) => m.remove());
-    markersRef.current = [];
-
-    const useOverall = selectedDrug === "all";
-
+    const features: SiteFeature[] = [];
     for (const site of sites.sites) {
-      const siteId = site.id;
-
-      let tier: string;
-      let score: number;
-      let label: string;
-
-      if (useOverall) {
-        const overall = results.site_overall?.find((s) => s.site_id === siteId);
-        if (!overall) continue;
-        score = overall.score;
-        tier = scoreTier(score);
-        label = `${siteId} · top drug: ${overall.top_drug} · score ${score.toFixed(2)}`;
+      let score: number | undefined;
+      let tier: SiteProps["tier"] | undefined;
+      if (selectedDrug === "all") {
+        score = results.site_overall?.find((o) => o.site_id === site.id)?.score;
+        tier = score === undefined ? undefined : scoreTier(score);
       } else {
-        const entry = results.results.find(
-          (r) => r.site_id === siteId && r.drug === selectedDrug
-        );
-        if (!entry) continue;
-        tier = entry.tier;
-        score = entry.score;
-        label = `${siteId} · ${selectedDrug} · score ${score.toFixed(2)}`;
+        const entry = results.results.find((r) => r.site_id === site.id && r.drug === selectedDrug);
+        score = entry?.score;
+        tier = entry?.tier as SiteProps["tier"] | undefined;
       }
-
-      const color = TIER_COLORS[tier] ?? "#aaa";
-      const r = tier === "high" ? 11 : tier === "medium" ? 8 : 5;
-      const isSelected = siteId === selectedSiteId;
-      const isHigh = tier === "high";
-
-      const el = document.createElement("div");
-      el.setAttribute("role", "button");
-      el.setAttribute("aria-label", label);
-      el.title = label;
-      el.style.cssText = [
-        `width:${r * 2}px`,
-        `height:${r * 2}px`,
-        `border-radius:50%`,
-        `background:${color}`,
-        `border:2px solid white`,
-        `cursor:pointer`,
-        `transition:transform 0.1s`,
-        isSelected
-          ? `outline:3px solid #3b82f6;outline-offset:2px;transform:scale(1.25)`
-          : `box-shadow:0 1px 4px rgba(0,0,0,0.35)`,
-        isHigh && !isSelected
-          ? `box-shadow:0 0 0 4px ${color}44,0 1px 4px rgba(0,0,0,0.35)`
-          : "",
-      ]
-        .filter(Boolean)
-        .join(";");
-
-      el.addEventListener("click", () => {
-        setSelectedSiteId(siteId);
-        setSelectedCity(site.city);
+      if (score === undefined || !tier) continue;
+      features.push({
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [site.lonlat[0], site.lonlat[1]] },
+        properties: { id: site.id, city: site.city, tier },
       });
-
-      el.addEventListener("mouseenter", (e) => {
-        const containerRect = mapContainerRef.current?.getBoundingClientRect();
-        if (!containerRect) return;
-        setTooltip({
-          siteId,
-          x: (e as MouseEvent).clientX - containerRect.left,
-          y: (e as MouseEvent).clientY - containerRect.top,
-        });
-      });
-
-      el.addEventListener("mousemove", (e) => {
-        const containerRect = mapContainerRef.current?.getBoundingClientRect();
-        if (!containerRect) return;
-        setTooltip((prev) =>
-          prev?.siteId === siteId
-            ? { siteId, x: (e as MouseEvent).clientX - containerRect.left, y: (e as MouseEvent).clientY - containerRect.top }
-            : prev
-        );
-      });
-
-      el.addEventListener("mouseleave", () => {
-        setTooltip(null);
-      });
-
-      const marker = new maplibregl.Marker({ element: el })
-        .setLngLat([site.lonlat[0], site.lonlat[1]])
-        .addTo(map);
-
-      markersRef.current.push(marker);
     }
-  }, [results, sites, selectedDrug, selectedSiteId]);
+    (map.getSource(SITES_SOURCE) as maplibregl.GeoJSONSource | undefined)?.setData({
+      type: "FeatureCollection",
+      features,
+    });
+  }, [mapReady, results, sites, selectedDrug]);
+
+  // Ring the selected site.
+  useEffect(() => {
+    const map = mapInstance.current;
+    if (!map || !mapReady) return;
+    map.setFilter("site-selected", ["==", ["get", "id"], selectedSiteId ?? ""]);
+  }, [mapReady, selectedSiteId]);
 
   const C = {
     canvas:  "var(--c-canvas)",
@@ -346,6 +402,13 @@ export function MapView() {
               score = share of draws with RQ &gt; 1
             </span>
           )}
+        </div>
+
+        {/* A glow is a site, not a surface: the model scores 105 points and does not interpolate between them. */}
+        <div className="text-xs" style={{ color: C.faint }}>
+          {citizen
+            ? "Each glow marks one place we look at. Colour is not estimated between places."
+            : "Each glow is one monitoring site. Scores are not interpolated between sites."}
         </div>
       </div>
 
