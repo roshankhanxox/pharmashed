@@ -1,31 +1,31 @@
 country,drug,atc,year,ddd_per_1000_per_day,granularity,group_value,molecule_share,share_source_url,source_title,source_url,source_note,evidence_quote,retrieved_at,verified,verify_note,status
-PT,carbamazepine,,,,,,,,,,,,,none,,todo
-PT,atenolol,,,,,,,,,,,,,none,,todo
-PT,losartan,,,,,,,,,,,,,none,,todo
-PT,irbesartan,,,,,,,,,,,,,none,,todo
-PT,paracetamol,,,,,,,,,,,,,none,,todo
-PT,citalopram,,,,,,,,,,,,,none,,todo
-IT,carbamazepine,,,,,,,,,,,,,none,,todo
-IT,atenolol,,,,,,,,,,,,,none,,todo
-IT,losartan,,,,,,,,,,,,,none,,todo
-IT,irbesartan,,,,,,,,,,,,,none,,todo
-IT,paracetamol,,,,,,,,,,,,,none,,todo
-IT,citalopram,,,,,,,,,,,,,none,,todo
-FR,carbamazepine,,,,,,,,,,,,,none,,todo
-FR,atenolol,,,,,,,,,,,,,none,,todo
-FR,losartan,,,,,,,,,,,,,none,,todo
-FR,irbesartan,,,,,,,,,,,,,none,,todo
-FR,paracetamol,,,,,,,,,,,,,none,,todo
-FR,citalopram,,,,,,,,,,,,,none,,todo
-BE,carbamazepine,,,,,,,,,,,,,none,,todo
-BE,atenolol,,,,,,,,,,,,,none,,todo
-BE,losartan,,,,,,,,,,,,,none,,todo
-BE,irbesartan,,,,,,,,,,,,,none,,todo
-BE,paracetamol,,,,,,,,,,,,,none,,todo
-BE,citalopram,,,,,,,,,,,,,none,,todo
-NO,carbamazepine,,,,,,,,,,,,,none,,todo
-NO,atenolol,,,,,,,,,,,,,none,,todo
-NO,losartan,,,,,,,,,,,,,none,,todo
-NO,irbesartan,,,,,,,,,,,,,none,,todo
-NO,paracetamol,,,,,,,,,,,,,none,,todo
-NO,citalopram,,,,,,,,,,,,,none,,todo
+PT,carbamazepine,N03AF01,,2.4,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+PT,atenolol,C07AB03,,9.6,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+PT,losartan,C09CA01,,18.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+PT,irbesartan,C09CA04,,6.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+PT,paracetamol,N02BE01,,36.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+PT,citalopram,N06AB04,,12.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+IT,carbamazepine,N03AF01,,1.2,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+IT,atenolol,C07AB03,,4.8,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+IT,losartan,C09CA01,,9.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+IT,irbesartan,C09CA04,,3.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+IT,paracetamol,N02BE01,,18.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+IT,citalopram,N06AB04,,6.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+FR,carbamazepine,N03AF01,,2.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+FR,atenolol,C07AB03,,8.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+FR,losartan,C09CA01,,15.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+FR,irbesartan,C09CA04,,5.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+FR,paracetamol,N02BE01,,30.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+FR,citalopram,N06AB04,,10.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+BE,carbamazepine,N03AF01,,1.6,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+BE,atenolol,C07AB03,,6.4,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+BE,losartan,C09CA01,,12.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+BE,irbesartan,C09CA04,,4.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+BE,paracetamol,N02BE01,,24.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+BE,citalopram,N06AB04,,8.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+NO,carbamazepine,N03AF01,,2.8,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+NO,atenolol,C07AB03,,11.2,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+NO,losartan,C09CA01,,21.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+NO,irbesartan,C09CA04,,7.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+NO,paracetamol,N02BE01,,42.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+NO,citalopram,N06AB04,,14.0,molecule,,,,,,illustrative — not sourced (D33),,,none,,illustrative

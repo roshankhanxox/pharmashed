@@ -1,43 +1,43 @@
 drug,param,distribution,value,min,max,unit,source_title,source_url,source_note,evidence_quote,retrieved_at,verified,verify_note,status
-carbamazepine,atc,,,,,,,,,,,none,,todo
-carbamazepine,ddd_g,,,,,g,,,,,,none,,todo
-carbamazepine,fe,,,,,fraction,,,,,,none,,todo
+carbamazepine,atc,,N03AF01,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+carbamazepine,ddd_g,fixed,1.0,,,g,,,illustrative — not sourced (D33),,,none,,illustrative
+carbamazepine,fe,fixed,0.03,,,fraction,,,illustrative — not sourced (D33),,,none,,illustrative
 carbamazepine,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
-carbamazepine,k_per_h,,,,,1/h,,,,,,none,,todo
-carbamazepine,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
-carbamazepine,lod_ng_l,,,,,ng/L,,,,,,none,,todo
-atenolol,atc,,,,,,,,,,,none,,todo
-atenolol,ddd_g,,,,,g,,,,,,none,,todo
-atenolol,fe,,,,,fraction,,,,,,none,,todo
+carbamazepine,k_per_h,fixed,0.001,,,1/h,,,illustrative — not sourced (D33),,,none,,illustrative
+carbamazepine,pnec_ng_l,fixed,0.5,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative
+carbamazepine,lod_ng_l,fixed,0.1,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative
+atenolol,atc,,C07AB03,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+atenolol,ddd_g,fixed,0.075,,,g,,,illustrative — not sourced (D33),,,none,,illustrative
+atenolol,fe,fixed,0.85,,,fraction,,,illustrative — not sourced (D33),,,none,,illustrative
 atenolol,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
-atenolol,k_per_h,,,,,1/h,,,,,,none,,todo
-atenolol,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
-atenolol,lod_ng_l,,,,,ng/L,,,,,,none,,todo
-losartan,atc,,,,,,,,,,,none,,todo
-losartan,ddd_g,,,,,g,,,,,,none,,todo
-losartan,fe,,,,,fraction,,,,,,none,,todo
+atenolol,k_per_h,fixed,0.01,,,1/h,,,illustrative — not sourced (D33),,,none,,illustrative
+atenolol,pnec_ng_l,fixed,5,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative
+atenolol,lod_ng_l,fixed,0.5,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative
+losartan,atc,,C09CA01,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+losartan,ddd_g,fixed,0.05,,,g,,,illustrative — not sourced (D33),,,none,,illustrative
+losartan,fe,fixed,0.04,,,fraction,,,illustrative — not sourced (D33),,,none,,illustrative
 losartan,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
-losartan,k_per_h,,,,,1/h,,,,,,none,,todo
-losartan,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
-losartan,lod_ng_l,,,,,ng/L,,,,,,none,,todo
-irbesartan,atc,,,,,,,,,,,none,,todo
-irbesartan,ddd_g,,,,,g,,,,,,none,,todo
-irbesartan,fe,,,,,fraction,,,,,,none,,todo
+losartan,k_per_h,fixed,0.02,,,1/h,,,illustrative — not sourced (D33),,,none,,illustrative
+losartan,pnec_ng_l,fixed,0.2,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative
+losartan,lod_ng_l,fixed,0.1,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative
+irbesartan,atc,,C09CA04,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+irbesartan,ddd_g,fixed,0.15,,,g,,,illustrative — not sourced (D33),,,none,,illustrative
+irbesartan,fe,fixed,0.2,,,fraction,,,illustrative — not sourced (D33),,,none,,illustrative
 irbesartan,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
-irbesartan,k_per_h,,,,,1/h,,,,,,none,,todo
-irbesartan,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
-irbesartan,lod_ng_l,,,,,ng/L,,,,,,none,,todo
-paracetamol,atc,,,,,,,,,,,none,,todo
-paracetamol,ddd_g,,,,,g,,,,,,none,,todo
-paracetamol,fe,,,,,fraction,,,,,,none,,todo
+irbesartan,k_per_h,fixed,0.01,,,1/h,,,illustrative — not sourced (D33),,,none,,illustrative
+irbesartan,pnec_ng_l,fixed,1,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative
+irbesartan,lod_ng_l,fixed,0.1,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative
+paracetamol,atc,,N02BE01,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+paracetamol,ddd_g,fixed,3.0,,,g,,,illustrative — not sourced (D33),,,none,,illustrative
+paracetamol,fe,fixed,0.03,,,fraction,,,illustrative — not sourced (D33),,,none,,illustrative
 paracetamol,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
-paracetamol,k_per_h,,,,,1/h,,,,,,none,,todo
-paracetamol,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
-paracetamol,lod_ng_l,,,,,ng/L,,,,,,none,,todo
-citalopram,atc,,,,,,,,,,,none,,todo
-citalopram,ddd_g,,,,,g,,,,,,none,,todo
-citalopram,fe,,,,,fraction,,,,,,none,,todo
+paracetamol,k_per_h,fixed,0.1,,,1/h,,,illustrative — not sourced (D33),,,none,,illustrative
+paracetamol,pnec_ng_l,fixed,10,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative
+paracetamol,lod_ng_l,fixed,1,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative
+citalopram,atc,,N06AB04,,,,,,illustrative — not sourced (D33),,,none,,illustrative
+citalopram,ddd_g,fixed,0.02,,,g,,,illustrative — not sourced (D33),,,none,,illustrative
+citalopram,fe,fixed,0.12,,,fraction,,,illustrative — not sourced (D33),,,none,,illustrative
 citalopram,R,,,,,fraction,,,not required: w=0 for all MVP sites,,,none,,todo
-citalopram,k_per_h,,,,,1/h,,,,,,none,,todo
-citalopram,pnec_ng_l,,,,,ng/L,,,,,,none,,todo
-citalopram,lod_ng_l,,,,,ng/L,,,,,,none,,todo
+citalopram,k_per_h,fixed,0.02,,,1/h,,,illustrative — not sourced (D33),,,none,,illustrative
+citalopram,pnec_ng_l,fixed,0.2,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative
+citalopram,lod_ng_l,fixed,0.1,,,ng/L,,,illustrative — not sourced (D33),,,none,,illustrative

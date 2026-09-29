@@ -72,7 +72,7 @@ class ConsumptionRow(BaseModel):
     retrieved_at: str | None = None
     verified: Literal["none", "agent", "human", "failed"] = "none"
     verify_note: str | None = None
-    status: Literal["sourced", "todo"] = "todo"
+    status: Literal["sourced", "illustrative", "todo"] = "todo"
 
     @model_validator(mode="before")
     @classmethod
@@ -98,14 +98,26 @@ class ConsumptionRow(BaseModel):
 
     @model_validator(mode="after")
     def _check_sourced_rules(self) -> ConsumptionRow:
-        if self.status != "sourced":
+        if self.status == "todo":
             return self
 
-        if not self.source_url or not self.source_note:
-            raise ValueError(
-                f"{self.country}:{self.drug} is status=sourced but missing "
-                "source_url and/or source_note"
-            )
+        if self.status == "sourced":
+            if not self.source_url or not self.source_note:
+                raise ValueError(
+                    f"{self.country}:{self.drug} is status=sourced but missing "
+                    "source_url and/or source_note"
+                )
+        else:
+            # illustrative (D33): a declared placeholder that must say so and carry no citation.
+            if not (self.source_note or "").lower().startswith("illustrative"):
+                raise ValueError(
+                    f"{self.country}:{self.drug} is status=illustrative but source_note does not "
+                    "start with 'illustrative'"
+                )
+            if self.source_url or self.source_title or self.evidence_quote or self.share_source_url:
+                raise ValueError(
+                    f"{self.country}:{self.drug} is status=illustrative and must not carry a citation"
+                )
 
         if self.granularity is None:
             raise ValueError(f"{self.country}:{self.drug} is sourced but has no granularity")
@@ -209,7 +221,7 @@ def provenance_entries(rows: Iterable[ConsumptionRow]) -> dict:
     entries = {}
     for row in rows:
         key = f"consumption:{row.country}:{row.drug}"
-        value = consumption_value(row) if row.status == "sourced" else None
+        value = consumption_value(row) if row.status in ("sourced", "illustrative") else None
         entries[key] = ProvenanceEntry(
             label=f"{row.country} {row.drug} consumption",
             value=value,
@@ -218,6 +230,6 @@ def provenance_entries(rows: Iterable[ConsumptionRow]) -> dict:
             source_title=row.source_title,
             source_url=row.source_url,
             source_note=row.source_note,
-            status="sourced" if row.status == "sourced" else "todo",
+            status=row.status,
         )
     return entries

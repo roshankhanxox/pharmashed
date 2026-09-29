@@ -17,6 +17,7 @@ from pharmashed.consumption import ConsumptionRow, consumption_value, load_consu
 from pharmashed.contracts import Site
 from pharmashed.model import Variant, apply_variant, pec_ng_l, rq
 from pharmashed.params import DrugParams, Priors, load_drug_params, load_priors
+from pharmashed.params import load_rows as load_param_rows
 from pharmashed.priors import make_rng, sample_consumption, sample_drug_inputs, sample_site_inputs
 from pharmashed.sites import load_sites
 
@@ -37,6 +38,10 @@ class RunContext:
     mode: Mode = "dev"
     n_draws: int = config.N_DRAWS
     n_stored: int = config.N_STORED
+    # Rows behind the drug parameters (for provenance and honest run metadata) and whether the
+    # dev-mode placeholder fallback filled any `todo` parameter (D16).
+    param_rows: list = field(default_factory=list)
+    dev_placeholders: bool = False
 
     # Derived: consumption[country][drug] → float (DDD/1000/day)
     _consumption: dict[str, dict[str, float]] = field(default_factory=dict, init=False, repr=False)
@@ -56,6 +61,24 @@ class RunContext:
                 if drug in self._consumption[c]
             ]
             self._mean_C[drug] = float(np.mean(vals)) if vals else 1.0
+
+    def illustrative_count(self) -> int:
+        """Number of parameter and consumption rows that are declared illustrative (D33)."""
+        rows = [*self.param_rows, *self.consumption_rows]
+        return sum(1 for r in rows if r.status == "illustrative")
+
+    def sourced_count(self) -> int:
+        """Number of parameter and consumption rows that are sourced."""
+        rows = [*self.param_rows, *self.consumption_rows]
+        return sum(1 for r in rows if r.status == "sourced")
+
+    def all_inputs_sourced(self) -> bool:
+        """True only if no parameter or consumption row is illustrative or still todo.
+
+        The optional R row is ignored: every MVP site has w=0, so R is never used (D27).
+        """
+        rows = [r for r in self.param_rows if getattr(r, "param", "") != "R"] + list(self.consumption_rows)
+        return bool(rows) and all(r.status == "sourced" for r in rows)
 
     def consumption_for(self, city: str, drug: str) -> float:
         """Return DDD/1000/day for the country that maps to city (D02)."""
@@ -81,7 +104,8 @@ class RunContext:
         consumption_path = consumption_path or _REPO_ROOT / "data" / "consumption" / "consumption.csv"
         sites_path = sites_path or _REPO_ROOT / "data" / "sites" / "sites.geojson"
 
-        drug_params, _ = load_drug_params(params_path, mode=mode)
+        drug_params, dev_placeholders = load_drug_params(params_path, mode=mode)
+        param_rows = load_param_rows(params_path)
         priors = load_priors(priors_path)
         consumption_dict = load_consumption(consumption_path, mode=mode)
         consumption_rows = list(consumption_dict.values())
@@ -94,6 +118,8 @@ class RunContext:
             consumption_rows=consumption_rows,
             seed=seed,
             mode=mode,
+            param_rows=param_rows,
+            dev_placeholders=dev_placeholders,
         )
 
 
