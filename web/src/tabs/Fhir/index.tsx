@@ -150,12 +150,12 @@ export function FhirTab() {
             <QueryBox
               label="Lab results"
               query={'Observation?category=laboratory&_count=20'}
-              count={resource_counts["Observation"] ?? "?"}
+              count={fhirIndex.query_demo?.laboratory.count ?? "?"}
             />
             <QueryBox
               label="Model predictions"
               query={'Observation?category=model-prediction&_count=20'}
-              count={resource_counts["Observation"] ?? "?"}
+              count={fhirIndex.query_demo?.model_prediction.count ?? "?"}
             />
           </div>
           <p className="text-xs mt-3" style={{ color: "var(--c-faint)" }}>
