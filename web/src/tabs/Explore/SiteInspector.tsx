@@ -14,7 +14,7 @@ const C = {
   text:    "var(--c-text)",
   muted:   "var(--c-muted)",
   faint:   "var(--c-faint)",
-  indigo:  "var(--c-indigo)",
+  indigo:  "var(--c-accent)",
 } as const;
 
 export function SiteInspector() {

@@ -292,7 +292,7 @@ export function MapView() {
     text:    "var(--c-text)",
     muted:   "var(--c-muted)",
     faint:   "var(--c-faint)",
-    indigo:  "var(--c-indigo)",
+    indigo:  "var(--c-accent)",
   } as const;
 
   return (
@@ -321,7 +321,7 @@ export function MapView() {
                 className="px-2 py-0.5 text-xs rounded transition-all shrink-0"
                 style={{
                   border: `1px solid ${isActive ? C.indigo : C.border}`,
-                  background: isActive ? "rgba(124,117,255,0.12)" : "transparent",
+                  background: isActive ? "var(--c-accent-tint)" : "transparent",
                   color: isActive ? C.indigo : C.muted,
                 }}
               >
@@ -361,7 +361,7 @@ export function MapView() {
               className="px-2 py-0.5 text-xs rounded transition-all shrink-0"
               style={{
                 border: `1px solid ${selectedDrug === d ? C.indigo : C.border}`,
-                background: selectedDrug === d ? "rgba(124,117,255,0.12)" : "transparent",
+                background: selectedDrug === d ? "var(--c-accent-tint)" : "transparent",
                 color: selectedDrug === d ? C.indigo : C.muted,
               }}
             >

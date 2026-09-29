@@ -17,7 +17,7 @@ const C = {
   text:    "var(--c-text)",
   muted:   "var(--c-muted)",
   faint:   "var(--c-faint)",
-  indigo:  "var(--c-indigo)",
+  indigo:  "var(--c-accent)",
 } as const;
 
 const PRESETS = [
@@ -56,7 +56,7 @@ function SliderField({
         step={step}
         value={value}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-indigo-500"
+        className="w-full"
         style={{ accentColor: C.indigo }}
       />
     </label>
@@ -209,7 +209,7 @@ export function ScenariosTab() {
                 onClick={() => { setMultipliers(p.m); setActivePreset(p.label); }}
                 className="text-left p-3 rounded-lg transition-all"
                 style={{
-                  background: activePreset === p.label ? "rgba(124,117,255,0.12)" : C.surface,
+                  background: activePreset === p.label ? "var(--c-accent-tint)" : C.surface,
                   border: `1px solid ${activePreset === p.label ? C.indigo : C.border}`,
                 }}
                 onMouseEnter={(e) => {

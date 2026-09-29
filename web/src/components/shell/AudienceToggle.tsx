@@ -30,7 +30,7 @@ export function AudienceToggle() {
             aria-pressed={active}
             className="px-3 py-1 text-sm rounded-md transition-colors"
             style={{
-              background: active ? "var(--c-indigo)" : "transparent",
+              background: active ? "var(--c-accent)" : "transparent",
               color: active ? "#ffffff" : "var(--c-muted)",
               fontWeight: active ? 600 : 400,
             }}

@@ -12,7 +12,7 @@ const C = {
   text:    "var(--c-text)",
   muted:   "var(--c-muted)",
   faint:   "var(--c-faint)",
-  indigo:  "var(--c-indigo)",
+  indigo:  "var(--c-accent)",
 } as const;
 
 const SUGGESTED: string[] = [
@@ -396,13 +396,13 @@ function MarkdownText({ text }: { text: string }) {
         ),
         tr: ({ children }) => <tr className="hover:bg-white/5 transition-colors">{children}</tr>,
         blockquote: ({ children }) => (
-          <blockquote className="border-l-2 pl-3 my-2 italic" style={{ borderColor: "var(--c-indigo)", color: "var(--c-muted)" }}>{children}</blockquote>
+          <blockquote className="border-l-2 pl-3 my-2 italic" style={{ borderColor: "var(--c-accent)", color: "var(--c-muted)" }}>{children}</blockquote>
         ),
         h1: ({ children }) => <h1 className="text-base font-bold mb-2 mt-1">{children}</h1>,
         h2: ({ children }) => <h2 className="text-sm font-semibold mb-1.5 mt-1">{children}</h2>,
         h3: ({ children }) => <h3 className="text-sm font-medium mb-1 mt-1">{children}</h3>,
         a: ({ href, children }) => (
-          <a href={href} target="_blank" rel="noreferrer" className="underline" style={{ color: "var(--c-indigo)" }}>{children}</a>
+          <a href={href} target="_blank" rel="noreferrer" className="underline" style={{ color: "var(--c-accent)" }}>{children}</a>
         ),
       }}
     >

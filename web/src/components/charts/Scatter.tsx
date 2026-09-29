@@ -45,7 +45,7 @@ export function Scatter({ points, rho, n, xLabel = "Predicted", yLabel = "Observ
         {/* points */}
         {points.map((p, i) => (
           <g key={i}>
-            <circle cx={scaleX(p.x)} cy={IH - scaleY(p.y)} r={4} fill="#6366f1" opacity={0.7} />
+            <circle cx={scaleX(p.x)} cy={IH - scaleY(p.y)} r={4} fill="var(--c-accent)" opacity={0.7} />
             {p.label && (
               <text x={scaleX(p.x) + 6} y={IH - scaleY(p.y) + 3} fontSize={12} fill="#555">
                 {p.label}
@@ -56,7 +56,7 @@ export function Scatter({ points, rho, n, xLabel = "Predicted", yLabel = "Observ
 
         {/* ρ, n */}
         {rho != null && (
-          <text x={IW} y={10} textAnchor="end" fontSize={12} fill="#6366f1">
+          <text x={IW} y={10} textAnchor="end" fontSize={12} fill="var(--c-accent)">
             ρ = {rho.toFixed(2)}{n != null ? `, n = ${n}` : ""}
           </text>
         )}
