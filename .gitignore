@@ -19,6 +19,9 @@ web/dist/
 # env
 .env
 
+# local planning notes (not committed)
+suggestion.md
+
 # editors / os
 .DS_Store
 .vscode/
