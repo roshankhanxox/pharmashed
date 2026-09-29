@@ -22,6 +22,7 @@ Only then: make run-strict → make freeze
 ```
 
 **Evidence rules (apply to every row):**
+
 1. `evidence_quote`: verbatim text from the source that contains the number, under 40 words. Shorten with "…" if needed, but the number must appear.
 2. `source_note`: where in the source (table/section/page) plus any conversion ("mg → g", "% → fraction").
 3. `retrieved_at`: ISO date.
@@ -35,22 +36,23 @@ Only then: make run-strict → make freeze
 
 Agents follow these rules instead of choosing freely. If a rule can't be applied, record why and stop for human input.
 
-| Param | Rule |
-|---|---|
-| `atc` | WHO ATC/DDD Index (atcddd.fhi.no). Code for the plain oral product |
-| `ddd_g` | WHO ATC/DDD Index, oral route, converted to grams, `fixed` |
-| `fe` | Fraction excreted **unchanged** (urine + faeces if both reported). Priority: peer-reviewed PK review or regulatory label (EMA SmPC / FDA label) > DrugBank. Range across sources → `uniform` |
-| `R` | **Not required for MVP** (all sites w=0). Leave `status=todo`, `source_note="not required: w=0 for all MVP sites"`. The loader treats it as optional when all sites have w=0 |
-| `k_per_h` | In-stream attenuation rate from field studies; start from Acuña et al. 2015 (Sci Total Environ 503–504:133–141). If only half-life or distance given, record the conversion used to derive `k_per_h` in `source_note`. If not found for a drug → `todo` |
-| `pnec_ng_l` | NORMAN Ecotoxicology Database: freshwater PNEC ("lowest PNEC" record) with its ID. Fallback: EU Watch List / JRC dossier freshwater PNEC. Record which source type was used. **Always human-reviewed** |
-| `lod_ng_l` | From R1's analytical method reference: Pereira et al. 2023, Appl. Sci. 13(11):6414. Only that source (it's the method the observations used) |
-| consumption | National molecule-level source first (see S3). Fallback: OECD group-level × country-specific molecule share, with the share's source cited separately |
+| Param       | Rule                                                                                                                                                                                                                                                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `atc`       | WHO ATC/DDD Index (atcddd.fhi.no). Code for the plain oral product                                                                                                                                                                                      |
+| `ddd_g`     | WHO ATC/DDD Index, oral route, converted to grams, `fixed`                                                                                                                                                                                              |
+| `fe`        | Fraction excreted **unchanged** (urine + faeces if both reported). Priority: peer-reviewed PK review or regulatory label (EMA SmPC / FDA label) > DrugBank. Range across sources → `uniform`                                                            |
+| `R`         | **Not required for MVP** (all sites w=0). Leave `status=todo`, `source_note="not required: w=0 for all MVP sites"`. The loader treats it as optional when all sites have w=0                                                                            |
+| `k_per_h`   | In-stream attenuation rate from field studies; start from Acuña et al. 2015 (Sci Total Environ 503–504:133–141). If only half-life or distance given, record the conversion used to derive `k_per_h` in `source_note`. If not found for a drug → `todo` |
+| `pnec_ng_l` | NORMAN Ecotoxicology Database: freshwater PNEC ("lowest PNEC" record) with its ID. Fallback: EU Watch List / JRC dossier freshwater PNEC. Record which source type was used. **Always human-reviewed**                                                  |
+| `lod_ng_l`  | From R1's analytical method reference: Pereira et al. 2023, Appl. Sci. 13(11):6414. Only that source (it's the method the observations used)                                                                                                            |
+| consumption | National molecule-level source first (see S3). Fallback: OECD group-level × country-specific molecule share, with the share's source cited separately                                                                                                   |
 
 ---
 
 ## S2 — Researcher prompt: drug parameters
 
 Run once per drug, in a fresh session:
+
 ```
 Read CONTEXT.md and SOURCING.md sections S0, S1, S2 only.
 Research drug <DRUG> for data/params/drug_parameters.csv: params atc, ddd_g, fe, k_per_h, pnec_ng_l, lod_ng_l
@@ -64,6 +66,7 @@ Edit only this drug's rows. Then append a 3-line summary to CHECKPOINT "Last ses
 ## S3 — Researcher prompt: consumption
 
 Run once per country, in a fresh session:
+
 ```
 Read CONTEXT.md and SOURCING.md sections S0, S1, S3 only.
 Research country <CC> for data/consumption/consumption.csv: DDD per 1000 inhabitants per day
@@ -75,11 +78,13 @@ Sources may be in Portuguese, Italian, French, Dutch or Norwegian — quote the 
 and translate in source_note. If a download (xlsx/csv) is needed, save it under data/raw/
 and cite the sheet/row. Edit only this country's rows. Then update CHECKPOINT.
 ```
+
 Candidate national sources (to verify, not assume): Norway public drug statistics; France ANSM / Medic'AM; Italy AIFA OsMed report; Belgium INAMI-RIZIV; Portugal Infarmed.
 
 ## S4 — Verifier prompt
 
 Run in a fresh session after researchers finish (can batch all rows):
+
 ```
 Read CONTEXT.md and SOURCING.md sections S0, S1, S4 only.
 For every row in data/params/drug_parameters.csv and data/consumption/consumption.csv with verified=none:
@@ -93,6 +98,7 @@ Do not change values. Do not research alternatives. Then run `make sourcing-repo
 ## S5 — Sites (auto-placement, replaces manual placement)
 
 Implemented as `scripts/auto_place_sites.py`:
+
 1. Overpass query per city bbox: `waterway` in {stream, ditch, canal}; exclude `tunnel=culvert` and any segment shorter than 200 m.
 2. Candidate points every 150 m along lines.
 3. Stratify candidates by GHS-POP density within 500 m (tertiles: outskirts / mid / centre); choose 3 per stratum spread apart by ≥ 800 m → 9 sites per city (seeded).
