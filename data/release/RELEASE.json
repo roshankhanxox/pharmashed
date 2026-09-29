@@ -2,6 +2,6 @@
   "frozen_tag": "predictions-frozen-illustrative-v1",
   "n_draws": 1000,
   "all_params_cited": false,
-  "built_from_commit": "8308192ba0ac649944081715dc70c132228911cf",
-  "created_at": "2026-09-29T20:13:45.538232+00:00"
+  "built_from_commit": "a096a07f459443bcc357e86f077015a646c5d665",
+  "created_at": "2026-09-29T20:39:37.059995+00:00"
 }
