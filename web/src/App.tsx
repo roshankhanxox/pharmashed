@@ -18,6 +18,9 @@ import { DevBanner, PrototypeBanner } from "./components/shell/DevBanner";
 import { ProvenanceDrawer } from "./components/provenance/ProvenanceDrawer";
 import { AssistantDrawer } from "./assistant/AssistantDrawer";
 import { FloatingAsk } from "./components/shell/FloatingAsk";
+import { AuthDialog } from "./community/AuthDialog";
+import { NicknameDialog } from "./community/NicknameDialog";
+import { useCommunity } from "./community/store";
 import { LoadingView, InvalidView } from "./components/shell/StateViews";
 
 import { HomeTab } from "./tabs/Home";
@@ -76,6 +79,7 @@ function App() {
       }
     }
     void load();
+    void useCommunity.getState().init();
   }, []);
 
   if (dataLoading) {
@@ -116,6 +120,8 @@ function App() {
       <ProvenanceDrawer />
       <FloatingAsk />
       <AssistantDrawer />
+      <AuthDialog />
+      <NicknameDialog />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useStore, type Tab } from "../../data/store";
 import { CITIZEN_TAB_LABEL } from "../../data/copy";
 import { AudienceToggle } from "./AudienceToggle";
 import { ThemeToggle } from "./ThemeToggle";
+import { AccountMenu } from "../../community/AccountMenu";
 
 const TABS: { id: Tab; label: string }[] = [
   { id: "home",        label: "Home" },
@@ -65,6 +66,7 @@ export function TopTabs() {
       <div className="ml-auto flex items-center gap-2">
         <AudienceToggle />
         <ThemeToggle />
+        <AccountMenu />
       </div>
 
       {/* Assistant CTA */}
