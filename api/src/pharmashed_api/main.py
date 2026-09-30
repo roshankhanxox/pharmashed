@@ -8,7 +8,7 @@ load_dotenv()  # load .env from cwd or any parent directory
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from pharmashed_api.routes import assistant, core, fhir, scenario
+from pharmashed_api.routes import assistant, community, core, fhir, scenario
 
 app = FastAPI(
     title="PharmaShed API",
@@ -29,7 +29,7 @@ if extra := os.getenv("CORS_ORIGINS"):
 app.add_middleware(
     CORSMiddleware,
     allow_origins=_origins,
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
     allow_headers=["*"],
 )
 
@@ -37,3 +37,4 @@ app.include_router(core.router, prefix="/api")
 app.include_router(scenario.router, prefix="/api")
 app.include_router(fhir.router, prefix="/api")
 app.include_router(assistant.router, prefix="/api")
+app.include_router(community.router, prefix="/api")

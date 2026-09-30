@@ -10,6 +10,10 @@ services:
     envVars:
       - key: OPENAI_API_KEY
         sync: false          # set manually in Render dashboard
+      - key: DATABASE_URL
+        sync: false          # Neon pooled connection string (citizen reports); optional
+      - key: NEON_AUTH_BASE_URL
+        sync: false          # Neon Auth URL (sign-in); optional
       - key: PHARMASHED_DATA
         value: data/release   # committed snapshot made by scripts/make_release.py
       - key: ASSISTANT_MODEL
