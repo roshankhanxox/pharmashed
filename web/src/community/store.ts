@@ -122,8 +122,10 @@ export const useCommunity = create<CommunityState>((set, get) => ({
         set({ busy: false, error: error.message ?? "Sign-in failed. Check your email and password." });
         return false;
       }
-      set({ busy: false, authDialog: "closed" });
+      // Keep the dialog open (with its "One moment" state) until the profile has loaded: the first
+      // sign-in can take a few seconds while Neon wakes up, and a closed dialog would look frozen.
       await get().refresh();
+      set({ busy: false, authDialog: "closed" });
       return true;
     } catch (e) {
       set({ busy: false, error: messageOf(e, "Sign-in failed. Please try again.") });
@@ -141,8 +143,8 @@ export const useCommunity = create<CommunityState>((set, get) => ({
         set({ busy: false, error: error.message ?? "Could not create the account." });
         return false;
       }
-      set({ busy: false, authDialog: "closed" });
       await get().refresh();
+      set({ busy: false, authDialog: "closed" });
       return true;
     } catch (e) {
       set({ busy: false, error: messageOf(e, "Could not create the account. Please try again.") });

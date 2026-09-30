@@ -126,6 +126,21 @@ describe("signing in and out", () => {
     expect(store.getState()).toMatchObject({ authDialog: "closed", signedIn: true, profile });
   });
 
+  it("keeps the sign-in dialog open, busy, until the profile has loaded", async () => {
+    client.signIn.email.mockResolvedValue({ data: {}, error: null });
+    let release: (v: unknown) => void = () => {};
+    apiFetch.mockReturnValue(new Promise((resolve) => { release = resolve; }));   // /me is slow (Neon waking up)
+    signedIn();
+    const store = await load(true);
+    store.setState({ authDialog: "signin" });
+    const pending = store.getState().signInEmail("a@b.co", "pw");
+    await new Promise((r) => setTimeout(r, 10));
+    expect(store.getState()).toMatchObject({ authDialog: "signin", busy: true });   // still showing "One moment"
+    release({ user: { name: "Pat" }, profile, is_admin: false });
+    await pending;
+    expect(store.getState()).toMatchObject({ authDialog: "closed", busy: false, signedIn: true });
+  });
+
   it("creates an account with the name, email and password", async () => {
     client.signUp.email.mockResolvedValue({ data: {}, error: null });
     apiFetch.mockResolvedValue({ user: { name: "Pat" }, profile: null, is_admin: false });
