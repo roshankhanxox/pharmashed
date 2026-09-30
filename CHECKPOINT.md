@@ -76,7 +76,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done (acceptance passed) · �
 | S2 | Citizen / Expert view, plain-language citizen pages, what-if explanations; Lenis smooth scroll and fades | ☑ | PR #15 |
 | S3 | Assistant everywhere (floating button, Home ask bar), plain-language answers, usage limits | ☑ | PR #16 |
 | S4 | Assistant on OpenAI `gpt-5-mini` (Groq fallback), status endpoint, site context ("Ask about this site") | ☑ | PR #15 |
-| S5 | Citizen reports + gamification | ☐ | Not started. Needs a database; citizen reports must never change the model score |
+| S5 | Citizen reports + gamification | ◐ | Plan in `docs/S5-citizen-reports-plan.md`. Phase 1 (foundation: database layer, sign-in token check, profiles, sign-in UI) built and tested; needs a Neon project and one real end-to-end check. Phases 2-5 not started. Reports never change the model score |
 | S6 | Heat-glow map; MapLibre worker bundling fix for production | ☑ | PR #17 |
 | S7 | Housekeeping: this file, FHIR badge honesty, Explore empty state, city chips, stale tests | ☑ | this PR |
 
