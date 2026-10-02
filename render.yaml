@@ -5,6 +5,7 @@ services:
     region: frankfurt
     plan: free
     rootDir: .
+    healthCheckPath: /api/ping   # Render's own check; also the URL to give an uptime monitor
     buildCommand: pip install uv && uv sync --frozen
     startCommand: uv run uvicorn pharmashed_api.main:app --host 0.0.0.0 --port $PORT
     envVars:

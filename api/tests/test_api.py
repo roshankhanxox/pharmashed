@@ -48,6 +48,27 @@ def test_health_ok(client):
     assert r.json()["ok"] is True
 
 
+def test_health_accepts_head(client):
+    assert client.head("/api/health").status_code == 200
+
+
+def test_ping_works_for_get_and_head_and_is_not_cached(client):
+    for method in (client.get, client.head):
+        r = method("/api/ping")
+        assert r.status_code == 200
+        assert r.headers["cache-control"] == "no-store"
+    assert client.get("/api/ping").json() == {"ok": True}
+
+
+def test_ping_needs_no_data_and_no_database(monkeypatch, client):
+    """A keep-alive must work even if the data files or the database are broken."""
+    from pharmashed_api import data
+
+    monkeypatch.setattr(data, "results", lambda: (_ for _ in ()).throw(RuntimeError("data broken")))
+    monkeypatch.delenv("DATABASE_URL", raising=False)
+    assert client.get("/api/ping").status_code == 200
+
+
 # --- meta ---
 
 def test_meta_has_engine_version(client):

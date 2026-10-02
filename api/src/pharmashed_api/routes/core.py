@@ -3,14 +3,24 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 
 from pharmashed_api import data as _data
 
 router = APIRouter()
 
 
-@router.get("/health")
+@router.api_route("/ping", methods=["GET", "HEAD"])
+def ping() -> JSONResponse:
+    """Keep-alive target for an uptime monitor (UptimeRobot, Render's health check).
+
+    Does nothing but answer: no data files, no database, so it is instant and never wakes Neon. Accepts HEAD
+    because free uptime monitors send HEAD by default, and a 405 would show the site as down. Never cached.
+    """
+    return JSONResponse({"ok": True}, headers={"Cache-Control": "no-store"})
+
+
+@router.api_route("/health", methods=["GET", "HEAD"])
 def health():
     meta = _data.results().get("meta", {})
     return {"ok": True, "engine_version": meta.get("engine_version", "unknown")}
