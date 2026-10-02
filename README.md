@@ -14,7 +14,7 @@ Existing pharmaceutical screening models (ePiE, GREAT-ER) route all drug load th
 
 Most urban streams don't have one.
 
-A 2025 field study ([Rodrigues et al., J. Hazard. Mater. 499:139946](https://pubmed.ncbi.nlm.nih.gov/39489128/)) screened 102 urban stream sites across five European cities. Pharmaceuticals were detected at **91% of sites** — up to 31,659 ng/L of irbesartan in Toulouse. Not one site had a WWTP on the stream. Every established tool predicted concentration ≈ 0 at all of them.
+A 2025 field study ([Rodrigues et al., *J. Hazard. Mater.* 499:139946](https://doi.org/10.1016/j.jhazmat.2025.139946)) screened 102 urban stream sites across five European cities. Pharmaceuticals were detected at **91% of sites** — up to 31,659 ng/L of irbesartan in Toulouse. A model that routes drug load only through treatment-plant outfalls has nothing to say about a stream without one: it predicts concentration ≈ 0 there (our WWTP-only ablation shows this blind spot).
 
 PharmaShed fills that gap by modelling the **untreated pathway**: sewer leakage, misconnections, and combined sewer overflows that bypass treatment entirely.
 
@@ -193,12 +193,14 @@ Checks pass because the validation pipeline is structurally correct. Full valida
 
 ---
 
-## Citation
+## Citation and credits
+
+The field data and the consistency checks come from this paper; please cite it:
 
 ```bibtex
 @article{rodrigues2025,
-  author  = {Rodrigues et al.},
-  title   = {Pharmaceuticals in urban streams: a European field study},
+  author  = {Rodrigues, Fernanda and Calapez, Ana R. and Pereira, Andr{\'e} M. P. T. and Silva, Liliana J. G. and Freitas, Andreia and Bouchali, Rayan and De Cock, Andree and Forio, Marie Anne Eurie and Goethals, Peter and Henni, Silje H. and Loyau, Adeline and Moen, Anne and Piscopo, Nadia and Schmeller, Dirk S. and da Silva, Janine P. and Dur{\~a}es, Luisa and Sim{\~o}es, Nuno E. C. and Feio, Maria J.},
+  title   = {Patterns of pharmaceutical contamination in streams of European cities across urbanisation gradients: Potential impacts on One Health},
   journal = {Journal of Hazardous Materials},
   volume  = {499},
   pages   = {139946},
@@ -206,6 +208,17 @@ Checks pass because the validation pipeline is structurally correct. Full valida
   doi     = {10.1016/j.jhazmat.2025.139946}
 }
 ```
+
+How the model is built on other people's work:
+
+- **Exposure model structure.** The WWTP-routed baseline is the ePiE model: Oldenkamp, Hoeks, Čengić, Barbarossa, et al., *Environ. Sci. Technol.* 52(21):12494–12503 (2018), [doi:10.1021/acs.est.8b03862](https://doi.org/10.1021/acs.est.8b03862). GREAT-ER is named as a comparison; its primary citation is not yet verified here.
+- **Leakage (λ) prior.** Informed by Fenz, Blaschke, Clara, Kroiss, Mascher, Zessner, *Water Sci. Technol.* 52(9):209–217 (2005), [doi:10.2166/wst.2005.0321](https://doi.org/10.2166/wst.2005.0321), and the APUSS project. The prior itself (log-uniform 0.002–0.15) is our own stated assumption.
+- **Population.** GHS-POP R2023A (Global Human Settlement Layer, European Commission Joint Research Centre), 500 m buffers.
+- **Streams and basemap.** © OpenStreetMap contributors.
+- **Data standard.** HL7 FHIR R4 and the OneAquaHealth Implementation Guide (hl7-eu/oah), validated with the HL7 validator.
+- **Context.** Built for the IEEE OneAquaHealth Global Hackathon 2026, Track 7 (Digital Health Standards).
+
+The drug parameters in this prototype are illustrative placeholders, not values from these papers.
 
 ---
 

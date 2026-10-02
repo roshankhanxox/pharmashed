@@ -62,9 +62,16 @@ const CITATIONS = [
   {
     ref: "Rodrigues et al. 2025",
     detail: "J. Hazard. Mater. 499:139946",
-    note: "102 sites · 5 cities · 20 drugs — the observed dataset used for all consistency checks",
-    href: "https://pubmed.ncbi.nlm.nih.gov/39489128/",
+    note: "Patterns of pharmaceutical contamination in streams of European cities across urbanisation gradients: 102 sites · 5 cities — the field data behind the consistency checks",
+    href: "https://doi.org/10.1016/j.jhazmat.2025.139946",
     doi: "10.1016/j.jhazmat.2025.139946",
+  },
+  {
+    ref: "Fenz et al. 2005",
+    detail: "Water Sci. Technol. 52(9):209–217",
+    note: "Measured sewer exfiltration using carbamazepine as a marker — informs the leakage (λ) prior, together with the APUSS project",
+    href: "https://doi.org/10.2166/wst.2005.0321",
+    doi: "10.2166/wst.2005.0321",
   },
   {
     ref: "Oldenkamp et al. 2018",
