@@ -145,8 +145,15 @@ cd web && pnpm tsc --noEmit
 |---|---|---|
 | `OPENAI_API_KEY` | API (Render dashboard) | Assistant LLM (`GROQ_API_KEY` is an optional fallback) |
 | `CORS_ORIGINS` | API | Allowed frontend origins |
-| `PHARMASHED_DATA` | API | Path to data directory (defaults to `data/build/`) |
+| `PHARMASHED_DATA` | API | Path to data directory (defaults to `data/build/`, else `data/release/`) |
 | `VITE_DATA_BASE` | Web `.env.production` | API base URL for deployed frontend |
+| `DATABASE_URL` | API | Neon Postgres connection string (use the pooled one). Optional: without it the citizen-reports endpoints answer 503 and the rest of the API is unaffected |
+| `NEON_AUTH_BASE_URL` | API | Neon Auth URL; the API verifies sign-in tokens against `<url>/.well-known/jwks.json` |
+| `ADMIN_EMAILS` | API | Comma-separated emails treated as moderators (the email must also be verified) |
+| `VITE_NEON_AUTH_URL` | Web | The same Neon Auth URL; without it the sign-in controls are hidden |
+| `VITE_NEON_AUTH_GOOGLE` | Web | Set to `true` to show "Continue with Google" (only if enabled in the Neon Auth project) |
+
+Citizen reports and gamification are being built in phases; see [docs/S5-citizen-reports-plan.md](docs/S5-citizen-reports-plan.md).
 
 ---
 
