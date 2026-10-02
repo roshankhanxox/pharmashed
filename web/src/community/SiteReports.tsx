@@ -4,7 +4,7 @@ import { useStore } from "../data/store";
 import { useCommunity } from "./store";
 import { ago, checklistPairs } from "./reports";
 import { useReports } from "./reportsStore";
-import { startReportFlow } from "./startReport";
+import { startFlagFlow, startReportFlow } from "./startReport";
 
 export function SiteReports({ siteId }: { siteId: string }) {
   const available = useCommunity((s) => s.availability === "ready");
@@ -39,6 +39,9 @@ export function SiteReports({ siteId }: { siteId: string }) {
                 <span className="font-medium" style={{ color: "var(--c-text)" }}>{r.author}</span>
                 <span>· {ago(r.observed_at)}</span>
                 {r.is_sample && <span className="px-1.5 rounded" style={{ border: "1px solid var(--c-border)" }}>sample</span>}
+                {!r.is_sample && !r.mine && (
+                  <button onClick={() => startFlagFlow(r)} className="underline ml-auto" style={{ color: "var(--c-muted2)" }}>Flag</button>
+                )}
               </div>
               <div className="text-sm" style={{ color: "var(--c-muted)" }}>
                 {checklistPairs(r.checklist).map(([q, a], j) => (

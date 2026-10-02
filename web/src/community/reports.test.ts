@@ -87,3 +87,20 @@ describe("map popup", () => {
     expect(node.textContent).toContain("Sample report · unverified");
   });
 });
+
+describe("popup flag button", () => {
+  const base = { id: "r", lat: 1, lon: 2, site_id: "TLS-01", city: "TLS", observed_at: new Date().toISOString(), checklist: { foam: "light" },
+    note: "", is_sample: false, author: "Pat", mine: false };
+
+  it("appears for other people's real reports and calls back with the report", () => {
+    const seen: string[] = [];
+    const node = reportPopup(base, (r) => seen.push(r.id));
+    node.querySelector("button")!.click();
+    expect(seen).toEqual(["r"]);
+  });
+
+  it("is not offered for your own report or a sample", () => {
+    expect(reportPopup({ ...base, mine: true }, () => undefined).querySelector("button")).toBeNull();
+    expect(reportPopup({ ...base, is_sample: true }, () => undefined).querySelector("button")).toBeNull();
+  });
+});

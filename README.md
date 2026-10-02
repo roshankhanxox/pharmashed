@@ -90,7 +90,7 @@ PharmaShed publishes every prediction as an HL7 FHIR R4 `Observation` resource c
 - `category: model-prediction` — distinguishes model output from lab results on a shared server
 - `meta.tag: illustrative-parameter` — drops when real sourced values replace placeholders
 
-**Validation.** All ten bundles (105 Locations, 630 predictions, consumption, reference measurements, terminology, and the IG's own examples) were checked with the official HL7 FHIR validator (6.10.4, FHIR R4) against the OneAquaHealth profiles: **0 errors, 1,513 warnings**. The warnings are best-practice notes (resources without narrative text, and our observation codes not being in the guide's suggested value set); none are conformance errors. The guide is published only as FSH source, so `scripts/validate_fhir.py` compiles it with SUSHI at a pinned commit (`hl7-eu/oah@b907cf0`) before validating. What this shows is that the *shape* of the output is valid; it says nothing about whether the numbers inside are right (the inputs are illustrative). A local HAPI FHIR server (`docker compose`) has not been run. To reproduce: `uv run pharmashed fhir && uv run python scripts/validate_fhir.py` (needs Java and Node; downloads about 200 MB the first time).
+**Validation.** All eleven bundles (105 Locations, 630 predictions, consumption, reference measurements, terminology, unverified citizen observations, and the IG's own examples) were checked with the official HL7 FHIR validator (6.10.4, FHIR R4) against the OneAquaHealth profiles: **0 errors, 1,530 warnings**. The warnings are best-practice notes (resources without narrative text, and our observation codes not being in the guide's suggested value set); none are conformance errors. The guide is published only as FSH source, so `scripts/validate_fhir.py` compiles it with SUSHI at a pinned commit (`hl7-eu/oah@b907cf0`) before validating. What this shows is that the *shape* of the output is valid; it says nothing about whether the numbers inside are right (the inputs are illustrative). A local HAPI FHIR server (`docker compose`) has not been run. To reproduce: `uv run pharmashed fhir && uv run python scripts/validate_fhir.py` (needs Java and Node; downloads about 200 MB the first time).
 
 The FHIR tab co-hosts PharmaShed bundles alongside the OAH IG's own example resources (Benevento air quality, Almyros water chemistry), demonstrating the consortium's vision of a unified One Health FHIR server. A single query parameter — `Observation?category=model-prediction` — filters them apart.
 
@@ -149,12 +149,12 @@ cd web && pnpm tsc --noEmit
 | `VITE_DATA_BASE` | Web `.env.production` | API base URL for deployed frontend |
 | `DATABASE_URL` | API | Neon Postgres connection string (use the pooled one). Optional: without it the citizen-reports endpoints answer 503 and the rest of the API is unaffected |
 | `NEON_AUTH_BASE_URL` | API | Neon Auth URL; the API verifies sign-in tokens against `<url>/.well-known/jwks.json` |
-| `ADMIN_EMAILS` | API | Comma-separated emails treated as moderators (the email must also be verified) |
+| `ADMIN_EMAILS` | API | Comma-separated emails treated as moderators. The email must also be **verified**, so turn on email verification in the Neon Auth settings first, or nobody can moderate |
 | `AWS_ENDPOINT_URL_S3`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `S3_BUCKET`, `AWS_REGION` | API | Neon storage bucket (S3-compatible, private) for report photos. Optional: without them the photo button is hidden and nothing else changes |
 | `VITE_NEON_AUTH_URL` | Web | The same Neon Auth URL; without it the sign-in controls are hidden |
 | `VITE_NEON_AUTH_GOOGLE` | Web | Set to `true` to show "Continue with Google" (only if enabled in the Neon Auth project) |
 
-Citizen reports and gamification are being built in phases; see [docs/S5-citizen-reports-plan.md](docs/S5-citizen-reports-plan.md).
+**Citizen reports** (S5): signed-in people file a checklist report about a stream, optionally tidied by AI and with a photo; reports show as an unverified layer on the map and never change a score. Points, badges, a weekly challenge and a leaderboard reward useful reports; readers can flag reports, a moderator approves or hides held and flagged ones, people can delete their account, and approved reports are also served as unverified FHIR (`/api/fhir/citizen-observations`). Design and rules: [docs/S5-citizen-reports-plan.md](docs/S5-citizen-reports-plan.md).
 
 ---
 

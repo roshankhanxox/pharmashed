@@ -14,6 +14,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "fhir",        label: "FHIR" },
   { id: "leaderboard", label: "Leaderboard" },
   { id: "mine",        label: "My streams" },
+  { id: "moderation",  label: "Moderation" },
 ];
 
 /** Tabs that need the community feature (a database and sign-in). */
@@ -25,9 +26,11 @@ export function TopTabs() {
   const openAssistant = useStore((s) => s.openAssistant);
   const audience     = useStore((s) => s.audience);
   const community    = useCommunity((s) => s.availability === "ready");
+  const isAdmin      = useCommunity((s) => s.isAdmin);
 
   // Citizen view shows only the tabs that have a citizen version.
-  const visible = TABS.filter((t) => community || !COMMUNITY_TABS.includes(t.id));
+  const visible = TABS.filter((t) =>
+    t.id === "moderation" ? community && isAdmin : community || !COMMUNITY_TABS.includes(t.id));
   const tabs = audience === "citizen"
     ? visible.filter((t) => t.id in CITIZEN_TAB_LABEL).map((t) => ({ ...t, label: CITIZEN_TAB_LABEL[t.id] ?? t.label }))
     : visible;

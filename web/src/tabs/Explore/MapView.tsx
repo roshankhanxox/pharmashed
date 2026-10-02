@@ -9,7 +9,7 @@ import type { StyleSpecification } from "maplibre-gl";
 // site glows never render, silently.
 import { useCommunity } from "../../community/store";
 import { useReports } from "../../community/reportsStore";
-import { startReportFlow } from "../../community/startReport";
+import { startFlagFlow, startReportFlow } from "../../community/startReport";
 import { reportPopup } from "../../community/reportPopup";
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 
@@ -182,7 +182,7 @@ export function MapView() {
         if (report) {
           new maplibregl.Popup({ offset: 12, maxWidth: "280px" })
             .setLngLat([report.lon, report.lat])
-            .setDOMContent(reportPopup(report))
+            .setDOMContent(reportPopup(report, startFlagFlow))
             .addTo(map);
         }
         const siteId = props?.site_id;

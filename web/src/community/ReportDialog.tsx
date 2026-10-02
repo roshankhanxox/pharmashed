@@ -331,7 +331,10 @@ export function ReportDialog() {
               </div>
             )}
             <p className="text-sm" style={{ color: "var(--c-muted2)" }}>
-              Your nickname will show next to the report. Reports are unverified and never change a testing priority.
+              Your nickname will show next to the report. Reports are unverified and never change a testing priority.{" "}
+              <button type="button" onClick={() => useCommunity.getState().openPrivacy()} className="underline" style={{ color: "var(--c-accent)" }}>
+                How we use your data
+              </button>
             </p>
           </div>
         )}

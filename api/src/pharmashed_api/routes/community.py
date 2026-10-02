@@ -8,12 +8,12 @@ from datetime import UTC, datetime
 from typing import Any
 
 from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile
-from fastapi.responses import RedirectResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from pydantic import BaseModel, Field, field_validator
 
 from pharmashed_api.assistant import loop
 from pharmashed_api.assistant.limits import limiter
-from pharmashed_api.community import auth, db, photos, points, profiles, proofread, reports, storage
+from pharmashed_api.community import accounts, auth, db, moderation, photos, points, profiles, proofread, reports, storage
 
 log = logging.getLogger(__name__)
 router = APIRouter()
@@ -188,3 +188,81 @@ def leaderboard(
     """Top people by points, by nickname, for everyone or one city, all time, this week or the last 30 days."""
     with db.connection() as conn:
         return points.leaderboard(conn, user.id if user else None, scope=scope, city=city, limit=limit)
+
+
+class FlagIn(BaseModel):
+    reason: str
+
+
+@router.post("/reports/{report_id}/flag", dependencies=[Depends(require_database)])
+def flag_report(report_id: uuid.UUID, body: FlagIn, user: auth.AuthUser = auth.CurrentUser) -> dict:
+    """Flag a public report for review. One flag per person per report; three different people hold it for review."""
+    try:
+        with db.connection() as conn:
+            return moderation.flag_report(conn, str(report_id), user.id, body.reason)
+    except moderation.NotFound as e:
+        raise HTTPException(404, str(e)) from None
+    except moderation.ModerationError as e:
+        raise HTTPException(422, str(e)) from None
+    except moderation.TooManyFlags:
+        raise HTTPException(429, "You have flagged a lot of reports today. Please try again tomorrow.") from None
+
+
+@router.get("/flag-reasons")
+def flag_reasons() -> dict:
+    """The reasons a person can pick when flagging (id -> plain-language label)."""
+    return moderation.FLAG_REASONS
+
+
+class DecisionIn(BaseModel):
+    note: str = ""
+
+
+@router.get("/admin/reports", dependencies=[Depends(require_database)])
+def admin_queue(user: auth.AuthUser = auth.AdminUser) -> list[dict]:
+    """Reports waiting for a decision (moderators only)."""
+    with db.connection() as conn:
+        return moderation.queue(conn)
+
+
+def _decide(action: str, report_id: uuid.UUID, body: DecisionIn, admin: auth.AuthUser) -> dict:
+    try:
+        with db.connection() as conn:
+            return getattr(moderation, action)(conn, str(report_id), admin.id, body.note)
+    except moderation.NotFound as e:
+        raise HTTPException(404, str(e)) from None
+    except moderation.ModerationError as e:
+        raise HTTPException(422, str(e)) from None
+
+
+@router.post("/admin/reports/{report_id}/approve", dependencies=[Depends(require_database)])
+def admin_approve(report_id: uuid.UUID, body: DecisionIn, user: auth.AuthUser = auth.AdminUser) -> dict:
+    """Approve a held or flagged report (moderators only)."""
+    return _decide("approve", report_id, body, user)
+
+
+@router.post("/admin/reports/{report_id}/hide", dependencies=[Depends(require_database)])
+def admin_hide(report_id: uuid.UUID, body: DecisionIn, user: auth.AuthUser = auth.AdminUser) -> dict:
+    """Hide a report, reverse its points and delete its photo (moderators only)."""
+    return _decide("hide", report_id, body, user)
+
+
+@router.delete("/me", dependencies=[Depends(require_database)])
+def delete_me(user: auth.AuthUser = auth.CurrentUser) -> dict:
+    """Delete the signed-in person's account and everything we hold about them."""
+    with db.connection() as conn:
+        return accounts.delete_account(conn, user.id)
+
+
+@router.get("/fhir/citizen-observations", dependencies=[Depends(require_database)])
+def citizen_observations() -> JSONResponse:
+    """Approved reports as an unverified FHIR R4 Bundle (no nicknames, no free text, linked to site Locations)."""
+    from pharmashed.fhir.builder import citizen_bundle  # noqa: PLC0415 - the engine is only needed here
+
+    with db.connection() as conn:
+        rows = conn.execute(
+            "select id, site_id, observed_at, checklist, is_sample from reports"
+            " where status = 'approved' and site_id is not null order by observed_at desc limit 1000"
+        ).fetchall()
+    bundle = citizen_bundle([{**r, "id": str(r["id"]), "visited_at": r["observed_at"]} for r in rows])
+    return JSONResponse(bundle, media_type="application/fhir+json")

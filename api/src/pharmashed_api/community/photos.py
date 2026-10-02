@@ -92,8 +92,24 @@ def ai_check(jpeg: bytes) -> dict[str, Any]:
     return {"ok": not flags, "flags": flags}
 
 
+def sweep_orphans(conn: psycopg.Connection, user_id: str, older_than: str = "1 day") -> int:
+    """Delete this person's uploads that were never attached to a report (a photo added, then abandoned)."""
+    rows = conn.execute(
+        "delete from report_photos where user_id = %s and report_id is null and created_at < now() - %s::interval"
+        " returning object_key",
+        (user_id, older_than),
+    ).fetchall()
+    for r in rows:
+        try:
+            storage.delete(r["object_key"])
+        except Exception:  # noqa: BLE001
+            log.exception("could not delete orphan photo %s", r["object_key"])
+    return len(rows)
+
+
 def save_upload(conn: psycopg.Connection, user_id: str, raw: bytes) -> dict[str, Any]:
     """Validate, check, store and record one photo. Returns {id, ai_ok, flags, width, height}."""
+    sweep_orphans(conn, user_id)
     used = conn.execute(
         "select count(*) as n from report_photos where user_id = %s and created_at > now() - interval '1 day'",
         (user_id,),

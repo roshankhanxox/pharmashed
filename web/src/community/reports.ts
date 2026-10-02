@@ -171,3 +171,6 @@ export function nearestSite(
   }
   return best && best.metres <= 1000 ? { id: best.id, metres: Math.round(best.metres) } : null;
 }
+
+export const flagReport = (id: string, reason: string) =>
+  apiFetch<{ flagged: boolean; held: boolean }>(`/reports/${id}/flag`, { method: "POST", auth: true, body: JSON.stringify({ reason }) });

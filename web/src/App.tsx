@@ -21,7 +21,11 @@ import { FloatingAsk } from "./components/shell/FloatingAsk";
 import { AuthDialog } from "./community/AuthDialog";
 import { NicknameDialog } from "./community/NicknameDialog";
 import { LeaderboardTab } from "./tabs/Community/LeaderboardTab";
+import { ModerationTab } from "./tabs/Community/ModerationTab";
 import { MyStreamsTab } from "./tabs/Community/MyStreamsTab";
+import { DeleteAccountDialog } from "./community/DeleteAccountDialog";
+import { FlagDialog } from "./community/FlagDialog";
+import { PrivacyDialog } from "./community/PrivacyDialog";
 import { ReportDialog } from "./community/ReportDialog";
 import { useReports } from "./community/reportsStore";
 import { useCommunity } from "./community/store";
@@ -128,6 +132,7 @@ function App() {
         {shownTab === "fhir" && <FhirTab />}
         {shownTab === "leaderboard" && <LeaderboardTab />}
         {shownTab === "mine" && <MyStreamsTab />}
+        {shownTab === "moderation" && <ModerationTab />}
       </main>
 
       <FooterStrip />
@@ -137,6 +142,9 @@ function App() {
       <AuthDialog />
       <NicknameDialog />
       <ReportDialog />
+      <FlagDialog />
+      <PrivacyDialog />
+      <DeleteAccountDialog />
     </div>
   );
 }

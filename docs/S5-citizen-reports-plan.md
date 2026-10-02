@@ -1,6 +1,6 @@
 # S5 — Citizen reports and gamification: implementation plan
 
-Status: phases 1 and 2 merged; phases 3 and 4 built (branch `S5-p3-ai-proofread`). This file is the plan; CHECKPOINT.md tracks progress.
+Status: all five phases built. 1 and 2 are merged; 3, 4 and 5 are on branch `S5-p3-ai-proofread` (PR #24). This file is the plan; CHECKPOINT.md tracks progress.
 
 ## Goal
 
@@ -86,7 +86,7 @@ moderation_actions(id bigserial pk, report_id uuid, admin_user_id text, action t
 | 2 | `POST /api/reports`, `GET /api/reports?site_id=&city=&limit=` (public), `GET /api/me/reports` |
 | 3 | `POST /api/photos` (multipart), `GET /api/photos/{id}` (redirect, approved reports only), `POST /api/ai/proofread` |
 | 4 | `GET /api/leaderboard?scope=all\|week\|month&city=`, `GET /api/me/progress`, `GET /api/challenge` |
-| 5 | `POST /api/reports/{id}/flag`, `GET/POST /api/admin/reports`, `GET /api/fhir/citizen-observations`, `DELETE /api/me` |
+| 5 | `POST /api/reports/{id}/flag`, `GET /api/flag-reasons`, `GET /api/admin/reports`, `POST /api/admin/reports/{id}/approve\|hide`, `GET /api/fhir/citizen-observations`, `DELETE /api/me` |
 
 All write endpoints need a valid token. AI endpoints share the existing per-client and daily limits, plus a per-user limit.
 
@@ -96,7 +96,7 @@ Sign-in required to report; per-user rate limits; nicknames are unique and check
 
 ## FHIR
 
-Each approved report becomes an `Observation` with category `citizen-observation` (added to our category CodeSystem), one component per checklist answer, `performer` = an Organization for citizen reports (the nickname is not exported), and `subject` = the linked site Location when there is one. It is validated by the same `scripts/validate_fhir.py` run.
+Each approved report becomes an `Observation` with category `citizen-observation` (added to our category CodeSystem), one component per checklist answer, `performer` = one anonymous Organization (no nickname, no note text), and `subject` = the linked site Location (reports outside every site are not exported). Status is `preliminary`, and it does **not** claim the OAH profile because that profile fixes status to `final` (decision D44). Validated by the same `scripts/validate_fhir.py` run: 0 errors.
 
 ## Frontend
 

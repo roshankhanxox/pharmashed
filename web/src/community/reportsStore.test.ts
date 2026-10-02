@@ -52,3 +52,12 @@ describe("filing flow", () => {
     expect(useReports.getState().reports).toEqual([report]);
   });
 });
+
+describe("flagging", () => {
+  it("flag state opens and closes", () => {
+    useReports.getState().startFlag(report);
+    expect(useReports.getState()).toMatchObject({ flagging: report, flagDone: false });
+    useReports.getState().closeFlag();
+    expect(useReports.getState()).toMatchObject({ flagging: null, flagDone: false });
+  });
+});
