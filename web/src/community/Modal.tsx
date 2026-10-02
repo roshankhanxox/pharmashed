@@ -3,11 +3,13 @@ import { useEffect, type ReactNode } from "react";
 
 interface ModalProps {
   title: string;
+  /** "lg" for forms with a lot to show. */
+  size?: "md" | "lg";
   onClose: () => void;
   children: ReactNode;
 }
 
-export function Modal({ title, onClose, children }: ModalProps) {
+export function Modal({ title, size = "md", onClose, children }: ModalProps) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -23,7 +25,7 @@ export function Modal({ title, onClose, children }: ModalProps) {
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="relative w-full max-w-md rounded-xl p-6 max-h-[90vh] overflow-y-auto"
+        className={`relative w-full ${size === "lg" ? "max-w-2xl" : "max-w-md"} rounded-xl p-6 max-h-[90vh] overflow-y-auto`}
         style={{ background: "var(--c-surface)", border: "1px solid var(--c-border)", color: "var(--c-text)" }}
       >
         <div className="flex items-start justify-between gap-4 mb-4">
