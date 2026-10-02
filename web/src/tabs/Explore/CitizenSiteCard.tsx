@@ -8,6 +8,7 @@ import {
   DEMO_NOTICE, DRUG_USE, SCORE_CAVEAT, TIER_LABEL, TIER_SENTENCE, tierOf,
 } from "../../data/copy";
 import { Reveal } from "../../components/shell/Reveal";
+import { SiteReports } from "../../community/SiteReports";
 
 const TIER_COLOR = { high: "#ef4444", medium: "#f59e0b", low: "#22c55e" } as const;
 
@@ -92,6 +93,10 @@ export function CitizenSiteCard({ siteId }: { siteId: string }) {
             What if something changed?
           </button>
         </div>
+      </Reveal>
+
+      <Reveal delay={180}>
+        <SiteReports siteId={siteId} />
       </Reveal>
 
       <Reveal delay={200}>

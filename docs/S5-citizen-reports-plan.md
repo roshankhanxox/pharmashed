@@ -1,6 +1,6 @@
 # S5 — Citizen reports and gamification: implementation plan
 
-Status: phase 1 built (branch `S5-p1-foundation`), waiting on a Neon project for the first real end-to-end check. This file is the plan; CHECKPOINT.md tracks progress.
+Status: phases 1 (merged) and 2 (branch `S5-p2-reports`) built and checked against a real Neon project. This file is the plan; CHECKPOINT.md tracks progress.
 
 ## Goal
 
@@ -83,7 +83,7 @@ moderation_actions(id bigserial pk, report_id uuid, admin_user_id text, action t
 | Phase | Endpoints |
 |---|---|
 | 1 | `GET /api/community/status`, `GET /api/me`, `PUT /api/me/profile` |
-| 2 | `POST /api/reports`, `GET /api/reports?site_id=&bbox=`, `GET /api/me/reports` |
+| 2 | `POST /api/reports`, `GET /api/reports?site_id=&city=&limit=` (public), `GET /api/me/reports` |
 | 3 | `POST /api/uploads/sign`, `POST /api/ai/proofread`, `POST /api/ai/photo-check` |
 | 4 | `GET /api/leaderboard?scope=&city=`, `GET /api/me/progress`, `GET /api/challenge` |
 | 5 | `POST /api/reports/{id}/flag`, `GET/POST /api/admin/reports`, `GET /api/fhir/citizen-observations`, `DELETE /api/me` |

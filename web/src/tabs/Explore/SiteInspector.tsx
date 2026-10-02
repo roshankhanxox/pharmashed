@@ -5,6 +5,7 @@ import { Tornado } from "../../components/charts/Tornado";
 import { Term } from "../../components/glossary/Term";
 import { CitizenSiteCard } from "./CitizenSiteCard";
 import { TopSitesPanel } from "./TopSitesPanel";
+import { SiteReports } from "../../community/SiteReports";
 
 const C = {
   canvas:  "var(--c-canvas)",
@@ -172,6 +173,9 @@ export function SiteInspector() {
           )}
         </div>
       )}
+      <div className="px-6 pb-6">
+        <SiteReports siteId={selectedSiteId} />
+      </div>
     </div>
   );
 }

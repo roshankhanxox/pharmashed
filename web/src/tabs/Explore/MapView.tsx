@@ -7,6 +7,9 @@ import type { StyleSpecification } from "maplibre-gl";
 // MapLibre 6 runs GeoJSON layers in a worker file that imports a sibling chunk. Vite must bundle it
 // as a self-contained file (?worker&url); without this the production build ships no worker and the
 // site glows never render, silently.
+import { useCommunity } from "../../community/store";
+import { useReports } from "../../community/reportsStore";
+import { startReportFlow } from "../../community/startReport";
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 
 maplibregl.setWorkerUrl(workerUrl);
@@ -16,6 +19,8 @@ interface TooltipState {
   x: number;
   y: number;
 }
+
+const REPORTS_SOURCE = "citizen-reports";
 
 const TIER_COLORS: Record<string, string> = {
   high: "#ef4444",
@@ -83,6 +88,7 @@ export function MapView() {
   const setSelectedDrug = useStore((s) => s.setSelectedDrug);
   const audience = useStore((s) => s.audience);
   const citizen = audience === "citizen";
+  const reportsAvailable = useCommunity((s) => s.availability === "ready");
 
   const drugs = results?.drugs ?? [];
   const cities = results
@@ -154,6 +160,36 @@ export function MapView() {
         },
       });
 
+      // Citizen reports: a separate layer of hollow rings, so they can never be mistaken for a model result.
+      map.addSource(REPORTS_SOURCE, { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+      map.addLayer({
+        id: "report-rings",
+        type: "circle",
+        source: REPORTS_SOURCE,
+        paint: {
+          "circle-color": "#ffffff",
+          "circle-opacity": 0.85,
+          "circle-radius": 6,
+          "circle-stroke-color": ["case", ["==", ["get", "mine"], true], "#1f4d3d", "#44403c"] as never,
+          "circle-stroke-width": 2.5,
+        },
+      });
+      map.on("click", "report-rings", (e) => {
+        if (useReports.getState().picking) return;
+        const siteId = (e.features?.[0]?.properties as { site_id?: string } | undefined)?.site_id;
+        if (siteId) {
+          useStore.getState().setSelectedSiteId(siteId);
+          useStore.getState().setSelectedCity(siteId.split("-")[0]);
+        }
+      });
+      map.on("mouseenter", "report-rings", () => { map.getCanvas().style.cursor = "pointer"; });
+      map.on("mouseleave", "report-rings", () => { map.getCanvas().style.cursor = ""; });
+
+      // Choosing a spot for a report: the next click on the map is the answer.
+      map.on("click", (e) => {
+        if (useReports.getState().picking) useReports.getState().pickSpot({ lat: e.lngLat.lat, lon: e.lngLat.lng });
+      });
+
       // With overlapping glows several features sit under the cursor: pick the nearest site.
       const nearest = (e: maplibregl.MapLayerMouseEvent): maplibregl.MapGeoJSONFeature | null => {
         let best: maplibregl.MapGeoJSONFeature | null = null;
@@ -186,6 +222,7 @@ export function MapView() {
         setTooltip(null);
       });
       map.on("click", "site-glow", (e) => {
+        if (useReports.getState().picking) return;
         const f = nearest(e);
         if (!f) return;
         const props = f.properties as SiteProps;
@@ -277,6 +314,31 @@ export function MapView() {
       features,
     });
   }, [mapReady, results, sites, selectedDrug]);
+
+  // Citizen reports layer: shown only when toggled on.
+  const reports = useReports((s) => s.reports);
+  const layerOn = useReports((s) => s.layerOn);
+  const picking = useReports((s) => s.picking);
+  useEffect(() => {
+    const map = mapInstance.current;
+    if (!map || !mapReady) return;
+    (map.getSource(REPORTS_SOURCE) as maplibregl.GeoJSONSource | undefined)?.setData({
+      type: "FeatureCollection",
+      features: layerOn
+        ? reports.map((r) => ({
+            type: "Feature" as const,
+            geometry: { type: "Point" as const, coordinates: [r.lon, r.lat] },
+            properties: { id: r.id, site_id: r.site_id ?? "", mine: r.mine },
+          }))
+        : [],
+    });
+  }, [mapReady, reports, layerOn]);
+
+  // While choosing a spot for a report, show a crosshair.
+  useEffect(() => {
+    const canvas = mapInstance.current?.getCanvas();
+    if (canvas) canvas.style.cursor = picking ? "crosshair" : "";
+  }, [picking]);
 
   // Ring the selected site.
   useEffect(() => {
@@ -412,9 +474,35 @@ export function MapView() {
         </div>
       </div>
 
+      {reportsAvailable && (
+        <div className="px-4 py-2 flex items-center gap-4 flex-wrap text-sm" style={{ borderBottom: `1px solid ${C.border}`, background: C.surface }}>
+          <label className="flex items-center gap-2" style={{ color: C.muted }}>
+            <input type="checkbox" checked={layerOn} onChange={(e) => useReports.getState().setLayerOn(e.target.checked)} />
+            Citizen reports (unverified)
+            <span aria-hidden className="inline-block w-3.5 h-3.5 rounded-full" style={{ border: "2.5px solid #44403c", background: "#fff" }} />
+          </label>
+          <button
+            onClick={() => startReportFlow()}
+            className="ml-auto px-3 py-1.5 rounded-lg font-semibold"
+            style={{ background: C.indigo, color: "var(--c-on-accent)" }}
+          >
+            Report what you see
+          </button>
+        </div>
+      )}
+
       {/* Map canvas + tooltip overlay */}
       <div ref={mapContainerRef} className="flex-1 min-h-0 relative" style={{ background: "var(--c-surface)" }}>
         <div ref={mapRef} className="w-full h-full" />
+        {picking && (
+          <div className="absolute top-3 left-1/2 -translate-x-1/2 flex items-center gap-3 px-4 py-2 rounded-lg text-sm shadow-lg"
+               style={{ background: C.surface, border: `1px solid ${C.border}`, color: C.text }}>
+            Click the map where you are looking at the stream.
+            <button onClick={() => useReports.getState().startReport(useReports.getState().spot)} className="underline font-medium" style={{ color: C.indigo }}>
+              Back
+            </button>
+          </div>
+        )}
         {tooltip && results && (
           <SiteTooltip
             siteId={tooltip.siteId}
