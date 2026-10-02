@@ -80,14 +80,21 @@ A floating **Ask a question** button opens the AI assistant from anywhere, alrea
 
 For each site and each drug the engine runs a **Monte Carlo mass balance**: it draws the uncertain inputs from stated ranges 1,000 times, computes a predicted concentration each time, and reports how often that concentration is higher than a level where effects are expected.
 
-```
-L   = P · C · DDD / 1000                     g/day consumed near the site
-E   = L · fe                                  g/day excreted unchanged
-M   = E · ( λ + w · (1 − λ) · (1 − R) )       g/day reaching the stream
-PEC = M / (Q · 86 400 · 1 000) · e^(−k·τ) · 10⁹      ng/L
-RQ  = PEC / PNEC
-score = share of draws with RQ > 1
-```
+$$
+\begin{aligned}
+L &= \frac{P \cdot C \cdot \mathrm{DDD}}{1000} \\
+E &= L \cdot f_e \\
+M &= E \cdot \bigl(\lambda + w\,(1-\lambda)(1-R)\bigr) \\
+\mathrm{PEC} &= \frac{M}{Q \cdot 86\,400 \cdot 1000}\; e^{-k\tau}\cdot 10^{9} \\
+\mathrm{RQ} &= \frac{\mathrm{PEC}}{\mathrm{PNEC}}
+\end{aligned}
+$$
+
+where $L$ is grams per day consumed near the site, $E$ grams per day excreted unchanged, $M$ grams per day reaching the stream, and $\mathrm{PEC}$ the concentration in ng/L. The **sampling-priority score** is the share of the $N = 1000$ draws in which the risk quotient exceeds 1:
+
+$$
+\text{score} = \frac{1}{N}\sum_{i=1}^{N} \mathbf{1}\!\left[\mathrm{RQ}_i > 1\right]
+$$
 
 ```mermaid
 flowchart LR

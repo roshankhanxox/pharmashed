@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { useState } from "react";
 import { useStore } from "../../data/store";
 import { LoadingView } from "../../components/shell/StateViews";
@@ -6,27 +7,30 @@ import { Reveal } from "../../components/shell/Reveal";
 import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 import { InfoButton } from "../../components/provenance/InfoButton";
 
+/** KaTeX is only needed on this tab, so it loads separately from the main bundle. */
+const Tex = lazy(() => import("./Tex"));
+
 
 /** The model as implemented in engine/src/pharmashed/model.py (A4). Keep in step with that file. */
-const EQUATIONS: { label: string; formula: string }[] = [
-  { label: "1. Consumed near the site", formula: "L = P · C · DDD / 1000   (g/day)" },
-  { label: "2. Excreted unchanged", formula: "E = L · fe   (g/day)" },
-  { label: "3. Reaching the stream", formula: "M = E · ( λ + w · (1 − λ) · (1 − R) )   (g/day)" },
-  { label: "4. Concentration (PEC)", formula: "PEC = M / (Q · 86 400 · 1 000) · e^(−k·τ) · 10⁹   (ng/L)" },
-  { label: "5. Risk quotient", formula: "RQ = PEC / PNEC" },
-  { label: "6. Sampling-priority score", formula: "score = share of draws with RQ > 1" },
+const EQUATIONS: { label: string; tex: string; plain: string }[] = [
+  { label: "1. Consumed near the site", tex: String.raw`L = \frac{P \cdot C \cdot \mathrm{DDD}}{1000}\;\text{g/day}`, plain: "L = P · C · DDD / 1000 (g/day)" },
+  { label: "2. Excreted unchanged", tex: String.raw`E = L \cdot f_e\;\text{g/day}`, plain: "E = L · fe (g/day)" },
+  { label: "3. Reaching the stream", tex: String.raw`M = E \cdot \bigl(\lambda + w\,(1-\lambda)(1-R)\bigr)\;\text{g/day}`, plain: "M = E · (λ + w · (1 − λ) · (1 − R)) (g/day)" },
+  { label: "4. Concentration (PEC)", tex: String.raw`\mathrm{PEC} = \frac{M}{Q \cdot 86\,400 \cdot 1000}\, e^{-k\tau} \cdot 10^{9}\;\text{ng/L}`, plain: "PEC = M / (Q · 86 400 · 1 000) · e^(−k·τ) · 10⁹ (ng/L)" },
+  { label: "5. Risk quotient", tex: String.raw`\mathrm{RQ} = \frac{\mathrm{PEC}}{\mathrm{PNEC}}`, plain: "RQ = PEC / PNEC" },
+  { label: "6. Sampling-priority score", tex: String.raw`\text{score} = \frac{1}{N}\sum_{i=1}^{N} \mathbf{1}\!\left[\mathrm{RQ}_i > 1\right],\; N = 1000`, plain: "score = share of draws with RQ > 1" },
 ];
 
-const SYMBOLS: { sym: string; text: string }[] = [
-  { sym: "P", text: "people within 500 m of the site (GHS-POP)" },
-  { sym: "C", text: "consumption, DDD per 1 000 people per day (country value × a 0.8–1.25 multiplier)" },
-  { sym: "DDD", text: "defined daily dose of the drug, in grams" },
-  { sym: "fe", text: "fraction excreted unchanged" },
-  { sym: "λ", text: "untreated leakage fraction (log-uniform 0.002–0.15)" },
-  { sym: "w, R", text: "treatment-plant flag (0 here) and its removal efficiency" },
-  { sym: "Q", text: "stream flow in m³/s, drawn per size class (S, M, L)" },
-  { sym: "k, τ", text: "in-stream loss rate per hour and travel time (0.5–12 h)" },
-  { sym: "PNEC", text: "predicted no-effect concentration, ng/L" },
+const SYMBOLS: { tex: string; plain: string; text: string }[] = [
+  { tex: "P", plain: "P", text: "people within 500 m of the site (GHS-POP)" },
+  { tex: "C", plain: "C", text: "consumption, DDD per 1 000 people per day (country value × a 0.8–1.25 multiplier)" },
+  { tex: String.raw`\mathrm{DDD}`, plain: "DDD", text: "defined daily dose of the drug, in grams" },
+  { tex: "f_e", plain: "fe", text: "fraction excreted unchanged" },
+  { tex: String.raw`\lambda`, plain: "λ", text: "untreated leakage fraction (log-uniform 0.002–0.15)" },
+  { tex: String.raw`w,\, R`, plain: "w, R", text: "treatment-plant flag (0 here) and its removal efficiency" },
+  { tex: "Q", plain: "Q", text: "stream flow in m³/s, drawn per size class (S, M, L)" },
+  { tex: String.raw`k,\, \tau`, plain: "k, τ", text: "in-stream loss rate per hour and travel time (0.5–12 h)" },
+  { tex: String.raw`\mathrm{PNEC}`, plain: "PNEC", text: "predicted no-effect concentration, ng/L" },
 ];
 
 const ABLATION_LABELS = ["WWTP-only (ePiE baseline)", "Population only", "Full model"];
@@ -68,22 +72,26 @@ export function MethodologyTab() {
           The equations
         </h2>
         <div className="rounded-xl p-5 flex flex-col gap-4" style={{ background: "var(--c-surface)", border: "1px solid var(--c-border)" }}>
-          <ol className="flex flex-col gap-3 text-sm" style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
+          <ol className="flex flex-col gap-3 text-sm">
             {EQUATIONS.map((e) => (
-              <li key={e.label} className="flex flex-col sm:flex-row sm:items-baseline gap-x-4">
-                <span className="sm:w-72 shrink-0" style={{ color: "var(--c-faint)", fontFamily: "inherit" }}>{e.label}</span>
-                <span style={{ color: "var(--c-text)" }}>{e.formula}</span>
+              <li key={e.label} className="flex flex-col sm:flex-row sm:items-center gap-x-4 gap-y-1">
+                <span className="sm:w-64 shrink-0" style={{ color: "var(--c-faint)" }}>{e.label}</span>
+                <span className="text-base overflow-x-auto" style={{ color: "var(--c-text)" }}>
+                  <Suspense fallback={<span>{e.plain}</span>}><Tex tex={e.tex} /></Suspense>
+                </span>
               </li>
             ))}
           </ol>
           <p className="text-sm leading-relaxed" style={{ color: "var(--c-muted)" }}>
-            Every site in this dataset has no treatment plant on its stream (<strong>w = 0</strong>), so the load reaching the stream reduces to
-            <strong> M = E · λ</strong>: only the untreated pathway. A model that counts treatment-plant outfalls alone (ePiE, GREAT-ER style) predicts zero here.
+            Every site in this dataset has no treatment plant on its stream (<Suspense fallback={<strong>w = 0</strong>}><Tex tex="w = 0" /></Suspense>), so the load reaching the stream reduces to{" "}
+            <Suspense fallback={<strong>M = E · λ</strong>}><Tex tex={String.raw`M = E \cdot \lambda`} /></Suspense>: only the untreated pathway. A model that counts treatment-plant outfalls alone (ePiE, GREAT-ER style) predicts zero here.
           </p>
           <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm" style={{ color: "var(--c-muted)" }}>
             {SYMBOLS.map((x) => (
-              <div key={x.sym} className="flex gap-2">
-                <dt className="w-10 shrink-0 font-semibold" style={{ color: "var(--c-accent)" }}>{x.sym}</dt>
+              <div key={x.plain} className="flex gap-2">
+                <dt className="w-12 shrink-0 font-semibold" style={{ color: "var(--c-accent)" }}>
+                  <Suspense fallback={<span>{x.plain}</span>}><Tex tex={x.tex} /></Suspense>
+                </dt>
                 <dd>{x.text}</dd>
               </div>
             ))}
