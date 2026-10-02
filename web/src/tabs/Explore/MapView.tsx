@@ -10,6 +10,7 @@ import type { StyleSpecification } from "maplibre-gl";
 import { useCommunity } from "../../community/store";
 import { useReports } from "../../community/reportsStore";
 import { startReportFlow } from "../../community/startReport";
+import { reportPopup } from "../../community/reportPopup";
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 
 maplibregl.setWorkerUrl(workerUrl);
@@ -176,7 +177,15 @@ export function MapView() {
       });
       map.on("click", "report-rings", (e) => {
         if (useReports.getState().picking) return;
-        const siteId = (e.features?.[0]?.properties as { site_id?: string } | undefined)?.site_id;
+        const props = e.features?.[0]?.properties as { id?: string; site_id?: string } | undefined;
+        const report = useReports.getState().reports.find((r) => r.id === props?.id);
+        if (report) {
+          new maplibregl.Popup({ offset: 12, maxWidth: "280px" })
+            .setLngLat([report.lon, report.lat])
+            .setDOMContent(reportPopup(report))
+            .addTo(map);
+        }
+        const siteId = props?.site_id;
         if (siteId) {
           useStore.getState().setSelectedSiteId(siteId);
           useStore.getState().setSelectedCity(siteId.split("-")[0]);

@@ -58,3 +58,27 @@ describe("photo messages", () => {
     expect(photoFlagMessage({ id: "x", ai_ok: null, flags: { unchecked: true } })).toMatch(/could not check/);
   });
 });
+
+import { reportPopup } from "./reportPopup";
+
+describe("map popup", () => {
+  const base = { id: "r", lat: 1, lon: 2, site_id: "TLS-01", city: "TLS", observed_at: new Date().toISOString(), checklist: { foam: "light" },
+    note: "", is_sample: false, author: "Pat", mine: false };
+
+  it("shows the author, site, answers and the unverified label", () => {
+    const text = reportPopup(base).textContent ?? "";
+    expect(text).toContain("Pat");
+    expect(text).toContain("Near site TLS-01");
+    expect(text).toContain("Foam on the water: A little");
+    expect(text).toContain("Citizen report · unverified");
+  });
+
+  it("never turns a note into markup", () => {
+    const node = reportPopup({ ...base, note: "<img src=x onerror=alert(1)><b>hi</b>", site_id: null, is_sample: true });
+    expect(node.querySelector("b")).toBeNull();
+    expect(node.querySelector("img")).toBeNull();
+    expect(node.textContent).toContain("<b>hi</b>");
+    expect(node.textContent).toContain("Not near one of our sites");
+    expect(node.textContent).toContain("Sample report · unverified");
+  });
+});
