@@ -137,4 +137,18 @@ def current_user(request: Request) -> AuthUser:
         raise HTTPException(503, "Sign-in service is temporarily unreachable. Try again shortly.") from exc
 
 
+def optional_user(request: Request) -> AuthUser | None:
+    """For public reads that personalise when someone is signed in: the user, or None.
+
+    A missing, invalid or unverifiable token means "anonymous", never an error.
+    """
+    if not request.headers.get("authorization"):
+        return None
+    try:
+        return current_user(request)
+    except HTTPException:
+        return None
+
+
 CurrentUser = Depends(current_user)
+OptionalUser = Depends(optional_user)

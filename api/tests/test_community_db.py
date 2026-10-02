@@ -18,10 +18,10 @@ def conn(pg_url):
 
 
 def test_migrations_apply_once_and_are_recorded(conn):
-    assert db.apply_migrations(conn) == ["0001_profiles.sql"]
+    assert db.apply_migrations(conn) == ["0001_profiles.sql", "0002_reports.sql"]
     assert db.apply_migrations(conn) == []          # already applied: nothing to do
     names = [r["name"] for r in conn.execute("select name from schema_migrations order by name")]
-    assert names == ["0001_profiles.sql"]
+    assert names == ["0001_profiles.sql", "0002_reports.sql"]
     assert conn.execute("select to_regclass('public.profiles') as t").fetchone()["t"] == "profiles"
 
 
@@ -39,7 +39,8 @@ def test_instances_starting_together_apply_each_migration_exactly_once(pg_url):
     [t.start() for t in threads]
     [t.join() for t in threads]
     assert not errors
-    assert sorted(len(r) for r in results) == [0, 0, 0, 0, 0, 1]   # only one instance did the work
+    files = len(list(db.MIGRATIONS_DIR.glob('*.sql')))
+    assert sorted(len(r) for r in results) == [0, 0, 0, 0, 0, files]   # only one instance did the work
 
 
 def test_a_failing_migration_leaves_nothing_half_applied(conn, tmp_path):
@@ -89,7 +90,7 @@ def test_the_pool_creates_the_schema_on_first_use(community_db):
         assert c.execute("select count(*) as n from profiles").fetchone()["n"] == 0
     db.reset_pool()
     with db.connection() as c:                                # second start: no error, nothing reapplied
-        assert c.execute("select count(*) as n from schema_migrations").fetchone()["n"] == 1
+        assert c.execute("select count(*) as n from schema_migrations").fetchone()["n"] == len(list(db.MIGRATIONS_DIR.glob("*.sql")))
 
 
 def test_an_unconfigured_database_is_reported_not_crashed(monkeypatch):

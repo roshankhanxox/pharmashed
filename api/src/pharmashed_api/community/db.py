@@ -19,7 +19,7 @@ import psycopg
 from psycopg.rows import dict_row
 from psycopg_pool import ConnectionPool
 
-from pharmashed_api.community import config
+from pharmashed_api.community import config, reports
 
 log = logging.getLogger(__name__)
 
@@ -83,6 +83,9 @@ def get_pool() -> ConnectionPool:
                 with pool.connection() as conn:
                     for name in apply_migrations(conn):
                         log.info("applied migration %s", name)
+                    with conn.transaction():
+                        if reports.ensure_samples(conn):
+                            log.info("added the labelled sample reports")
             except Exception:
                 pool.close()
                 raise

@@ -20,6 +20,8 @@ import { AssistantDrawer } from "./assistant/AssistantDrawer";
 import { FloatingAsk } from "./components/shell/FloatingAsk";
 import { AuthDialog } from "./community/AuthDialog";
 import { NicknameDialog } from "./community/NicknameDialog";
+import { ReportDialog } from "./community/ReportDialog";
+import { useReports } from "./community/reportsStore";
 import { useCommunity } from "./community/store";
 import { LoadingView, InvalidView } from "./components/shell/StateViews";
 
@@ -82,6 +84,14 @@ function App() {
     void useCommunity.getState().init();
   }, []);
 
+  // Citizen reports: load once the feature is known to be available, and again when sign-in changes
+  // (the token is what marks a person's own reports).
+  const reportsAvailable = useCommunity((s) => s.availability === "ready");
+  const signedIn = useCommunity((s) => s.signedIn);
+  useEffect(() => {
+    if (reportsAvailable) void useReports.getState().load();
+  }, [reportsAvailable, signedIn]);
+
   if (dataLoading) {
     return (
       <div className="min-h-svh flex items-center justify-center">
@@ -122,6 +132,7 @@ function App() {
       <AssistantDrawer />
       <AuthDialog />
       <NicknameDialog />
+      <ReportDialog />
     </div>
   );
 }
