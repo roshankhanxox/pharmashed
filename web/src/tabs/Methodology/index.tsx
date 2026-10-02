@@ -6,6 +6,29 @@ import { Reveal } from "../../components/shell/Reveal";
 import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 import { InfoButton } from "../../components/provenance/InfoButton";
 
+
+/** The model as implemented in engine/src/pharmashed/model.py (A4). Keep in step with that file. */
+const EQUATIONS: { label: string; formula: string }[] = [
+  { label: "1. Consumed near the site", formula: "L = P · C · DDD / 1000   (g/day)" },
+  { label: "2. Excreted unchanged", formula: "E = L · fe   (g/day)" },
+  { label: "3. Reaching the stream", formula: "M = E · ( λ + w · (1 − λ) · (1 − R) )   (g/day)" },
+  { label: "4. Concentration (PEC)", formula: "PEC = M / (Q · 86 400 · 1 000) · e^(−k·τ) · 10⁹   (ng/L)" },
+  { label: "5. Risk quotient", formula: "RQ = PEC / PNEC" },
+  { label: "6. Sampling-priority score", formula: "score = share of draws with RQ > 1" },
+];
+
+const SYMBOLS: { sym: string; text: string }[] = [
+  { sym: "P", text: "people within 500 m of the site (GHS-POP)" },
+  { sym: "C", text: "consumption, DDD per 1 000 people per day (country value × a 0.8–1.25 multiplier)" },
+  { sym: "DDD", text: "defined daily dose of the drug, in grams" },
+  { sym: "fe", text: "fraction excreted unchanged" },
+  { sym: "λ", text: "untreated leakage fraction (log-uniform 0.002–0.15)" },
+  { sym: "w, R", text: "treatment-plant flag (0 here) and its removal efficiency" },
+  { sym: "Q", text: "stream flow in m³/s, drawn per size class (S, M, L)" },
+  { sym: "k, τ", text: "in-stream loss rate per hour and travel time (0.5–12 h)" },
+  { sym: "PNEC", text: "predicted no-effect concentration, ng/L" },
+];
+
 const ABLATION_LABELS = ["WWTP-only (ePiE baseline)", "Population only", "Full model"];
 
 const ABLATION_DESCRIPTIONS = [
@@ -28,7 +51,8 @@ export function MethodologyTab() {
   const ablationPerCity = ablations?.per_city?.filter((a) => a.variant === variant) ?? [];
 
   return (
-    <div ref={scrollRef} className="h-full overflow-y-auto p-6 flex flex-col gap-8 max-w-4xl mx-auto" style={{ background: "var(--c-canvas)", color: "var(--c-text)" }}>
+    <div ref={scrollRef} className="h-full overflow-y-auto" style={{ background: "var(--c-canvas)", color: "var(--c-text)" }}>
+      <div className="p-6 flex flex-col gap-8 max-w-4xl mx-auto">
 
       {/* Intro */}
       <div>
@@ -37,6 +61,40 @@ export function MethodologyTab() {
           PharmaShed estimates pharmaceutical concentrations at urban stream sites using a Monte Carlo mass-balance model. The core innovation is the <strong>untreated discharge pathway</strong> (λ): drug loads reaching streams directly via sewer leakage, misconnections, and overflow events — absent from ePiE and GREAT-ER, which only model treatment-plant outfalls.
         </p>
       </div>
+
+      {/* The equations: exactly what the engine computes (engine/src/pharmashed/model.py) */}
+      <Reveal><section>
+        <h2 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "var(--c-faint)" }}>
+          The equations
+        </h2>
+        <div className="rounded-xl p-5 flex flex-col gap-4" style={{ background: "var(--c-surface)", border: "1px solid var(--c-border)" }}>
+          <ol className="flex flex-col gap-3 text-sm" style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
+            {EQUATIONS.map((e) => (
+              <li key={e.label} className="flex flex-col sm:flex-row sm:items-baseline gap-x-4">
+                <span className="sm:w-72 shrink-0" style={{ color: "var(--c-faint)", fontFamily: "inherit" }}>{e.label}</span>
+                <span style={{ color: "var(--c-text)" }}>{e.formula}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--c-muted)" }}>
+            Every site in this dataset has no treatment plant on its stream (<strong>w = 0</strong>), so the load reaching the stream reduces to
+            <strong> M = E · λ</strong>: only the untreated pathway. A model that counts treatment-plant outfalls alone (ePiE, GREAT-ER style) predicts zero here.
+          </p>
+          <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm" style={{ color: "var(--c-muted)" }}>
+            {SYMBOLS.map((x) => (
+              <div key={x.sym} className="flex gap-2">
+                <dt className="w-10 shrink-0 font-semibold" style={{ color: "var(--c-accent)" }}>{x.sym}</dt>
+                <dd>{x.text}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--c-muted)" }}>
+            λ, Q, τ and the consumption multiplier are drawn from the priors below in each of the 1,000 Monte Carlo draws; the other symbols are fixed per drug or per site.
+            The <strong>sampling-priority score</strong> is the share of draws with RQ &gt; 1. It is <strong>not</strong> a probability of harm: it is an index under stated priors.
+            Tiers: high ≥ 0.5, medium ≥ 0.1, low below. All drug parameters are currently illustrative placeholders.
+          </p>
+        </div>
+      </section></Reveal>
 
       {/* Model diagram */}
       <Reveal><section>
@@ -223,6 +281,7 @@ export function MethodologyTab() {
           )}
         </section></Reveal>
       )}
+      </div>
     </div>
   );
 }
