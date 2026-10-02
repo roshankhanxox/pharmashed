@@ -41,6 +41,14 @@ class TooManyFlags(Exception):
     """The person flagged too many reports today."""
 
 
+def is_moderator(conn: psycopg.Connection, user: Any) -> bool:
+    """True if the person is a moderator: a row in `moderators` (by user id), or the ADMIN_EMAILS route
+    (listed email that the auth service verified)."""
+    if user.is_admin:
+        return True
+    return conn.execute("select 1 from moderators where user_id = %s", (user.id,)).fetchone() is not None
+
+
 def flag_report(conn: psycopg.Connection, report_id: str, user_id: str, reason: str) -> dict[str, Any]:
     """Record a flag. Returns {flagged: bool (False if already flagged by this person), held: bool}."""
     if reason not in FLAG_REASONS:

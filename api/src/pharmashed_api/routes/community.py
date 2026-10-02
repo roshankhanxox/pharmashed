@@ -53,7 +53,8 @@ def me(user: auth.AuthUser = auth.CurrentUser) -> dict:
     """The signed-in user and their profile (null until they choose a nickname)."""
     with db.connection() as conn:
         profile = profiles.get_profile(conn, user.id)
-    return {"user": {"name": user.name}, "profile": profile, "is_admin": user.is_admin}
+        is_admin = moderation.is_moderator(conn, user)
+    return {"user": {"name": user.name}, "profile": profile, "is_admin": is_admin}
 
 
 @router.put("/me/profile", dependencies=[Depends(require_database)])
@@ -190,6 +191,15 @@ def leaderboard(
         return points.leaderboard(conn, user.id if user else None, scope=scope, city=city, limit=limit)
 
 
+def require_moderator(user: auth.AuthUser = auth.CurrentUser) -> auth.AuthUser:
+    """FastAPI dependency: a moderator (a row in `moderators`, or a verified ADMIN_EMAILS email), or 403."""
+    with db.connection() as conn:
+        allowed = moderation.is_moderator(conn, user)
+    if not allowed:
+        raise HTTPException(403, "Moderators only.")
+    return user
+
+
 class FlagIn(BaseModel):
     reason: str
 
@@ -219,7 +229,7 @@ class DecisionIn(BaseModel):
 
 
 @router.get("/admin/reports", dependencies=[Depends(require_database)])
-def admin_queue(user: auth.AuthUser = auth.AdminUser) -> list[dict]:
+def admin_queue(user: auth.AuthUser = Depends(require_moderator)) -> list[dict]:
     """Reports waiting for a decision (moderators only)."""
     with db.connection() as conn:
         return moderation.queue(conn)
@@ -236,13 +246,13 @@ def _decide(action: str, report_id: uuid.UUID, body: DecisionIn, admin: auth.Aut
 
 
 @router.post("/admin/reports/{report_id}/approve", dependencies=[Depends(require_database)])
-def admin_approve(report_id: uuid.UUID, body: DecisionIn, user: auth.AuthUser = auth.AdminUser) -> dict:
+def admin_approve(report_id: uuid.UUID, body: DecisionIn, user: auth.AuthUser = Depends(require_moderator)) -> dict:
     """Approve a held or flagged report (moderators only)."""
     return _decide("approve", report_id, body, user)
 
 
 @router.post("/admin/reports/{report_id}/hide", dependencies=[Depends(require_database)])
-def admin_hide(report_id: uuid.UUID, body: DecisionIn, user: auth.AuthUser = auth.AdminUser) -> dict:
+def admin_hide(report_id: uuid.UUID, body: DecisionIn, user: auth.AuthUser = Depends(require_moderator)) -> dict:
     """Hide a report, reverse its points and delete its photo (moderators only)."""
     return _decide("hide", report_id, body, user)
 

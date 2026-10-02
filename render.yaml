@@ -16,7 +16,7 @@ services:
       - key: NEON_AUTH_BASE_URL
         sync: false          # Neon Auth URL (sign-in); optional
       - key: ADMIN_EMAILS
-        sync: false          # comma-separated moderator emails (must be verified in Neon Auth)
+        sync: false          # optional: comma-separated moderator emails (must be verified). Prefer the moderators table
       - key: AWS_ENDPOINT_URL_S3
         sync: false          # Neon storage bucket (report photos); optional
       - key: AWS_ACCESS_KEY_ID

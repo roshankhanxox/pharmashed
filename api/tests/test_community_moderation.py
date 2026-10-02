@@ -88,6 +88,37 @@ def test_daily_flag_limit(client, monkeypatch):
     assert codes == [200, 200, 429]
 
 
+# -- moderators kept in the database ---------------------------------------------------------------------
+
+def test_a_row_in_the_moderators_table_makes_a_moderator_without_any_setting(client, monkeypatch):
+    monkeypatch.delenv("ADMIN_EMAILS", raising=False)
+    h = bearer("db-mod", email="anyone@example.com", emailVerified=False)       # not listed anywhere, not verified
+    assert client.get("/api/admin/reports", headers=h).status_code == 403
+    assert client.get("/api/me", headers=h).json()["is_admin"] is False
+    with db.connection() as c:
+        c.execute("insert into moderators (user_id, note) values ('db-mod', 'test')")
+    assert client.get("/api/admin/reports", headers=h).status_code == 200
+    assert client.get("/api/me", headers=h).json()["is_admin"] is True
+    assert client.get("/api/admin/reports", headers=bearer("someone-else")).status_code == 403   # only that person
+
+
+def test_both_routes_work_and_removing_the_row_removes_the_power(client):
+    assert client.get("/api/me", headers=admin()).json()["is_admin"] is True                    # the ADMIN_EMAILS route
+    with db.connection() as c:
+        c.execute("insert into moderators (user_id) values ('db-mod')")
+    assert client.get("/api/admin/reports", headers=bearer("db-mod")).status_code == 200
+    with db.connection() as c:
+        c.execute("delete from moderators where user_id = 'db-mod'")
+    assert client.get("/api/admin/reports", headers=bearer("db-mod")).status_code == 403
+
+
+def test_deleting_an_account_removes_its_moderator_row(client):
+    with db.connection() as c:
+        c.execute("insert into moderators (user_id) values ('db-mod')")
+        accounts.delete_account(c, "db-mod")
+        assert c.execute("select count(*) as n from moderators").fetchone()["n"] == 0
+
+
 # -- the queue and decisions ----------------------------------------------------------------------------
 
 def test_queue_is_for_moderators_only(client):

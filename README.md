@@ -149,12 +149,14 @@ cd web && pnpm tsc --noEmit
 | `VITE_DATA_BASE` | Web `.env.production` | API base URL for deployed frontend |
 | `DATABASE_URL` | API | Neon Postgres connection string (use the pooled one). Optional: without it the citizen-reports endpoints answer 503 and the rest of the API is unaffected |
 | `NEON_AUTH_BASE_URL` | API | Neon Auth URL; the API verifies sign-in tokens against `<url>/.well-known/jwks.json` |
-| `ADMIN_EMAILS` | API | Comma-separated emails treated as moderators. The email must also be **verified**, so turn on email verification in the Neon Auth settings first, or nobody can moderate |
+| `ADMIN_EMAILS` | API | Optional. Comma-separated emails treated as moderators; the email must also be **verified** in Neon Auth. The simpler route is the `moderators` table (below), which needs no setting |
 | `AWS_ENDPOINT_URL_S3`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `S3_BUCKET`, `AWS_REGION` | API | Neon storage bucket (S3-compatible, private) for report photos. Optional: without them the photo button is hidden and nothing else changes |
 | `VITE_NEON_AUTH_URL` | Web | The same Neon Auth URL; without it the sign-in controls are hidden |
 | `VITE_NEON_AUTH_GOOGLE` | Web | Set to `true` to show "Continue with Google" (only if enabled in the Neon Auth project) |
 
 **Citizen reports** (S5): signed-in people file a checklist report about a stream, optionally tidied by AI and with a photo; reports show as an unverified layer on the map and never change a score. Points, badges, a weekly challenge and a leaderboard reward useful reports; readers can flag reports, a moderator approves or hides held and flagged ones, people can delete their account, and approved reports are also served as unverified FHIR (`/api/fhir/citizen-observations`). Design and rules: [docs/S5-citizen-reports-plan.md](docs/S5-citizen-reports-plan.md).
+
+**Making someone a moderator:** add a row to the `moderators` table in the Neon database (SQL editor): `insert into moderators (user_id) select id::text from neon_auth."user" where email = 'person@example.com';`. Remove the row to remove the power. The grant is by account id, so it needs no environment setting and no verified email.
 
 ---
 
