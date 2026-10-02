@@ -52,16 +52,21 @@ export const QUESTIONS: Question[] = [
 
 export const NOTE_MAX = 500;
 
-/** "Water colour: Cloudy" style lines for the answered questions, in question order. */
-export function describeChecklist(checklist: Checklist): string[] {
-  const lines: string[] = [];
+/** [question, answer] pairs for the answered questions, in question order. */
+export function checklistPairs(checklist: Checklist): [string, string][] {
+  const pairs: [string, string][] = [];
   for (const q of QUESTIONS) {
     const value = checklist[q.key];
     if (value === undefined || value === "" || (Array.isArray(value) && value.length === 0)) continue;
     const label = (v: string) => q.options.find((o) => o.value === v)?.label ?? v;
-    lines.push(`${q.label}: ${Array.isArray(value) ? value.map(label).join(", ") : label(value)}`);
+    pairs.push([q.label, Array.isArray(value) ? value.map(label).join(", ") : label(value)]);
   }
-  return lines;
+  return pairs;
+}
+
+/** "Water colour: Cloudy" style lines for the answered questions, in question order. */
+export function describeChecklist(checklist: Checklist): string[] {
+  return checklistPairs(checklist).map(([q, a]) => `${q}: ${a}`);
 }
 
 /** Same rule as the server: at least one answered question. */

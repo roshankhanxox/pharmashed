@@ -2,7 +2,7 @@
 import { apiBase } from "../data/loaders";
 import { useStore } from "../data/store";
 import { useCommunity } from "./store";
-import { ago, describeChecklist } from "./reports";
+import { ago, checklistPairs } from "./reports";
 import { useReports } from "./reportsStore";
 import { startReportFlow } from "./startReport";
 
@@ -40,7 +40,11 @@ export function SiteReports({ siteId }: { siteId: string }) {
                 <span>· {ago(r.observed_at)}</span>
                 {r.is_sample && <span className="px-1.5 rounded" style={{ border: "1px solid var(--c-border)" }}>sample</span>}
               </div>
-              <div className="text-sm" style={{ color: "var(--c-muted)" }}>{describeChecklist(r.checklist).join(" · ")}</div>
+              <div className="text-sm" style={{ color: "var(--c-muted)" }}>
+                {checklistPairs(r.checklist).map(([q, a], j) => (
+                  <span key={q}>{j > 0 && " · "}<strong style={{ color: "var(--c-text)" }}>{q}:</strong> {a}</span>
+                ))}
+              </div>
               {r.photo_url && (
                 <img src={`${apiBase()}${r.photo_url}`} alt="Photo from this report" loading="lazy"
                      className="mt-1.5 w-28 h-28 object-cover rounded-lg" style={{ border: "1px solid var(--c-border)" }} />

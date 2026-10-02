@@ -1,7 +1,7 @@
 /** The small card shown when a citizen-report ring is clicked on the map. Built from DOM nodes with
  * textContent only, so a note can never inject markup. */
 import { apiBase } from "../data/loaders";
-import { ago, describeChecklist, type Report } from "./reports";
+import { ago, checklistPairs, type Report } from "./reports";
 
 function el(tag: string, text: string | null, style: Partial<CSSStyleDeclaration> = {}): HTMLElement {
   const node = document.createElement(tag);
@@ -15,7 +15,12 @@ export function reportPopup(report: Report): HTMLElement {
   const head = el("div", `${report.author} \u00b7 ${ago(report.observed_at)}`, { fontWeight: "600", marginBottom: "2px" });
   root.appendChild(head);
   root.appendChild(el("div", report.site_id ? `Near site ${report.site_id}` : "Not near one of our sites", { color: "#57534e", marginBottom: "6px" }));
-  for (const line of describeChecklist(report.checklist)) root.appendChild(el("div", line));
+  for (const [question, answer] of checklistPairs(report.checklist)) {
+    const row = el("div", null);
+    row.appendChild(el("strong", `${question}: `));
+    row.appendChild(document.createTextNode(answer));
+    root.appendChild(row);
+  }
   if (report.note) root.appendChild(el("div", `\u201c${report.note}\u201d`, { fontStyle: "italic", marginTop: "6px" }));
   if (report.photo_url) {
     const img = el("img", null, { marginTop: "8px", width: "100%", borderRadius: "6px", display: "block" }) as HTMLImageElement;

@@ -73,6 +73,11 @@ describe("map popup", () => {
     expect(text).toContain("Citizen report · unverified");
   });
 
+  it("puts each question in bold, then the answer", () => {
+    const bold = [...reportPopup(base).querySelectorAll("strong")].map((n) => n.textContent);
+    expect(bold).toEqual(["Foam on the water: "]);
+  });
+
   it("never turns a note into markup", () => {
     const node = reportPopup({ ...base, note: "<img src=x onerror=alert(1)><b>hi</b>", site_id: null, is_sample: true });
     expect(node.querySelector("b")).toBeNull();
