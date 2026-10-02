@@ -44,3 +44,63 @@ describe("pins and sites", () => {
     expect(nearestSite({ lat: 43, lon: 1.05 }, sites)).toBeNull();
   });
 });
+
+
+import { photoFlagMessage } from "./reports";
+
+describe("photo messages", () => {
+  it("says nothing for a clean photo", () => {
+    expect(photoFlagMessage({ id: "x", ai_ok: true, flags: {} })).toBeNull();
+  });
+  it("explains a flagged photo and an unchecked one", () => {
+    expect(photoFlagMessage({ id: "x", ai_ok: false, flags: { people: true, plate: true } })).toMatch(/a person and a number plate/);
+    expect(photoFlagMessage({ id: "x", ai_ok: false, flags: { not_a_stream: true } })).toMatch(/something other than a stream/);
+    expect(photoFlagMessage({ id: "x", ai_ok: null, flags: { unchecked: true } })).toMatch(/could not check/);
+  });
+});
+
+import { reportPopup } from "./reportPopup";
+
+describe("map popup", () => {
+  const base = { id: "r", lat: 1, lon: 2, site_id: "TLS-01", city: "TLS", observed_at: new Date().toISOString(), checklist: { foam: "light" },
+    note: "", is_sample: false, author: "Pat", mine: false };
+
+  it("shows the author, site, answers and the unverified label", () => {
+    const text = reportPopup(base).textContent ?? "";
+    expect(text).toContain("Pat");
+    expect(text).toContain("Near site TLS-01");
+    expect(text).toContain("Foam on the water: A little");
+    expect(text).toContain("Citizen report · unverified");
+  });
+
+  it("puts each question in bold, then the answer", () => {
+    const bold = [...reportPopup(base).querySelectorAll("strong")].map((n) => n.textContent);
+    expect(bold).toEqual(["Foam on the water: "]);
+  });
+
+  it("never turns a note into markup", () => {
+    const node = reportPopup({ ...base, note: "<img src=x onerror=alert(1)><b>hi</b>", site_id: null, is_sample: true });
+    expect(node.querySelector("b")).toBeNull();
+    expect(node.querySelector("img")).toBeNull();
+    expect(node.textContent).toContain("<b>hi</b>");
+    expect(node.textContent).toContain("Not near one of our sites");
+    expect(node.textContent).toContain("Sample report · unverified");
+  });
+});
+
+describe("popup flag button", () => {
+  const base = { id: "r", lat: 1, lon: 2, site_id: "TLS-01", city: "TLS", observed_at: new Date().toISOString(), checklist: { foam: "light" },
+    note: "", is_sample: false, author: "Pat", mine: false };
+
+  it("appears for other people's real reports and calls back with the report", () => {
+    const seen: string[] = [];
+    const node = reportPopup(base, (r) => seen.push(r.id));
+    node.querySelector("button")!.click();
+    expect(seen).toEqual(["r"]);
+  });
+
+  it("is not offered for your own report or a sample", () => {
+    expect(reportPopup({ ...base, mine: true }, () => undefined).querySelector("button")).toBeNull();
+    expect(reportPopup({ ...base, is_sample: true }, () => undefined).querySelector("button")).toBeNull();
+  });
+});

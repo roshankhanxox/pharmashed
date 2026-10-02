@@ -28,6 +28,8 @@ export interface ProfileInput {
 interface CommunityState {
   /** "unknown" until checked; "unavailable" hides every community control. */
   availability: "unknown" | "unavailable" | "ready";
+  /** The server can store photos (the bucket is configured). */
+  photosEnabled: boolean;
   signedIn: boolean;
   userName: string | null;
   profile: Profile | null;
@@ -36,6 +38,8 @@ interface CommunityState {
   error: string | null;
   authDialog: "closed" | "signin" | "signup";
   nicknameDialogOpen: boolean;
+  privacyOpen: boolean;
+  deleteDialogOpen: boolean;
 
   init: () => Promise<void>;
   refresh: () => Promise<void>;
@@ -43,6 +47,12 @@ interface CommunityState {
   closeAuthDialog: () => void;
   openNicknameDialog: () => void;
   closeNicknameDialog: () => void;
+  openPrivacy: () => void;
+  closePrivacy: () => void;
+  openDeleteDialog: () => void;
+  closeDeleteDialog: () => void;
+  /** Deletes the account and everything held about it, then signs out. */
+  deleteAccount: () => Promise<boolean>;
   signInEmail: (email: string, password: string) => Promise<boolean>;
   signUpEmail: (name: string, email: string, password: string) => Promise<boolean>;
   signInGoogle: () => Promise<void>;
@@ -55,6 +65,7 @@ const messageOf = (e: unknown, fallback: string): string =>
 
 export const useCommunity = create<CommunityState>((set, get) => ({
   availability: "unknown",
+  photosEnabled: false,
   signedIn: false,
   userName: null,
   profile: null,
@@ -63,6 +74,8 @@ export const useCommunity = create<CommunityState>((set, get) => ({
   error: null,
   authDialog: "closed",
   nicknameDialogOpen: false,
+  privacyOpen: false,
+  deleteDialogOpen: false,
 
   init: async () => {
     if (!authConfigured) {
@@ -70,12 +83,12 @@ export const useCommunity = create<CommunityState>((set, get) => ({
       return;
     }
     try {
-      const status = await apiFetch<{ enabled: boolean }>("/community/status");
+      const status = await apiFetch<{ enabled: boolean; photos?: boolean }>("/community/status");
       if (!status.enabled) {
         set({ availability: "unavailable" });
         return;
       }
-      set({ availability: "ready" });
+      set({ availability: "ready", photosEnabled: status.photos === true });
       await get().refresh();
     } catch {
       // The server is down or has no community support: leave the rest of the app untouched.
@@ -111,6 +124,28 @@ export const useCommunity = create<CommunityState>((set, get) => ({
   closeAuthDialog: () => set({ authDialog: "closed", error: null }),
   openNicknameDialog: () => set({ nicknameDialogOpen: true, error: null }),
   closeNicknameDialog: () => set({ nicknameDialogOpen: false, error: null }),
+  openPrivacy: () => set({ privacyOpen: true }),
+  closePrivacy: () => set({ privacyOpen: false }),
+  openDeleteDialog: () => set({ deleteDialogOpen: true, error: null }),
+  closeDeleteDialog: () => set({ deleteDialogOpen: false, error: null }),
+
+  deleteAccount: async () => {
+    set({ busy: true, error: null });
+    try {
+      await apiFetch<unknown>("/me", { method: "DELETE", auth: true });
+    } catch (e) {
+      set({ busy: false, error: messageOf(e, "Could not delete your account. Please try again.") });
+      return false;
+    }
+    // The account is gone on the server; ending the local session may fail because the session no longer exists.
+    try {
+      await getAuthClient()?.signOut();
+    } catch {
+      /* nothing left to sign out of */
+    }
+    set({ busy: false, deleteDialogOpen: false, signedIn: false, userName: null, profile: null, isAdmin: false, nicknameDialogOpen: false });
+    return true;
+  },
 
   signInEmail: async (email, password) => {
     const client = getAuthClient();

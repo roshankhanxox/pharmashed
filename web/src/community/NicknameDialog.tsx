@@ -3,7 +3,7 @@ import { useState, type FormEvent } from "react";
 import { useCommunity } from "./store";
 import { ErrorLine, Field, Modal, outlineButton, primaryButton } from "./Modal";
 
-const CITIES = [
+export const CITIES = [
   { id: "TLS", name: "Toulouse" },
   { id: "GNT", name: "Ghent" },
   { id: "BNV", name: "Benevento" },

@@ -1,0 +1,55 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "pharmashed-citizen-checklist",
+  "url": "https://pharmashed.example/fhir/CodeSystem/citizen-checklist",
+  "version": "0.1.0",
+  "name": "PharmaShedCitizenChecklist",
+  "title": "PharmaShed Citizen Checklist",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-01-01",
+  "description": "The observation code and the question codes of the citizen stream checklist. Answers are carried as strings (see the report form).",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "stream-visual-survey",
+      "display": "Stream visual survey",
+      "definition": "A citizen's checklist of what they saw at a stream."
+    },
+    {
+      "code": "water-colour",
+      "display": "Water colour",
+      "definition": "Citizen checklist question: water colour."
+    },
+    {
+      "code": "smell",
+      "display": "Smell",
+      "definition": "Citizen checklist question: smell."
+    },
+    {
+      "code": "foam",
+      "display": "Foam on the water",
+      "definition": "Citizen checklist question: foam on the water."
+    },
+    {
+      "code": "litter",
+      "display": "Litter",
+      "definition": "Citizen checklist question: litter."
+    },
+    {
+      "code": "animals",
+      "display": "Animal seen",
+      "definition": "Citizen checklist question: animal seen."
+    },
+    {
+      "code": "flow",
+      "display": "Flow",
+      "definition": "Citizen checklist question: flow."
+    },
+    {
+      "code": "rain-24h",
+      "display": "Rain in the last 24 hours",
+      "definition": "Citizen checklist question: rain in the last 24 hours."
+    }
+  ]
+}

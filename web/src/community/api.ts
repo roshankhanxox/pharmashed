@@ -30,7 +30,7 @@ export async function apiFetch<T>(
 ): Promise<T> {
   const { auth = false, headers, ...rest } = init;
   const merged = new Headers(headers);
-  if (rest.body && !merged.has("Content-Type")) merged.set("Content-Type", "application/json");
+  if (rest.body && !(rest.body instanceof FormData) && !merged.has("Content-Type")) merged.set("Content-Type", "application/json");
   if (auth) {
     const token = await getApiToken();
     if (!token) throw new ApiError(401, "You are not signed in.");

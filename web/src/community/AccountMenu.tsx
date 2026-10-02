@@ -8,6 +8,8 @@ export function AccountMenu() {
   const openAuthDialog = useCommunity((s) => s.openAuthDialog);
   const openNicknameDialog = useCommunity((s) => s.openNicknameDialog);
   const signOut = useCommunity((s) => s.signOut);
+  const openPrivacy = useCommunity((s) => s.openPrivacy);
+  const openDeleteDialog = useCommunity((s) => s.openDeleteDialog);
   const [open, setOpen] = useState(false);
 
   if (availability !== "ready") return null;
@@ -54,6 +56,13 @@ export function AccountMenu() {
               onClick={() => { setOpen(false); void signOut(); }}
             >
               Sign out
+            </button>
+            <button role="menuitem" className="block w-full text-left px-3 py-2" onClick={() => { setOpen(false); openPrivacy(); }}>
+              Privacy
+            </button>
+            <button role="menuitem" className="block w-full text-left px-3 py-2" style={{ color: "var(--c-danger-text)" }}
+                    onClick={() => { setOpen(false); openDeleteDialog(); }}>
+              Delete my account
             </button>
           </div>
         </>

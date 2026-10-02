@@ -3,6 +3,7 @@ import { CITIZEN_TAB_LABEL } from "../../data/copy";
 import { AudienceToggle } from "./AudienceToggle";
 import { ThemeToggle } from "./ThemeToggle";
 import { AccountMenu } from "../../community/AccountMenu";
+import { useCommunity } from "../../community/store";
 
 const TABS: { id: Tab; label: string }[] = [
   { id: "home",        label: "Home" },
@@ -11,18 +12,28 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "consistency", label: "Consistency" },
   { id: "methodology", label: "Methodology" },
   { id: "fhir",        label: "FHIR" },
+  { id: "leaderboard", label: "Leaderboard" },
+  { id: "mine",        label: "My streams" },
+  { id: "moderation",  label: "Moderation" },
 ];
+
+/** Tabs that need the community feature (a database and sign-in). */
+const COMMUNITY_TABS: readonly Tab[] = ["leaderboard", "mine"];
 
 export function TopTabs() {
   const activeTab    = useStore((s) => s.activeTab);
   const setActiveTab = useStore((s) => s.setActiveTab);
   const openAssistant = useStore((s) => s.openAssistant);
   const audience     = useStore((s) => s.audience);
+  const community    = useCommunity((s) => s.availability === "ready");
+  const isAdmin      = useCommunity((s) => s.isAdmin);
 
   // Citizen view shows only the tabs that have a citizen version.
+  const visible = TABS.filter((t) =>
+    t.id === "moderation" ? community && isAdmin : community || !COMMUNITY_TABS.includes(t.id));
   const tabs = audience === "citizen"
-    ? TABS.filter((t) => t.id in CITIZEN_TAB_LABEL).map((t) => ({ ...t, label: CITIZEN_TAB_LABEL[t.id] ?? t.label }))
-    : TABS;
+    ? visible.filter((t) => t.id in CITIZEN_TAB_LABEL).map((t) => ({ ...t, label: CITIZEN_TAB_LABEL[t.id] ?? t.label }))
+    : visible;
 
   return (
     <header

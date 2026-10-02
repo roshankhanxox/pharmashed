@@ -8,13 +8,18 @@
   "status": "draft",
   "experimental": true,
   "date": "2026-01-01",
-  "description": "Category codes for PharmaShed observations.",
+  "description": "Category codes for PharmaShed observations: model predictions and unverified citizen observations.",
   "content": "complete",
   "concept": [
     {
       "code": "model-prediction",
       "display": "Model prediction",
       "definition": "Computed output of the PharmaShed screening model, not a measurement."
+    },
+    {
+      "code": "citizen-observation",
+      "display": "Citizen observation",
+      "definition": "An unverified visual observation of a stream filed by a member of the public. Not a measurement."
     }
   ]
 }

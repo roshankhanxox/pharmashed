@@ -30,6 +30,21 @@
       "code": "external-reference-R1",
       "display": "External reference measurement (R1)",
       "definition": "A published field measurement (source R1) kept as reference data for the consistency checks; not produced by PharmaShed."
+    },
+    {
+      "code": "citizen-report",
+      "display": "Citizen report",
+      "definition": "Filed by a member of the public through the PharmaShed reports feature."
+    },
+    {
+      "code": "unverified",
+      "display": "Unverified",
+      "definition": "Not checked against any measurement; for context only."
+    },
+    {
+      "code": "sample",
+      "display": "Sample report",
+      "definition": "A seeded demonstration report, not from a real person."
     }
   ]
 }

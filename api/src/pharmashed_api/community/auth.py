@@ -150,5 +150,13 @@ def optional_user(request: Request) -> AuthUser | None:
         return None
 
 
+def require_admin(user: AuthUser = Depends(current_user)) -> AuthUser:
+    """FastAPI dependency: a moderator (listed in ADMIN_EMAILS with a verified email), or 403."""
+    if not user.is_admin:
+        raise HTTPException(403, "Moderators only.")
+    return user
+
+
 CurrentUser = Depends(current_user)
 OptionalUser = Depends(optional_user)
+AdminUser = Depends(require_admin)

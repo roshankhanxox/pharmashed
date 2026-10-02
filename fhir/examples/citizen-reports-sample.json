@@ -1,0 +1,241 @@
+{
+  "description": "Deterministic sample citizen reports, in the shape the API exports. Used to build and validate the citizen-observations bundle offline.",
+  "reports": [
+    {
+      "id": "sample-01",
+      "site_id": "TLS-14",
+      "checklist": {
+        "water_colour": "clear",
+        "smell": "earthy",
+        "foam": "none",
+        "litter": "none",
+        "animals": [
+          "frogs",
+          "none_seen"
+        ],
+        "rain_24h": "light"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-03T12:30:00Z"
+    },
+    {
+      "id": "sample-02",
+      "site_id": "TLS-17",
+      "checklist": {
+        "water_colour": "clear",
+        "smell": "chemical",
+        "foam": "light",
+        "litter": "a_lot",
+        "flow": "normal",
+        "rain_24h": "light"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-16T10:15:00Z"
+    },
+    {
+      "id": "sample-03",
+      "site_id": "TLS-18",
+      "checklist": {
+        "water_colour": "cloudy",
+        "smell": "none",
+        "foam": "heavy",
+        "litter": "none",
+        "animals": [
+          "insects",
+          "frogs"
+        ],
+        "flow": "trickle",
+        "rain_24h": "light"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-26T18:30:00Z"
+    },
+    {
+      "id": "sample-04",
+      "site_id": "GNT-20",
+      "checklist": {
+        "water_colour": "cloudy",
+        "smell": "chemical",
+        "litter": "a_lot",
+        "animals": [
+          "none_seen",
+          "birds"
+        ],
+        "flow": "normal",
+        "rain_24h": "none"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-20T18:00:00Z"
+    },
+    {
+      "id": "sample-05",
+      "site_id": "GNT-02",
+      "checklist": {
+        "water_colour": "clear",
+        "smell": "sewage",
+        "foam": "none",
+        "animals": [
+          "none_seen"
+        ],
+        "flow": "dry",
+        "rain_24h": "none"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-14T11:15:00Z"
+    },
+    {
+      "id": "sample-06",
+      "site_id": "GNT-09",
+      "checklist": {
+        "water_colour": "cloudy",
+        "smell": "none",
+        "foam": "light"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-11T15:45:00Z"
+    },
+    {
+      "id": "sample-07",
+      "site_id": "BNV-03",
+      "checklist": {
+        "water_colour": "green",
+        "smell": "sewage",
+        "foam": "light",
+        "litter": "none",
+        "animals": [
+          "frogs"
+        ],
+        "flow": "normal"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-03T11:15:00Z"
+    },
+    {
+      "id": "sample-08",
+      "site_id": "BNV-10",
+      "checklist": {
+        "water_colour": "grey",
+        "smell": "musty",
+        "foam": "heavy",
+        "litter": "some",
+        "animals": [
+          "frogs",
+          "birds"
+        ],
+        "rain_24h": "none"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-08T16:30:00Z"
+    },
+    {
+      "id": "sample-09",
+      "site_id": "BNV-16",
+      "checklist": {
+        "water_colour": "brown",
+        "smell": "sewage",
+        "foam": "none",
+        "litter": "some",
+        "flow": "high",
+        "rain_24h": "heavy"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-24T17:45:00Z"
+    },
+    {
+      "id": "sample-10",
+      "site_id": "CBR-08",
+      "checklist": {
+        "water_colour": "clear",
+        "smell": "none",
+        "foam": "none",
+        "litter": "none",
+        "animals": [
+          "fish"
+        ],
+        "flow": "high",
+        "rain_24h": "none"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-21T11:45:00Z"
+    },
+    {
+      "id": "sample-11",
+      "site_id": "CBR-21",
+      "checklist": {
+        "water_colour": "cloudy",
+        "smell": "none",
+        "foam": "heavy",
+        "flow": "normal",
+        "rain_24h": "none"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-04T10:00:00Z"
+    },
+    {
+      "id": "sample-12",
+      "site_id": "CBR-06",
+      "checklist": {
+        "water_colour": "cloudy",
+        "smell": "earthy",
+        "litter": "some",
+        "rain_24h": "light"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-05T11:30:00Z"
+    },
+    {
+      "id": "sample-13",
+      "site_id": "OSL-13",
+      "checklist": {
+        "water_colour": "brown",
+        "smell": "sewage",
+        "foam": "light",
+        "litter": "some",
+        "animals": [
+          "frogs",
+          "none_seen"
+        ],
+        "flow": "normal",
+        "rain_24h": "light"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-27T10:45:00Z"
+    },
+    {
+      "id": "sample-14",
+      "site_id": "OSL-06",
+      "checklist": {
+        "water_colour": "cloudy",
+        "smell": "musty",
+        "foam": "light",
+        "litter": "some",
+        "animals": [
+          "fish",
+          "none_seen"
+        ],
+        "flow": "normal",
+        "rain_24h": "heavy"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-07T17:30:00Z"
+    },
+    {
+      "id": "sample-15",
+      "site_id": "OSL-20",
+      "checklist": {
+        "water_colour": "brown",
+        "smell": "none",
+        "foam": "none",
+        "litter": "a_lot",
+        "animals": [
+          "fish",
+          "insects"
+        ],
+        "flow": "high",
+        "rain_24h": "heavy"
+      },
+      "is_sample": true,
+      "visited_at": "2026-05-03T11:45:00Z"
+    }
+  ]
+}

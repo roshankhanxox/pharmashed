@@ -44,6 +44,9 @@ export const CITIZEN_TAB_LABEL: Partial<Record<Tab, string>> = {
   home: "Home",
   explore: "Stream map",
   scenarios: "What if?",
+  leaderboard: "Leaderboard",
+  mine: "My streams",
+  moderation: "Moderation",
 };
 
 /** Explains the score in words, always with the required caveat. */

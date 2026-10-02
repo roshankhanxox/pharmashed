@@ -158,3 +158,24 @@ describe("signing in and out", () => {
     expect(store.getState()).toMatchObject({ signedIn: false, userName: null, profile: null, isAdmin: false });
   });
 });
+
+describe("deleting the account", () => {
+  it("calls the server, signs out, and clears the person", async () => {
+    apiFetch.mockResolvedValue({ photos: 0, reports: 1, sign_in_user: 1 });
+    const store = await load(true);
+    store.setState({ signedIn: true, profile, deleteDialogOpen: true });
+    expect(await store.getState().deleteAccount()).toBe(true);
+    expect(apiFetch).toHaveBeenCalledWith("/me", expect.objectContaining({ method: "DELETE", auth: true }));
+    expect(client.signOut).toHaveBeenCalled();
+    expect(store.getState()).toMatchObject({ signedIn: false, profile: null, deleteDialogOpen: false, busy: false });
+  });
+
+  it("stays signed in and shows the message if the server refuses", async () => {
+    apiFetch.mockRejectedValue(new Error("Could not delete."));
+    const store = await load(true);
+    store.setState({ signedIn: true, profile, deleteDialogOpen: true });
+    expect(await store.getState().deleteAccount()).toBe(false);
+    expect(store.getState()).toMatchObject({ signedIn: true, deleteDialogOpen: true, error: "Could not delete." });
+    expect(client.signOut).not.toHaveBeenCalled();
+  });
+});

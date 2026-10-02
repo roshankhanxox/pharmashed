@@ -8,7 +8,7 @@
   "status": "draft",
   "experimental": true,
   "date": "2026-01-01",
-  "description": "Observation category codes used in PharmaShed — model predictions plus the core laboratory code.",
+  "description": "Observation category codes used in PharmaShed: model predictions, unverified citizen observations, plus the core laboratory code.",
   "compose": {
     "include": [
       {
@@ -17,6 +17,10 @@
           {
             "code": "model-prediction",
             "display": "Model prediction"
+          },
+          {
+            "code": "citizen-observation",
+            "display": "Citizen observation"
           }
         ]
       },

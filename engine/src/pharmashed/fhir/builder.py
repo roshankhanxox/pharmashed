@@ -23,6 +23,9 @@ _COMP_CS = "https://pharmashed.example/fhir/CodeSystem/components"
 _CONS_CS = "https://pharmashed.example/fhir/CodeSystem/consumption"
 _HL7_OBS_CAT = "http://terminology.hl7.org/CodeSystem/observation-category"
 
+_CIT_CS = "https://pharmashed.example/fhir/CodeSystem/citizen-checklist"
+_CIT_ORG_ID = "citizen-reports"
+
 # OAH IG profiles (D17, D37)
 _OAH_PREDICTION_PROFILE = "http://hl7.eu/fhir/ig/oah/StructureDefinition/observation-with-component-oah"
 _OAH_LOCATION_PROFILE   = "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
@@ -272,6 +275,83 @@ def build_prediction_observations(results_json: dict) -> list[dict]:
     return obs_list
 
 
+# --- Citizen observations (S5) ---
+
+# Checklist keys as the API stores them -> the code used in the CodeSystem.
+_CIT_QUESTION_CODE = {
+    "water_colour": "water-colour", "smell": "smell", "foam": "foam", "litter": "litter",
+    "animals": "animals", "flow": "flow", "rain_24h": "rain-24h",
+}
+
+
+def build_citizen_observation(report: dict) -> dict | None:
+    """One Observation from a report dict {id, site_id, visited_at, checklist, is_sample}.
+
+    Unverified by design: status `preliminary`, category `citizen-observation`, tagged `unverified`. The
+    reporter's nickname and the free-text note are never exported. Reports not linked to a site return None
+    (the Observation needs a Location subject).
+    """
+    site_id = report.get("site_id")
+    if not site_id:
+        return None
+    components: list[dict] = []
+    for key, code in _CIT_QUESTION_CODE.items():
+        value = (report.get("checklist") or {}).get(key)
+        if value in (None, "", []):
+            continue
+        for answer in (value if isinstance(value, list) else [value]):
+            components.append({
+                "code": {"coding": [{"system": _CIT_CS, "code": code}]},
+                "valueString": str(answer),
+            })
+    if not components:
+        return None
+    visited = report["visited_at"]
+    if not isinstance(visited, str):
+        visited = visited.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    tags = [{"system": _TAG_CS, "code": "citizen-report"}, {"system": _TAG_CS, "code": "unverified"}]
+    if report.get("is_sample"):
+        tags.append({"system": _TAG_CS, "code": "sample"})
+    return {
+        "resourceType": "Observation",
+        "id": f"cit-{report['id']}",
+        # No OAH profile on purpose: it fixes status to `final`, and an unverified citizen report must say
+        # `preliminary`. Claiming the profile would mean either failing it or overstating the data.
+        "meta": {"tag": tags},
+        "status": "preliminary",
+        "category": [{"coding": [{"system": _CAT_CS, "code": "citizen-observation", "display": "Citizen observation"}]}],
+        "code": {
+            "coding": [{"system": _CIT_CS, "code": "stream-visual-survey", "display": "Stream visual survey"}],
+            "text": "Citizen stream visual survey",
+        },
+        "subject": _ref("Location", f"site-{site_id}"),
+        "effectiveDateTime": visited,
+        "performer": [_ref("Organization", _CIT_ORG_ID)],
+        "component": components,
+    }
+
+
+def build_citizen_observations(reports: list[dict]) -> list[dict]:
+    """Observations for every exportable report, in the order given."""
+    return [o for o in (build_citizen_observation(r) for r in reports) if o is not None]
+
+
+def build_citizen_organization() -> dict:
+    """The anonymous Organization that stands for all citizen reporters (no person is identified)."""
+    return {
+        "resourceType": "Organization",
+        "id": _CIT_ORG_ID,
+        "meta": {"tag": [{"system": _TAG_CS, "code": "citizen-report"}]},
+        "active": True,
+        "name": "Citizen reporters (anonymous)",
+    }
+
+
+def citizen_bundle(reports: list[dict]) -> dict:
+    """A collection Bundle of citizen Observations plus the Organization they reference."""
+    return _collection_bundle("citizen-observations", [build_citizen_organization(), *build_citizen_observations(reports)])
+
+
 # --- Reference measurement Observations ---
 # build_reference_observations lives in checks/fhir_obs.py (separation rule: M12).
 # Call it from there and pass the list here via build_all(ref_obs=...).
@@ -339,6 +419,13 @@ def _build_fhir_index(
             ),
         ),
     ).model_dump(mode="json")
+
+
+_CITIZEN_SAMPLE = _REPO_ROOT / "fhir" / "examples" / "citizen-reports-sample.json"
+_CITIZEN_DESCRIPTION = (
+    "Unverified citizen observations of streams (checklist answers per site and visit), built from "
+    "sample reports. The live API serves the same shape for approved real reports at /api/fhir/citizen-observations"
+)
 
 
 _OAH_EXAMPLES = _REPO_ROOT / "fhir" / "examples" / "oah-examples.json"
@@ -438,6 +525,11 @@ def build_all(
         city_preds = [o for o in prediction_obs if f"-{city}" in o["id"]]
         bundles.append((f"predictions-{city}", city_preds))
 
+    citizen_obs: list[dict] = []
+    if _CITIZEN_SAMPLE.exists():
+        citizen_obs = build_citizen_observations(json.loads(_CITIZEN_SAMPLE.read_text())["reports"])
+        bundles.append(("citizen-observations", [build_citizen_organization(), *citizen_obs]))
+
     bundles_meta = []
     resource_counts: dict[str, int] = {}
     for bundle_name, resources in bundles:
@@ -453,12 +545,15 @@ def build_all(
             rel = str(bundle_path.relative_to(_REPO_ROOT))
         except ValueError:
             rel = bundle_path.name
-        bundles_meta.append({
+        meta = {
             "name": bundle_name,
             "path": rel,
             "resource_type": "Bundle",
             "count": len(resources),
-        })
+        }
+        if bundle_name == "citizen-observations":
+            meta["description"] = _CITIZEN_DESCRIPTION
+        bundles_meta.append(meta)
 
     # The OneAquaHealth IG's own example resources, co-hosted unmodified next to ours (D38). Counted
     # separately so resource_counts stays a count of PharmaShed's own output.
@@ -474,6 +569,7 @@ def build_all(
     pred_count = len(prediction_obs)
     resource_counts["Observation:laboratory"] = lab_count
     resource_counts["Observation:model-prediction"] = pred_count
+    resource_counts["Observation:citizen-observation"] = len(citizen_obs)
 
     index = _build_fhir_index(bundles_meta, resource_counts, oah_counts)
     (out_dir / "fhir_index.json").write_text(json.dumps(index, indent=2, default=str))

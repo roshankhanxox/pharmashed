@@ -189,3 +189,35 @@ body {
   .reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
   .page-out, .page-in, .animate-fade-up, .animate-fade-in { animation: none; }
 }
+
+/* Map popups (citizen report cards): a rounded card in the theme colours with a roomy close button. */
+.maplibregl-popup-content {
+  background: var(--c-surface);
+  color: var(--c-text);
+  border: 1px solid var(--c-border);
+  border-radius: 12px;
+  padding: 16px 18px 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  font-family: inherit;
+}
+.maplibregl-popup-anchor-top .maplibregl-popup-tip,
+.maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-top-right .maplibregl-popup-tip { border-bottom-color: var(--c-surface); }
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { border-top-color: var(--c-surface); }
+.maplibregl-popup-anchor-left .maplibregl-popup-tip { border-right-color: var(--c-surface); }
+.maplibregl-popup-anchor-right .maplibregl-popup-tip { border-left-color: var(--c-surface); }
+.maplibregl-popup-close-button {
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  font-size: 20px;
+  line-height: 26px;
+  color: var(--c-muted2);
+  background: transparent;
+}
+.maplibregl-popup-close-button:hover { background: var(--c-raised); color: var(--c-text); }
+.maplibregl-popup-close-button:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 1px; }
