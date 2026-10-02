@@ -10,7 +10,7 @@ import type {
 } from "../types/contracts";
 import type { DrawsView } from "./draws";
 
-export type Tab = "home" | "explore" | "scenarios" | "consistency" | "methodology" | "fhir";
+export type Tab = "home" | "explore" | "scenarios" | "consistency" | "methodology" | "fhir" | "leaderboard" | "mine";
 
 /** Who the interface is written for. Citizen = plain language and simpler tabs; expert = full technical view. */
 export type Audience = "citizen" | "expert";

@@ -1,5 +1,6 @@
 /** Citizen reports (S5 phase 2): the checklist questions, plain-language answers, and API calls. */
 import { apiFetch } from "./api";
+import type { Rewards } from "./points";
 
 export type Checklist = Record<string, string | string[]>;
 
@@ -17,6 +18,8 @@ export interface Report {
   mine: boolean;
   /** Path (relative to the API base) of the photo, when there is an approved one. */
   photo_url?: string | null;
+  /** Only on the response to filing a report. */
+  rewards?: Rewards | null;
   /** Only on the person's own reports. */
   status?: "pending" | "approved" | "hidden";
 }

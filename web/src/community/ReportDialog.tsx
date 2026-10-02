@@ -72,12 +72,36 @@ export function ReportDialog() {
   if (!dialogOpen) return null;
 
   if (justSent) {
+    const rewards = justSent.rewards;
     return (
       <Modal title="Thank you" onClose={cancel}>
-        <p className="mb-4" style={{ color: "var(--c-muted)" }}>
-          Your report is on the map{justSent.site_id ? ` and on the page for site ${justSent.site_id}` : ""}. It is shown as
-          unverified and does not change any testing priority.
-        </p>
+        {rewards ? (
+          <>
+            <p className="mb-3" style={{ color: "var(--c-muted)" }}>
+              Your report is on the map{justSent.site_id ? ` and on the page for site ${justSent.site_id}` : ""}. It is shown as
+              unverified and does not change any testing priority.
+            </p>
+            <div className="rounded-lg px-4 py-3 mb-4" style={{ background: "var(--c-raised)", border: "1px solid var(--c-border-subtle)" }}>
+              <div className="font-display text-2xl mb-1" style={{ fontWeight: 500 }}>
+                {rewards.total > 0 ? `+${rewards.total} points` : "No points this time"}
+              </div>
+              <ul className="text-sm flex flex-col gap-0.5" style={{ color: "var(--c-muted)" }}>
+                {rewards.lines.map((l) => (
+                  <li key={l.reason}>{l.points > 0 ? `+${l.points} ` : ""}{l.label}</li>
+                ))}
+              </ul>
+              {rewards.new_badges.length > 0 && (
+                <p className="text-sm mt-2 font-medium" style={{ color: "var(--c-accent)" }}>
+                  New badge{rewards.new_badges.length > 1 ? "s" : ""}: {rewards.new_badges.map((b) => b.title).join(", ")}
+                </p>
+              )}
+            </div>
+          </>
+        ) : (
+          <p className="mb-4" style={{ color: "var(--c-muted)" }}>
+            Thank you. A moderator will look at your report before it is shown, and points are added once it is approved.
+          </p>
+        )}
         <button onClick={cancel} className="w-full px-4 py-2.5 rounded-lg font-semibold" style={primaryButton}>Done</button>
       </Modal>
     );

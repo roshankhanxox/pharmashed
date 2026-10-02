@@ -14,7 +14,7 @@ import psycopg
 from psycopg.types.json import Jsonb
 
 from pharmashed_api import data
-from pharmashed_api.community import geo, photos
+from pharmashed_api.community import geo, photos, points
 
 SAMPLE_USER = "sample"
 NOTE_MAX = 500
@@ -164,16 +164,19 @@ def create_report(
     row = conn.execute(
         """
         insert into reports (user_id, lat, lon, site_id, city, distance_m, observed_at, checklist, note_raw,
-                             note_clean, status)
-        values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) returning id
+                             note_clean, status, created_at)
+        values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) returning id
         """,
         (user_id, lat, lon, placement.site_id, placement.city, placement.distance_m, when,
-         Jsonb(answers), text, tidy, status),
+         Jsonb(answers), text, tidy, status, now),
     ).fetchone()
-    if photo_id:
-        if photos.attach(conn, photo_id, user_id, row["id"]) is not True:
-            conn.execute("update reports set status = 'pending' where id = %s", (row["id"],))
-    return get_report(conn, row["id"], user_id)
+    if photo_id and photos.attach(conn, photo_id, user_id, row["id"]) is not True:
+        status = "pending"
+        conn.execute("update reports set status = 'pending' where id = %s", (row["id"],))
+    made = get_report(conn, row["id"], user_id)
+    # Points only for approved reports; a held report is scored when a moderator approves it.
+    made["rewards"] = points.award_for_report(conn, row["id"]) if status == "approved" else None
+    return made
 
 
 def get_report(conn: psycopg.Connection, report_id: Any, viewer_id: str | None) -> dict[str, Any]:

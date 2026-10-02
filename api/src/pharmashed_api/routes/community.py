@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 import uuid
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any
 
 from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile
@@ -13,7 +13,7 @@ from pydantic import BaseModel, Field, field_validator
 
 from pharmashed_api.assistant import loop
 from pharmashed_api.assistant.limits import limiter
-from pharmashed_api.community import auth, db, photos, profiles, proofread, reports, storage
+from pharmashed_api.community import auth, db, photos, points, profiles, proofread, reports, storage
 
 log = logging.getLogger(__name__)
 router = APIRouter()
@@ -163,3 +163,28 @@ def get_photo(photo_id: uuid.UUID) -> RedirectResponse:
     if key is None:
         raise HTTPException(404, "No such photo.")
     return RedirectResponse(storage.presigned_get(key), status_code=302, headers={"Cache-Control": "private, max-age=60"})
+
+
+@router.get("/me/progress", dependencies=[Depends(require_database)])
+def my_progress(user: auth.AuthUser = auth.CurrentUser) -> dict:
+    """Points, rank, streak, badges, this week's challenge and recent point events for the signed-in person."""
+    with db.connection() as conn:
+        return points.progress(conn, user.id)
+
+
+@router.get("/challenge", dependencies=[Depends(require_database)])
+def challenge() -> dict:
+    """This week's challenge (public)."""
+    return points.challenge_for(datetime.now(UTC))
+
+
+@router.get("/leaderboard", dependencies=[Depends(require_database)])
+def leaderboard(
+    scope: str = Query("all", pattern="^(all|week|month)$"),
+    city: str | None = Query(None, pattern="^(TLS|GNT|BNV|CBR|OSL)$"),
+    limit: int = Query(25, ge=1, le=100),
+    user: auth.AuthUser | None = auth.OptionalUser,
+) -> dict:
+    """Top people by points, by nickname, for everyone or one city, all time, this week or the last 30 days."""
+    with db.connection() as conn:
+        return points.leaderboard(conn, user.id if user else None, scope=scope, city=city, limit=limit)

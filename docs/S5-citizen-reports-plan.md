@@ -1,6 +1,6 @@
 # S5 — Citizen reports and gamification: implementation plan
 
-Status: phases 1 and 2 merged; phase 3 built (branch `S5-p3-ai-proofread`). This file is the plan; CHECKPOINT.md tracks progress.
+Status: phases 1 and 2 merged; phases 3 and 4 built (branch `S5-p3-ai-proofread`). This file is the plan; CHECKPOINT.md tracks progress.
 
 ## Goal
 
@@ -66,10 +66,10 @@ moderation_actions(id bigserial pk, report_id uuid, admin_user_id text, action t
 
 **Points** (v1, numbers live in one config so they are easy to tune):
 - approved report +10; photo that passed the AI check (or was approved by a moderator) +5
-- first report by you at a site +5; a site with no approved report in the previous 30 days +10
+- first report by you at a site +5; a site with no approved report in the previous 30 days +10 (sample reports do not count)
 - weekly streak bonus +5 per consecutive week with a rewarded report, capped at +20
 - weekly challenge completed +20
-- caps: at most 3 rewarded reports per UTC day, and one rewarded report per site per user per 7 days (extra reports are still saved, just not rewarded)
+- caps: at most 3 rewarded reports per UTC day, and one rewarded report per site per user per 7 days (extra reports are still saved, just not rewarded). A report outside every site's 1 km earns no points. Each skipped report gets a 0-point ledger row that says why.
 - a report hidden by a moderator reverses its points with negative ledger entries
 
 **Badges:** First report, Regular (5 reports), Explorer (5 different sites), Photographer (5 photo-verified reports), Three-week streak, Neglected-stream hero (3 neglected-site bonuses), Challenger (a weekly challenge). Awarded by rules after each rewarded report.
@@ -85,7 +85,7 @@ moderation_actions(id bigserial pk, report_id uuid, admin_user_id text, action t
 | 1 | `GET /api/community/status`, `GET /api/me`, `PUT /api/me/profile` |
 | 2 | `POST /api/reports`, `GET /api/reports?site_id=&city=&limit=` (public), `GET /api/me/reports` |
 | 3 | `POST /api/photos` (multipart), `GET /api/photos/{id}` (redirect, approved reports only), `POST /api/ai/proofread` |
-| 4 | `GET /api/leaderboard?scope=&city=`, `GET /api/me/progress`, `GET /api/challenge` |
+| 4 | `GET /api/leaderboard?scope=all\|week\|month&city=`, `GET /api/me/progress`, `GET /api/challenge` |
 | 5 | `POST /api/reports/{id}/flag`, `GET/POST /api/admin/reports`, `GET /api/fhir/citizen-observations`, `DELETE /api/me` |
 
 All write endpoints need a valid token. AI endpoints share the existing per-client and daily limits, plus a per-user limit.

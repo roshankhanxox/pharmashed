@@ -20,6 +20,8 @@ import { AssistantDrawer } from "./assistant/AssistantDrawer";
 import { FloatingAsk } from "./components/shell/FloatingAsk";
 import { AuthDialog } from "./community/AuthDialog";
 import { NicknameDialog } from "./community/NicknameDialog";
+import { LeaderboardTab } from "./tabs/Community/LeaderboardTab";
+import { MyStreamsTab } from "./tabs/Community/MyStreamsTab";
 import { ReportDialog } from "./community/ReportDialog";
 import { useReports } from "./community/reportsStore";
 import { useCommunity } from "./community/store";
@@ -124,6 +126,8 @@ function App() {
         {shownTab === "consistency" && <ConsistencyTab />}
         {shownTab === "methodology" && <MethodologyTab />}
         {shownTab === "fhir" && <FhirTab />}
+        {shownTab === "leaderboard" && <LeaderboardTab />}
+        {shownTab === "mine" && <MyStreamsTab />}
       </main>
 
       <FooterStrip />
