@@ -29,17 +29,17 @@ def test_status_when_nothing_is_configured(monkeypatch):
     monkeypatch.delenv("DATABASE_URL", raising=False)
     monkeypatch.delenv("NEON_AUTH_BASE_URL", raising=False)
     auth.set_verifier(None)
-    assert TestClient(app).get("/api/community/status").json() == {"enabled": False, "database": False, "auth": False}
+    assert TestClient(app).get("/api/community/status").json() == {"enabled": False, "database": False, "auth": False, "photos": False}
 
 
 def test_status_when_both_are_configured(client):
-    assert client.get("/api/community/status").json() == {"enabled": True, "database": True, "auth": True}
+    assert client.get("/api/community/status").json() == {"enabled": True, "database": True, "auth": True, "photos": False}
 
 
 def test_status_when_only_the_database_is_configured(community_db, monkeypatch):
     monkeypatch.delenv("NEON_AUTH_BASE_URL", raising=False)
     auth.set_verifier(None)
-    assert TestClient(app).get("/api/community/status").json() == {"enabled": False, "database": True, "auth": False}
+    assert TestClient(app).get("/api/community/status").json() == {"enabled": False, "database": True, "auth": False, "photos": False}
 
 
 def test_me_needs_a_valid_token(client):

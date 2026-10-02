@@ -1,4 +1,5 @@
 /** Recent citizen reports for one site, plus the button to file one. Shown in both views of the site page. */
+import { apiBase } from "../data/loaders";
 import { useStore } from "../data/store";
 import { useCommunity } from "./store";
 import { ago, describeChecklist } from "./reports";
@@ -40,6 +41,10 @@ export function SiteReports({ siteId }: { siteId: string }) {
                 {r.is_sample && <span className="px-1.5 rounded" style={{ border: "1px solid var(--c-border)" }}>sample</span>}
               </div>
               <div className="text-sm" style={{ color: "var(--c-muted)" }}>{describeChecklist(r.checklist).join(" · ")}</div>
+              {r.photo_url && (
+                <img src={`${apiBase()}${r.photo_url}`} alt="Photo from this report" loading="lazy"
+                     className="mt-1.5 w-28 h-28 object-cover rounded-lg" style={{ border: "1px solid var(--c-border)" }} />
+              )}
               {r.note && <div className="text-sm italic mt-0.5" style={{ color: "var(--c-muted)" }}>“{r.note}”</div>}
             </li>
           ))}

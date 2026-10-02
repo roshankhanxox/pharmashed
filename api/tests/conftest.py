@@ -77,3 +77,14 @@ def community_db(pg_url, monkeypatch):
     db.reset_pool()
     yield pg_url
     db.reset_pool()
+
+
+@pytest.fixture(autouse=True)
+def _no_real_services(monkeypatch):
+    """main.py loads the developer's .env; tests must never reach the real bucket or a real model key."""
+    for name in ("AWS_ENDPOINT_URL_S3", "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "S3_BUCKET",
+                 "OPENAI_API_KEY", "GROQ_API_KEY", "ASSISTANT_PROVIDER"):
+        monkeypatch.delenv(name, raising=False)
+    from pharmashed_api.community import storage
+
+    storage.reset_client()

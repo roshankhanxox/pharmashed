@@ -18,10 +18,10 @@ def conn(pg_url):
 
 
 def test_migrations_apply_once_and_are_recorded(conn):
-    assert db.apply_migrations(conn) == ["0001_profiles.sql", "0002_reports.sql"]
+    assert db.apply_migrations(conn) == ["0001_profiles.sql", "0002_reports.sql", "0003_photos.sql"]
     assert db.apply_migrations(conn) == []          # already applied: nothing to do
     names = [r["name"] for r in conn.execute("select name from schema_migrations order by name")]
-    assert names == ["0001_profiles.sql", "0002_reports.sql"]
+    assert names == ["0001_profiles.sql", "0002_reports.sql", "0003_photos.sql"]
     assert conn.execute("select to_regclass('public.profiles') as t").fetchone()["t"] == "profiles"
 
 

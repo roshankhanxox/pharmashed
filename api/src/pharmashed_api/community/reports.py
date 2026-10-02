@@ -14,7 +14,7 @@ import psycopg
 from psycopg.types.json import Jsonb
 
 from pharmashed_api import data
-from pharmashed_api.community import geo
+from pharmashed_api.community import geo, photos
 
 SAMPLE_USER = "sample"
 NOTE_MAX = 500
@@ -90,6 +90,12 @@ def clean_observed_at(value: datetime, now: datetime | None = None) -> datetime:
     return value
 
 
+def _personal(note: str) -> bool:
+    from pharmashed_api.community import proofread  # proofread imports this module
+
+    return bool(proofread.deterministic_flags(note))
+
+
 def locate(lat: float, lon: float) -> geo.Placement:
     """Place a pin among the model sites and cities."""
     catalogue = data.sites()
@@ -111,12 +117,15 @@ def _public(row: Mapping[str, Any], viewer_id: str | None) -> dict[str, Any]:
         "is_sample": sample,
         "author": "Sample report" if sample else (row.get("nickname") or "A citizen"),
         "mine": bool(viewer_id) and row["user_id"] == viewer_id,
+        "photo_url": f"/photos/{row['photo_id']}" if row.get("photo_id") and row["status"] == "approved" else None,
     }
 
 
 _SELECT = """
-    select r.*, p.nickname
-    from reports r left join profiles p on p.user_id = r.user_id
+    select r.*, p.nickname, ph.id as photo_id
+    from reports r
+    left join profiles p on p.user_id = r.user_id
+    left join report_photos ph on ph.report_id = r.id
 """
 
 
@@ -129,12 +138,21 @@ def create_report(
     observed_at: datetime,
     checklist: Mapping[str, Any],
     note: str | None,
+    note_clean: str | None = None,
+    photo_id: str | None = None,
     now: datetime | None = None,
 ) -> dict[str, Any]:
-    """Validate and save one report; return its public form. Raises InvalidReport or TooManyReports."""
+    """Validate and save one report; return its public form. Raises InvalidReport or TooManyReports.
+
+    `note_clean` is the AI-tidied version the person chose to use; both versions are kept. A note that looks
+    like it contains personal details, or a photo the AI flagged or could not check, waits for a moderator
+    (status `pending`) instead of going public. Raises photos.InvalidPhoto for a photo that is not the person's.
+    """
     now = now or datetime.now(UTC)
     answers = clean_checklist(checklist)
     text = clean_note(note)
+    tidy = clean_note(note_clean) if note_clean else None
+    status = "pending" if _personal(text) or _personal(tidy or "") else "approved"
     when = clean_observed_at(observed_at, now)
     placement = locate(lat, lon)
     recent = conn.execute(
@@ -145,12 +163,16 @@ def create_report(
         raise TooManyReports
     row = conn.execute(
         """
-        insert into reports (user_id, lat, lon, site_id, city, distance_m, observed_at, checklist, note_raw)
-        values (%s, %s, %s, %s, %s, %s, %s, %s, %s) returning id
+        insert into reports (user_id, lat, lon, site_id, city, distance_m, observed_at, checklist, note_raw,
+                             note_clean, status)
+        values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) returning id
         """,
         (user_id, lat, lon, placement.site_id, placement.city, placement.distance_m, when,
-         Jsonb(answers), text),
+         Jsonb(answers), text, tidy, status),
     ).fetchone()
+    if photo_id:
+        if photos.attach(conn, photo_id, user_id, row["id"]) is not True:
+            conn.execute("update reports set status = 'pending' where id = %s", (row["id"],))
     return get_report(conn, row["id"], user_id)
 
 

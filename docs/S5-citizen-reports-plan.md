@@ -1,6 +1,6 @@
 # S5 — Citizen reports and gamification: implementation plan
 
-Status: phases 1 (merged) and 2 (branch `S5-p2-reports`) built and checked against a real Neon project. This file is the plan; CHECKPOINT.md tracks progress.
+Status: phases 1 and 2 merged; phase 3 built (branch `S5-p3-ai-proofread`). This file is the plan; CHECKPOINT.md tracks progress.
 
 ## Goal
 
@@ -15,7 +15,7 @@ Covers hackathon Tracks 1 (citizen UX), 3 (AI with a human in the loop), 5 (comm
 | 1 | Storage: **Neon Postgres** (free plan: 0.5 GB, scale-to-zero) | Render's disk is wiped on redeploy; Neon is one free hosted database |
 | 2 | Sign-in: **Neon Auth** (managed Better Auth): email + password and Google | Users live in our own database; tokens are EdDSA JWTs our API verifies with a public key list |
 | 3 | Leaderboard shows **nicknames only**. Neon Auth keeps each user's email and name in our own Neon project (`neon_auth` schema); our tables never copy them, and other people only ever see the nickname | Privacy. Because we hold email addresses for users in the EU, we also owe them a short privacy note and a way to delete their data (phase 5) |
-| 4 | Photos: **Cloudinary** free plan (25 credits/month), browser uploads straight to it with a permission slip signed by our API | Neon's 0.5 GB is too small for photos; keeps photo bytes off Render |
+| 4 | Photos: the **private Neon storage bucket** (S3-compatible), uploaded through our API, which resizes, strips metadata, checks with AI, then stores | One fewer account; the server can validate every image; photos stay private and are served by short-lived links |
 | 5 | AI: `gpt-5-mini` (already configured) for note proofreading and a photo sanity check | Existing key, existing rate limits |
 | 6 | Report location: a **pin on a stream**, linked to the nearest of the 105 sites if within 1 km, else stored as "outside coverage" | The 105 sites are synthetic placements, not real stations |
 | 7 | Moderator: the admin emails in `ADMIN_EMAILS`, and the token's email must be verified | Single-person moderation for a prototype |
@@ -84,7 +84,7 @@ moderation_actions(id bigserial pk, report_id uuid, admin_user_id text, action t
 |---|---|
 | 1 | `GET /api/community/status`, `GET /api/me`, `PUT /api/me/profile` |
 | 2 | `POST /api/reports`, `GET /api/reports?site_id=&city=&limit=` (public), `GET /api/me/reports` |
-| 3 | `POST /api/uploads/sign`, `POST /api/ai/proofread`, `POST /api/ai/photo-check` |
+| 3 | `POST /api/photos` (multipart), `GET /api/photos/{id}` (redirect, approved reports only), `POST /api/ai/proofread` |
 | 4 | `GET /api/leaderboard?scope=&city=`, `GET /api/me/progress`, `GET /api/challenge` |
 | 5 | `POST /api/reports/{id}/flag`, `GET/POST /api/admin/reports`, `GET /api/fhir/citizen-observations`, `DELETE /api/me` |
 

@@ -28,6 +28,8 @@ export interface ProfileInput {
 interface CommunityState {
   /** "unknown" until checked; "unavailable" hides every community control. */
   availability: "unknown" | "unavailable" | "ready";
+  /** The server can store photos (the bucket is configured). */
+  photosEnabled: boolean;
   signedIn: boolean;
   userName: string | null;
   profile: Profile | null;
@@ -55,6 +57,7 @@ const messageOf = (e: unknown, fallback: string): string =>
 
 export const useCommunity = create<CommunityState>((set, get) => ({
   availability: "unknown",
+  photosEnabled: false,
   signedIn: false,
   userName: null,
   profile: null,
@@ -70,12 +73,12 @@ export const useCommunity = create<CommunityState>((set, get) => ({
       return;
     }
     try {
-      const status = await apiFetch<{ enabled: boolean }>("/community/status");
+      const status = await apiFetch<{ enabled: boolean; photos?: boolean }>("/community/status");
       if (!status.enabled) {
         set({ availability: "unavailable" });
         return;
       }
-      set({ availability: "ready" });
+      set({ availability: "ready", photosEnabled: status.photos === true });
       await get().refresh();
     } catch {
       // The server is down or has no community support: leave the rest of the app untouched.

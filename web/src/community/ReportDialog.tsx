@@ -1,9 +1,13 @@
 /** The report form, in three short steps: where and when, what you saw, then a note and send.
  * Sent reports are public, unverified, and never change a score. */
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useStore } from "../data/store";
 import { ErrorLine, Modal, outlineButton, primaryButton } from "./Modal";
-import { describeChecklist, hasAnswers, nearestSite, NOTE_MAX, QUESTIONS, type Checklist } from "./reports";
+import { useCommunity } from "./store";
+import {
+  describeChecklist, hasAnswers, nearestSite, NOTE_MAX, photoFlagMessage, proofreadNote, QUESTIONS, shrinkImage,
+  uploadPhoto, type Checklist, type PhotoUpload, type Proofread,
+} from "./reports";
 import { useReports } from "./reportsStore";
 
 /** `datetime-local` wants local time without a zone: "2026-06-01T14:30". */
@@ -52,6 +56,17 @@ export function ReportDialog() {
   const [note, setNote] = useState("");
   const [when, setWhen] = useState(() => localInput(new Date()));
   const [locError, setLocError] = useState<string | null>(null);
+  const photosEnabled = useCommunity((s) => s.photosEnabled);
+  const [tidy, setTidy] = useState<Proofread | null>(null);   // the AI suggestion, until accepted or dismissed
+  const [useTidy, setUseTidy] = useState(false);               // true once the person accepted it
+  const [tidyBusy, setTidyBusy] = useState(false);
+  const [tidyError, setTidyError] = useState<string | null>(null);
+  const [photo, setPhoto] = useState<{ upload: PhotoUpload; preview: string } | null>(null);
+  const [photoBusy, setPhotoBusy] = useState(false);
+  const [photoError, setPhotoError] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+  const previewUrl = photo?.preview;
+  useEffect(() => () => { if (previewUrl) URL.revokeObjectURL(previewUrl); }, [previewUrl]);
   const linked = useMemo(() => (spot && sites ? nearestSite(spot, sites.sites) : null), [spot, sites]);
 
   if (!dialogOpen) return null;
@@ -87,11 +102,49 @@ export function ReportDialog() {
     );
   }
 
+  async function tidyNote() {
+    setTidyBusy(true);
+    setTidyError(null);
+    try {
+      setTidy(await proofreadNote(note.trim()));
+      setUseTidy(false);
+    } catch (e) {
+      setTidyError(e instanceof Error ? e.message : "The note helper is not available. You can send your note as it is.");
+    } finally {
+      setTidyBusy(false);
+    }
+  }
+
+  async function pickPhoto(file: File | undefined) {
+    if (!file) return;
+    setPhotoBusy(true);
+    setPhotoError(null);
+    try {
+      const upload = await uploadPhoto(await shrinkImage(file));
+      setPhoto({ upload, preview: URL.createObjectURL(file) });
+    } catch (e) {
+      setPhotoError(e instanceof Error ? e.message : "The photo could not be added. You can still send the report.");
+    } finally {
+      setPhotoBusy(false);
+      if (fileRef.current) fileRef.current.value = "";
+    }
+  }
+
   async function send() {
-    const ok = await submit({ observed_at: new Date(when).toISOString(), checklist: answers, note: note.trim() });
+    const chosen = useTidy && tidy ? tidy.clean : null;
+    const ok = await submit({
+      observed_at: new Date(when).toISOString(),
+      checklist: answers,
+      note: note.trim(),
+      note_clean: chosen && chosen !== note.trim() ? chosen : null,
+      photo_id: photo?.upload.id ?? null,
+    });
     if (ok) {
       setAnswers({});
       setNote("");
+      setTidy(null);
+      setUseTidy(false);
+      setPhoto(null);
       setStep(0);
       setWhen(localInput(new Date()));
     }
@@ -172,9 +225,9 @@ export function ReportDialog() {
               <span className="block text-sm font-medium mb-1.5">Anything else? (optional)</span>
               <textarea
                 value={note}
-                onChange={(e) => setNote(e.target.value)}
+                onChange={(e) => { setNote(e.target.value); setTidy(null); setUseTidy(false); }}
                 maxLength={NOTE_MAX}
-                rows={4}
+                rows={3}
                 className="w-full px-3 py-2 rounded-lg text-base resize-none"
                 style={{ background: "var(--c-canvas)", border: "1px solid var(--c-border)", color: "var(--c-text)" }}
               />
@@ -182,6 +235,77 @@ export function ReportDialog() {
                 {note.length}/{NOTE_MAX}. No links or personal details, please.
               </span>
             </label>
+
+            {note.trim() && !tidy && (
+              <div>
+                <button type="button" onClick={() => void tidyNote()} disabled={tidyBusy}
+                        className="px-3 py-1.5 rounded-lg text-sm font-medium disabled:opacity-50" style={outlineButton}>
+                  {tidyBusy ? "Checking…" : "Tidy my note with AI"}
+                </button>
+                {tidyError && <span className="text-sm ml-3" style={{ color: "var(--c-danger-text)" }}>{tidyError}</span>}
+              </div>
+            )}
+            {tidy && (
+              <div className="rounded-lg px-4 py-3 text-sm" style={{ background: "var(--c-raised)", border: "1px solid var(--c-border-subtle)" }}>
+                {tidy.flags.includes("personal_info") && (
+                  <p className="mb-2 font-medium" style={{ color: "var(--c-warn-text)" }}>
+                    This looks like it has personal details (a name, email or phone number). Please remove them, or a moderator will review the report first.
+                  </p>
+                )}
+                {tidy.flags.includes("accusation") && (
+                  <p className="mb-2" style={{ color: "var(--c-warn-text)" }}>Please describe what you saw rather than blaming a named person or company.</p>
+                )}
+                {tidy.flags.includes("off_topic") && (
+                  <p className="mb-2" style={{ color: "var(--c-warn-text)" }}>This note may not be about the stream.</p>
+                )}
+                {useTidy ? (
+                  <>
+                    <div className="mb-1" style={{ color: "var(--c-muted2)" }}>Using the suggested wording (your own words are kept too):</div>
+                    <p className="mb-2 italic">“{tidy.clean}”</p>
+                    <button type="button" onClick={() => setUseTidy(false)} className="px-3 py-1 rounded-lg font-medium" style={outlineButton}>
+                      Use my own wording
+                    </button>
+                  </>
+                ) : tidy.changed ? (
+                  <>
+                    <div className="mb-1" style={{ color: "var(--c-muted2)" }}>Suggested wording:</div>
+                    <p className="mb-2 italic">“{tidy.clean}”</p>
+                    <div className="flex gap-2">
+                      <button type="button" onClick={() => setUseTidy(true)} className="px-3 py-1 rounded-lg font-semibold" style={primaryButton}>Use this</button>
+                      <button type="button" onClick={() => setTidy(null)} className="px-3 py-1 rounded-lg font-medium" style={outlineButton}>Keep mine</button>
+                    </div>
+                  </>
+                ) : (
+                  <p style={{ color: "var(--c-muted)" }}>Your note reads fine as it is.</p>
+                )}
+              </div>
+            )}
+
+            {photosEnabled && (
+              <div>
+                <div className="text-sm font-medium mb-1.5">Photo (optional)</div>
+                <input ref={fileRef} type="file" accept="image/*" className="sr-only" id="report-photo"
+                       onChange={(e) => void pickPhoto(e.target.files?.[0])} />
+                {photo ? (
+                  <div className="flex items-start gap-3">
+                    <img src={photo.preview} alt="Your photo" className="w-24 h-24 object-cover rounded-lg" style={{ border: "1px solid var(--c-border)" }} />
+                    <div className="text-sm">
+                      <button type="button" onClick={() => setPhoto(null)} className="underline font-medium" style={{ color: "var(--c-accent)" }}>Remove photo</button>
+                      {photoFlagMessage(photo.upload) && <p className="mt-1" style={{ color: "var(--c-warn-text)" }}>{photoFlagMessage(photo.upload)}</p>}
+                    </div>
+                  </div>
+                ) : (
+                  <label htmlFor="report-photo" className="inline-block px-3 py-1.5 rounded-lg text-sm font-medium cursor-pointer"
+                         style={{ ...outlineButton, opacity: photoBusy ? 0.5 : 1 }}>
+                    {photoBusy ? "Checking the photo…" : "Add a photo"}
+                  </label>
+                )}
+                {photoError && <p className="text-sm mt-1.5" style={{ color: "var(--c-danger-text)" }}>{photoError}</p>}
+                <p className="text-sm mt-1.5" style={{ color: "var(--c-muted2)" }}>
+                  Please do not photograph people or number plates. Location data is removed from your photo.
+                </p>
+              </div>
+            )}
             <p className="text-sm" style={{ color: "var(--c-muted2)" }}>
               Your nickname will show next to the report. Reports are unverified and never change a testing priority.
             </p>

@@ -15,6 +15,8 @@ export interface Report {
   is_sample: boolean;
   author: string;
   mine: boolean;
+  /** Path (relative to the API base) of the photo, when there is an approved one. */
+  photo_url?: string | null;
   /** Only on the person's own reports. */
   status?: "pending" | "approved" | "hidden";
 }
@@ -84,6 +86,57 @@ export interface ReportInput {
   observed_at: string;
   checklist: Checklist;
   note: string;
+  /** The AI-tidied note the person chose to use (the original stays in `note`). */
+  note_clean?: string | null;
+  photo_id?: string | null;
+}
+
+export interface Proofread {
+  original: string;
+  clean: string;
+  changed: boolean;
+  flags: ("personal_info" | "accusation" | "off_topic")[];
+}
+
+export interface PhotoUpload {
+  id: string;
+  ai_ok: boolean | null;
+  flags: Record<string, boolean>;
+}
+
+export const proofreadNote = (note: string) =>
+  apiFetch<Proofread>("/ai/proofread", { method: "POST", auth: true, body: JSON.stringify({ note }) });
+
+export function uploadPhoto(file: Blob): Promise<PhotoUpload> {
+  const form = new FormData();
+  form.append("file", file, "photo.jpg");
+  return apiFetch<PhotoUpload>("/photos", { method: "POST", auth: true, body: form });
+}
+
+/** Shrinks a photo to at most `edge` pixels on its long side as a JPEG, so phone photos upload quickly.
+ * Falls back to the original file if the browser cannot decode it (the server accepts and re-checks it). */
+export async function shrinkImage(file: File, edge = 1600): Promise<Blob> {
+  try {
+    const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
+    const scale = Math.min(1, edge / Math.max(bitmap.width, bitmap.height));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(bitmap.width * scale);
+    canvas.height = Math.round(bitmap.height * scale);
+    canvas.getContext("2d")!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.85));
+    return blob ?? file;
+  } catch {
+    return file;
+  }
+}
+
+/** Plain-language reasons shown when the photo check flagged something. */
+export function photoFlagMessage(upload: PhotoUpload): string | null {
+  if (upload.ai_ok === true) return null;
+  if (upload.ai_ok === null) return "We could not check this photo automatically, so a moderator will look at it before it is shown.";
+  const f = upload.flags;
+  const why = [f.people && "a person", f.plate && "a number plate", f.not_a_stream && "something other than a stream"].filter(Boolean);
+  return `This photo may show ${why.join(" and ")}, so a moderator will look at it before it is shown.`;
 }
 
 export const postReport = (input: ReportInput) =>

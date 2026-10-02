@@ -150,6 +150,7 @@ cd web && pnpm tsc --noEmit
 | `DATABASE_URL` | API | Neon Postgres connection string (use the pooled one). Optional: without it the citizen-reports endpoints answer 503 and the rest of the API is unaffected |
 | `NEON_AUTH_BASE_URL` | API | Neon Auth URL; the API verifies sign-in tokens against `<url>/.well-known/jwks.json` |
 | `ADMIN_EMAILS` | API | Comma-separated emails treated as moderators (the email must also be verified) |
+| `AWS_ENDPOINT_URL_S3`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `S3_BUCKET`, `AWS_REGION` | API | Neon storage bucket (S3-compatible, private) for report photos. Optional: without them the photo button is hidden and nothing else changes |
 | `VITE_NEON_AUTH_URL` | Web | The same Neon Auth URL; without it the sign-in controls are hidden |
 | `VITE_NEON_AUTH_GOOGLE` | Web | Set to `true` to show "Continue with Google" (only if enabled in the Neon Auth project) |
 

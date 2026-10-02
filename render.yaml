@@ -14,6 +14,16 @@ services:
         sync: false          # Neon pooled connection string (citizen reports); optional
       - key: NEON_AUTH_BASE_URL
         sync: false          # Neon Auth URL (sign-in); optional
+      - key: AWS_ENDPOINT_URL_S3
+        sync: false          # Neon storage bucket (report photos); optional
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: S3_BUCKET
+        sync: false          # the bucket name, "uploads"
+      - key: AWS_REGION
+        value: us-east-2
       - key: PHARMASHED_DATA
         value: data/release   # committed snapshot made by scripts/make_release.py
       - key: ASSISTANT_MODEL

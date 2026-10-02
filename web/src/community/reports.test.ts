@@ -44,3 +44,17 @@ describe("pins and sites", () => {
     expect(nearestSite({ lat: 43, lon: 1.05 }, sites)).toBeNull();
   });
 });
+
+
+import { photoFlagMessage } from "./reports";
+
+describe("photo messages", () => {
+  it("says nothing for a clean photo", () => {
+    expect(photoFlagMessage({ id: "x", ai_ok: true, flags: {} })).toBeNull();
+  });
+  it("explains a flagged photo and an unchecked one", () => {
+    expect(photoFlagMessage({ id: "x", ai_ok: false, flags: { people: true, plate: true } })).toMatch(/a person and a number plate/);
+    expect(photoFlagMessage({ id: "x", ai_ok: false, flags: { not_a_stream: true } })).toMatch(/something other than a stream/);
+    expect(photoFlagMessage({ id: "x", ai_ok: null, flags: { unchecked: true } })).toMatch(/could not check/);
+  });
+});
