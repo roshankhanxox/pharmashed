@@ -10,7 +10,8 @@ from pharmashed_api import data as _data
 router = APIRouter()
 
 
-@router.api_route("/ping", methods=["GET", "HEAD"])
+@router.head("/ping", include_in_schema=False)
+@router.get("/ping")
 def ping() -> JSONResponse:
     """Keep-alive target for an uptime monitor (UptimeRobot, Render's health check).
 
@@ -20,7 +21,8 @@ def ping() -> JSONResponse:
     return JSONResponse({"ok": True}, headers={"Cache-Control": "no-store"})
 
 
-@router.api_route("/health", methods=["GET", "HEAD"])
+@router.head("/health", include_in_schema=False)
+@router.get("/health")
 def health():
     meta = _data.results().get("meta", {})
     return {"ok": True, "engine_version": meta.get("engine_version", "unknown")}
