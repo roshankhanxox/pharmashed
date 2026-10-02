@@ -34,6 +34,7 @@ def delete_account(conn: psycopg.Connection, user_id: str) -> dict[str, int]:
     conn.execute("delete from report_photos where user_id = %s", (user_id,))
     conn.execute("delete from points_events where user_id = %s", (user_id,))
     conn.execute("delete from badges_awarded where user_id = %s", (user_id,))
+    conn.execute("delete from moderators where user_id = %s", (user_id,))
     counts["reports"] = conn.execute("delete from reports where user_id = %s", (user_id,)).rowcount
     conn.execute("delete from profiles where user_id = %s", (user_id,))
     counts["sign_in_user"] = _delete_sign_in_user(conn, user_id)
